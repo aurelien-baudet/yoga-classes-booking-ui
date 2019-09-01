@@ -1,0 +1,25 @@
+<ion-card [class.show-details]="showDetails" 
+          [class.bookable]="bookable" 
+          [class.booked]="booked" 
+          [class.pending]="pending">
+  <ion-card-header>
+    <ion-card-title>{{ scheduledClass | dateRange }}</ion-card-title>
+    <ion-button (click)="bookOrCancel()" [disabled]="!bookable">
+        <ion-icon slot="icon-only" [name]="getBookingState()"></ion-icon>
+    </ion-button>
+  </ion-card-header>
+  <ion-card-content>
+    <div class="preview">
+      <span class="title">{{ scheduledClass.lesson.title }}</span>
+      <ion-badge class="remainingPlaces">{{ getRemainingPlaces() }}</ion-badge>
+      <ion-badge class="waitingQueue">{{ getNumberOfWaitingStudents() }}</ion-badge>
+    </div>
+    <div class="details">
+      <ion-button (click)="showOrHideDetails()">
+        <ion-icon slot="icon-only" [name]="showDetails ? 'close' : 'open'"></ion-icon>
+      </ion-button>
+      <app-class-details [scheduledClass]="scheduledClass"></app-class-details>
+    </div>
+  </ion-card-content>
+</ion-card>
+  

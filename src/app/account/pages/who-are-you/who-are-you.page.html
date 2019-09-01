@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>who-are-you</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <p>Avant de t'inscire à un cours, dis nous qui tu es</p>
+    <ion-segment (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="login" [checked]="showLogin()">Connecte toi</ion-segment-button>
+        <ion-segment-button value="unregistered" [checked]="showUnregistered()">Continue sans compte</ion-segment-button>
+    </ion-segment>
+    <app-login-form *ngIf="showLogin()" (login)="login($event)"></app-login-form>
+    <div *ngIf="showLogin()" class="register">
+      <p>Pas encore de compte ?</p>
+      <ion-button (click)="register()">Créé ton compte</ion-button>
+    </div>
+    <app-unregistered-info-form *ngIf="showUnregistered()" (continue)="finishBooking($event)"></app-unregistered-info-form>
+</ion-content>

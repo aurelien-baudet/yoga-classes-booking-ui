@@ -1,0 +1,43 @@
+<form (ngSubmit)="register.emit(student)" #form="ngForm" novalidate>
+  <ion-item>
+    <ion-label>Nom affiché</ion-label>
+    <ion-input class="name" type="text" name="displayName" [(ngModel)]="student.displayName" required></ion-input>
+    <app-help-button message=""></app-help-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Identifiant utilisateur</ion-label>
+    <ion-input class="login" type="text" name="login" [(ngModel)]="student.credentials.login" required></ion-input>
+    <app-help-button message=""></app-help-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Mot de passe</ion-label>
+    <ion-input class="password" type="password" name="password" [(ngModel)]="student.credentials.password" required></ion-input>
+    <app-help-button message=""></app-help-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Email (optionnel)</ion-label>
+    <ion-input class="email" type="email" name="contact.email" [(ngModel)]="student.contact.email"></ion-input>
+    <app-help-button message=""></app-help-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Numéro de téléphone (optionnel)</ion-label>
+    <ion-input class="phone" type="tel" name="contact.phoneNumber" [(ngModel)]="student.contact.phoneNumber"></ion-input>
+    <app-help-button message=""></app-help-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Mon nom affiché est visible par les autres</ion-label>
+    <ion-toggle class="visible-by-others" name="preferences.visibleByOtherStudents" [(ngModel)]="student.preferences.visibleByOtherStudents"></ion-toggle>
+    <app-help-button message=""></app-help-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>J'accepte d'être assisté</ion-label>
+    <ion-toggle class="assitance" name="preferences.agreesToBeAssisted" [(ngModel)]="student.preferences.agreesToBeAssisted"></ion-toggle>
+    <app-help-button message=""></app-help-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Ajouter mes cours à mon calendrier</ion-label>
+    <ion-toggle class="add-to-calendar" name="preferences.addBookedClassesToCalendar" [(ngModel)]="student.preferences.addBookedClassesToCalendar"></ion-toggle>
+    <app-help-button message=""></app-help-button>
+  </ion-item>
+  <ion-button type="submit" [disabled]="!form.valid">Créer mon compte</ion-button>
+</form>

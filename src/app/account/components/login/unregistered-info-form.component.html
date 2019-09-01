@@ -1,0 +1,23 @@
+<form (ngSubmit)="continue.emit(unregisteredUser)" #form="ngForm" novalidate>
+  <ion-item>
+    <ion-label>Nom affiché</ion-label>
+    <ion-input class="name" type="text" name="displayName" [(ngModel)]="unregisteredUser.displayName" required></ion-input>
+    <app-help-button message=""></app-help-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Email (optionnel)</ion-label>
+    <ion-input class="email" type="email" name="email" [(ngModel)]="unregisteredUser.email"></ion-input>
+    <app-help-button message=""></app-help-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Numéro de téléphone (optionnel)</ion-label>
+    <ion-input class="phone" type="tel" name="phoneNumber" [(ngModel)]="unregisteredUser.phoneNumber"></ion-input>
+    <app-help-button message=""></app-help-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Envoyer un mail lorsque je réserve un cours</ion-label>
+    <ion-toggle class="send-booked-email" name="sendBookedMail" [(ngModel)]="unregisteredUser.sendBookedMail"></ion-toggle>
+    <app-help-button message=""></app-help-button>
+  </ion-item>
+  <ion-button type="submit" [disabled]="!form.valid">Terminer la réservation</ion-button>
+</form>

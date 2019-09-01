@@ -1,0 +1,8 @@
+app-class-details {
+    display: block;
+    height: 0;
+}
+
+.show-details app-class-details {
+    height: auto;
+}
