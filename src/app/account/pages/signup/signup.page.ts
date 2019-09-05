@@ -4,7 +4,7 @@ import { AccountService } from '../../services/account.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-signup',
+  selector: 'app-signup-page',
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss'],
 })

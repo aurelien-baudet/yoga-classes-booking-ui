@@ -1,16 +1,19 @@
 <ion-list>
     <ion-item *ngFor="let scheduledClass of classes">
       <app-scheduled-class-card 
-        *ngIf="classStateProvider"
         [scheduledClass]="scheduledClass"
-        [showDetails]="classStateProvider.isShowDetails(scheduledClass)"
-        [booked]="classStateProvider.isBooked(scheduledClass)"
-        [pending]="classStateProvider.isPending(scheduledClass)"
-        [bookable]="classStateProvider.isBookable(scheduledClass)"
+        [showDetails]="detailsStateProvider.isShowDetails(scheduledClass)"
+        [booked]="bookingStateProvider.isBooked(scheduledClass)"
+        [bookable]="bookingStateProvider.isBookable(scheduledClass)"
+        [pending]="pendingStateProvider.isPending(scheduledClass)"
+        [editable]="manageClassStateProvider.isEditable(scheduledClass)"
+        [cancelable]="manageClassStateProvider.isCancelable(scheduledClass)"
         (book)="book.emit($event)"
-        (cancel)="cancel.emit($event)"
+        (unbook)="unbook.emit($event)"
         (viewDetails)="viewDetails.emit($event)"
-        (hideDetails)="hideDetails.emit($event)"></app-scheduled-class-card>
+        (hideDetails)="hideDetails.emit($event)"
+        (edit)="edit.emit($event)"
+        (cancel)="cancel.emit($event)"></app-scheduled-class-card>
     </ion-item>
   </ion-list>
   

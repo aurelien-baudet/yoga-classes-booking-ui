@@ -1,0 +1,29 @@
+<ion-card [class.show-details]="showDetails"
+          [class.schedulable]="schedulable">
+  <ion-card-header>
+    <ion-card-title>Pas encore programmé</ion-card-title>
+    <ion-button (click)="schedule.emit(lesson)" *ngIf="schedulable">
+        <ion-icon slot="icon-only" name="schedule"></ion-icon>
+    </ion-button>
+    <ion-button (click)="remove.emit(lesson)" *ngIf="removable">
+        <ion-icon slot="icon-only" name="remove"></ion-icon>
+    </ion-button>
+  </ion-card-header>
+  <ion-card-content>
+    <div class="preview">
+      <span class="title">{{ lesson.title }}</span>
+      <ion-badge class="max-students">{{ lesson.maxStudents }}</ion-badge>
+    </div>
+    <div class="details">
+      <ion-button (click)="viewDetails.emit(lesson)" *ngIf="!showDetails">
+        <ion-icon slot="icon-only" name="open"></ion-icon>
+      </ion-button>
+      <ion-button (click)="hideDetails.emit(lesson)" *ngIf="showDetails">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+      <div class="details-content">
+        <p>{{ lesson.description }}</p>
+      </div>
+    </div>
+  </ion-card-content>
+</ion-card>

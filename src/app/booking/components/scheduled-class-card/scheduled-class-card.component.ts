@@ -18,44 +18,26 @@ export class ScheduledClassCardComponent {
   showDetails = false;
   @Input()
   bookable = true;
+  @Input()
+  editable = false;
+  @Input()
+  cancelable = false;
+  @Input()
+  canceled = false;
 
   @Output()
   book = new EventEmitter<ScheduledClass>();
   @Output()
-  cancel = new EventEmitter<ScheduledClass>();
+  unbook = new EventEmitter<ScheduledClass>();
   @Output()
   viewDetails = new EventEmitter<ScheduledClass>();
   @Output()
   hideDetails = new EventEmitter<ScheduledClass>();
+  @Output()
+  edit = new EventEmitter<ScheduledClass>();
+  @Output()
+  cancel = new EventEmitter<ScheduledClass>();
 
-  showOrHideDetails() {
-    if (this.showDetails) {
-      this.hideDetails.emit(this.scheduledClass);
-    } else {
-      this.viewDetails.emit(this.scheduledClass);
-    }
-  }
-
-  bookOrCancel() {
-    if (!this.bookable) {
-      return;
-    }
-    if (this.booked) {
-      this.cancel.emit(this.scheduledClass);
-    } else {
-      this.book.emit(this.scheduledClass);
-    }
-  }
-
-  getBookingState() {
-    if (this.pending) {
-      return 'booking';
-    }
-    if (this.booked) {
-      return 'booked';
-    }
-    return 'not-booked';
-  }
 
   getRemainingPlaces() {
     if (!this.scheduledClass) {

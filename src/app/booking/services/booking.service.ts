@@ -11,6 +11,6 @@ export abstract class BookingService {
   async abstract book(student: StudentId, bookedClass: ClassId): Promise<Booked>;
   async abstract book(unregisteredUser: UnregisteredUser, bookedClass: ClassId): Promise<Booked>;
 
-  async abstract cancel(student: StudentId, bookedClass: ClassId): Promise<ScheduledClass>;
-  async abstract cancel(unregisteredUser: UnregisteredUser, bookedClass: ClassId): Promise<ScheduledClass>;
+  async abstract unbook(student: StudentId, bookedClass: ClassId): Promise<ScheduledClass>;
+  async abstract unbook(unregisteredUser: UnregisteredUser, bookedClass: ClassId): Promise<ScheduledClass>;
 }

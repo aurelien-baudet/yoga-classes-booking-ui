@@ -15,3 +15,15 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 @import '~ngx-toastr/toastr-bs4-alert';
+
+// FIXME: should be defined in variables.scss
+$colors: (
+  primary:    #488aff,
+  secondary:  #32db64,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222,
+  cal-color:  #ff8732
+);
+
+@import "~ion4-calendar/dist/index";

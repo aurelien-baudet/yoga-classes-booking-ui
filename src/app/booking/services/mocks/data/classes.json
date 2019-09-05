@@ -1,0 +1,1069 @@
+[
+  {
+    "id": "5d6fb238bcf35a6acc1321ec",
+    "start": 1569038400000,
+    "end": 1569042000000,
+    "lesson": {
+      "id": "5d6f6ce1bcf35a5a03470f3c",
+      "title": "short",
+      "description": "short description",
+      "maxStudents": 15,
+      "photos": [],
+      "place": {
+        "id": "5d6526e3bcf35a5acc6eb6b1",
+        "name": "Terre Sainte",
+        "address": "128 rue Amiral Lacaze, Saint Pierre",
+        "plan": "https://www.google.com/maps/@-21.3492488,55.4836983,18z"
+      },
+      "teacher": {
+        "id": "5d651182bcf35a40b5f78158",
+        "displayName": "Cyril",
+        "account": {
+          "login": "cyril.shaker",
+          "roles": [
+            "TEACHER"
+          ]
+        }
+      }
+    },
+    "state": "OPENED",
+    "bookings": {
+      "all": [],
+      "approved": [],
+      "waiting": []
+    }
+  },
+  {
+    "id": "5d65552cbcf35a2755734140",
+    "start": 1575297900000,
+    "end": 1575302400000,
+    "lesson": {
+      "id": "5d65283cbcf35a5acc6eb6b3",
+      "title": "Lundi detox du weekend (cours tous niveaux)",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi malesuada eget enim at varius. Mauris ut lacus a erat facilisis gravida. Nam eget purus et velit porttitor congue vel aliquet velit.",
+      "maxStudents": 5,
+      "photos": [],
+      "place": {
+        "id": "5d6526e3bcf35a5acc6eb6b1",
+        "name": "Terre Sainte",
+        "address": "128 rue Amiral Lacaze, Saint Pierre",
+        "plan": "https://www.google.com/maps/@-21.3492488,55.4836983,18z"
+      },
+      "teacher": {
+        "id": "5d651182bcf35a40b5f78158",
+        "displayName": "Cyril",
+        "account": {
+          "login": "cyril.shaker",
+          "roles": [
+            "TEACHER"
+          ]
+        }
+      }
+    },
+    "state": "OPENED",
+    "bookings": {
+      "all": [
+        {
+          "bookDate": 1567276153993,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "joe",
+            "email": "joe@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "gi",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567495897933,
+          "bookedBy": {
+            "id": "5d67b26cbcf35a41c259228c",
+            "displayName": "pouet",
+            "account": {
+              "login": "pouet",
+              "roles": [
+                "STUDENT"
+              ]
+            }
+          },
+          "student": {
+            "id": "5d67b26cbcf35a41c259228c",
+            "displayName": "pouet",
+            "email": null,
+            "phoneNumber": null,
+            "registered": true
+          }
+        }
+      ],
+      "approved": [
+        {
+          "bookDate": 1567276153993,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "joe",
+            "email": "joe@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "gi",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567495897933,
+          "bookedBy": {
+            "id": "5d67b26cbcf35a41c259228c",
+            "displayName": "pouet",
+            "account": {
+              "login": "pouet",
+              "roles": [
+                "STUDENT"
+              ]
+            }
+          },
+          "student": {
+            "id": "5d67b26cbcf35a41c259228c",
+            "displayName": "pouet",
+            "email": null,
+            "phoneNumber": null,
+            "registered": true
+          }
+        }
+      ],
+      "waiting": []
+    }
+  },
+  {
+    "id": "5d6540b6bcf35a04e72c862d",
+    "start": 1575384300000,
+    "end": 1575388800000,
+    "lesson": {
+      "id": "5d65293ebcf35a5acc6eb6b4",
+      "title": "Mardi transpi (Niveau intermédiaire-avancé)",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi malesuada eget enim at varius. Mauris ut lacus a erat facilisis gravida. Nam eget purus et velit porttitor congue vel aliquet velit.",
+      "maxStudents": 5,
+      "photos": [],
+      "place": {
+        "id": "5d6526e3bcf35a5acc6eb6b1",
+        "name": "Terre Sainte",
+        "address": "128 rue Amiral Lacaze, Saint Pierre",
+        "plan": "https://www.google.com/maps/@-21.3492488,55.4836983,18z"
+      },
+      "teacher": {
+        "id": "5d651182bcf35a40b5f78158",
+        "displayName": "Cyril",
+        "account": {
+          "login": "cyril.shaker",
+          "roles": [
+            "TEACHER"
+          ]
+        }
+      }
+    },
+    "state": "OPENED",
+    "bookings": {
+      "all": [],
+      "approved": [],
+      "waiting": []
+    }
+  },
+  {
+    "id": "5d6f9c99bcf35a6acc1321e8",
+    "start": 1575557100000,
+    "end": 1575561600000,
+    "lesson": {
+      "id": "5d6f6ce1bcf35a5a03470f3c",
+      "title": "Beaucoup de participants",
+      "description": "Il y a vraiment beaucoup beaucoup de participants à ce cours et une très longue description juste pour voir comment ça s'affiche avec beaucoup beaucoup d'infos.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi malesuada eget enim at varius. Mauris ut lacus a erat facilisis gravida. Nam eget purus et velit porttitor congue vel aliquet velit.",
+      "maxStudents": 30,
+      "photos": [],
+      "place": {
+        "id": "5d6526e3bcf35a5acc6eb6b1",
+        "name": "Terre Sainte",
+        "address": "128 rue Amiral Lacaze, Saint Pierre",
+        "plan": "https://www.google.com/maps/@-21.3492488,55.4836983,18z"
+      },
+      "teacher": {
+        "id": "5d651182bcf35a40b5f78158",
+        "displayName": "Cyril",
+        "account": {
+          "login": "cyril.shaker",
+          "roles": [
+            "TEACHER"
+          ]
+        }
+      }
+    },
+    "state": "OPENED",
+    "bookings": {
+      "all": [
+        {
+          "bookDate": 1567276153993,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "joe",
+            "email": "joe@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567495897933,
+          "bookedBy": {
+            "id": "5d67b26cbcf35a41c259228c",
+            "displayName": "pouet",
+            "account": {
+              "login": "pouet",
+              "roles": [
+                "STUDENT"
+              ]
+            }
+          },
+          "student": {
+            "id": "5d67b26cbcf35a41c259228c",
+            "displayName": "pouet",
+            "email": null,
+            "phoneNumber": null,
+            "registered": true
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "Odile Deray",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "Simon Jérémi",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "Serge Karamazov",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "6",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "7",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "8",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "9",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "10",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "11",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "12",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "n°13",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "14",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "15",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "16",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "17",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "18",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "19",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "20",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "21",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "22",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "23",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "24",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "25",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "26",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "27",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "28",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "29",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "30",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "31",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936896,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "gi",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        }
+      ],
+      "approved": [
+        {
+          "bookDate": 1567276153993,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "joe",
+            "email": "joe@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567495897933,
+          "bookedBy": {
+            "id": "5d67b26cbcf35a41c259228c",
+            "displayName": "pouet",
+            "account": {
+              "login": "pouet",
+              "roles": [
+                "STUDENT"
+              ]
+            }
+          },
+          "student": {
+            "id": "5d67b26cbcf35a41c259228c",
+            "displayName": "pouet",
+            "email": null,
+            "phoneNumber": null,
+            "registered": true
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "Odile Deray",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "Simon Jérémi",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "Serge Karamazov",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "6",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "7",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "8",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "9",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "10",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "11",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "12",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "n°13",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "14",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "15",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "16",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "17",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "18",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "19",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "20",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "21",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "22",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "23",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "24",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "25",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "26",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "27",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "28",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "29",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "30",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        }
+      ],
+      "waiting": [
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "31",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936896,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "gi",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "5d65552cbcf35a2755734140",
+    "start": 1575297900000,
+    "end": 1575302400000,
+    "lesson": {
+      "id": "5d65283cbcf35a5acc6eb6b3",
+      "title": "Lundi detox du weekend (cours tous niveaux)",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi malesuada eget enim at varius. Mauris ut lacus a erat facilisis gravida. Nam eget purus et velit porttitor congue vel aliquet velit.",
+      "maxStudents": 5,
+      "photos": [],
+      "place": {
+        "id": "5d6526e3bcf35a5acc6eb6b1",
+        "name": "Terre Sainte",
+        "address": "128 rue Amiral Lacaze, Saint Pierre",
+        "plan": "https://www.google.com/maps/@-21.3492488,55.4836983,18z"
+      },
+      "teacher": {
+        "id": "5d651182bcf35a40b5f78158",
+        "displayName": "Cyril",
+        "account": {
+          "login": "cyril.shaker",
+          "roles": [
+            "TEACHER"
+          ]
+        }
+      }
+    },
+    "state": "CANCELED",
+    "bookings": {
+      "all": [
+        {
+          "bookDate": 1567276153993,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "joe",
+            "email": "joe@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "gi",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567495897933,
+          "bookedBy": {
+            "id": "5d67b26cbcf35a41c259228c",
+            "displayName": "pouet",
+            "account": {
+              "login": "pouet",
+              "roles": [
+                "STUDENT"
+              ]
+            }
+          },
+          "student": {
+            "id": "5d67b26cbcf35a41c259228c",
+            "displayName": "pouet",
+            "email": null,
+            "phoneNumber": null,
+            "registered": true
+          }
+        }
+      ],
+      "approved": [
+        {
+          "bookDate": 1567276153993,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "joe",
+            "email": "joe@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567312936895,
+          "bookedBy": null,
+          "student": {
+            "id": null,
+            "displayName": "gi",
+            "email": "gi@yopmail.com",
+            "phoneNumber": "",
+            "registered": false
+          }
+        },
+        {
+          "bookDate": 1567495897933,
+          "bookedBy": {
+            "id": "5d67b26cbcf35a41c259228c",
+            "displayName": "pouet",
+            "account": {
+              "login": "pouet",
+              "roles": [
+                "STUDENT"
+              ]
+            }
+          },
+          "student": {
+            "id": "5d67b26cbcf35a41c259228c",
+            "displayName": "pouet",
+            "email": null,
+            "phoneNumber": null,
+            "registered": true
+          }
+        }
+      ],
+      "waiting": []
+    }
+  }
+]

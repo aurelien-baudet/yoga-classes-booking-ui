@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>edit-lesson</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-lesson-form
+    [places]="places"
+    (updateInfo)="updateLessonInfo($event)"
+    (changePlace)="changePlace($event)"></app-lesson-form>
+</ion-content>

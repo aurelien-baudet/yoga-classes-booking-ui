@@ -1,3 +1,4 @@
+import { Teacher } from './../../domain/teacher';
 import { UnregisteredUser } from './../../domain/unregistered';
 import { HttpClient } from '@angular/common/http';
 import { Role } from 'src/app/account/domain/user';
@@ -45,6 +46,12 @@ export class RestAccountService implements AccountService {
       return this.unregisteredUser;
     }
     return this.http.get<User>(`${this.serverConfig.url}/users`)
+      .pipe(first())
+      .toPromise();
+  }
+
+  async getTeacherInfo(): Promise<Teacher | null> {
+    return this.http.get<Teacher>(`${this.serverConfig.url}/users`)
       .pipe(first())
       .toPromise();
   }

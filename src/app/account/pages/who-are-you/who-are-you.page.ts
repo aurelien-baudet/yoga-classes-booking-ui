@@ -6,7 +6,7 @@ import { UnregisteredUser } from '../../domain/unregistered';
 import { BookingService } from 'src/app/booking/services/booking.service';
 
 @Component({
-  selector: 'app-who-are-you',
+  selector: 'app-who-are-you-page',
   templateUrl: './who-are-you.page.html',
   styleUrls: ['./who-are-you.page.scss'],
 })

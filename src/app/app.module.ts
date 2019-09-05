@@ -1,4 +1,3 @@
-import { NotificationComponent } from './common/components/notification/notification.component';
 import { CurrentRoute } from 'src/app/common/util/router.util';
 import { BasicAuthInterceptor } from './account/services/remote/basic-auth.interceptor';
 import { AuthenticationInSessionStorage } from './account/services/local/authentication-in-session-storage.storage';
@@ -14,8 +13,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { ToastrModule, ToastContainerModule, ToastNoAnimationModule } from 'ngx-toastr';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookingService } from './booking/services/booking.service';
@@ -26,8 +23,11 @@ import { ServerConfig } from 'src/environments/config';
 import { environment } from 'src/environments/environment';
 import { AuthenticationStorage } from './account/services/authentication.storage';
 import { UnauthorizedInterceptor } from './account/services/remote/unauthorized.interceptor';
-import { NotificationService } from './common/components/notification/notification.service';
 import { CommonComponentsModule } from './common/components/common-components.module';
+import { PlaceService } from './admin/services/place.service';
+import { RestPlaceService } from './admin/services/remote/rest-place.service';
+import { DateUtil } from './common/util/date.util';
+import { MockClassService } from './booking/services/mocks/mock-class.service';
 
 
 @NgModule({
@@ -46,10 +46,13 @@ import { CommonComponentsModule } from './common/components/common-components.mo
     StatusBar,
     SplashScreen,
     CurrentRoute,
+    DateUtil,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: ClassService, useClass: RestClassService },
+    { provide: PlaceService, useClass: RestPlaceService },
+    // { provide: ClassService, useClass: RestClassService },
+    { provide: ClassService, useClass: MockClassService },
     { provide: BookingService, useClass: RestBookingService },
     { provide: AccountService, useClass: RestAccountService },
     { provide: ServerConfig, useValue: environment.server },

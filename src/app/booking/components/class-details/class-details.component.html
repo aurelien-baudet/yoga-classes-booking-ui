@@ -1,5 +1,5 @@
 <p>{{ scheduledClass.lesson.description }}</p>
-<ion-item>
+<ion-item class="register-friend">
   <app-register-friend></app-register-friend>
 </ion-item>
 <ion-list class="approved">
@@ -10,7 +10,7 @@
   </ion-list-header>
   <ion-item *ngFor="let booking of scheduledClass.bookings.approved">
     <ion-label>{{ booking.student.displayName }}</ion-label>
-    <ion-button (ionClick)="cancel.emit(booking)">
+    <ion-button (ionClick)="unbook.emit(booking)" size="small">
       <ion-icon slot="icon-only" name="remove"></ion-icon>
     </ion-button>
   </ion-item>
@@ -23,7 +23,7 @@
   </ion-list-header>
   <ion-item *ngFor="let booking of scheduledClass.bookings.waiting">
     <ion-label>{{ booking.student.displayName }}</ion-label>
-    <ion-button (ionClick)="cancel.emit(booking)">
+    <ion-button (ionClick)="unbook.emit(booking)" size="small">
       <ion-icon slot="icon-only" name="remove"></ion-icon>
     </ion-button>
   </ion-item>

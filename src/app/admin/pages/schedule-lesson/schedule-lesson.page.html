@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>schedule-lesson</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-calendar
+    *ngIf="lesson && scheduledClassesForLesson"
+    [lesson]="lesson"
+    [scheduledClasses]="scheduledClassesForLesson"
+    (schedule)="schedule($event.lesson, $event.start, $event.end)"></app-calendar>
+  <ion-button (click)="finish()">Terminé</ion-button>
+</ion-content>

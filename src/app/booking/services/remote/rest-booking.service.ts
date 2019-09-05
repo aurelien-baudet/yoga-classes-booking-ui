@@ -40,9 +40,9 @@ export class RestBookingService implements BookingService {
       .toPromise();
   }
 
-  async cancel(student: StudentId, bookedClass: ClassId): Promise<ScheduledClass>;
-  async cancel(uregisteredUser: UnregisteredUser, bookedClass: ClassId): Promise<ScheduledClass>;
-  async cancel(student: any, bookedClass: ClassId): Promise<ScheduledClass> {
+  async unbook(student: StudentId, bookedClass: ClassId): Promise<ScheduledClass>;
+  async unbook(uregisteredUser: UnregisteredUser, bookedClass: ClassId): Promise<ScheduledClass>;
+  async unbook(student: any, bookedClass: ClassId): Promise<ScheduledClass> {
     if (isUnkown(student)) {
       // TODO: throw
     }

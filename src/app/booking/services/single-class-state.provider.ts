@@ -1,8 +1,28 @@
 import { ScheduledClass } from '../domain/reservation';
 
-export abstract class SingleClassStateProvider {
-    abstract isShowDetails(scheduledClass: ScheduledClass): boolean;
+export abstract class BookingStateProvider {
     abstract isBookable(scheduledClass: ScheduledClass): boolean;
     abstract isBooked(scheduledClass: ScheduledClass): boolean;
-    abstract isPending(scheduledClass: ScheduledClass): boolean;
+}
+
+export abstract class ManageClassStateProvider {
+    abstract isEditable(scheduledClass: ScheduledClass): boolean;
+    abstract isCancelable(scheduledClass: ScheduledClass): boolean;
+    abstract isCanceled(scheduledClass: ScheduledClass): boolean;
+}
+
+export abstract class DetailsStateProvider<T> {
+    abstract isShowDetails(detaillable: T): boolean;
+}
+export abstract class DetailsStateUpdateProvider<T> {
+    abstract viewDetails(detaillable: T);
+    abstract hideDetails(detaillable: T);
+}
+
+export abstract class PendingStateProvider<T> {
+    abstract isPending(pendingable: T): boolean;
+}
+export abstract class PendingStateUpdateProvider<T> {
+    abstract markPending(pendingable: T);
+    abstract unmarkPending(pendingable: T);
 }

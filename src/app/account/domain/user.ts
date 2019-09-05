@@ -1,8 +1,8 @@
 import { StudentId } from './student';
 import { UnregisteredUser } from './unregistered';
 export enum Role {
-    STUDENT,
-    TEACHER
+    STUDENT = 'STUDENT',
+    TEACHER = 'TEACHER'
 }
 
 export interface Account {
@@ -62,4 +62,8 @@ export const isUnkown = (user: User | UserId | UnregisteredUser): boolean => {
         return false;
     }
     return true;
+};
+
+export const hasRole = (user: User, role: Role) => {
+    return user.account.roles.some((r) => role === r);
 };

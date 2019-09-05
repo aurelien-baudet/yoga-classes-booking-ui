@@ -1,0 +1,33 @@
+<ion-calendar 
+  (click)="lastClick = $event"
+  type="js-date"
+  [(ngModel)]="selectedDates"
+  [options]="{pickMode: 'multi', daysConfig: daysConfig, weekStart: 1, weekdays: ['D', 'L', 'M', 'M', 'J', 'V', 'S']}"
+  (onSelect)="chooseHours($event.time)"></ion-calendar>
+
+<ng-template #selectHours let-date="date" let-hours="hours">
+  <form #hoursForm="ngForm" (ngSubmit)="setHours(date, hours)">
+    <ion-item class="start">
+      <ion-input 
+        type="text" 
+        name="start" 
+        placeholder="Début"
+        [(ngModel)]="hours.start" 
+        appTimeMask
+        required></ion-input>
+    </ion-item>
+    <span class="separator">-</span>
+    <ion-item class="end">
+      <ion-input 
+        type="text" 
+        name="end" 
+        placeholder="Fin"
+        [(ngModel)]="hours.end" 
+        appTimeMask
+        required></ion-input>
+    </ion-item>
+    <ion-button type="submit" [disabled]="!hoursForm.valid">
+      <ion-icon slot="icon-only" name="validate"></ion-icon>
+    </ion-button>
+  </form>
+</ng-template>

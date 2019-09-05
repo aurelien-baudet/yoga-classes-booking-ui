@@ -1,0 +1,9 @@
+.details-content {
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+
+.show-details .details-content {
+    height: auto;
+}

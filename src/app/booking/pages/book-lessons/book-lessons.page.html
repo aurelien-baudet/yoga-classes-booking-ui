@@ -1,17 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>book-lessons</ion-title>
+    
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <app-classes 
     [classes]="classes"
-    [classStateProvider]="classStateProvider"
+    [bookingStateProvider]="bookingStateProvider"
+    [detailsStateProvider]="detailsProvider"
+    [pendingStateProvider]="pendingProvider"
+    [manageClassStateProvider]="manageClassStateProvider"
     (book)="book($event)"
-    (cancel)="cancel($event)"
-    (viewDetails)="markAsOpened($event)"
-    (hideDetails)="markAsClosed($event)"></app-classes>
+    (unbook)="unbook($event)"
+    (viewDetails)="detailsProvider.viewDetails($event)"
+    (hideDetails)="detailsProvider.hideDetails($event)"></app-classes>
 </ion-content>
 
 <ng-template #approvedNotification let-bookedClass="bookedClass">
@@ -20,7 +22,7 @@
   </div>
   <div class="content">
     <p>Tu es inscrit au cours du <strong>{{ bookedClass | dateRange }}</strong></p>
-    <ion-button *ngIf="isMobileApp()" (click)="addToCalendar(bookedClass)">ajouter au calendrier</ion-button>
+    <ion-button *ngIf="isMobileApp()" (click)="addToCalendar(bookedClass)" size="small">ajouter au calendrier</ion-button>
   </div>
 </ng-template>
 
@@ -40,6 +42,6 @@
   </div>
   <div class="content">
     <p>Tu es désinscrit du cours du <strong>{{ bookedClass | dateRange }}</strong>.</p>
-    <ion-button *ngIf="isMobileApp()" (click)="removeFromCalendar(bookedClass)">retirer du calendrier</ion-button>
+    <ion-button *ngIf="isMobileApp()" (click)="removeFromCalendar(bookedClass)" size="small">retirer du calendrier</ion-button>
   </div>
 </ng-template>

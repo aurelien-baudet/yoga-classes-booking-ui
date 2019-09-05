@@ -1,7 +1,7 @@
 import { Instant } from './general';
 import { User, UserInfo } from 'src/app/account/domain/user';
-import { Student, StudentInfo, isBookedForStudent, isBookedForStudentPredicate, StudentId, isBookedForUnregisteredStudentPredicate, isBookedForRegisteredStudentPredicate } from 'src/app/account/domain/student';
-import { Teacher, TeacherInfo } from 'src/app/account/domain/teacher';
+import { Student, StudentInfo, isBookedForStudentPredicate, StudentId, isBookedForUnregisteredStudentPredicate, isBookedForRegisteredStudentPredicate } from 'src/app/account/domain/student';
+import { Teacher, TeacherInfo, TeacherId } from 'src/app/account/domain/teacher';
 import { UnregisteredUser } from 'src/app/account/domain/unregistered';
 
 export interface Lesson {
@@ -13,6 +13,11 @@ export interface Lesson {
     place: Place;
     teacher: TeacherInfo;
 }
+
+export type NewLesson = Pick<Lesson, 'title' | 'description' | 'maxStudents' | 'photos'> & {
+    place: PlaceId,
+    teacher: TeacherId
+};
 
 export type LessonId = Pick<Lesson, 'id'>;
 
@@ -58,6 +63,9 @@ export interface Booked {
 }
 
 export type ClassId = Pick<ScheduledClass, 'id'>;
+
+export const isSameLesson = (a: Lesson, b: Lesson) => a.id === b.id;
+export const sameLessonPredicate = (a: Lesson) => (b: Lesson) => isSameLesson(a, b);
 
 export const isSameClass = (a: ScheduledClass, b: ScheduledClass) => a.id === b.id;
 export const sameClassPredicate = (a: ScheduledClass) => (b: ScheduledClass) => isSameClass(a, b);

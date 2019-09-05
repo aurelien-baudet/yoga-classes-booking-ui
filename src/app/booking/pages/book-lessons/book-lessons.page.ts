@@ -1,18 +1,18 @@
+import { InMemoryUpdatableDetailsStateProvider } from '../../services/local/in-memory-details-class-state.provider';
+import { UnmanageableProvider } from './../../services/local/unmanageable.provider';
 import { UnregisteredUser } from './../../../account/domain/unregistered';
 import { NotificationService } from './../../../common/components/notification/notification.service';
-import { first } from 'rxjs/operators';
-import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
-import { StudentSingleClassStateProvider } from './../../services/local/student-single-class-state.provider';
+import { Router } from '@angular/router';
 import { User, isUnkown as isUnknown } from 'src/app/account/domain/user';
 import { AccountService } from './../../../account/services/account.service';
-import { ScheduledClass, sameClassPredicate, approvedForStudent } from '../../domain/reservation';
+import { ScheduledClass, sameClassPredicate } from '../../domain/reservation';
 import { ClassService } from '../../services/class.service';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { BookingService } from '../../services/booking.service';
-import { SingleClassStateProvider } from '../../services/single-class-state.provider';
 import { CurrentRoute } from 'src/app/common/util/router.util';
-import { ToastController } from '@ionic/angular';
-import { ToastrService } from 'ngx-toastr';
+import { BookingStateProvider, DetailsStateProvider, DetailsStateUpdateProvider, PendingStateProvider, PendingStateUpdateProvider, ManageClassStateProvider } from '../../services/single-class-state.provider';
+import { InMemoryUpdatablePendingStateProvider } from '../../services/local/in-memory-pending-state.provider';
+import { BookedClassesBookingStateProvider } from '../../services/local/booked-classes-booking-state.provider';
 
 @Component({
   selector: 'app-book-lessons-page',
@@ -22,8 +22,6 @@ import { ToastrService } from 'ngx-toastr';
 export class BookLessonsPage {
   private currentUser: User | UnregisteredUser;
   private bookedClassesForCurrentUser: ScheduledClass[] = [];
-  private pendingBookings: ScheduledClass[] = [];
-  private opened: ScheduledClass[] = [];
 
   @ViewChild('approvedNotification')
   approvedNotification: TemplateRef<any>;
@@ -32,9 +30,13 @@ export class BookLessonsPage {
   @ViewChild('canceledNotification')
   canceledNotification: TemplateRef<any>;
 
-  classStateProvider: SingleClassStateProvider;
+  bookingStateProvider: BookingStateProvider;
+  detailsProvider: DetailsStateProvider<ScheduledClass> & DetailsStateUpdateProvider<ScheduledClass>;
+  pendingProvider: PendingStateProvider<ScheduledClass> & PendingStateUpdateProvider<ScheduledClass>;
+  manageClassStateProvider: ManageClassStateProvider;
+
   classes: ScheduledClass[] = [];
-  bookedClass: ScheduledClass;
+  // bookedClass: ScheduledClass;
 
   constructor(private classService: ClassService,
               private accountService: AccountService,
@@ -42,11 +44,13 @@ export class BookLessonsPage {
               private router: Router,
               private route: CurrentRoute,
               private notificationService: NotificationService) {
-    this.classStateProvider = new StudentSingleClassStateProvider(this.bookedClassesForCurrentUser, this.pendingBookings, this.opened);
+    this.bookingStateProvider = new BookedClassesBookingStateProvider(this.bookedClassesForCurrentUser);
+    this.detailsProvider = new InMemoryUpdatableDetailsStateProvider(sameClassPredicate);
+    this.pendingProvider = new InMemoryUpdatablePendingStateProvider(sameClassPredicate);
+    this.manageClassStateProvider = new UnmanageableProvider();
   }
 
   async ionViewDidEnter() {
-    console.log('book-lessons');
     this.currentUser = await this.accountService.getUserInfo();
     this.refreshBookings();
     this.refreshClasses();
@@ -55,48 +59,31 @@ export class BookLessonsPage {
   }
 
   async book(bookedClass: ScheduledClass) {
-    console.log('connecter user', this.currentUser);
     if (isUnknown(this.currentUser)) {
       return this.authenticateForBooking(bookedClass);
     }
-    this.markReservationAsPending(bookedClass);
+    this.pendingProvider.markPending(bookedClass);
     // TODO: handle case when user registers another user
     const booked = await this.bookingService.book(this.currentUser, bookedClass);
-    this.unmarkReservationAsPending(bookedClass);
+    this.pendingProvider.unmarkPending(bookedClass);
     const template = booked.approved ? this.approvedNotification : this.waitingListNotification;
     this.notificationService.success(template, booked);
     this.refreshClasses();
     this.refreshBookings();
   }
 
-  async cancel(bookedClass: ScheduledClass) {
-    console.log('connecter user', this.currentUser);
+  async unbook(bookedClass: ScheduledClass) {
     if (isUnknown(this.currentUser)) {
       return this.authenticateForCanceling(bookedClass);
     }
-    this.markReservationAsPending(bookedClass);
+    this.pendingProvider.markPending(bookedClass);
     // TODO: handle case when user registers another user
-    await this.bookingService.cancel(this.currentUser, bookedClass);
-    this.unmarkReservationAsPending(bookedClass);
+    await this.bookingService.unbook(this.currentUser, bookedClass);
+    this.pendingProvider.unmarkPending(bookedClass);
     this.notificationService.success(this.canceledNotification, {bookedClass});
     this.refreshClasses();
     this.refreshBookings();
   }
-
-  markAsOpened(bookedClass: ScheduledClass) {
-    this.opened.push(bookedClass);
-  }
-
-  markAsClosed(bookedClass: ScheduledClass) {
-    let idx;
-    do {
-      idx = this.opened.findIndex(sameClassPredicate(bookedClass));
-      if (idx !== -1) {
-        this.opened.splice(idx, 1);
-      }
-    } while (idx !== -1);
-  }
-
 
   isMobileApp() {
     // TODO
@@ -136,19 +123,6 @@ export class BookLessonsPage {
     this.bookedClassesForCurrentUser.push(...await this.bookingService.getBookedClasses(this.currentUser));
   }
 
-  private markReservationAsPending(bookedClass: ScheduledClass) {
-    this.pendingBookings.push(bookedClass);
-  }
-
-  private unmarkReservationAsPending(bookedClass: ScheduledClass) {
-    let idx;
-    do {
-      idx = this.pendingBookings.findIndex(sameClassPredicate(bookedClass));
-      if (idx !== -1) {
-        this.pendingBookings.splice(idx, 1);
-      }
-    } while (idx !== -1);
-  }
 
   private async finishBookingIfNecessary() {
     const bookingId = this.route.getQueryParam('booking');
@@ -162,7 +136,7 @@ export class BookLessonsPage {
     const cancelingId = this.route.getQueryParam('canceling');
     if (cancelingId) {
       const bookedClass = await this.classService.getClassInfo({id: cancelingId});
-      await this.cancel(bookedClass);
+      await this.unbook(bookedClass);
       this.router.navigate(['']);
     }
   }

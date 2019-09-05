@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>classes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1>Edition des cours</h1>
+  <ion-button (click)="addLesson()">
+    <ion-icon slot="icon-only" name="add"></ion-icon>
+  </ion-button>
+  <ion-list> 
+      <ion-item *ngFor="let lesson of unscheduledLessons">
+        <app-unscheduled-lesson-card
+          [lesson]="lesson"
+          [removable]="false"
+          [schedulable]="true"
+          [showDetails]="lessonDetailsProvider.isShowDetails(lesson)"
+          (schedule)="schedule($event)"
+          (remove)="removeLesson($event)"
+          (viewDetails)="lessonDetailsProvider.viewDetails($event)"
+          (hideDetails)="lessonDetailsProvider.hideDetails($event)"></app-unscheduled-lesson-card>
+      </ion-item>
+  </ion-list>
+  <app-classes
+    (click)="lastClick = $event"
+    [classes]="classes"
+    [bookingStateProvider]="bookingStateProvider"
+    [detailsStateProvider]="detailsProvider"
+    [pendingStateProvider]="pendingProvider"
+    [manageClassStateProvider]="manageClassStateProvider"
+    (edit)="edit($event)"
+    (cancel)="askCancelMessage($event)"
+    (viewDetails)="detailsProvider.viewDetails($event)"
+    (hideDetails)="detailsProvider.hideDetails($event)"></app-classes>
+</ion-content>
+
+<ng-template #cancelMessage let-cancelingClass="cancelingClass" let-form="form">
+  <form #cancelForm="ngForm" (ngSubmit)="cancel(cancelingClass, form.message)">
+    <ion-textarea 
+      class="message" 
+      type="text" 
+      name="message" 
+      placeholder="Message"
+      [(ngModel)]="form.message" 
+      required></ion-textarea>
+    <ion-button type="submit" [disabled]="!cancelForm.valid">Annuler le cours</ion-button>
+  </form>
+</ng-template>

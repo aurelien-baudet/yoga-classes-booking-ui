@@ -12,6 +12,6 @@ export class ClassDetailsComponent {
   scheduledClass: ScheduledClass;
 
   @Output()
-  cancel = new EventEmitter<Booking>();
+  unbook = new EventEmitter<Booking>();
 
 }
