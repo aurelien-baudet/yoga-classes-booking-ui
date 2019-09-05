@@ -4,10 +4,8 @@
 
 export const environment = {
   production: false,
-  mock: false,
-  server: {
-    url: 'http://localhost:8080'
-  }
+  mock: true,
+  server: null
 };
 
 /*

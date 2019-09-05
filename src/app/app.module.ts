@@ -1,3 +1,4 @@
+import { MockAccountService } from './account/services/mocks/mock-account.service';
 import { CurrentRoute } from 'src/app/common/util/router.util';
 import { BasicAuthInterceptor } from './account/services/remote/basic-auth.interceptor';
 import { AuthenticationInSessionStorage } from './account/services/local/authentication-in-session-storage.storage';
@@ -28,7 +29,10 @@ import { PlaceService } from './admin/services/place.service';
 import { RestPlaceService } from './admin/services/remote/rest-place.service';
 import { DateUtil } from './common/util/date.util';
 import { MockClassService } from './booking/services/mocks/mock-class.service';
+import { MockBookingService } from './booking/services/mocks/mock-booking.service';
+import { MockPlaceService } from './admin/services/mocks/mock-place.service';
 
+console.log(environment);
 
 @NgModule({
   declarations: [AppComponent],
@@ -50,11 +54,10 @@ import { MockClassService } from './booking/services/mocks/mock-class.service';
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: PlaceService, useClass: RestPlaceService },
-    // { provide: ClassService, useClass: RestClassService },
-    { provide: ClassService, useClass: MockClassService },
-    { provide: BookingService, useClass: RestBookingService },
-    { provide: AccountService, useClass: RestAccountService },
+    { provide: PlaceService, useClass: environment.mock ? MockPlaceService : RestPlaceService },
+    { provide: ClassService, useClass: environment.mock ? MockClassService : RestClassService },
+    { provide: BookingService, useClass: environment.mock ? MockBookingService : RestBookingService },
+    { provide: AccountService, useClass: environment.mock ? MockAccountService : RestAccountService },
     { provide: ServerConfig, useValue: environment.server },
     { provide: AuthenticationStorage, useClass: AuthenticationInSessionStorage }
   ],

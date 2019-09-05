@@ -2,7 +2,7 @@ import { Instant } from '../../domain/general';
 import { Injectable } from '@angular/core';
 import { ScheduledClass, Lesson, LessonId, ClassId, ClassState, Booking, Place, NewLesson } from '../../domain/reservation';
 import { ClassService } from '../class.service';
-import classes from './data/classes.json';
+import * as classes from './data/classes.json';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +39,8 @@ export class MockClassService implements ClassService {
   }
 
   async list(): Promise<ScheduledClass[]> {
-    return classes;
+    console.log('classes', classes);
+    return classes['default'] as any;
   }
 
   async changePlace(scheduledClass: ClassId, newPlace: Place): Promise<ScheduledClass> {

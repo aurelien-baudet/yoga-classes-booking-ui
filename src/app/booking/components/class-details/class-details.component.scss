@@ -45,10 +45,22 @@ ion-list {
     ion-title {
         font-size: 14px;
         font-weight: bold;
-        -webkit-padding-start: 0;
-        padding-inline-start: 0;
+        -webkit-padding-start: 5px;
+        padding-inline-start: 5px;
+        color: var(--ion-color-dark-tint);
     }
+    ion-icon {
+        color: var(--ion-color-dark-tint);
+        font-size: 20px;
+    }
+    // &.waiting ion-icon {
+    //     font-size: 20px;
+    // }
     ion-badge {
+        --padding-top: 3px;
+        --padding-end: 3px;
+        --padding-start: 3px;
+        --padding-bottom: 3px;
         font-size: 10px;
     }
 
@@ -56,6 +68,7 @@ ion-list {
         --min-height: 0;
         --border-width: 0 0 1px 0;
         font-size: 12px;
+        color: var(--ion-color-dark-tint);
 
         ion-label {
             margin-top: 0;
@@ -63,7 +76,20 @@ ion-list {
         }
 
         ion-button {
-            font-size: 6px;
+            --background: transparent;
+            --background-activated: transparent;
+            --background-focused: transparent;
+            --background-hover: transparent;
+            --box-shadow: 0 0;
+            --border-width: 0;
+            --color: var(--ion-color-tertiary);
+            --color-focused: var(--ion-color-tertiary);
+            --color-hover: var(--ion-color-tertiary);
+            --color-activated: var(--ion-color-tertiary);
+
+            ion-icon {
+                font-size: 14px;
+            }
             height: 15px;
         }
     }

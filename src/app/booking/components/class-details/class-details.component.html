@@ -4,27 +4,29 @@
 </ion-item>
 <ion-list class="approved">
   <ion-list-header>
-    <ion-icon name="students"></ion-icon>
+    <ion-icon name="custom-approved-list"></ion-icon>
     <ion-title>Participants</ion-title>
     <ion-badge>{{ scheduledClass.bookings.approved.length }} / {{ scheduledClass.lesson.maxStudents }}</ion-badge>
   </ion-list-header>
+  <p *ngIf="scheduledClass.bookings.approved.length === 0">Aucun participant</p>
   <ion-item *ngFor="let booking of scheduledClass.bookings.approved">
     <ion-label>{{ booking.student.displayName }}</ion-label>
     <ion-button (ionClick)="unbook.emit(booking)" size="small">
-      <ion-icon slot="icon-only" name="remove"></ion-icon>
+      <ion-icon slot="icon-only" name="custom-unbook"></ion-icon>
     </ion-button>
   </ion-item>
 </ion-list>
 <ion-list class="waiting">
   <ion-list-header>
-    <ion-icon name="waiting"></ion-icon>
+    <ion-icon name="custom-waiting-list"></ion-icon>
     <ion-title>Liste d'attente</ion-title>
     <ion-badge>{{ scheduledClass.bookings.waiting.length }}</ion-badge>
   </ion-list-header>
+  <p *ngIf="scheduledClass.bookings.waiting.length === 0">Aucun inscrit sur liste d'attente</p>
   <ion-item *ngFor="let booking of scheduledClass.bookings.waiting">
     <ion-label>{{ booking.student.displayName }}</ion-label>
     <ion-button (ionClick)="unbook.emit(booking)" size="small">
-      <ion-icon slot="icon-only" name="remove"></ion-icon>
+      <ion-icon slot="icon-only" name="custom-unbook"></ion-icon>
     </ion-button>
   </ion-item>
 </ion-list>

@@ -70,6 +70,9 @@ export const sameLessonPredicate = (a: Lesson) => (b: Lesson) => isSameLesson(a,
 export const isSameClass = (a: ScheduledClass, b: ScheduledClass) => a.id === b.id;
 export const sameClassPredicate = (a: ScheduledClass) => (b: ScheduledClass) => isSameClass(a, b);
 
+export const isSamePlace = (a: Place | PlaceId, b: Place | PlaceId) => a.id === b.id;
+export const samePlacePredicate = (a: Place | PlaceId) => (b: Place | PlaceId) => isSamePlace(a, b);
+
 export const approvedForStudent = (bookedClass: ScheduledClass, student: StudentId) =>
     bookedClass.bookings.approved.some(isBookedForStudentPredicate(student));
 

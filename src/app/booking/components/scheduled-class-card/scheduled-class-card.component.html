@@ -8,33 +8,39 @@
   <ion-card-header>
     <ion-card-title>{{ scheduledClass | dateRange }}</ion-card-title>
     <ion-button (click)="book.emit(scheduledClass)" *ngIf="bookable && !booked && !pending" size="small">
-        <ion-icon slot="icon-only" name="book"></ion-icon>
+        <ion-icon slot="icon-only" name="custom-book"></ion-icon>
     </ion-button>
     <ion-button (click)="unbook.emit(scheduledClass)" *ngIf="bookable && booked && !pending" size="small">
-        <ion-icon slot="icon-only" name="unbook"></ion-icon>
+        <ion-icon slot="icon-only" name="custom-unbook"></ion-icon>
     </ion-button>
     <ion-button *ngIf="bookable && pending" size="small">
-        <ion-icon slot="icon-only" name="pending"></ion-icon>
+        <ion-icon slot="icon-only" name="custom-pending"></ion-icon>
     </ion-button>
     <ion-button (click)="cancel.emit(scheduledClass)" *ngIf="cancelable" size="small">
-        <ion-icon slot="icon-only" name="cancel"></ion-icon>
+        <ion-icon slot="icon-only" name="custom-cancel-class"></ion-icon>
     </ion-button>
     <ion-button (click)="edit.emit(scheduledClass)" *ngIf="editable" size="small">
-        <ion-icon slot="icon-only" name="edit"></ion-icon>
+        <ion-icon slot="icon-only" name="custom-edit-class"></ion-icon>
     </ion-button>
   </ion-card-header>
   <ion-card-content>
     <div class="preview">
       <span class="title">{{ scheduledClass.lesson.title }}</span>
-      <ion-badge class="remaining-places">{{ getRemainingPlaces() }}</ion-badge>
-      <ion-badge class="waiting-queue">{{ getNumberOfWaitingStudents() }}</ion-badge>
+      <div class="remaining-places">
+        <ion-icon slot="icon-only" name="custom-approved-list"></ion-icon>
+        <ion-badge>{{ getRemainingPlaces() }}</ion-badge>
+      </div>
+      <div class="waiting-queue">
+        <ion-icon slot="icon-only" name="custom-waiting-list"></ion-icon>
+        <ion-badge>{{ getNumberOfWaitingStudents() }}</ion-badge>
+      </div>
     </div>
     <div class="details">
       <ion-button (click)="viewDetails.emit(scheduledClass)" *ngIf="!showDetails" size="small">
-        <ion-icon slot="icon-only" name="arrow-dropdown"></ion-icon>
+        <ion-icon slot="icon-only" name="custom-view-details"></ion-icon>
       </ion-button>
       <ion-button (click)="hideDetails.emit(scheduledClass)" *ngIf="showDetails" size="small">
-        <ion-icon slot="icon-only" name="arrow-dropup"></ion-icon>
+        <ion-icon slot="icon-only" name="custom-hide-details"></ion-icon>
       </ion-button>
       <app-class-details [scheduledClass]="scheduledClass"></app-class-details>
     </div>

@@ -1,0 +1,99 @@
+
+@mixin fa-icon-base($icon) {
+  @extend %fa-icon;
+  background: transparent;
+  
+  &:before {
+    content: fa-content($icon);
+    font-size: 0.75em;
+    vertical-align: middle;
+  }
+}
+
+@mixin fas-icon($icon) {
+  @extend .fas;
+  @include fa-icon-base($icon);
+}
+
+@mixin fa-icon($icon) {
+  @extend .fa;
+  @include fa-icon-base($icon);
+}
+
+@mixin fab-icon($icon) {
+  @extend .fab;
+  @include fa-icon-base($icon);
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+ion-icon {
+  &[name="custom-book"] {
+    @include fas-icon($fa-var-user-plus);
+  }
+  &[name="custom-unbook"] {
+    @include fas-icon($fa-var-user-minus);
+  }
+  &[name="custom-pending"] {
+    @include fas-icon($fa-var-spinner);
+
+    &:before {
+      display: inline-block;
+      animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    }
+  }
+  &[name="custom-cancel-class"] {
+    @include fas-icon($fa-var-times);    
+  }
+  &[name="custom-edit-class"] {
+    // @include fas-icon($fa-var-pencil-alt);
+    @include fas-icon($fa-var-edit);
+  }
+  &[name="custom-approved-list"] {
+    @include fas-icon($fa-var-user-check);
+  }
+  &[name="custom-waiting-list"] {
+    @include fas-icon($fa-var-user-clock);
+  }
+  &[name="custom-register-friend"] {
+    @include fas-icon($fa-var-plus);
+  }
+  &[name="custom-unregister-friend"] {
+    @include fas-icon($fa-var-minus-circle);
+  }
+  &[name="custom-google-auth"] {
+    @include fab-icon($fa-var-google);
+  }
+  &[name="custom-facebook-auth"] {
+    @include fab-icon($fa-var-facebook-f);
+  }
+  &[name="custom-schedule-lesson"] {
+    @include fas-icon($fa-var-calendar-plus);
+  }
+  &[name="custom-remove-lesson"] {
+    @include fa-icon($fa-var-trash-alt);
+  }
+  &[name="custom-add-lesson"] {
+    @include fas-icon($fa-var-plus);
+  }
+  &[name="custom-help"] {
+    @include fas-icon($fa-var-question);
+  }
+  &[name="custom-submit"] {
+    @include fas-icon($fa-var-check);
+  }
+  &[name="custom-view-details"] {
+    @include fas-icon($fa-var-angle-down);
+  }
+  &[name="custom-hide-details"] {
+    @include fas-icon($fa-var-angle-up);
+  }
+
+}

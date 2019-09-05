@@ -26,4 +26,12 @@ $colors: (
   cal-color:  #ff8732
 );
 
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+
 @import "~ion4-calendar/dist/index";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "./theme/icons";
+@import "./theme/general";
