@@ -10,6 +10,7 @@
         <ion-segment-button value="login" [checked]="showLogin()">Connecte toi</ion-segment-button>
         <ion-segment-button value="unregistered" [checked]="showUnregistered()">Continue sans compte</ion-segment-button>
     </ion-segment>
+    <app-social-login *ngIf="showLogin()" (authenticate)="authenticate($event)"></app-social-login>
     <app-login-form *ngIf="showLogin()" (login)="login($event)"></app-login-form>
     <div *ngIf="showLogin()" class="register">
       <p>Pas encore de compte ?</p>

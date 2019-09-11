@@ -14,3 +14,7 @@ export const isSameDay = (a: Instant, b: Instant) => {
 };
 export const sameDayPredicate = (a: Instant) => (b: Instant) => isSameDay(a, b);
 
+export enum SocialAuthenticator {
+    GOOGLE = 'google',
+    FACEBOOK = 'facebook'
+}

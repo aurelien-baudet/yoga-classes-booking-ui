@@ -1,3 +1,4 @@
+import { WaitingStudentsComponent } from './class-details/waiting-students.component';
 import { CommonComponentsModule } from './../../common/components/common-components.module';
 import { RegisterFriendComponent } from './register-friend/register-friend.component';
 import { ClassDetailsComponent } from './class-details/class-details.component';
@@ -7,17 +8,22 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AutoCompleteModule } from 'ionic4-auto-complete';
+import { ApprovedStudentsComponent } from './class-details/approved-students.component';
 
 @NgModule({
   declarations: [
     ScheduledClassCardComponent,
     ClassesComponent,
+    ApprovedStudentsComponent,
+    WaitingStudentsComponent,
     ClassDetailsComponent,
     RegisterFriendComponent
   ],
   exports: [
     ScheduledClassCardComponent,
     ClassesComponent,
+    ApprovedStudentsComponent,
+    WaitingStudentsComponent,
     ClassDetailsComponent,
     RegisterFriendComponent
   ],

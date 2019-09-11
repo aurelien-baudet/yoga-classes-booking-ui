@@ -1,3 +1,5 @@
+@import "../../../../theme/button-utils";
+
 :host {
     display: block;
     width: 100%;
@@ -40,11 +42,13 @@ ion-card-content {
 }
 
 .preview {
+    justify-content: space-between;
+    flex-wrap: wrap;
+
     .title {
         display: flex;
-        flex: 1 1 auto;
+        flex: 3 1 60%;
         align-self: center;
-        margin-right: 10px;
         font-weight: bold;
         font-size: 14px;
     }
@@ -52,22 +56,25 @@ ion-card-content {
     .waiting-queue {
         align-self: flex-end;
     }
+    .place {
+        width: 100%;
+
+        ion-button {
+            @include discreet-button(var(--ion-color-primary));
+
+            ion-icon {
+                font-size: 18px;
+                line-height: 14px;
+            }
+        }
+    }
 }
 
 .details {
     flex-direction: column;
 
     > ion-button {
-        --background: transparent;
-        --background-activated: transparent;
-        --background-focused: transparent;
-        --background-hover: transparent;
-        --box-shadow: 0 0;
-        --border-width: 0;
-        --color: var(--ion-color-medium);
-        --color-focused: var(--ion-color-medium);
-        --color-hover: var(--ion-color-medium);
-        --color-activated: var(--ion-color-medium);
+        @include discreet-button(var(--ion-color-medium));
         align-self: center;
         margin-top: 0;
         margin-bottom: 0;
@@ -133,5 +140,61 @@ app-class-details {
     /deep/ ion-list {
         max-height: 280px;
         overflow-y: auto;
+    }
+}
+
+/* states */
+.booked {
+    ion-card-header {
+        background: var(--ion-color-success);
+    }
+}
+.canceled {
+    min-height: 150px;
+    position: relative;
+
+    ion-card-header {
+        background: var(--ion-color-warning);
+    }
+    .preview,
+    .details {
+        display: none;
+    }
+    &:before {
+        content: "";
+        display: block;
+        border: 50px solid var(--ion-color-warning);
+        border-left-color: transparent;
+        border-bottom-color: transparent;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+    }
+    .cancel-details {
+        h3 {
+            position: absolute;
+            top: -15px;
+            right: 2px;
+            color: var(--ion-color-warning-contrast);
+            transform: rotate(45deg);
+            font-size: 16px;
+            font-weight: bold;
+            width: 50px;
+            z-index: 2;
+        }
+        p {
+            padding: 0 50px 0 5px;
+            margin: 10px 0;
+        }
+        .lesson-canceled {
+            text-transform: uppercase;
+        }
+        p span {
+            display: block;
+        }
+        .message {
+            font-weight: bold;
+        }
     }
 }

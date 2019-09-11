@@ -5,8 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <h1>Edition des cours</h1>
-  <ion-button (click)="addLesson()">
+  <ion-button (click)="addLesson()" size="small">
     <ion-icon slot="icon-only" name="custom-add-lesson"></ion-icon>
   </ion-button>
   <ion-list> 
@@ -36,7 +35,7 @@
 </ion-content>
 
 <ng-template #cancelMessage let-cancelingClass="cancelingClass" let-form="form">
-  <form #cancelForm="ngForm" (ngSubmit)="cancel(cancelingClass, form.message)">
+  <form #cancelForm="ngForm" class="cancel-form" (ngSubmit)="cancel(cancelingClass, form.message)">
     <ion-textarea 
       class="message" 
       type="text" 
@@ -44,6 +43,6 @@
       placeholder="Message"
       [(ngModel)]="form.message" 
       required></ion-textarea>
-    <ion-button type="submit" [disabled]="!cancelForm.valid">Annuler le cours</ion-button>
+    <ion-button type="submit" [disabled]="!cancelForm.valid" size="small">Annuler le cours</ion-button>
   </form>
 </ng-template>

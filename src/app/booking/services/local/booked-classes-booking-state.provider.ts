@@ -1,11 +1,11 @@
-import { ClassState, sameClassPredicate } from '../../domain/reservation';
+import { ClassState, sameClassPredicate, isCanceled } from '../../domain/reservation';
 import { ScheduledClass } from '../../domain/reservation';
 
 export class BookedClassesBookingStateProvider {
     constructor(private bookedClassesForCurrentUser: ScheduledClass[]) {}
 
     isBookable(scheduledClass: ScheduledClass): boolean {
-        return scheduledClass.state !== ClassState.CANCELED;
+        return !isCanceled(scheduledClass);
     }
 
     isBooked(scheduledClass: ScheduledClass): boolean {

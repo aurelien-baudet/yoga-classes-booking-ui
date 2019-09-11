@@ -1,4 +1,4 @@
-import { ScheduledClass } from '../domain/reservation';
+import { ScheduledClass, CancelInfo } from '../domain/reservation';
 
 export abstract class BookingStateProvider {
     abstract isBookable(scheduledClass: ScheduledClass): boolean;
@@ -9,6 +9,7 @@ export abstract class ManageClassStateProvider {
     abstract isEditable(scheduledClass: ScheduledClass): boolean;
     abstract isCancelable(scheduledClass: ScheduledClass): boolean;
     abstract isCanceled(scheduledClass: ScheduledClass): boolean;
+    abstract getCanceledInfo(scheduledClass: ScheduledClass): CancelInfo;
 }
 
 export abstract class DetailsStateProvider<T> {

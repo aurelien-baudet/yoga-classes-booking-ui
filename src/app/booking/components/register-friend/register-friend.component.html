@@ -2,6 +2,6 @@
     [options]="{ placeholder: 'Inscrire un ami' }"
     [dataProvider]="searchFriendProvider">
 </ion-auto-complete>
-<ion-button (ionClick)="friendAdded.emit()">
+<ion-button (click)="addFriend.emit()">
   <ion-icon slot="icon-only" name="custom-register-friend"></ion-icon>
 </ion-button>

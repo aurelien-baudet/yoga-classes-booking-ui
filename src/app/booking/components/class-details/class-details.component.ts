@@ -1,6 +1,8 @@
 import { Booking } from '../../domain/reservation';
 import { Lesson, ScheduledClass } from '../../domain/reservation';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { AutoCompleteService } from 'ionic4-auto-complete';
+import { UserInfo } from 'src/app/account/domain/user';
 
 @Component({
   selector: 'app-class-details',
@@ -10,8 +12,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ClassDetailsComponent {
   @Input()
   scheduledClass: ScheduledClass;
+  @Input()
+  searchFriendProvider: AutoCompleteService;
 
   @Output()
   unbook = new EventEmitter<Booking>();
-
+  @Output()
+  addFriend = new EventEmitter<UserInfo>();
 }

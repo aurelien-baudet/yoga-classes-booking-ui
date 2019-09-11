@@ -31,9 +31,14 @@ export interface Place {
 export type PlaceId = Pick<Place, 'id'>;
 
 
-export enum ClassState {
-    OPENED,
-    CANCELED
+export enum ClassStateTypes {
+    OPENED = 'Opened',
+    CANCELED = 'Canceled',
+}
+
+export interface ClassState {
+    type: ClassStateTypes;
+    message?: string;
 }
 
 export interface Booking {
@@ -51,6 +56,10 @@ export interface ScheduledClass {
     bookings: Bookings;
 }
 
+export interface CancelInfo {
+    message: string;
+}
+
 export interface Bookings {
     all: Booking[];
     approved: Booking[];
@@ -64,8 +73,10 @@ export interface Booked {
 
 export type ClassId = Pick<ScheduledClass, 'id'>;
 
-export const isSameLesson = (a: Lesson, b: Lesson) => a.id === b.id;
-export const sameLessonPredicate = (a: Lesson) => (b: Lesson) => isSameLesson(a, b);
+export const isCanceled = (c: ScheduledClass) => c.state.type === ClassStateTypes.CANCELED;
+
+export const isSameLesson = (a: Lesson | LessonId, b: Lesson | LessonId) => a.id === b.id;
+export const sameLessonPredicate = (a: Lesson | LessonId) => (b: Lesson | LessonId) => isSameLesson(a, b);
 
 export const isSameClass = (a: ScheduledClass, b: ScheduledClass) => a.id === b.id;
 export const sameClassPredicate = (a: ScheduledClass) => (b: ScheduledClass) => isSameClass(a, b);

@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Router, ActivatedRouteSnapshot, ParamMap } from '@angular/router';
+import { Router, ActivatedRouteSnapshot, ParamMap, Params } from '@angular/router';
 
 @Injectable()
 export class CurrentRoute {
     constructor(private router: Router) { }
 
     getPathParam(key: string): string | null {
-        return this.findParam(this.router.routerState.snapshot.root, key, (r) => r.paramMap);
+        return this.findParam(this.router.routerState.snapshot.root, key, (r) => r.params);
     }
 
     getQueryParam(key: string): string | null {
-        return this.findParam(this.router.routerState.snapshot.root, key, (r) => r.queryParamMap);
+        return this.findParam(this.router.routerState.snapshot.root, key, (r) => r.queryParams);
         // return this.router.routerState.snapshot.root.queryParams[key];
     }
 
-    private findParam(route: ActivatedRouteSnapshot, key: string, accessor: (route: ActivatedRouteSnapshot) => ParamMap): string | null {
+    private findParam(route: ActivatedRouteSnapshot, key: string, accessor: (route: ActivatedRouteSnapshot) => Params): string | null {
         const found = this.flatten(route.children)
-                .map((c) => c.params)
+                .map(accessor)
                 .find((p) => key in p);
         if (found) {
             return found[key];

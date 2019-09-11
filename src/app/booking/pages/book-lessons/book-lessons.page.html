@@ -5,17 +5,37 @@
 </ion-header>
 <ion-content>
   <app-classes 
+    (click)="lastClick = $event"
     [classes]="classes"
     [bookingStateProvider]="bookingStateProvider"
     [detailsStateProvider]="detailsProvider"
     [pendingStateProvider]="pendingProvider"
     [manageClassStateProvider]="manageClassStateProvider"
+    [searchFriendProvider]="searchFriendProvider"
     (book)="book($event)"
     (unbook)="unbook($event)"
     (viewDetails)="detailsProvider.viewDetails($event)"
-    (hideDetails)="detailsProvider.hideDetails($event)"></app-classes>
+    (hideDetails)="detailsProvider.hideDetails($event)"
+    (showPlaceDetails)="showPlaceDetails($event)"
+    (showClassDetails)="showClassDetails($event)"
+    (showApprovedStudents)="showApprovedStudents($event)"
+    (showWaitingStudents)="showWaitingStudents($event)"
+    (addFriend)="addFriend($event)"></app-classes>
 </ion-content>
 
+
+
+<ng-template #placeDetails let-place="place">
+  <app-place-details [place]="place"></app-place-details>
+</ng-template>
+
+
+<ng-template #approvedStudents let-scheduledClass="scheduledClass">
+</ng-template>
+
+<ng-template #waitingStudents let-scheduledClass="scheduledClass">
+</ng-template>
+  
 <ng-template #approvedNotification let-bookedClass="bookedClass">
   <div class="header">
     <span class="title">Inscription confirmée</span>
@@ -36,7 +56,7 @@
   </div>
 </ng-template>
 
-<ng-template #canceledNotification let-bookedClass="bookedClass">
+<ng-template #unbookedNotification let-bookedClass="bookedClass">
   <div class="header">
     <span classs="title">Désinscription</span>
   </div>

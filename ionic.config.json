@@ -1,5 +1,7 @@
 {
   "name": "yoga-booking-app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

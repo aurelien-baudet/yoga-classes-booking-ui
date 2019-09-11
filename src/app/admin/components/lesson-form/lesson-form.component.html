@@ -6,7 +6,8 @@
       name="title" 
       [(ngModel)]="lessonModel.title" 
       required></ion-input>
-  </ion-item>
+      <ion-icon name="custom-title" slot="start"></ion-icon>
+    </ion-item>
   <ion-item class="max-students">
     <ion-label position="floating">Nombre de places</ion-label>
     <ion-input 
@@ -14,15 +15,18 @@
       name="maxStudents" 
       [(ngModel)]="lessonModel.maxStudents" 
       required></ion-input>
-  </ion-item>
+      <ion-icon name="custom-max-students" slot="start"></ion-icon>
+    </ion-item>
   <ion-item class="description">
     <ion-label position="floating">Description</ion-label>
     <ion-textarea 
       type="text" 
       name="description" 
       [(ngModel)]="lessonModel.description" 
-      required></ion-textarea>
-  </ion-item>
+      required
+      rows="10"></ion-textarea>
+      <ion-icon name="custom-description" slot="start"></ion-icon>
+    </ion-item>
   <ion-item class="place">
     <ion-label position="floating">Lieu</ion-label>
     <ion-select
@@ -36,6 +40,7 @@
         *ngFor="let place of places"
         [value]="place.id">{{ place.name }}</ion-select-option>
     </ion-select>
+    <ion-icon name="custom-place" slot="start"></ion-icon>
   </ion-item>
   <input 
     type="hidden" 

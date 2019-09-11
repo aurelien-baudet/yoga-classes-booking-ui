@@ -1,5 +1,6 @@
 import { UserInfo } from 'src/app/account/domain/user';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
+import { AutoCompleteService } from 'ionic4-auto-complete';
 
 @Component({
   selector: 'app-register-friend',
@@ -7,8 +8,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./register-friend.component.scss'],
 })
 export class RegisterFriendComponent {
+  @Input()
+  searchFriendProvider: AutoCompleteService;
 
   @Output()
-  friendAdded = new EventEmitter<UserInfo>();
-
+  addFriend = new EventEmitter<UserInfo>();
 }

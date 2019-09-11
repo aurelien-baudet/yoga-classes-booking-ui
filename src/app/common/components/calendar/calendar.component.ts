@@ -47,6 +47,7 @@ export class CalendarComponent {
               private dateUtil: DateUtil) { }
 
   chooseHours(date: number) {
+    // wrap in setTimeout in order to be able to retrieve the click event
     setTimeout(async () => {
       this.popover = await this.popoverService.show(this.selectHours, {
         date,

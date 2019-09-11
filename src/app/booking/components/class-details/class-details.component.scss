@@ -1,3 +1,5 @@
+
+
 :host {
     display: flex;
     width: 100%;
@@ -14,9 +16,7 @@ p {
     margin-bottom: 25px;
 }
 
-ion-item.register-friend {
-    --border-width: 0 0 0 0;
-    --inner-border-width: 0 0 0 0;
+.register-friend {
     width: 100%;
     flex: 0 0 80%;
     margin-left: auto;
@@ -26,9 +26,10 @@ app-register-friend {
     margin-left: auto;
     margin-right: auto;
 }
-  
-ion-list {
-    width: 45%;
+
+app-approved-students,
+app-waiting-students {
+    // width: 45%;
     min-width: 150px;
     max-width: 350px;
     flex: 1 1 45%;
@@ -37,60 +38,4 @@ ion-list {
     margin-right: 5px;
     padding-left: 5px;
     padding-right: 5px;
-
-    ion-list-header {
-        padding-left: 0;
-        min-height: 30px;
-    }
-    ion-title {
-        font-size: 14px;
-        font-weight: bold;
-        -webkit-padding-start: 5px;
-        padding-inline-start: 5px;
-        color: var(--ion-color-dark-tint);
-    }
-    ion-icon {
-        color: var(--ion-color-dark-tint);
-        font-size: 20px;
-    }
-    // &.waiting ion-icon {
-    //     font-size: 20px;
-    // }
-    ion-badge {
-        --padding-top: 3px;
-        --padding-end: 3px;
-        --padding-start: 3px;
-        --padding-bottom: 3px;
-        font-size: 10px;
-    }
-
-    ion-item {
-        --min-height: 0;
-        --border-width: 0 0 1px 0;
-        font-size: 12px;
-        color: var(--ion-color-dark-tint);
-
-        ion-label {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-
-        ion-button {
-            --background: transparent;
-            --background-activated: transparent;
-            --background-focused: transparent;
-            --background-hover: transparent;
-            --box-shadow: 0 0;
-            --border-width: 0;
-            --color: var(--ion-color-tertiary);
-            --color-focused: var(--ion-color-tertiary);
-            --color-hover: var(--ion-color-tertiary);
-            --color-activated: var(--ion-color-tertiary);
-
-            ion-icon {
-                font-size: 14px;
-            }
-            height: 15px;
-        }
-    }
 }

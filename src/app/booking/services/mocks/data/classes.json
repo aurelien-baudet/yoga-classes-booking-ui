@@ -26,7 +26,9 @@
         }
       }
     },
-    "state": "OPENED",
+    "state": {
+      "type": "Opened"
+    },
     "bookings": {
       "all": [],
       "approved": [],
@@ -60,7 +62,9 @@
         }
       }
     },
-    "state": "OPENED",
+    "state": {
+      "type": "Opened"
+    },
     "bookings": {
       "all": [
         {
@@ -180,7 +184,9 @@
         }
       }
     },
-    "state": "OPENED",
+    "state": {
+      "type": "Opened"
+    },
     "bookings": {
       "all": [],
       "approved": [],
@@ -214,7 +220,9 @@
         }
       }
     },
-    "state": "OPENED",
+    "state": {
+      "type": "Opened"
+    },
     "bookings": {
       "all": [
         {
@@ -973,7 +981,10 @@
         }
       }
     },
-    "state": "CANCELED",
+    "state": {
+      "type": "Canceled",
+      "message": "Cours annulé à cause du mauvais temps"
+    },
     "bookings": {
       "all": [
         {

@@ -1,6 +1,9 @@
+import { Place } from './../../domain/reservation';
 import { Instant } from './../../domain/general';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { ScheduledClass } from '../../domain/reservation';
+import { ScheduledClass, CancelInfo } from '../../domain/reservation';
+import { AutoCompleteService } from 'ionic4-auto-complete';
+import { UserInfo } from 'src/app/account/domain/user';
 
 @Component({
   selector: 'app-scheduled-class-card',
@@ -24,6 +27,10 @@ export class ScheduledClassCardComponent {
   cancelable = false;
   @Input()
   canceled = false;
+  @Input()
+  canceledInfo: CancelInfo;
+  @Input()
+  searchFriendProvider: AutoCompleteService;
 
   @Output()
   book = new EventEmitter<ScheduledClass>();
@@ -37,6 +44,16 @@ export class ScheduledClassCardComponent {
   edit = new EventEmitter<ScheduledClass>();
   @Output()
   cancel = new EventEmitter<ScheduledClass>();
+  @Output()
+  showPlaceDetails = new EventEmitter<Place>();
+  @Output()
+  showApprovedStudents = new EventEmitter<ScheduledClass>();
+  @Output()
+  showWaitingStudents = new EventEmitter<ScheduledClass>();
+  @Output()
+  showClassDetails = new EventEmitter<ScheduledClass>();
+  @Output()
+  addFriend = new EventEmitter<UserInfo>();
 
 
   getRemainingPlaces() {
@@ -44,6 +61,13 @@ export class ScheduledClassCardComponent {
       return 0;
     }
     return Math.max(0, this.scheduledClass.lesson.maxStudents - this.scheduledClass.bookings.approved.length);
+  }
+
+  getNumberOfApprovedStudents() {
+    if (!this.scheduledClass) {
+      return 0;
+    }
+    return this.scheduledClass.bookings.approved.length;
   }
 
   getNumberOfWaitingStudents() {

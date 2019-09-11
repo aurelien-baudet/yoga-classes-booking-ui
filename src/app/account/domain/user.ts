@@ -51,7 +51,7 @@ export const isUnregisteredUser = (user: User | UserId | UnregisteredUser): bool
     return false;
 };
 
-export const isUnkown = (user: User | UserId | UnregisteredUser): boolean => {
+export const isUnknown = (user: User | UserId | UnregisteredUser): boolean => {
     if (!user) {
         return true;
     }

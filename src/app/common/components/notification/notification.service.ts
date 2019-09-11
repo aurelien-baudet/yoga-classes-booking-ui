@@ -14,7 +14,8 @@ export class NotificationService {
             enableHtml: true,
             toastComponent: NotificationComponent,
             template,
-            templateContext
+            templateContext,
+            // disableTimeOut: true
         } as any);
     }
 }

@@ -1,0 +1,31 @@
+:host {
+  text-align: center;
+}
+
+h2 {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline-block;
+}
+
+h2 + ion-button {
+  vertical-align: middle;
+}
+
+/deep/ ion-item {
+  --padding-start: 0;
+  --padding-end: 0;
+  --inner-padding-start: 0;
+  --inner-padding-end: 0;
+  --inner-border-width: 0 0 0 0;
+}
+
+.cancel-form {
+  display: flex;
+  flex-direction: column;
+
+  ion-button[type="submit"] {
+    margin-top: 5px;
+    align-self: center;
+  }
+}

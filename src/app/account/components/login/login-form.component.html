@@ -1,11 +1,13 @@
 <form (ngSubmit)="login.emit(credentials)" #form="ngForm" novalidate>
   <ion-item>
-    <ion-label>Identifiant utilisateur ou email</ion-label>
+    <ion-label position="floating">Identifiant utilisateur ou email</ion-label>
     <ion-input class="login" type="text" name="login" [(ngModel)]="credentials.login" required></ion-input>
+    <ion-icon name="custom-login" slot="start"></ion-icon>
   </ion-item>
   <ion-item>
-    <ion-label>Mot de passe</ion-label>
+    <ion-label position="floating">Mot de passe</ion-label>
     <ion-input class="password" type="password" name="password" [(ngModel)]="credentials.password" required></ion-input>
+    <ion-icon name="custom-password" slot="start"></ion-icon>
   </ion-item>
   <ion-button type="submit" [disabled]="!form.valid">Me connecter</ion-button>
 </form>

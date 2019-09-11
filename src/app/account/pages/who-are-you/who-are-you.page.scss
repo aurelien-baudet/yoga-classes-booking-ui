@@ -1,0 +1,20 @@
+@import "../../../../theme/button-utils";
+
+ion-content > p {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.register {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  text-align: center;
+
+  ion-button {
+    @include secondary-button;
+    font-size: 12px;
+    height: 28px;
+  }
+}

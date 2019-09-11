@@ -1,3 +1,4 @@
+import { SocialAuthenticator } from './../../../booking/domain/general';
 import { Router } from '@angular/router';
 import { Credentials } from './../../domain/user';
 import { Component, OnInit } from '@angular/core';
@@ -50,5 +51,9 @@ export class WhoAreYouPage implements OnInit {
 
   showUnregistered() {
     return this.segment === 'unregistered';
+  }
+
+  async authenticate(authenticator: SocialAuthenticator) {
+    alert(`Authentification via ${authenticator} bientôt disponible`);
   }
 }

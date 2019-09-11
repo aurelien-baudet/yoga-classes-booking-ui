@@ -1,38 +1,5 @@
-
-@mixin fa-icon-base($icon) {
-  @extend %fa-icon;
-  background: transparent;
-  
-  &:before {
-    content: fa-content($icon);
-    font-size: 0.75em;
-    vertical-align: middle;
-  }
-}
-
-@mixin fas-icon($icon) {
-  @extend .fas;
-  @include fa-icon-base($icon);
-}
-
-@mixin fa-icon($icon) {
-  @extend .fa;
-  @include fa-icon-base($icon);
-}
-
-@mixin fab-icon($icon) {
-  @extend .fab;
-  @include fa-icon-base($icon);
-}
-
-@keyframes spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+@import "icons-utils";
+@import "animations";
 
 ion-icon {
   &[name="custom-book"] {
@@ -46,7 +13,7 @@ ion-icon {
 
     &:before {
       display: inline-block;
-      animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      animation: fa-spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     }
   }
   &[name="custom-cancel-class"] {
@@ -84,7 +51,7 @@ ion-icon {
     @include fas-icon($fa-var-plus);
   }
   &[name="custom-help"] {
-    @include fas-icon($fa-var-question);
+    @include fa-icon($fa-var-question-circle);
   }
   &[name="custom-submit"] {
     @include fas-icon($fa-var-check);
@@ -96,4 +63,44 @@ ion-icon {
     @include fas-icon($fa-var-angle-up);
   }
 
+
+  &[name="custom-login"] {
+    @include fas-icon($fa-var-user);
+  }
+  &[name="custom-password"] {
+    @include fas-icon($fa-var-key);
+  }
+
+  &[name="custom-display-name"] {
+    @include fas-icon($fa-var-user-tag);
+  }
+  &[name="custom-email"] {
+    @include fas-icon($fa-var-envelope);
+  }
+  &[name="custom-phone"] {
+    @include fas-icon($fa-var-phone-alt);
+  }
+  &[name="custom-send-booked-email"] {
+    @include fas-icon($fa-var-bell);
+  }
+
+  &[name="custom-title"] {
+    @include fas-icon($fa-var-feather-alt);
+  }
+  &[name="custom-max-students"] {
+    @include fas-icon($fa-var-user-lock);
+  }
+  &[name="custom-description"] {
+    @include fas-icon($fa-var-quote-left);
+  }
+  &[name="custom-place"] {
+    @include fas-icon($fa-var-map-marked);
+  }
+
+  &[name="custom-select-hours"] {
+    @include fas-icon($fa-var-clock);
+  }
+  &[name="custom-address"] {
+    @include fas-icon($fa-var-map-marker-alt);
+  }
 }

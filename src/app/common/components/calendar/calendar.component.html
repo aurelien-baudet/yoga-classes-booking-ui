@@ -6,13 +6,14 @@
   (onSelect)="chooseHours($event.time)"></ion-calendar>
 
 <ng-template #selectHours let-date="date" let-hours="hours">
-  <form #hoursForm="ngForm" (ngSubmit)="setHours(date, hours)">
+  <form class="select-hours" #hoursForm="ngForm" (ngSubmit)="setHours(date, hours)">
+    <ion-icon name="custom-select-hours"></ion-icon>
     <ion-item class="start">
       <ion-input 
         type="text" 
         name="start" 
-        placeholder="Début"
         [(ngModel)]="hours.start" 
+        placeholder="Début"
         appTimeMask
         required></ion-input>
     </ion-item>
@@ -21,12 +22,12 @@
       <ion-input 
         type="text" 
         name="end" 
-        placeholder="Fin"
         [(ngModel)]="hours.end" 
+        placeholder="Fin"
         appTimeMask
         required></ion-input>
     </ion-item>
-    <ion-button type="submit" [disabled]="!hoursForm.valid">
+    <ion-button type="submit" [disabled]="!hoursForm.valid" size="small">
       <ion-icon slot="icon-only" name="custom-submit"></ion-icon>
     </ion-button>
   </form>

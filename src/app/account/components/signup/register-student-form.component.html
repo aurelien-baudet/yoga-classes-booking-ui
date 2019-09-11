@@ -1,43 +1,51 @@
 <form (ngSubmit)="register.emit(student)" #form="ngForm" novalidate>
-  <ion-item>
-    <ion-label>Nom affiché</ion-label>
-    <ion-input class="name" type="text" name="displayName" [(ngModel)]="student.displayName" required></ion-input>
-    <app-help-button message=""></app-help-button>
+  <ion-item class="display-name">
+    <ion-label position="floating">Nom affiché</ion-label>
+    <ion-input type="text" name="displayName" [(ngModel)]="student.displayName" required></ion-input>
+    <ion-icon name="custom-display-name" slot="start"></ion-icon>
+    <app-help-button message="" slot="end"></app-help-button>
   </ion-item>
-  <ion-item>
-    <ion-label>Identifiant utilisateur</ion-label>
-    <ion-input class="login" type="text" name="login" [(ngModel)]="student.credentials.login" required></ion-input>
-    <app-help-button message=""></app-help-button>
+  <ion-item class="login">
+    <ion-label position="floating">Identifiant utilisateur</ion-label>
+    <ion-input type="text" name="login" [(ngModel)]="student.credentials.login" required></ion-input>
+    <ion-icon name="custom-login" slot="start"></ion-icon>
+    <app-help-button message="" slot="end"></app-help-button>
   </ion-item>
-  <ion-item>
-    <ion-label>Mot de passe</ion-label>
-    <ion-input class="password" type="password" name="password" [(ngModel)]="student.credentials.password" required></ion-input>
-    <app-help-button message=""></app-help-button>
+  <ion-item class="password">
+    <ion-label position="floating">Mot de passe</ion-label>
+    <ion-input type="password" name="password" [(ngModel)]="student.credentials.password" required></ion-input>
+    <ion-icon name="custom-password" slot="start"></ion-icon>
+    <app-help-button message="" slot="end"></app-help-button>
   </ion-item>
-  <ion-item>
-    <ion-label>Email (optionnel)</ion-label>
-    <ion-input class="email" type="email" name="contact.email" [(ngModel)]="student.contact.email"></ion-input>
-    <app-help-button message=""></app-help-button>
+  <ion-item class="email">
+    <ion-label position="floating">Email (optionnel)</ion-label>
+    <ion-input type="email" name="contact.email" [(ngModel)]="student.contact.email"></ion-input>
+    <ion-icon name="custom-email" slot="start"></ion-icon>
+    <app-help-button message="" slot="end"></app-help-button>
   </ion-item>
-  <ion-item>
-    <ion-label>Numéro de téléphone (optionnel)</ion-label>
-    <ion-input class="phone" type="tel" name="contact.phoneNumber" [(ngModel)]="student.contact.phoneNumber"></ion-input>
-    <app-help-button message=""></app-help-button>
+  <ion-item class="phone">
+    <ion-label position="floating">Numéro de téléphone (optionnel)</ion-label>
+    <ion-input type="tel" name="contact.phoneNumber" [(ngModel)]="student.contact.phoneNumber"></ion-input>
+    <ion-icon name="custom-phone" slot="start"></ion-icon>
+    <app-help-button message="" slot="end"></app-help-button>
   </ion-item>
-  <ion-item>
+  <ion-item class="visible-by-others">
+    <ion-toggle name="preferences.visibleByOtherStudents" [(ngModel)]="student.preferences.visibleByOtherStudents"></ion-toggle>
     <ion-label>Mon nom affiché est visible par les autres</ion-label>
-    <ion-toggle class="visible-by-others" name="preferences.visibleByOtherStudents" [(ngModel)]="student.preferences.visibleByOtherStudents"></ion-toggle>
-    <app-help-button message=""></app-help-button>
+    <ion-icon name="custom-visible-by-others" slot="start"></ion-icon>
+    <app-help-button message="" slot="end"></app-help-button>
   </ion-item>
-  <ion-item>
+  <ion-item class="agrees-to-be-assisted">
+    <ion-toggle name="preferences.agreesToBeAssisted" [(ngModel)]="student.preferences.agreesToBeAssisted"></ion-toggle>
     <ion-label>J'accepte d'être assisté</ion-label>
-    <ion-toggle class="assitance" name="preferences.agreesToBeAssisted" [(ngModel)]="student.preferences.agreesToBeAssisted"></ion-toggle>
-    <app-help-button message=""></app-help-button>
+    <ion-icon name="custom-agrees-to-be-assisted" slot="start"></ion-icon>
+    <app-help-button message="" slot="end"></app-help-button>
   </ion-item>
-  <ion-item>
+  <ion-item class="add-to-calendar">
+    <ion-toggle name="preferences.addBookedClassesToCalendar" [(ngModel)]="student.preferences.addBookedClassesToCalendar"></ion-toggle>
     <ion-label>Ajouter mes cours à mon calendrier</ion-label>
-    <ion-toggle class="add-to-calendar" name="preferences.addBookedClassesToCalendar" [(ngModel)]="student.preferences.addBookedClassesToCalendar"></ion-toggle>
-    <app-help-button message=""></app-help-button>
+    <ion-icon name="custom-add-to-calendar" slot="start"></ion-icon>
+    <app-help-button message="" slot="end"></app-help-button>
   </ion-item>
   <ion-button type="submit" [disabled]="!form.valid">Créer mon compte</ion-button>
 </form>

@@ -12,6 +12,7 @@ import { NotificationService } from './notification/notification.service';
 import { FormsModule } from '@angular/forms';
 import { CalendarModule  } from 'ion4-calendar';
 import { TimeMaskDirective } from './time-mask.directive';
+import { PlaceDetailsComponent } from './place-details/place-details.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { TimeMaskDirective } from './time-mask.directive';
     DateRangePipe,
     CalendarComponent,
     TimeMaskDirective,
+    PlaceDetailsComponent
   ],
   entryComponents: [
     PopoverComponent,
@@ -32,7 +34,8 @@ import { TimeMaskDirective } from './time-mask.directive';
     PopoverComponent,
     NotificationComponent,
     DateRangePipe,
-    CalendarComponent
+    CalendarComponent,
+    PlaceDetailsComponent
   ],
   providers: [
     NotificationService,

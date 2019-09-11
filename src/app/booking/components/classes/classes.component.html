@@ -1,19 +1,26 @@
 <ion-list>
-    <ion-item *ngFor="let scheduledClass of classes">
-      <app-scheduled-class-card 
-        [scheduledClass]="scheduledClass"
-        [showDetails]="detailsStateProvider.isShowDetails(scheduledClass)"
-        [booked]="bookingStateProvider.isBooked(scheduledClass)"
-        [bookable]="bookingStateProvider.isBookable(scheduledClass)"
-        [pending]="pendingStateProvider.isPending(scheduledClass)"
-        [editable]="manageClassStateProvider.isEditable(scheduledClass)"
-        [cancelable]="manageClassStateProvider.isCancelable(scheduledClass)"
-        (book)="book.emit($event)"
-        (unbook)="unbook.emit($event)"
-        (viewDetails)="viewDetails.emit($event)"
-        (hideDetails)="hideDetails.emit($event)"
-        (edit)="edit.emit($event)"
-        (cancel)="cancel.emit($event)"></app-scheduled-class-card>
-    </ion-item>
-  </ion-list>
-  
+  <ion-item *ngFor="let scheduledClass of classes">
+    <app-scheduled-class-card 
+      [scheduledClass]="scheduledClass"
+      [showDetails]="detailsStateProvider.isShowDetails(scheduledClass)"
+      [booked]="bookingStateProvider.isBooked(scheduledClass)"
+      [bookable]="bookingStateProvider.isBookable(scheduledClass)"
+      [pending]="pendingStateProvider.isPending(scheduledClass)"
+      [editable]="manageClassStateProvider.isEditable(scheduledClass)"
+      [cancelable]="manageClassStateProvider.isCancelable(scheduledClass)"
+      [canceled]="manageClassStateProvider.isCanceled(scheduledClass)"
+      [canceledInfo]="manageClassStateProvider.getCanceledInfo(scheduledClass)"
+      [searchFriendProvider]="searchFriendProvider"
+      (book)="book.emit($event)"
+      (unbook)="unbook.emit($event)"
+      (viewDetails)="viewDetails.emit($event)"
+      (hideDetails)="hideDetails.emit($event)"
+      (edit)="edit.emit($event)"
+      (cancel)="cancel.emit($event)"
+      (showPlaceDetails)="showPlaceDetails.emit($event)"
+      (showApprovedStudents)="showApprovedStudents.emit($event)"
+      (showWaitingStudents)="showWaitingStudents.emit($event)"
+      (showClassDetails)="showClassDetails.emit($event)"
+      (addFriend)="addFriend.emit({friend: $event, scheduledClass: scheduledClass})"></app-scheduled-class-card>
+  </ion-item>
+</ion-list>

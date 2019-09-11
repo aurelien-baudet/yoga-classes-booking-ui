@@ -6,7 +6,7 @@
           [class.editable]="editable"
           [class.cancelable]="cancelable">
   <ion-card-header>
-    <ion-card-title>{{ scheduledClass | dateRange }}</ion-card-title>
+    <ion-card-title (click)="showClassDetails.emit(scheduledClass)">{{ scheduledClass | dateRange }}</ion-card-title>
     <ion-button (click)="book.emit(scheduledClass)" *ngIf="bookable && !booked && !pending" size="small">
         <ion-icon slot="icon-only" name="custom-book"></ion-icon>
     </ion-button>
@@ -25,14 +25,20 @@
   </ion-card-header>
   <ion-card-content>
     <div class="preview">
-      <span class="title">{{ scheduledClass.lesson.title }}</span>
-      <div class="remaining-places">
+      <span class="title" (click)="showClassDetails.emit(scheduledClass)">{{ scheduledClass.lesson.title }}</span>
+      <div class="remaining-places" (click)="showApprovedStudents.emit(scheduledClass)">
         <ion-icon slot="icon-only" name="custom-approved-list"></ion-icon>
-        <ion-badge>{{ getRemainingPlaces() }}</ion-badge>
+        <ion-badge>{{ getNumberOfApprovedStudents() }}/{{ scheduledClass.lesson.maxStudents }}</ion-badge>
       </div>
-      <div class="waiting-queue">
+      <div class="waiting-queue" (click)="showWaitingStudents.emit(scheduledClass)">
         <ion-icon slot="icon-only" name="custom-waiting-list"></ion-icon>
         <ion-badge>{{ getNumberOfWaitingStudents() }}</ion-badge>
+      </div>
+      <div class="place">
+        <ion-button (click)="showPlaceDetails.emit(scheduledClass.lesson.place)">
+          {{ scheduledClass.lesson.place.name }}
+          <ion-icon slot="start" name="custom-place"></ion-icon>
+        </ion-button>
       </div>
     </div>
     <div class="details">
@@ -42,7 +48,18 @@
       <ion-button (click)="hideDetails.emit(scheduledClass)" *ngIf="showDetails" size="small">
         <ion-icon slot="icon-only" name="custom-hide-details"></ion-icon>
       </ion-button>
-      <app-class-details [scheduledClass]="scheduledClass"></app-class-details>
+      <app-class-details 
+        [scheduledClass]="scheduledClass"
+        [searchFriendProvider]="searchFriendProvider"
+        (addFriend)="addFriend.emit($event)"></app-class-details>
+    </div>
+    <div class="cancel-details" *ngIf="canceled">
+      <h3>Cours annulé</h3>
+      <p class="lesson-canceled">Cours annulé</p>
+      <p class="teacher-message">
+        <span class="intro">Message de {{ scheduledClass.lesson.teacher.displayName }} :</span>
+        <span class="message">{{ canceledInfo.message }}</span>
+      </p>
     </div>
   </ion-card-content>
 </ion-card>

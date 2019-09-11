@@ -3,6 +3,7 @@ import { Credentials } from './../../domain/user';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { Router } from '@angular/router';
+import { SocialAuthenticator } from 'src/app/booking/domain/general';
 
 @Component({
   selector: 'app-login-page',
@@ -26,4 +27,7 @@ export class LoginPage {
     }
   }
 
+  async authenticate(authenticator: SocialAuthenticator) {
+    alert(`Authentification via ${authenticator} bientôt disponible`);
+  }
 }

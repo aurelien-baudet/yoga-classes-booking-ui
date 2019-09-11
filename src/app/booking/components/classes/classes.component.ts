@@ -1,7 +1,9 @@
-import { ClassState } from './../../domain/reservation';
+import { ClassState, Place } from './../../domain/reservation';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ScheduledClass, sameClassPredicate } from '../../domain/reservation';
 import { BookingStateProvider, ManageClassStateProvider, DetailsStateProvider, DetailsStateUpdateProvider, PendingStateProvider, PendingStateUpdateProvider } from '../../services/single-class-state.provider';
+import { AutoCompleteService } from 'ionic4-auto-complete';
+import { UserInfo } from 'src/app/account/domain/user';
 
 @Component({
   selector: 'app-classes',
@@ -19,6 +21,8 @@ export class ClassesComponent {
   pendingStateProvider: PendingStateProvider<ScheduledClass>;
   @Input()
   manageClassStateProvider: ManageClassStateProvider;
+  @Input()
+  searchFriendProvider: AutoCompleteService;
 
   @Output()
   book = new EventEmitter<ScheduledClass>();
@@ -32,4 +36,14 @@ export class ClassesComponent {
   edit = new EventEmitter<ScheduledClass>();
   @Output()
   cancel = new EventEmitter<ScheduledClass>();
+  @Output()
+  showPlaceDetails = new EventEmitter<Place>();
+  @Output()
+  showApprovedStudents = new EventEmitter<ScheduledClass>();
+  @Output()
+  showWaitingStudents = new EventEmitter<ScheduledClass>();
+  @Output()
+  showClassDetails = new EventEmitter<ScheduledClass>();
+  @Output()
+  addFriend = new EventEmitter<{friend: UserInfo, scheduledClass: ScheduledClass}>();
 }

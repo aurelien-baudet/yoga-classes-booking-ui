@@ -1,0 +1,53 @@
+@import "../../../../theme/icons-utils";
+@import "../../../../theme/animations";
+
+.name {
+  display: block;
+  padding: 10px;
+  color: var(--ion-color-primary);
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 1px solid var(--ion-color-medium-tint);
+}
+
+.address {
+  color: var(--ion-color-medium);
+  font-weight: bold;
+  font-size: 14px;
+  padding: 20px 5px;
+
+  ion-icon {
+    font-size: 18px;
+    vertical-align: middle;
+    line-height: 15px;
+  }
+  span {
+    vertical-align: middle;
+  }
+}
+
+iframe {
+  border: none;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 300px;
+}
+
+.address {
+  position: relative;
+  overflow: visible;
+  @include fas-icon($fa-var-spinner);
+
+  &:before {
+    position: absolute;
+    bottom: -160px;
+    left: 50%;
+    margin-left: -15px;
+    font-size: 30px;
+    display: inline-block;
+    animation: fa-spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  }
+}

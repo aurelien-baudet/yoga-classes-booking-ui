@@ -1,23 +1,27 @@
 <form (ngSubmit)="continue.emit(unregisteredUser)" #form="ngForm" novalidate>
-  <ion-item>
-    <ion-label>Nom affiché</ion-label>
-    <ion-input class="name" type="text" name="displayName" [(ngModel)]="unregisteredUser.displayName" required></ion-input>
-    <app-help-button message=""></app-help-button>
+  <ion-item class="display-name">
+    <ion-label position="floating">Nom affiché</ion-label>
+    <ion-input type="text" name="displayName" [(ngModel)]="unregisteredUser.displayName" required></ion-input>
+    <ion-icon name="custom-display-name" slot="start"></ion-icon>
+    <app-help-button message="" slot="end"></app-help-button>
   </ion-item>
-  <ion-item>
-    <ion-label>Email (optionnel)</ion-label>
-    <ion-input class="email" type="email" name="email" [(ngModel)]="unregisteredUser.email"></ion-input>
-    <app-help-button message=""></app-help-button>
+  <ion-item class="email">
+    <ion-label position="floating">Email (optionnel)</ion-label>
+    <ion-input type="email" name="email" [(ngModel)]="unregisteredUser.email"></ion-input>
+    <ion-icon name="custom-email" slot="start"></ion-icon>
+    <app-help-button message="" slot="end"></app-help-button>
   </ion-item>
-  <ion-item>
-    <ion-label>Numéro de téléphone (optionnel)</ion-label>
-    <ion-input class="phone" type="tel" name="phoneNumber" [(ngModel)]="unregisteredUser.phoneNumber"></ion-input>
-    <app-help-button message=""></app-help-button>
+  <ion-item class="phone-number">
+    <ion-label position="floating">Numéro de téléphone (optionnel)</ion-label>
+    <ion-input type="tel" name="phoneNumber" [(ngModel)]="unregisteredUser.phoneNumber"></ion-input>
+    <ion-icon name="custom-phone" slot="start"></ion-icon>
+    <app-help-button message="" slot="end"></app-help-button>
   </ion-item>
-  <ion-item>
+  <ion-item class="send-booked-email">
+    <ion-toggle name="sendBookedMail" [(ngModel)]="unregisteredUser.sendBookedMail"></ion-toggle>
     <ion-label>Envoyer un mail lorsque je réserve un cours</ion-label>
-    <ion-toggle class="send-booked-email" name="sendBookedMail" [(ngModel)]="unregisteredUser.sendBookedMail"></ion-toggle>
-    <app-help-button message=""></app-help-button>
+    <ion-icon name="custom-send-booked-email" slot="start"></ion-icon>
+    <app-help-button message="" slot="end"></app-help-button>
   </ion-item>
   <ion-button type="submit" [disabled]="!form.valid">Terminer la réservation</ion-button>
 </form>

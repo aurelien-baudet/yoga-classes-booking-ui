@@ -1,0 +1,23 @@
+ion-segment[class*="md"] {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ion-segment-button {
+  --border-width: 1px 1px 1px 1px;
+  --border-color: var(--ion-color-primary);
+  --border-style: solid;
+  --border-radius: 10px;
+  --background: var(--ion-color-primary-contrast);
+  --background-activated: var(--ion-color-primary);
+  --background-checked: var(--ion-color-primary);
+  --color-checked: var(--ion-color-primary-contrast);
+  --indicator-color-checked: var(--ion-color-primary);
+  min-height: 27px;
+  font-size: 12px;
+  letter-spacing: normal;
+}
+// .sc-ion-segment-md-h {
+//   @extend .sc-ion-segment-ios-h;
+// }

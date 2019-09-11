@@ -1,4 +1,4 @@
-import { ClassState } from './../../domain/reservation';
+import { ClassState, CancelInfo, isCanceled } from './../../domain/reservation';
 import { ManageClassStateProvider } from '../single-class-state.provider';
 import { ScheduledClass } from '../../domain/reservation';
 
@@ -12,6 +12,10 @@ export class UnmanageableProvider implements ManageClassStateProvider {
     }
 
     isCanceled(scheduledClass: ScheduledClass): boolean {
-        return scheduledClass.state === ClassState.CANCELED;
+        return isCanceled(scheduledClass);
+    }
+
+    getCanceledInfo(scheduledClass: ScheduledClass): CancelInfo {
+        return isCanceled(scheduledClass) ? {message: scheduledClass.state.message} : null;
     }
 }

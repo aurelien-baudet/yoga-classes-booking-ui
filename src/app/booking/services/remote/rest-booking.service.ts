@@ -3,7 +3,7 @@ import { UnregisteredUser } from './../../../account/domain/unregistered';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Student, StudentId } from 'src/app/account/domain/student';
-import { User, UserId, Role, isUnkown, isRegisteredUser } from 'src/app/account/domain/user';
+import { User, UserId, Role, isUnknown, isRegisteredUser } from 'src/app/account/domain/user';
 import { ClassId, ScheduledClass, ClassState, Booking, Booked } from '../../domain/reservation';
 import { BookingService } from '../booking.service';
 import { ServerConfig } from 'src/environments/config';
@@ -27,7 +27,7 @@ export class RestBookingService implements BookingService {
   }
 
   private async bookClass(student: any, bookedClass: ClassId): Promise<ScheduledClass> {
-    if (isUnkown(student)) {
+    if (isUnknown(student)) {
       // TODO: throw
     }
     if (isRegisteredUser(student)) {
@@ -43,7 +43,7 @@ export class RestBookingService implements BookingService {
   async unbook(student: StudentId, bookedClass: ClassId): Promise<ScheduledClass>;
   async unbook(uregisteredUser: UnregisteredUser, bookedClass: ClassId): Promise<ScheduledClass>;
   async unbook(student: any, bookedClass: ClassId): Promise<ScheduledClass> {
-    if (isUnkown(student)) {
+    if (isUnknown(student)) {
       // TODO: throw
     }
     if (isRegisteredUser(student)) {
@@ -59,7 +59,7 @@ export class RestBookingService implements BookingService {
   async getBookedClasses(student: StudentId): Promise<ScheduledClass[]>;
   async getBookedClasses(unregisteredUser: UnregisteredUser): Promise<ScheduledClass[]>;
   async getBookedClasses(student: any): Promise<ScheduledClass[]> {
-    if (isUnkown(student)) {
+    if (isUnknown(student)) {
       return [];
     }
     if (isRegisteredUser(student)) {

@@ -1,9 +1,12 @@
+import { ComingSoonFriendProvider } from './../../services/local/coming-soon-friend.provider';
+import { AutoCompleteService } from 'ionic4-auto-complete';
+import { Place } from 'src/app/booking/domain/reservation';
 import { InMemoryUpdatableDetailsStateProvider } from '../../services/local/in-memory-details-class-state.provider';
 import { UnmanageableProvider } from './../../services/local/unmanageable.provider';
 import { UnregisteredUser } from './../../../account/domain/unregistered';
 import { NotificationService } from './../../../common/components/notification/notification.service';
 import { Router } from '@angular/router';
-import { User, isUnkown as isUnknown } from 'src/app/account/domain/user';
+import { User, isUnknown, UserInfo } from 'src/app/account/domain/user';
 import { AccountService } from './../../../account/services/account.service';
 import { ScheduledClass, sameClassPredicate } from '../../domain/reservation';
 import { ClassService } from '../../services/class.service';
@@ -13,6 +16,7 @@ import { CurrentRoute } from 'src/app/common/util/router.util';
 import { BookingStateProvider, DetailsStateProvider, DetailsStateUpdateProvider, PendingStateProvider, PendingStateUpdateProvider, ManageClassStateProvider } from '../../services/single-class-state.provider';
 import { InMemoryUpdatablePendingStateProvider } from '../../services/local/in-memory-pending-state.provider';
 import { BookedClassesBookingStateProvider } from '../../services/local/booked-classes-booking-state.provider';
+import { PopoverService, PopoverWrapper } from 'src/app/common/components/popover/popover.service';
 
 @Component({
   selector: 'app-book-lessons-page',
@@ -22,32 +26,37 @@ import { BookedClassesBookingStateProvider } from '../../services/local/booked-c
 export class BookLessonsPage {
   private currentUser: User | UnregisteredUser;
   private bookedClassesForCurrentUser: ScheduledClass[] = [];
+  protected lastClick: Event;
 
+  @ViewChild('placeDetails')
+  placeDetails: TemplateRef<any>;
   @ViewChild('approvedNotification')
   approvedNotification: TemplateRef<any>;
   @ViewChild('waitingListNotification')
   waitingListNotification: TemplateRef<any>;
-  @ViewChild('canceledNotification')
-  canceledNotification: TemplateRef<any>;
+  @ViewChild('unbookedNotification')
+  unbookedNotification: TemplateRef<any>;
 
   bookingStateProvider: BookingStateProvider;
   detailsProvider: DetailsStateProvider<ScheduledClass> & DetailsStateUpdateProvider<ScheduledClass>;
   pendingProvider: PendingStateProvider<ScheduledClass> & PendingStateUpdateProvider<ScheduledClass>;
   manageClassStateProvider: ManageClassStateProvider;
+  searchFriendProvider: AutoCompleteService;
 
   classes: ScheduledClass[] = [];
-  // bookedClass: ScheduledClass;
 
   constructor(private classService: ClassService,
               private accountService: AccountService,
               private bookingService: BookingService,
               private router: Router,
               private route: CurrentRoute,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private popoverService: PopoverService) {
     this.bookingStateProvider = new BookedClassesBookingStateProvider(this.bookedClassesForCurrentUser);
     this.detailsProvider = new InMemoryUpdatableDetailsStateProvider(sameClassPredicate);
     this.pendingProvider = new InMemoryUpdatablePendingStateProvider(sameClassPredicate);
     this.manageClassStateProvider = new UnmanageableProvider();
+    this.searchFriendProvider = new ComingSoonFriendProvider();
   }
 
   async ionViewDidEnter() {
@@ -55,11 +64,12 @@ export class BookLessonsPage {
     this.refreshBookings();
     this.refreshClasses();
     this.finishBookingIfNecessary();
-    this.finishCancelingIfNecessary();
+    this.finishUnbookingIfNecessary();
   }
 
   async book(bookedClass: ScheduledClass) {
     if (isUnknown(this.currentUser)) {
+      console.log('unknown user so ask who he is before booking');
       return this.authenticateForBooking(bookedClass);
     }
     this.pendingProvider.markPending(bookedClass);
@@ -68,34 +78,65 @@ export class BookLessonsPage {
     this.pendingProvider.unmarkPending(bookedClass);
     const template = booked.approved ? this.approvedNotification : this.waitingListNotification;
     this.notificationService.success(template, booked);
+    this.router.navigate(['lessons'], {queryParams: {}});
     this.refreshClasses();
     this.refreshBookings();
   }
 
   async unbook(bookedClass: ScheduledClass) {
     if (isUnknown(this.currentUser)) {
-      return this.authenticateForCanceling(bookedClass);
+      console.log('unknown user so ask who he is before unbooking');
+      return this.authenticateForUnbooking(bookedClass);
     }
     this.pendingProvider.markPending(bookedClass);
     // TODO: handle case when user registers another user
     await this.bookingService.unbook(this.currentUser, bookedClass);
     this.pendingProvider.unmarkPending(bookedClass);
-    this.notificationService.success(this.canceledNotification, {bookedClass});
+    this.notificationService.success(this.unbookedNotification, {bookedClass});
+    this.router.navigate(['lessons'], {queryParams: {}});
     this.refreshClasses();
     this.refreshBookings();
+  }
+
+  async showPlaceDetails(place: Place) {
+    // wrap in setTimeout in order to be able to retrieve the click event
+    setTimeout(async () => {
+      await this.popoverService.show(this.placeDetails, {place}, this.lastClick);
+    }, 0);
+  }
+
+  async showClassDetails(scheduledClass: ScheduledClass) {
+    // TODO
+    console.log('TODO: show class details', scheduledClass);
+  }
+
+  async showApprovedStudents(scheduledClass: ScheduledClass) {
+    // TODO
+    console.log('TODO: show approved students', scheduledClass);
+  }
+
+  async showWaitingStudents(scheduledClass: ScheduledClass) {
+    // TODO
+    console.log('TODO: show waiting students', scheduledClass);
+  }
+
+  async addFriend({friend, scheduledClass}: {friend: UserInfo, scheduledClass: ScheduledClass}) {
+    alert('Bientôt disponible');
   }
 
   isMobileApp() {
     // TODO
     return true;
   }
-  
+
   addToCalendar(bookedClass: ScheduledClass) {
     // TODO
+    alert('Bientôt disponible');
   }
-  
+
   removeFromCalendar(bookedClass: ScheduledClass) {
     // TODO
+    alert('Bientôt disponible');
   }
 
   private authenticateForBooking(bookedClass: ScheduledClass) {
@@ -106,10 +147,10 @@ export class BookLessonsPage {
     });
   }
 
-  private authenticateForCanceling(bookedClass: ScheduledClass) {
+  private authenticateForUnbooking(bookedClass: ScheduledClass) {
     this.router.navigate(['users', 'whoareyou'], {
       queryParams: {
-        canceling: bookedClass.id
+        unbooking: bookedClass.id
       }
     });
   }
@@ -132,10 +173,11 @@ export class BookLessonsPage {
       this.router.navigate(['']);
     }
   }
-  private async finishCancelingIfNecessary() {
-    const cancelingId = this.route.getQueryParam('canceling');
-    if (cancelingId) {
-      const bookedClass = await this.classService.getClassInfo({id: cancelingId});
+
+  private async finishUnbookingIfNecessary() {
+    const unbookingId = this.route.getQueryParam('unbooking');
+    if (unbookingId) {
+      const bookedClass = await this.classService.getClassInfo({id: unbookingId});
       await this.unbook(bookedClass);
       this.router.navigate(['']);
     }

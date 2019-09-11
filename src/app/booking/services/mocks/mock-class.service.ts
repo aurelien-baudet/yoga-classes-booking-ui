@@ -1,8 +1,9 @@
 import { Instant } from '../../domain/general';
 import { Injectable } from '@angular/core';
-import { ScheduledClass, Lesson, LessonId, ClassId, ClassState, Booking, Place, NewLesson } from '../../domain/reservation';
+import { ScheduledClass, Lesson, LessonId, ClassId, ClassState, Booking, Place, NewLesson, isSameLesson, sameLessonPredicate } from '../../domain/reservation';
 import { ClassService } from '../class.service';
 import * as classes from './data/classes.json';
+import * as unscheduled from './data/unscheduled.json';
 
 @Injectable({
   providedIn: 'root'
@@ -19,15 +20,20 @@ export class MockClassService implements ClassService {
   }
 
   async getLessonInfo(lesson: LessonId): Promise<Lesson> {
-    throw new Error('not implemented');
+    const lessonInfo = classes["default"]
+            .map((c) => c.lesson)
+            .find(sameLessonPredicate(lesson));
+    console.log('getLessonInfo', lesson, '=>', lessonInfo);
+    return lessonInfo;
   }
 
   async listUnscheduledLessons(): Promise<Lesson[]> {
-    throw new Error('not implemented');
+    return unscheduled['default'] as any;
   }
 
   async listScheduledClassesFor(lesson: LessonId, from?: Instant, to?: Instant): Promise<ScheduledClass[]> {
-    throw new Error('not implemented');
+    return classes["default"]
+            .filter((c) => isSameLesson(c.lesson, lesson));
   }
 
   async cancel(scheduledClass: ClassId, message: string): Promise<ScheduledClass> {

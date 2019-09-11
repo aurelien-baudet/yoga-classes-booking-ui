@@ -1,0 +1,25 @@
+[
+  {
+      "id": "5d6f7f9abcf35a5a03470f3d",
+      "title": "credi",
+      "description": "foo",
+      "maxStudents": 15,
+      "photos": [],
+      "place": {
+          "id": "5d6526e3bcf35a5acc6eb6b1",
+          "name": "Terre Sainte",
+          "address": "128 rue Amiral Lacaze, Saint Pierre",
+          "plan": "https://www.google.com/maps/@-21.3492488,55.4836983,18z"
+      },
+      "teacher": {
+          "id": "5d651182bcf35a40b5f78158",
+          "displayName": "Cyril",
+          "account": {
+              "login": "cyril.shaker",
+              "roles": [
+                  "TEACHER"
+              ]
+          }
+      }
+  }
+]

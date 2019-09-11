@@ -13,7 +13,7 @@ import { ScheduledClass } from 'src/app/booking/domain/reservation';
 import { ClassService } from 'src/app/booking/services/class.service';
 import { AccountService } from 'src/app/account/services/account.service';
 import { PopoverController } from '@ionic/angular';
-import { PopoverService } from 'src/app/common/components/popover/popover.service';
+import { PopoverService, PopoverWrapper } from 'src/app/common/components/popover/popover.service';
 
 @Component({
   selector: 'app-classes-page',
@@ -34,6 +34,8 @@ export class ClassesPage {
   cancelMessage: TemplateRef<any>;
   lastClick: Event; // used for popover
 
+  private popover: PopoverWrapper;
+
   constructor(private classService: ClassService,
               private router: Router,
               private popoverService: PopoverService) {
@@ -41,7 +43,7 @@ export class ClassesPage {
     this.detailsProvider = new NextLessonOpenedDetailsClassStateProvider(this.classes);
     this.pendingProvider = new InMemoryUpdatablePendingStateProvider(sameClassPredicate);
     this.manageClassStateProvider = new ManageableProvider();
-    this.lessonDetailsProvider = new InMemoryUpdatableDetailsStateProvider(sameLessonPredicate)
+    this.lessonDetailsProvider = new InMemoryUpdatableDetailsStateProvider(sameLessonPredicate);
   }
 
   async ionViewDidEnter() {
@@ -61,7 +63,7 @@ export class ClassesPage {
   async askCancelMessage(cancelingClass: ScheduledClass) {
     // wrap in setTimeout in order to be able to retrieve the click event
     setTimeout(async () => {
-      await this.popoverService.show(this.cancelMessage, {
+      this.popover = await this.popoverService.show(this.cancelMessage, {
         cancelingClass,
         form: {message: ''}
       }, this.lastClick);
@@ -69,9 +71,11 @@ export class ClassesPage {
   }
 
   async cancel(cancelingClass: ScheduledClass, message: string) {
+    this.popover.success();
     this.pendingProvider.markPending(cancelingClass);
     await this.classService.cancel(cancelingClass, message);
     this.pendingProvider.unmarkPending(cancelingClass);
+    this.refreshClasses();
   }
 
   async schedule(lesson: Lesson) {

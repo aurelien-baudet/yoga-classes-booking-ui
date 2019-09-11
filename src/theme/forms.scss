@@ -1,0 +1,51 @@
+
+form {
+  ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+
+    ion-label {
+      --color: var(--ion-color-medium) !important;
+      font-size: 14px !important;
+    }
+    
+    ion-icon[slot=start] {
+      -webkit-margin-end: 5px;
+      margin-inline-end: 5px;
+      -webkit-margin-start: 5px;
+      margin-inline-start: 5px;
+      margin-top: 0;
+      margin-bottom: 9px;
+      align-self: flex-end;
+    }
+
+    app-help-button[slot=end] {
+      -webkit-margin-end: 0;
+      margin-inline-end: 0;
+      -webkit-margin-start: 0;
+      margin-inline-start: 0;
+      margin-bottom: 0;
+      align-self: flex-end;
+
+      ion-button {
+        --padding-start: 0;
+        --padding-end: 0;
+        -webkit-margin-start: 0;
+        margin-inline-start: 0;
+        -webkit-margin-end: 0;
+        margin-inline-end: 0;
+      }
+    }
+
+    ion-toggle {
+      -webkit-padding-start: 0;
+      -webkit-margin-start: 0;
+      margin-inline-start: 0;
+      padding-inline-start: 0;
+    }
+  }
+
+  ion-button[type="submit"] {
+    margin-top: 20px;
+  }
+}

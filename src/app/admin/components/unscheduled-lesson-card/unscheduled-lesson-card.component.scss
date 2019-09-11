@@ -1,9 +1,116 @@
-.details-content {
+@import "../../../../theme/button-utils";
+
+:host {
     display: block;
-    height: 0;
-    overflow: hidden;
+    width: 100%;
 }
 
-.show-details .details-content {
-    height: auto;
+
+ion-card-header {
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+
+    ion-card-title {
+        font-size: 15px;
+        font-weight: bold;
+        flex: 1 1 auto;
+    }
+    ion-button {
+        flex: 0 auto;
+
+        ion-icon[name="custom-pending"] {
+            &:before {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+
+ion-card-content {
+    padding: 0;
+
+    .preview,
+    .details {
+        padding: 5px;
+        display: flex;
+    }
+    .preview {
+        border-bottom: 1px solid var(--border-color);
+    }
+}
+
+.preview {
+    .title {
+        display: flex;
+        flex: 1 1 auto;
+        align-self: center;
+        margin-right: 10px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+    .remaining-places,
+    .waiting-queue {
+        align-self: flex-end;
+    }
+}
+
+.details {
+    flex-direction: column;
+
+    > ion-button {
+        @include discreet-button(var(--ion-color-medium));
+        align-self: center;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+
+.max-students {
+    position: relative;
+    padding-right: 17px;
+    padding-top: 7px;
+    padding-bottom: 2px;
+    margin-left: 12px;
+
+    ion-icon {
+        font-size: 22px;
+    }
+    ion-badge {
+        --padding-top: 3px;
+        --padding-end: 3px;
+        --padding-start: 3px;
+        --padding-bottom: 3px;
+        font-size: 10px;
+        position: absolute;
+        top: 0;
+        left: 18px;
+    }
+}
+
+/* animation */
+ion-card-content .details {
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: padding 0.2s linear 0.8s;
+}
+.details-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease-out;
+}
+
+.show-details {
+    ion-card-content .details {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        transition: padding 0.2s linear;
+    }
+    .details-content {
+        max-height: 600px;
+    }
 }

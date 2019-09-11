@@ -16,8 +16,11 @@ export class UnauthorizedInterceptor implements HttpInterceptor {
                 if (err.status === 401) {
                     // auto logout if 401 response returned from api
                     this.authenticationStorage.clear();
+                    console.log('user unauthorized by server so redirect to login page');
                     // redirect to login page
-                    this.router.navigate(['users', 'login']);
+                    this.router.navigate(['users', 'login'], {
+                        queryParamsHandling: 'preserve'
+                    });
                 }
 
                 return throwError(err);
