@@ -1,5 +1,12 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { UnregisteredUser } from '../../domain/unregistered';
+
+const defaultModel = () => ({
+  displayName: '',
+  email: '',
+  phoneNumber: '',
+  sendBookedMail: true
+});
 
 @Component({
   selector: 'app-unregistered-info-form',
@@ -7,14 +14,13 @@ import { UnregisteredUser } from '../../domain/unregistered';
   styleUrls: ['./unregistered-info-form.component.scss'],
 })
 export class UnregisteredInfoFormComponent {
+  @Input()
+  set unregisteredUser(unregisteredUser: UnregisteredUser) {
+    this.unregisteredUserModel = unregisteredUser || defaultModel();
+  }
+
   @Output()
   continue = new EventEmitter<UnregisteredUser>();
 
-  // TODO: retrieve previous value from session storage
-  unregisteredUser: UnregisteredUser = {
-    displayName: '',
-    email: '',
-    phoneNumber: '',
-    sendBookedMail: true
-  }
+  unregisteredUserModel: UnregisteredUser = defaultModel();
 }

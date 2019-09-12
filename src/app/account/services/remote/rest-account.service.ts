@@ -9,23 +9,28 @@ import { ServerConfig } from 'src/environments/config';
 import { first } from 'rxjs/operators';
 import { AuthenticationStorage } from '../authentication.storage';
 import { Student, StudentRegistration } from '../../domain/student';
+import { ReplaySubject } from 'rxjs';
+import { UnregisteredUserInfoStorage } from '../unregistered-user-info.storage';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestAccountService implements AccountService {
-  private unregisteredUser: UnregisteredUser;
+  readonly currentUser$ = new ReplaySubject<User | UnregisteredUser | null>();
 
   constructor(private http: HttpClient,
               private serverConfig: ServerConfig,
-              private authenticationStorage: AuthenticationStorage) {}
+              private authenticationStorage: AuthenticationStorage,
+              private unregisteredUserStorage: UnregisteredUserInfoStorage) {}
 
   async registerStudent(student: StudentRegistration): Promise<Student> {
     const user = await this.http.post<Student>(`${this.serverConfig.url}/users/students`, student)
       .pipe(first())
       .toPromise();
+    await this.unregisteredUserStorage.clear();
     await this.authenticationStorage.store(btoa(`${student.credentials.login}:${student.credentials.password}`));
+    this.currentUser$.next(user);
     return user;
   }
 
@@ -34,30 +39,38 @@ export class RestAccountService implements AccountService {
     const user = await this.http.get<User>(`${this.serverConfig.url}/users`)
       .pipe(first())
       .toPromise();
+    this.currentUser$.next(user);
     return user;
   }
 
   async logout(): Promise<void> {
     await this.authenticationStorage.clear();
+    await this.unregisteredUserStorage.clear();
+    this.currentUser$.next(null);
   }
 
   async getUserInfo(): Promise<User | UnregisteredUser | null> {
-    if (this.unregisteredUser) {
-      return this.unregisteredUser;
+    const unregisteredUser = await this.unregisteredUserStorage.get();
+    if (unregisteredUser) {
+      return unregisteredUser;
     }
-    return this.http.get<User>(`${this.serverConfig.url}/users`)
+    const user = await this.http.get<User>(`${this.serverConfig.url}/users`)
       .pipe(first())
       .toPromise();
+    this.currentUser$.next(user);
+    return user;
   }
 
   async getTeacherInfo(): Promise<Teacher | null> {
-    return this.http.get<Teacher>(`${this.serverConfig.url}/users`)
+    const teacher = await this.http.get<Teacher>(`${this.serverConfig.url}/users`)
       .pipe(first())
       .toPromise();
+    this.currentUser$.next(teacher);
+    return teacher;
   }
 
   async saveUnregisterdUserInfo(user: UnregisteredUser): Promise<void> {
-    // TODO: use a store ?
-    this.unregisteredUser = user;
+    this.unregisteredUserStorage.store(user);
+    this.currentUser$.next(user);
   }
 }

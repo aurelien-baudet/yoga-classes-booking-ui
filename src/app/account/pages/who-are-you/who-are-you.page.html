@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>who-are-you</ion-title>
+    <ion-menu-button></ion-menu-button>
+    <ion-title>Qui es-tu ?</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,5 +17,5 @@
       <p>Pas encore de compte ?</p>
       <ion-button (click)="register()">Créé ton compte</ion-button>
     </div>
-    <app-unregistered-info-form *ngIf="showUnregistered()" (continue)="finishBooking($event)"></app-unregistered-info-form>
+    <app-unregistered-info-form *ngIf="showUnregistered()" [unregisteredUser]="getUnregisteredUserInfo()" (continue)="finishBooking($event)"></app-unregistered-info-form>
 </ion-content>

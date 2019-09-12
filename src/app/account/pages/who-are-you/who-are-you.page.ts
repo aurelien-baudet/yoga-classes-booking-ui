@@ -1,6 +1,6 @@
 import { SocialAuthenticator } from './../../../booking/domain/general';
 import { Router } from '@angular/router';
-import { Credentials } from './../../domain/user';
+import { Credentials, User, isUnregisteredUser } from './../../domain/user';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { UnregisteredUser } from '../../domain/unregistered';
@@ -11,13 +11,15 @@ import { BookingService } from 'src/app/booking/services/booking.service';
   templateUrl: './who-are-you.page.html',
   styleUrls: ['./who-are-you.page.scss'],
 })
-export class WhoAreYouPage implements OnInit {
+export class WhoAreYouPage {
   private segment = 'login';
+  currentUser: User | UnregisteredUser | null;
 
   constructor(private accountService: AccountService,
               private router: Router) { }
 
-  ngOnInit() {
+  async ionViewDidEnter() {
+    this.currentUser = await this.accountService.getUserInfo();
   }
 
   async login(credentials: Credentials) {
@@ -51,6 +53,13 @@ export class WhoAreYouPage implements OnInit {
 
   showUnregistered() {
     return this.segment === 'unregistered';
+  }
+
+  getUnregisteredUserInfo() {
+    if (isUnregisteredUser(this.currentUser)) {
+      return this.currentUser;
+    }
+    return null;
   }
 
   async authenticate(authenticator: SocialAuthenticator) {

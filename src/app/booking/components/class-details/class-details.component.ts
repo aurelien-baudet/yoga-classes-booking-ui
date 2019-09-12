@@ -1,4 +1,4 @@
-import { Booking } from '../../domain/reservation';
+import { Booking, BookingForFriend, UnbookingForFriend } from '../../domain/reservation';
 import { Lesson, ScheduledClass } from '../../domain/reservation';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AutoCompleteService } from 'ionic4-auto-complete';
@@ -16,7 +16,7 @@ export class ClassDetailsComponent {
   searchFriendProvider: AutoCompleteService;
 
   @Output()
-  unbook = new EventEmitter<Booking>();
+  unbookForFriend = new EventEmitter<UnbookingForFriend>();
   @Output()
-  addFriend = new EventEmitter<UserInfo>();
+  bookForFriend = new EventEmitter<BookingForFriend>();
 }

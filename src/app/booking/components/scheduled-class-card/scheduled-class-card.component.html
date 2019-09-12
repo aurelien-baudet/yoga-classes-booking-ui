@@ -51,7 +51,8 @@
       <app-class-details 
         [scheduledClass]="scheduledClass"
         [searchFriendProvider]="searchFriendProvider"
-        (addFriend)="addFriend.emit($event)"></app-class-details>
+        (bookForFriend)="bookForFriend.emit($event)"
+        (unbookForFriend)="unbookForFriend.emit($event)"></app-class-details>
     </div>
     <div class="cancel-details" *ngIf="canceled">
       <h3>Cours annulé</h3>

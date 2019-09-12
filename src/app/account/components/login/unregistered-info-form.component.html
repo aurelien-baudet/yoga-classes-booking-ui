@@ -1,24 +1,24 @@
-<form (ngSubmit)="continue.emit(unregisteredUser)" #form="ngForm" novalidate>
+<form (ngSubmit)="continue.emit(unregisteredUserModel)" #form="ngForm" novalidate>
   <ion-item class="display-name">
     <ion-label position="floating">Nom affiché</ion-label>
-    <ion-input type="text" name="displayName" [(ngModel)]="unregisteredUser.displayName" required></ion-input>
+    <ion-input type="text" name="displayName" [(ngModel)]="unregisteredUserModel.displayName" required></ion-input>
     <ion-icon name="custom-display-name" slot="start"></ion-icon>
     <app-help-button message="" slot="end"></app-help-button>
   </ion-item>
   <ion-item class="email">
     <ion-label position="floating">Email (optionnel)</ion-label>
-    <ion-input type="email" name="email" [(ngModel)]="unregisteredUser.email"></ion-input>
+    <ion-input type="email" name="email" [(ngModel)]="unregisteredUserModel.email"></ion-input>
     <ion-icon name="custom-email" slot="start"></ion-icon>
     <app-help-button message="" slot="end"></app-help-button>
   </ion-item>
   <ion-item class="phone-number">
     <ion-label position="floating">Numéro de téléphone (optionnel)</ion-label>
-    <ion-input type="tel" name="phoneNumber" [(ngModel)]="unregisteredUser.phoneNumber"></ion-input>
+    <ion-input type="tel" name="phoneNumber" [(ngModel)]="unregisteredUserModel.phoneNumber"></ion-input>
     <ion-icon name="custom-phone" slot="start"></ion-icon>
     <app-help-button message="" slot="end"></app-help-button>
   </ion-item>
   <ion-item class="send-booked-email">
-    <ion-toggle name="sendBookedMail" [(ngModel)]="unregisteredUser.sendBookedMail"></ion-toggle>
+    <ion-toggle name="sendBookedMail" [(ngModel)]="unregisteredUserModel.sendBookedMail"></ion-toggle>
     <ion-label>Envoyer un mail lorsque je réserve un cours</ion-label>
     <ion-icon name="custom-send-booked-email" slot="start"></ion-icon>
     <app-help-button message="" slot="end"></app-help-button>

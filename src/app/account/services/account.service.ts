@@ -3,9 +3,11 @@ import { UnregisteredUser } from 'src/app/account/domain/unregistered';
 import { Injectable } from '@angular/core';
 import { UserId, User } from '../domain/user';
 import { Student, StudentRegistration } from '../domain/student';
+import { ReplaySubject } from 'rxjs';
 
 
 export abstract class AccountService {
+  readonly currentUser$: ReplaySubject<User | UnregisteredUser | null>;
   async abstract registerStudent(student: StudentRegistration): Promise<Student>;
   async abstract login(login: string, password: string): Promise<User>;
   async abstract logout(): Promise<void>;

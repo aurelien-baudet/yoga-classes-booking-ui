@@ -1,10 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    
+    <ion-menu-button></ion-menu-button>
+    <ion-title>Les prochains cours de Yoga</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <p *ngIf="classes && classes.length === 0">Pas de cours programmé prochainement</p>
   <app-classes 
+    *ngIf="classes"
     (click)="lastClick = $event"
     [classes]="classes"
     [bookingStateProvider]="bookingStateProvider"
@@ -20,7 +23,8 @@
     (showClassDetails)="showClassDetails($event)"
     (showApprovedStudents)="showApprovedStudents($event)"
     (showWaitingStudents)="showWaitingStudents($event)"
-    (addFriend)="addFriend($event)"></app-classes>
+    (bookForFriend)="bookForFriend($event)"
+    (unbookForFriend)="unbookForFriend($event)"></app-classes>
 </ion-content>
 
 

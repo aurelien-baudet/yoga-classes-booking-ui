@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>classes</ion-title>
+    <ion-menu-button></ion-menu-button>
+    <ion-title>Gestion des cours</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,17 +10,17 @@
     <ion-icon slot="icon-only" name="custom-add-lesson"></ion-icon>
   </ion-button>
   <ion-list> 
-      <ion-item *ngFor="let lesson of unscheduledLessons">
-        <app-unscheduled-lesson-card
-          [lesson]="lesson"
-          [removable]="false"
-          [schedulable]="true"
-          [showDetails]="lessonDetailsProvider.isShowDetails(lesson)"
-          (schedule)="schedule($event)"
-          (remove)="removeLesson($event)"
-          (viewDetails)="lessonDetailsProvider.viewDetails($event)"
-          (hideDetails)="lessonDetailsProvider.hideDetails($event)"></app-unscheduled-lesson-card>
-      </ion-item>
+    <ion-item *ngFor="let lesson of unscheduledLessons">
+      <app-unscheduled-lesson-card
+        [lesson]="lesson"
+        [removable]="false"
+        [schedulable]="true"
+        [showDetails]="lessonDetailsProvider.isShowDetails(lesson)"
+        (schedule)="schedule($event)"
+        (remove)="removeLesson($event)"
+        (viewDetails)="lessonDetailsProvider.viewDetails($event)"
+        (hideDetails)="lessonDetailsProvider.hideDetails($event)"></app-unscheduled-lesson-card>
+    </ion-item>
   </ion-list>
   <app-classes
     (click)="lastClick = $event"

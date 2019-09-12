@@ -64,6 +64,20 @@ export const isUnknown = (user: User | UserId | UnregisteredUser): boolean => {
     return true;
 };
 
+
+export const isAuthenticated = (user: User | UserId | UnregisteredUser): boolean => {
+    if (!user) {
+        return false;
+    }
+    if (isRegisteredUser(user)) {
+        return true;
+    }
+    if (isUnregisteredUser(user)) {
+        return false;
+    }
+    return false;
+};
+
 export const hasRole = (user: User, role: Role) => {
     return user.account.roles.some((r) => role === r);
 };

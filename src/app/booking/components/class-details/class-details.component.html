@@ -2,10 +2,12 @@
 <div class="register-friend">
   <app-register-friend
     [searchFriendProvider]="searchFriendProvider"
-    (addFriend)="addFriend.emit($event)"></app-register-friend>
+    (registerFriend)="bookForFriend.emit({friend: $event, scheduledClass: scheduledClass})"></app-register-friend>
 </div>
 <app-approved-students 
   [approvedBookings]="scheduledClass.bookings.approved" 
-  [maxStudents]="scheduledClass.lesson.maxStudents"></app-approved-students>  
+  [maxStudents]="scheduledClass.lesson.maxStudents"
+  (unbook)="unbookForFriend.emit($event)"></app-approved-students>  
 <app-waiting-students 
-  [waitingBookings]="scheduledClass.bookings.waiting"></app-waiting-students>  
+  [waitingBookings]="scheduledClass.bookings.waiting"
+  (unbook)="unbookForFriend.emit($event)"></app-waiting-students>  

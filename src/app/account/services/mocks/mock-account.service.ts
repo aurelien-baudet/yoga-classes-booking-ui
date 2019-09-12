@@ -1,21 +1,19 @@
 import { Teacher } from '../../domain/teacher';
 import { UnregisteredUser } from '../../domain/unregistered';
-import { HttpClient } from '@angular/common/http';
-import { Role } from 'src/app/account/domain/user';
 import { Injectable } from '@angular/core';
 import { UserId, User } from '../../domain/user';
 import { AccountService } from '../account.service';
-import { ServerConfig } from 'src/environments/config';
-import { first } from 'rxjs/operators';
-import { AuthenticationStorage } from '../authentication.storage';
 import { Student, StudentRegistration } from '../../domain/student';
 import * as pouet from './data/student-pouet.json';
 import * as cyril from './data/teacher-cyril.json';
+import { ReplaySubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MockAccountService implements AccountService {
+  readonly currentUser$ = new ReplaySubject<User | UnregisteredUser | null>();
+
   constructor() {}
 
   async registerStudent(student: StudentRegistration): Promise<Student> {
@@ -27,17 +25,21 @@ export class MockAccountService implements AccountService {
   }
 
   async logout(): Promise<void> {
-    throw new Error('not implemented');
+    this.currentUser$.next(null);
   }
 
   async getUserInfo(): Promise<User | UnregisteredUser | null> {
     console.log('getUserInfo', pouet);
-    return pouet['default'];
+    const user = pouet['default'];
+    this.currentUser$.next(user);
+    return user;
   }
 
   async getTeacherInfo(): Promise<Teacher | null> {
     console.log('getTeacherInfo', cyril);
-    return cyril['default'] as any;
+    const teacher = cyril['default'] as any;
+    this.currentUser$.next(teacher);
+    return teacher;
   }
 
   async saveUnregisterdUserInfo(user: UnregisteredUser): Promise<void> {

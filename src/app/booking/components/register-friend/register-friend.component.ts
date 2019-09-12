@@ -12,5 +12,5 @@ export class RegisterFriendComponent {
   searchFriendProvider: AutoCompleteService;
 
   @Output()
-  addFriend = new EventEmitter<UserInfo>();
+  registerFriend = new EventEmitter<UserInfo>();
 }

@@ -1,4 +1,4 @@
-import { Place } from './../../domain/reservation';
+import { Place, BookingForFriend, Booking, UnbookingForFriend } from './../../domain/reservation';
 import { Instant } from './../../domain/general';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ScheduledClass, CancelInfo } from '../../domain/reservation';
@@ -53,7 +53,9 @@ export class ScheduledClassCardComponent {
   @Output()
   showClassDetails = new EventEmitter<ScheduledClass>();
   @Output()
-  addFriend = new EventEmitter<UserInfo>();
+  bookForFriend = new EventEmitter<BookingForFriend>();
+  @Output()
+  unbookForFriend = new EventEmitter<UnbookingForFriend>();
 
 
   getRemainingPlaces() {

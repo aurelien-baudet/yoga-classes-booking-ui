@@ -1,0 +1,26 @@
+ion-toolbar {
+  ion-menu-button,
+  ion-title {
+    display: inline-block;
+  }
+}
+
+ion-menu {
+  ion-item {
+    ion-icon {
+      -webkit-margin-start: 12px;
+      margin-inline-start: 12px;
+      -webkit-margin-end: 12px;
+      margin-inline-end: 12px;
+      text-align: center;
+      font-size: 26px;
+      line-height: 22px !important;
+      color: var(--ion-color-tertiary);
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--ion-color-tertiary);
+    }
+  }
+}

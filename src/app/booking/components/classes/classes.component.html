@@ -21,6 +21,7 @@
       (showApprovedStudents)="showApprovedStudents.emit($event)"
       (showWaitingStudents)="showWaitingStudents.emit($event)"
       (showClassDetails)="showClassDetails.emit($event)"
-      (addFriend)="addFriend.emit({friend: $event, scheduledClass: scheduledClass})"></app-scheduled-class-card>
+      (bookForFriend)="bookForFriend.emit($event)"
+      (unbookForFriend)="unbookForFriend.emit($event)"></app-scheduled-class-card>
   </ion-item>
 </ion-list>

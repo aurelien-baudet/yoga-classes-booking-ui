@@ -1,6 +1,6 @@
 import { ComingSoonFriendProvider } from './../../services/local/coming-soon-friend.provider';
 import { AutoCompleteService } from 'ionic4-auto-complete';
-import { Place } from 'src/app/booking/domain/reservation';
+import { Place, BookingForFriend, UnbookingForFriend } from 'src/app/booking/domain/reservation';
 import { InMemoryUpdatableDetailsStateProvider } from '../../services/local/in-memory-details-class-state.provider';
 import { UnmanageableProvider } from './../../services/local/unmanageable.provider';
 import { UnregisteredUser } from './../../../account/domain/unregistered';
@@ -43,7 +43,7 @@ export class BookLessonsPage {
   manageClassStateProvider: ManageClassStateProvider;
   searchFriendProvider: AutoCompleteService;
 
-  classes: ScheduledClass[] = [];
+  classes: ScheduledClass[];
 
   constructor(private classService: ClassService,
               private accountService: AccountService,
@@ -57,6 +57,7 @@ export class BookLessonsPage {
     this.pendingProvider = new InMemoryUpdatablePendingStateProvider(sameClassPredicate);
     this.manageClassStateProvider = new UnmanageableProvider();
     this.searchFriendProvider = new ComingSoonFriendProvider();
+    this.accountService.currentUser$.subscribe();
   }
 
   async ionViewDidEnter() {
@@ -101,7 +102,7 @@ export class BookLessonsPage {
   async showPlaceDetails(place: Place) {
     // wrap in setTimeout in order to be able to retrieve the click event
     setTimeout(async () => {
-      await this.popoverService.show(this.placeDetails, {place}, this.lastClick);
+      await this.popoverService.show(this.placeDetails, {place}/*, this.lastClick*/);
     }, 0);
   }
 
@@ -120,7 +121,11 @@ export class BookLessonsPage {
     console.log('TODO: show waiting students', scheduledClass);
   }
 
-  async addFriend({friend, scheduledClass}: {friend: UserInfo, scheduledClass: ScheduledClass}) {
+  async bookForFriend(booking: BookingForFriend) {
+    alert('Bientôt disponible');
+  }
+
+  async unbookForFriend(unbooking: UnbookingForFriend) {
     alert('Bientôt disponible');
   }
 
@@ -137,6 +142,11 @@ export class BookLessonsPage {
   removeFromCalendar(bookedClass: ScheduledClass) {
     // TODO
     alert('Bientôt disponible');
+  }
+
+  private updateCurrentUser(user: User | UnregisteredUser | null) {
+    this.currentUser = user;
+    this.refreshBookings();
   }
 
   private authenticateForBooking(bookedClass: ScheduledClass) {

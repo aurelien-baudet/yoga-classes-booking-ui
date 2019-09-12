@@ -1,4 +1,4 @@
-import { ClassState, Place } from './../../domain/reservation';
+import { ClassState, Place, BookingForFriend, UnbookingForFriend } from './../../domain/reservation';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ScheduledClass, sameClassPredicate } from '../../domain/reservation';
 import { BookingStateProvider, ManageClassStateProvider, DetailsStateProvider, DetailsStateUpdateProvider, PendingStateProvider, PendingStateUpdateProvider } from '../../services/single-class-state.provider';
@@ -45,5 +45,7 @@ export class ClassesComponent {
   @Output()
   showClassDetails = new EventEmitter<ScheduledClass>();
   @Output()
-  addFriend = new EventEmitter<{friend: UserInfo, scheduledClass: ScheduledClass}>();
+  bookForFriend = new EventEmitter<BookingForFriend>();
+  @Output()
+  unbookForFriend = new EventEmitter<UnbookingForFriend>();
 }

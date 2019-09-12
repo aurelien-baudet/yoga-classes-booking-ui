@@ -71,6 +71,16 @@ export interface Booked {
     approved: boolean;
 }
 
+export interface BookingForFriend {
+    bookedClass: ScheduledClass;
+    friend: UserInfo;
+}
+
+export interface UnbookingForFriend {
+    bookedClass: ScheduledClass;
+    booking: Booking;
+}
+
 export type ClassId = Pick<ScheduledClass, 'id'>;
 
 export const isCanceled = (c: ScheduledClass) => c.state.type === ClassStateTypes.CANCELED;

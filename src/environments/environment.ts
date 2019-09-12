@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   mock: false,
   server: {
-    url: 'http://localhost:8080'
+    url: 'http://yoga.booking.localdomain.com:8080'
   }
 };
 

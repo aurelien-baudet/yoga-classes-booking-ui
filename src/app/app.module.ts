@@ -31,6 +31,8 @@ import { DateUtil } from './common/util/date.util';
 import { MockClassService } from './booking/services/mocks/mock-class.service';
 import { MockBookingService } from './booking/services/mocks/mock-booking.service';
 import { MockPlaceService } from './admin/services/mocks/mock-place.service';
+import { UnregisteredUserInfoStorage } from './account/services/unregistered-user-info.storage';
+import { UnregisteredUserInfoInSessionStorage } from './account/services/local/unregistered-user-info-in-session-storage.storage';
 
 console.log(environment);
 
@@ -59,7 +61,8 @@ console.log(environment);
     { provide: BookingService, useClass: environment.mock ? MockBookingService : RestBookingService },
     { provide: AccountService, useClass: environment.mock ? MockAccountService : RestAccountService },
     { provide: ServerConfig, useValue: environment.server },
-    { provide: AuthenticationStorage, useClass: AuthenticationInSessionStorage }
+    { provide: AuthenticationStorage, useClass: AuthenticationInSessionStorage },
+    { provide: UnregisteredUserInfoStorage, useClass: UnregisteredUserInfoInSessionStorage }
   ],
   bootstrap: [AppComponent]
 })

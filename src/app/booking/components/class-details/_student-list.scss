@@ -19,9 +19,6 @@ ion-list {
       color: var(--ion-color-dark-tint);
       font-size: 20px;
   }
-  // &.waiting ion-icon {
-  //     font-size: 20px;
-  // }
   ion-badge {
       --padding-top: 3px;
       --padding-end: 3px;
@@ -39,10 +36,12 @@ ion-list {
       ion-label {
           margin-top: 0;
           margin-bottom: 0;
+          flex: 1;
       }
 
       ion-button {
           @include discreet-button(var(--ion-color-tertiary));
+          align-self: flex-end;
 
           ion-icon {
               font-size: 14px;

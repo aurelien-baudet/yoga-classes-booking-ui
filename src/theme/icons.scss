@@ -103,4 +103,40 @@ ion-icon {
   &[name="custom-address"] {
     @include fas-icon($fa-var-map-marker-alt);
   }
+
+  &[name="custom-menu-next-lessons"] {
+    @include fas-icon($fa-var-calendar-plus);
+  }
+  &[name="custom-menu-my-next-lessons"] {
+    @include fas-icon($fa-var-calendar-check);
+  }
+  &[name="custom-menu-login"] {
+    @include fas-icon($fa-var-key);
+  }
+  &[name="custom-menu-signup"] {
+    @include fas-icon($fa-var-address-card);
+  }
+  &[name="custom-menu-logout"] {
+    @include fas-icon($fa-var-lock);
+  }
+  &[name="custom-menu-profile"] {
+    @include fas-icon($fa-var-id-card);
+  }
+  &[name="custom-menu-preferences"] {
+    @include fas-icon($fa-var-sliders-h);
+  }
+
+  &[name="custom-menu-next-classes"] {
+    @include fas-icon($fa-var-calendar-alt);
+  }
+  &[name="custom-menu-add-lesson"] {
+    @include fas-icon($fa-var-book-medical);
+  }
+  &[name="custom-menu-add-event"] {
+    @include fas-icon($fa-var-qrcode);
+  }
+  &[name="custom-menu-add-place"] {
+    @include fas-icon($fa-var-map-marked-alt);
+  }
+
 }
