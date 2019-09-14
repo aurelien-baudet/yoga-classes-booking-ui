@@ -16,6 +16,10 @@ export class ScheduledClassCardComponent {
   @Input()
   booked: boolean;
   @Input()
+  bookingApproved: boolean;
+  @Input()
+  bookingWaiting: boolean;
+  @Input()
   pending: boolean;
   @Input()
   showDetails = false;

@@ -52,7 +52,7 @@ export class BookLessonsPage {
               private route: CurrentRoute,
               private notificationService: NotificationService,
               private popoverService: PopoverService) {
-    this.bookingStateProvider = new BookedClassesBookingStateProvider(this.bookedClassesForCurrentUser);
+    this.bookingStateProvider = new BookedClassesBookingStateProvider(this.bookedClassesForCurrentUser, accountService.currentUser$);
     this.detailsProvider = new InMemoryUpdatableDetailsStateProvider(sameClassPredicate);
     this.pendingProvider = new InMemoryUpdatablePendingStateProvider(sameClassPredicate);
     this.manageClassStateProvider = new UnmanageableProvider();

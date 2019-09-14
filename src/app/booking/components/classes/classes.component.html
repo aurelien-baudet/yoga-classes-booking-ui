@@ -4,6 +4,8 @@
       [scheduledClass]="scheduledClass"
       [showDetails]="detailsStateProvider.isShowDetails(scheduledClass)"
       [booked]="bookingStateProvider.isBooked(scheduledClass)"
+      [bookingApproved]="bookingStateProvider.isBookingApproved(scheduledClass)"
+      [bookingWaiting]="bookingStateProvider.isBookingInWaitingList(scheduledClass)"
       [bookable]="bookingStateProvider.isBookable(scheduledClass)"
       [pending]="pendingStateProvider.isPending(scheduledClass)"
       [editable]="manageClassStateProvider.isEditable(scheduledClass)"

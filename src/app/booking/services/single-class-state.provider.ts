@@ -3,6 +3,8 @@ import { ScheduledClass, CancelInfo } from '../domain/reservation';
 export abstract class BookingStateProvider {
     abstract isBookable(scheduledClass: ScheduledClass): boolean;
     abstract isBooked(scheduledClass: ScheduledClass): boolean;
+    abstract isBookingApproved(scheduledClass: ScheduledClass): boolean;
+    abstract isBookingInWaitingList(scheduledClass: ScheduledClass): boolean;
 }
 
 export abstract class ManageClassStateProvider {

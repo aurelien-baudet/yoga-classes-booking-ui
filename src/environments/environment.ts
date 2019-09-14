@@ -7,6 +7,14 @@ export const environment = {
   mock: false,
   server: {
     url: 'http://yoga.booking.localdomain.com:8080'
+  },
+  firebase: {
+    apiKey: "AIzaSyCFFv9w4nWqxzXGEdtInOkivGu0K_w9c5w",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "yoga-saint-pierre-dev",
+    storageBucket: "yoga-saint-pierre-dev.appspot.com",
+    messagingSenderId: "191353546130"
   }
 };
 

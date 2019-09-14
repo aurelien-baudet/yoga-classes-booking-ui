@@ -96,6 +96,8 @@ export const samePlacePredicate = (a: Place | PlaceId) => (b: Place | PlaceId) =
 
 export const approvedForStudent = (bookedClass: ScheduledClass, student: StudentId) =>
     bookedClass.bookings.approved.some(isBookedForStudentPredicate(student));
+export const waitingListForStudent = (bookedClass: ScheduledClass, student: StudentId) =>
+    bookedClass.bookings.waiting.some(isBookedForStudentPredicate(student));
 
 
 export const approvedForRegsiteredStudent = (bookedClass: ScheduledClass, student: StudentId) =>

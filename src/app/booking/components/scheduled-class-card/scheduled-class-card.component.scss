@@ -144,9 +144,14 @@ app-class-details {
 }
 
 /* states */
-.booked {
+.booked.booking-approved {
     ion-card-header {
         background: var(--ion-color-success);
+    }
+}
+.booked.booking-waiting {
+    ion-card-header {
+        background: var(--ion-color-tertiary);
     }
 }
 .canceled {

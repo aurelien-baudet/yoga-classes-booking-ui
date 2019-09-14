@@ -1,3 +1,6 @@
+import { UnregisteredUserIonicLocalStorage } from './account/services/local/unregistered-user-info-ionic-local-storage.storage';
+import { AuthenticationIonicLocalStorage } from './account/services/local/authentication-ionic-local-storage.storage';
+import { FcmPushNotificationService } from './account/services/remote/rest-push-notification.service';
 import { MockAccountService } from './account/services/mocks/mock-account.service';
 import { CurrentRoute } from 'src/app/common/util/router.util';
 import { BasicAuthInterceptor } from './account/services/remote/basic-auth.interceptor';
@@ -33,8 +36,12 @@ import { MockBookingService } from './booking/services/mocks/mock-booking.servic
 import { MockPlaceService } from './admin/services/mocks/mock-place.service';
 import { UnregisteredUserInfoStorage } from './account/services/unregistered-user-info.storage';
 import { UnregisteredUserInfoInSessionStorage } from './account/services/local/unregistered-user-info-in-session-storage.storage';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { FCM } from '@ionic-native/fcm/ngx';
+import { PushNotificationService } from './account/services/push-notification.service';
+import { IonicStorageModule } from '@ionic/storage';
 
-console.log(environment);
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,16 +50,20 @@ console.log(environment);
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     CommonComponentsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireMessagingModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     CurrentRoute,
     DateUtil,
+    FCM,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
@@ -60,9 +71,10 @@ console.log(environment);
     { provide: ClassService, useClass: environment.mock ? MockClassService : RestClassService },
     { provide: BookingService, useClass: environment.mock ? MockBookingService : RestBookingService },
     { provide: AccountService, useClass: environment.mock ? MockAccountService : RestAccountService },
+    { provide: PushNotificationService, useClass: FcmPushNotificationService },
     { provide: ServerConfig, useValue: environment.server },
-    { provide: AuthenticationStorage, useClass: AuthenticationInSessionStorage },
-    { provide: UnregisteredUserInfoStorage, useClass: UnregisteredUserInfoInSessionStorage }
+    { provide: AuthenticationStorage, useClass: AuthenticationIonicLocalStorage },
+    { provide: UnregisteredUserInfoStorage, useClass: UnregisteredUserIonicLocalStorage }
   ],
   bootstrap: [AppComponent]
 })

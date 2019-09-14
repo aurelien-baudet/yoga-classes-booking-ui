@@ -4,9 +4,13 @@ import { User, isRegisteredUser, isAuthenticated, hasRole, Role, isUnregisteredU
 import { UnregisteredUser } from 'src/app/account/domain/unregistered';
 import { Component } from '@angular/core';
 
-import { Platform, MenuController } from '@ionic/angular';
+import { Platform, MenuController, ToastController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+import { mergeMapTo } from 'rxjs/operators';
+import { FCM } from '@ionic-native/fcm/ngx';
+import { PushNotificationService } from './account/services/push-notification.service';
 
 @Component({
   selector: 'app-root',
@@ -20,9 +24,10 @@ export class AppComponent {
               private statusBar: StatusBar,
               private accountService: AccountService,
               private menuController: MenuController,
-              private router: Router) {
+              private router: Router,
+              private pushNotificationService: PushNotificationService) {
     this.initializeApp();
-    this.accountService.currentUser$.subscribe((user) => this.currentUser = user);
+    this.accountService.currentUser$.subscribe(this.updateCurrentUser.bind(this));
   }
 
   initializeApp() {
@@ -30,6 +35,12 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  private async updateCurrentUser(user: User) {
+    console.log('update current user', user);
+    this.currentUser = user;
+    await this.pushNotificationService.registerCurrentDeviceForUser(user);
   }
 
   isAuthenticated() {
