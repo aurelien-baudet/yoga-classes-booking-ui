@@ -1,3 +1,4 @@
+import { AuthRequiredGuard } from './account/services/auth-required.guard';
 import { TeacherAuthRequiredGuard } from './account/services/teacher-auth-required.guard';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
@@ -16,6 +17,15 @@ const routes: Routes = [
       loadChildren: './account/pages/login/login.module#LoginPageModule' },
   { path: 'users/signup',
       loadChildren: './account/pages/signup/signup.module#SignupPageModule' },
+  { path: 'user/bookings',
+      canActivate: [AuthRequiredGuard],
+      loadChildren: './booking/pages/user-bookings/user-bookings.module#UserBookingsPageModule' },
+  { path: 'user/profile',
+      canActivate: [AuthRequiredGuard],
+      loadChildren: './account/pages/profile/profile.module#ProfilePageModule' },
+  { path: 'user/preferences',
+      canActivate: [AuthRequiredGuard],
+      loadChildren: './account/pages/preferences/preferences.module#PreferencesPageModule' },
   { path: 'admin/classes',
       canActivate: [TeacherAuthRequiredGuard],
       loadChildren: './admin/pages/classes/classes.module#ClassesPageModule' },
@@ -31,6 +41,9 @@ const routes: Routes = [
   { path: 'admin/event/add',
       canActivate: [TeacherAuthRequiredGuard],
       loadChildren: './admin/pages/add-event/add-event.module#AddEventPageModule' },
+  { path: 'admin/place/add',
+      canActivate: [TeacherAuthRequiredGuard],
+      loadChildren: './admin/pages/add-place/add-place.module#AddPlacePageModule' },
   { path: 'errors/forbidden',
       loadChildren: './common/pages/forbidden/forbidden.module#ForbiddenPageModule' },
 ];

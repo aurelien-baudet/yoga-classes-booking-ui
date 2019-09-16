@@ -9,7 +9,7 @@
       <ion-list>
         <ion-item *ngIf="!isTeacher()">
           <ion-icon name="custom-menu-next-lessons" slot="start"></ion-icon>
-          <a (click)="close()" routerLink="/lessons" routerLinkActive="active">Réserver un cours</a>
+          <a (click)="refresh(); close()" routerLink="/lessons" routerLinkActive="active">Réserver un cours</a>
         </ion-item>
         <ion-item *ngIf="isTeacher()">
           <ion-icon name="custom-menu-classes" slot="start"></ion-icon>
@@ -17,7 +17,7 @@
         </ion-item>
         <ion-item *ngIf="(isAuthenticated() || isRegistered()) && isStudent()">
           <ion-icon name="custom-menu-my-next-lessons" slot="start"></ion-icon>
-          <a (click)="close()" routerLink="/booked-lessons" routerLinkActive="active">Mes prochains cours réservés</a>
+          <a (click)="close()" routerLink="/user/bookings" routerLinkActive="active">Mes prochains cours réservés</a>
         </ion-item>
         <ion-item *ngIf="!isAuthenticated()">
           <ion-icon name="custom-menu-login" slot="start"></ion-icon>

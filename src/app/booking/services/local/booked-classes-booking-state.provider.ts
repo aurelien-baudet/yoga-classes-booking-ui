@@ -1,6 +1,6 @@
 import { UnregisteredUser } from 'src/app/account/domain/unregistered';
 import { Observable } from 'rxjs';
-import { approvedForStudent as bookingApprovedForStudent, waitingListForStudent as bookingInWaitingListForStudent } from './../../domain/reservation';
+import { bookingApprovedForStudent, bookingInWaitingListForStudent } from './../../domain/reservation';
 import { ClassState, sameClassPredicate, isCanceled } from '../../domain/reservation';
 import { ScheduledClass } from '../../domain/reservation';
 import { StudentId } from 'src/app/account/domain/student';

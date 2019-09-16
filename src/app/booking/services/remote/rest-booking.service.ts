@@ -1,4 +1,4 @@
-import { approvedForStudent } from './../../domain/reservation';
+import { bookingApprovedForStudent } from './../../domain/reservation';
 import { UnregisteredUser } from './../../../account/domain/unregistered';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -22,7 +22,7 @@ export class RestBookingService implements BookingService {
     const updated = await this.bookClass(student, bookedClass);
     return {
       bookedClass: updated,
-      approved: approvedForStudent(updated, student)
+      approved: bookingApprovedForStudent(updated, student)
     };
   }
 

@@ -154,7 +154,8 @@ app-class-details {
         background: var(--ion-color-tertiary);
     }
 }
-.canceled {
+.canceled,
+.booked.canceled {
     min-height: 150px;
     position: relative;
 

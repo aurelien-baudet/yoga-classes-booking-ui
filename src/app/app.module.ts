@@ -41,6 +41,10 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { PushNotificationService } from './account/services/push-notification.service';
 import { IonicStorageModule } from '@ionic/storage';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { PushNotificationHandlerService } from './common/services/push-notification-handler.service';
+import { NativeLocalPushNotificationHandlerService } from './common/services/local/native-local-push-notification-handler.service';
+import { ApplicationEventService } from './common/services/application-event.service';
 
 
 @NgModule({
@@ -64,6 +68,7 @@ import { IonicStorageModule } from '@ionic/storage';
     CurrentRoute,
     DateUtil,
     FCM,
+    LocalNotifications,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
@@ -74,7 +79,9 @@ import { IonicStorageModule } from '@ionic/storage';
     { provide: PushNotificationService, useClass: FcmPushNotificationService },
     { provide: ServerConfig, useValue: environment.server },
     { provide: AuthenticationStorage, useClass: AuthenticationIonicLocalStorage },
-    { provide: UnregisteredUserInfoStorage, useClass: UnregisteredUserIonicLocalStorage }
+    { provide: UnregisteredUserInfoStorage, useClass: UnregisteredUserIonicLocalStorage },
+    { provide: PushNotificationHandlerService, useClass: NativeLocalPushNotificationHandlerService },
+    ApplicationEventService
   ],
   bootstrap: [AppComponent]
 })

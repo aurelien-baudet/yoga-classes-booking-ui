@@ -94,14 +94,14 @@ export const sameClassPredicate = (a: ScheduledClass) => (b: ScheduledClass) => 
 export const isSamePlace = (a: Place | PlaceId, b: Place | PlaceId) => a.id === b.id;
 export const samePlacePredicate = (a: Place | PlaceId) => (b: Place | PlaceId) => isSamePlace(a, b);
 
-export const approvedForStudent = (bookedClass: ScheduledClass, student: StudentId) =>
+export const bookingApprovedForStudent = (bookedClass: ScheduledClass, student: StudentId) =>
     bookedClass.bookings.approved.some(isBookedForStudentPredicate(student));
-export const waitingListForStudent = (bookedClass: ScheduledClass, student: StudentId) =>
+export const bookingInWaitingListForStudent = (bookedClass: ScheduledClass, student: StudentId) =>
     bookedClass.bookings.waiting.some(isBookedForStudentPredicate(student));
 
 
-export const approvedForRegsiteredStudent = (bookedClass: ScheduledClass, student: StudentId) =>
+export const bookingApprovedForRegisteredStudent = (bookedClass: ScheduledClass, student: StudentId) =>
     bookedClass.bookings.approved.some(isBookedForRegisteredStudentPredicate(student));
 
-export const approvedForUnregisteredStudent = (bookedClass: ScheduledClass, student: UnregisteredUser) =>
+export const bookingApprovedForUnregisteredStudent = (bookedClass: ScheduledClass, student: UnregisteredUser) =>
     bookedClass.bookings.approved.some(isBookedForUnregisteredStudentPredicate(student));

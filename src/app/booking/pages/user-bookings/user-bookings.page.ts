@@ -20,14 +20,14 @@ import { PopoverService, PopoverWrapper } from 'src/app/common/components/popove
 import { PushNotificationHandlerService } from 'src/app/common/services/push-notification-handler.service';
 import { ApplicationEventService } from 'src/app/common/services/application-event.service';
 
+
 @Component({
-  selector: 'app-book-lessons-page',
-  templateUrl: './book-lessons.page.html',
-  styleUrls: ['./book-lessons.page.scss'],
+  selector: 'app-user-bookings',
+  templateUrl: './user-bookings.page.html',
+  styleUrls: ['./user-bookings.page.scss'],
 })
-export class BookLessonsPage {
+export class UserBookingsPage {
   private currentUser: User | UnregisteredUser;
-  private bookedClassesForCurrentUser: ScheduledClass[] = [];
   protected lastClick: Event;
 
   @ViewChild('placeDetails')
@@ -45,7 +45,7 @@ export class BookLessonsPage {
   manageClassStateProvider: ManageClassStateProvider;
   searchFriendProvider: AutoCompleteService;
 
-  classes: ScheduledClass[];
+  bookedClassesForCurrentUser: ScheduledClass[] = [];
 
   constructor(private classService: ClassService,
               private accountService: AccountService,
@@ -63,31 +63,15 @@ export class BookLessonsPage {
     this.searchFriendProvider = new ComingSoonFriendProvider();
     this.accountService.currentUser$.subscribe(this.updateCurrentUser.bind(this));
     applicationEventService.refreshBookings.subscribe(() => {
-      zone.run(() => this.refreshClassesAndBookings());
+      zone.run(() => this.refreshBookings());
     });
   }
 
   async ionViewDidEnter() {
     this.currentUser = await this.accountService.getUserInfo();
-    this.refreshClassesAndBookings();
-    this.finishBookingIfNecessary();
-    this.finishUnbookingIfNecessary();
+    this.refreshBookings();
   }
 
-  async book(bookedClass: ScheduledClass) {
-    if (isUnknown(this.currentUser)) {
-      console.log('unknown user so ask who he is before booking');
-      return this.authenticateForBooking(bookedClass);
-    }
-    this.pendingProvider.markPending(bookedClass);
-    // TODO: handle case when user registers another user
-    const booked = await this.bookingService.book(this.currentUser, bookedClass);
-    this.pendingProvider.unmarkPending(bookedClass);
-    const template = booked.approved ? this.approvedNotification : this.waitingListNotification;
-    this.notificationService.success(template, booked);
-    this.router.navigate(['lessons'], {queryParams: {}});
-    this.refreshClassesAndBookings();
-  }
 
   async unbook(bookedClass: ScheduledClass) {
     if (isUnknown(this.currentUser)) {
@@ -99,8 +83,8 @@ export class BookLessonsPage {
     await this.bookingService.unbook(this.currentUser, bookedClass);
     this.pendingProvider.unmarkPending(bookedClass);
     this.notificationService.success(this.unbookedNotification, {bookedClass});
-    this.router.navigate(['lessons'], {queryParams: {}});
-    this.refreshClassesAndBookings();
+    this.router.navigate(['user', 'bookings'], {queryParams: {}});
+    this.refreshBookings();
   }
 
   async showPlaceDetails(place: Place) {
@@ -153,14 +137,6 @@ export class BookLessonsPage {
     this.refreshBookings();
   }
 
-  private authenticateForBooking(bookedClass: ScheduledClass) {
-    this.router.navigate(['users', 'whoareyou'], {
-      queryParams: {
-        booking: bookedClass.id
-      }
-    });
-  }
-
   private authenticateForUnbooking(bookedClass: ScheduledClass) {
     this.router.navigate(['users', 'whoareyou'], {
       queryParams: {
@@ -168,37 +144,10 @@ export class BookLessonsPage {
       }
     });
   }
-
-  private async refreshClasses() {
-    this.classes = await this.classService.list();
-  }
-
+  
   private async refreshBookings() {
     const bookings = await this.bookingService.getBookedClasses(this.currentUser);
     this.bookedClassesForCurrentUser.splice(0, this.bookedClassesForCurrentUser.length);
     this.bookedClassesForCurrentUser.push(...bookings);
-  }
-
-  private async refreshClassesAndBookings() {
-    await this.refreshClasses();
-    await this.refreshBookings();
-  }
-
-  private async finishBookingIfNecessary() {
-    const bookingId = this.route.getQueryParam('booking');
-    if (bookingId) {
-      const bookedClass = await this.classService.getClassInfo({id: bookingId});
-      await this.book(bookedClass);
-      this.router.navigate(['']);
-    }
-  }
-
-  private async finishUnbookingIfNecessary() {
-    const unbookingId = this.route.getQueryParam('unbooking');
-    if (unbookingId) {
-      const bookedClass = await this.classService.getClassInfo({id: unbookingId});
-      await this.unbook(bookedClass);
-      this.router.navigate(['']);
-    }
   }
 }

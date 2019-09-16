@@ -1,3 +1,4 @@
+import { ApplicationEventService } from './common/services/application-event.service';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/account/services/account.service';
 import { User, isRegisteredUser, isAuthenticated, hasRole, Role, isUnregisteredUser, isUnknown } from './account/domain/user';
@@ -25,7 +26,8 @@ export class AppComponent {
               private accountService: AccountService,
               private menuController: MenuController,
               private router: Router,
-              private pushNotificationService: PushNotificationService) {
+              private pushNotificationService: PushNotificationService,
+              private applicationEventService: ApplicationEventService) {
     this.initializeApp();
     this.accountService.currentUser$.subscribe(this.updateCurrentUser.bind(this));
   }
@@ -74,6 +76,10 @@ export class AppComponent {
   async logout() {
     await this.accountService.logout();
     this.router.navigateByUrl('/', {queryParams: {}, queryParamsHandling: ''});
+  }
+
+  refresh() {
+    this.applicationEventService.refreshBookings.emit();
   }
 
   close() {
