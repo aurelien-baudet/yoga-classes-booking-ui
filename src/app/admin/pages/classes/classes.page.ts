@@ -14,6 +14,7 @@ import { ClassService } from 'src/app/booking/services/class.service';
 import { AccountService } from 'src/app/account/services/account.service';
 import { PopoverController } from '@ionic/angular';
 import { PopoverService, PopoverWrapper } from 'src/app/common/components/popover/popover.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-classes-page',
@@ -37,12 +38,13 @@ export class ClassesPage {
   lastClick: Event; // used for popover
 
   private popover: PopoverWrapper;
+  private classes$ = new Subject<ScheduledClass[]>();
 
   constructor(private classService: ClassService,
               private router: Router,
               private popoverService: PopoverService) {
     this.bookingStateProvider = new UnbookableProvider();
-    this.detailsProvider = new NextLessonOpenedDetailsClassStateProvider(this.classes);
+    this.detailsProvider = new NextLessonOpenedDetailsClassStateProvider(this.classes$);
     this.pendingProvider = new InMemoryUpdatablePendingStateProvider(sameClassPredicate);
     this.manageClassStateProvider = new ManageableProvider();
     this.lessonDetailsProvider = new InMemoryUpdatableDetailsStateProvider(sameLessonPredicate);
@@ -97,6 +99,7 @@ export class ClassesPage {
 
   private async refreshClasses() {
     this.classes = await this.classService.list();
+    this.classes$.next(this.classes);
     this.unscheduledLessons = await this.classService.listUnscheduledLessons();
   }
 }
