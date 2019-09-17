@@ -14,6 +14,14 @@ export class CurrentRoute {
         // return this.router.routerState.snapshot.root.queryParams[key];
     }
 
+    matches(pattern: string) {
+        return this.router.routerState.snapshot.url.match(new RegExp(pattern.replace(/[*]/g, '.*')));
+    }
+
+    url() {
+        return this.router.routerState.snapshot.url;
+    }
+
     private findParam(route: ActivatedRouteSnapshot, key: string, accessor: (route: ActivatedRouteSnapshot) => Params): string | null {
         const found = this.flatten(route.children)
                 .map(accessor)

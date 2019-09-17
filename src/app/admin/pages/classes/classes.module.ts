@@ -1,3 +1,4 @@
+import { CommonComponentsModule } from './../../../common/components/common-components.module';
 import { AdminComponentsModule } from './../../components/admin-components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -23,7 +24,8 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     BookingComponentsModule,
-    AdminComponentsModule
+    AdminComponentsModule,
+    CommonComponentsModule
   ],
   declarations: [ClassesPage]
 })

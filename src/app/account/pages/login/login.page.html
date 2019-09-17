@@ -7,5 +7,5 @@
 
 <ion-content>
   <app-social-login (authenticate)="authenticate($event)"></app-social-login>
-  <app-login-form (login)="login($event)"></app-login-form>
+  <app-login-form (login)="login($event)" (change)="loginErrors = []" [errors]="loginErrors"></app-login-form>
 </ion-content>

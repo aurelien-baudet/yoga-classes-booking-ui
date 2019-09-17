@@ -1,3 +1,4 @@
+import { LoginAvailableValidator } from './login-available.validator';
 import { CalendarComponent } from './calendar/calendar.component';
 import { PopoverService } from 'src/app/common/components/popover/popover.service';
 import { PopoverComponent } from './popover/popover.component';
@@ -23,7 +24,8 @@ import { PlaceDetailsComponent } from './place-details/place-details.component';
     DateRangePipe,
     CalendarComponent,
     TimeMaskDirective,
-    PlaceDetailsComponent
+    PlaceDetailsComponent,
+    LoginAvailableValidator
   ],
   entryComponents: [
     PopoverComponent,
@@ -35,7 +37,8 @@ import { PlaceDetailsComponent } from './place-details/place-details.component';
     NotificationComponent,
     DateRangePipe,
     CalendarComponent,
-    PlaceDetailsComponent
+    PlaceDetailsComponent,
+    LoginAvailableValidator
   ],
   providers: [
     NotificationService,

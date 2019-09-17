@@ -13,14 +13,15 @@
   </div>
   <ion-item class="login">
     <ion-label position="floating">Identifiant utilisateur</ion-label>
-    <ion-input type="text" name="login" #login="ngModel" [(ngModel)]="student.credentials.login" required></ion-input>
+    <ion-input type="text" name="login" #login="ngModel" [(ngModel)]="student.credentials.login" required appLoginAvailable></ion-input>
     <ion-icon name="custom-login" slot="start"></ion-icon>
     <app-help-button slot="end" title="Identifiant utilisateur">
       Un identifiant qui te servira pour te connecter à ton compte.
     </app-help-button>
   </ion-item>
-  <div class="validation-errors" [class.invalid]="login.invalid && (login.dirty || login.touched)">
+  <div class="validation-errors" [class.invalid]="(login.invalid && (login.dirty || login.touched))">
     <div *ngIf="login.invalid && login.errors.required">L'identifiant utilisateur est obligatoire</div>
+    <div *ngIf="login.invalid && login.errors.loginAvailable">L'identifiant utilisateur est déjà utilisé</div>
   </div>
   <ion-item class="password">
     <ion-label position="floating">Mot de passe</ion-label>
@@ -85,5 +86,8 @@
       ajouté à ton calendrier.
     </app-help-button>
   </ion-item>
+  <div class="response-errors" [class.has-errors]="errors && errors.length > 0">
+    <div *ngIf="hasError('LOGIN_ALREADY_USED')">L'identifiant utilisateur est déjà utilisé par un autre utilisateur</div>
+  </div>
   <ion-button type="submit" [disabled]="!form.valid">Créer mon compte</ion-button>
 </form>

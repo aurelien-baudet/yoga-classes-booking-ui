@@ -22,25 +22,25 @@ export class RestClassService implements ClassService {
               private dateUtil: DateUtil) {}
 
   async register(lesson: NewLesson): Promise<Lesson> {
-    return this.http.post<Lesson>(`${this.serverConfig.url}/lessons`, this.toServerLesson(lesson))
+    return await this.http.post<Lesson>(`${this.serverConfig.url}/lessons`, this.toServerLesson(lesson))
       .pipe(first())
       .toPromise();
   }
 
   async schedule(lesson: LessonId, start: Instant, end: Instant): Promise<ScheduledClass> {
-    return this.http.patch<ScheduledClass>(`${this.serverConfig.url}/lessons/${lesson.id}`, {start, end})
+    return await this.http.patch<ScheduledClass>(`${this.serverConfig.url}/lessons/${lesson.id}`, {start, end})
       .pipe(first())
       .toPromise();
   }
 
   async getLessonInfo(lesson: LessonId): Promise<Lesson> {
-    return this.http.get<Lesson>(`${this.serverConfig.url}/lessons/${lesson.id}`)
+    return await this.http.get<Lesson>(`${this.serverConfig.url}/lessons/${lesson.id}`)
       .pipe(first())
       .toPromise();
   }
 
   async listUnscheduledLessons(): Promise<Lesson[]> {
-    return this.http.get<Lesson[]>(`${this.serverConfig.url}/lessons`, {
+    return await this.http.get<Lesson[]>(`${this.serverConfig.url}/lessons`, {
         params: {
           unscheduled: 'true'
         }
@@ -57,7 +57,7 @@ export class RestClassService implements ClassService {
     if (to) {
       params['to'] = this.dateUtil.toISODateString(to);
     }
-    return this.http.get<ScheduledClass[]>(`${this.serverConfig.url}/classes`, {
+    return await this.http.get<ScheduledClass[]>(`${this.serverConfig.url}/classes`, {
         params
       })
       .pipe(first())
@@ -65,25 +65,25 @@ export class RestClassService implements ClassService {
   }
 
   async cancel(scheduledClass: ClassId, message: string): Promise<ScheduledClass> {
-    return this.http.patch<ScheduledClass>(`${this.serverConfig.url}/classes/${scheduledClass.id}`, {message})
+    return await this.http.patch<ScheduledClass>(`${this.serverConfig.url}/classes/${scheduledClass.id}`, {message})
       .pipe(first())
       .toPromise();
   }
 
   async getClassInfo(scheduledClass: ClassId): Promise<ScheduledClass> {
-    return this.http.get<ScheduledClass>(`${this.serverConfig.url}/classes/${scheduledClass.id}`)
+    return await this.http.get<ScheduledClass>(`${this.serverConfig.url}/classes/${scheduledClass.id}`)
       .pipe(first())
       .toPromise();
   }
 
   async list(): Promise<ScheduledClass[]> {
-    return this.http.get<ScheduledClass[]>(`${this.serverConfig.url}/classes`)
+    return await this.http.get<ScheduledClass[]>(`${this.serverConfig.url}/classes`)
       .pipe(first())
       .toPromise();
   }
 
   async changePlace(scheduledClass: ClassId, newPlace: Place): Promise<ScheduledClass> {
-    return this.http.patch<ScheduledClass>(`${this.serverConfig.url}/classes/${scheduledClass.id}/places/${newPlace.id}`, {})
+    return await this.http.patch<ScheduledClass>(`${this.serverConfig.url}/classes/${scheduledClass.id}/places/${newPlace.id}`, {})
       .pipe(first())
       .toPromise();
   }

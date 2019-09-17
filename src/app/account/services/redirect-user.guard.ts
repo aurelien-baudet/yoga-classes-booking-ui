@@ -1,3 +1,4 @@
+import { CurrentRoute } from 'src/app/common/util/router.util';
 import { User } from 'src/app/account/domain/user';
 import { Role, isUnregisteredUser } from './../domain/user';
 import { AccountService } from 'src/app/account/services/account.service';
@@ -8,12 +9,14 @@ import { hasRole } from '../domain/user';
 @Injectable({ providedIn: 'root' })
 export class RedirectUserGuard implements CanActivate {
     constructor(private router: Router,
-                private accountService: AccountService) { }
+                private accountService: AccountService,
+                private currentRoute: CurrentRoute) { }
 
     async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (route.url.length !== 0) {
             return true;
         }
+        
         // user not connected => redirect to homepage (visible by everyone)
         const currentUser = await this.accountService.getUserInfo();
         if (!currentUser) {

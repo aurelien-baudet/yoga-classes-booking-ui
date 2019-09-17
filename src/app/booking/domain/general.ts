@@ -18,3 +18,38 @@ export enum SocialAuthenticator {
     GOOGLE = 'google',
     FACEBOOK = 'facebook'
 }
+
+export type ErrorCode = string;
+
+export class ApplicationError extends Error {
+    constructor(public code: ErrorCode, public message: string, public cause?: Error) {
+        super(message);
+    }
+}
+
+export interface BackendError {
+    status: number;
+    error: {
+        code: ErrorCode;
+        message: string;
+        timestamp: number;
+        data: {
+            [key: string]: string;
+        }
+    };
+}
+
+export const matchesErrorCode = (e: string | Error | ApplicationError | BackendError, code: string) => {
+    if (typeof e === 'string') {
+        return e === code;
+    }
+    const appError = e as ApplicationError;
+    if (appError.code) {
+        return appError.code === code;
+    }
+    const backendError = e as BackendError;
+    if (backendError.error && backendError.error.code) {
+        return backendError.error.code === code;
+    }
+    return false;
+}

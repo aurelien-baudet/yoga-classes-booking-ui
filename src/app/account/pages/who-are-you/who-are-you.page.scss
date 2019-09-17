@@ -17,4 +17,8 @@ ion-content > p {
     font-size: 12px;
     height: 28px;
   }
+
+  & > p {
+    margin-bottom: 0;
+  }
 }

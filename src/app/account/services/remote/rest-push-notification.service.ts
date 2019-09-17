@@ -32,7 +32,15 @@ export class FcmPushNotificationService implements PushNotificationService {
 
   async registerCurrentDeviceForUser(user: User | UnregisteredUser | null): Promise<void> {
     this.currentUser = user;
-    await this.updateToken(await this.fcm.getToken(), user);
+    try {
+      await this.updateToken(await this.fcm.getToken(), user);
+    } catch (e) {
+      console.error('Failed to register current device', e);
+      // skip if cordova not available (web version)
+      if (e !== 'cordova_not_available') {
+        throw e;
+      }
+    }
   }
 
   async unregisterCurrentDeviceForUser(user: User | UnregisteredUser | null): Promise<void> {

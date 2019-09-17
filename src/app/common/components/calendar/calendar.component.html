@@ -12,6 +12,7 @@
       <ion-input 
         type="text" 
         name="start" 
+        #start="ngModel"
         [(ngModel)]="hours.start" 
         placeholder="Début"
         appTimeMask
@@ -22,11 +23,16 @@
       <ion-input 
         type="text" 
         name="end" 
+        #end="ngModel"
         [(ngModel)]="hours.end" 
         placeholder="Fin"
         appTimeMask
         required></ion-input>
     </ion-item>
+    <div class="validation-errors" [class.invalid]="(start.invalid && (start.dirty || start.touched)) || (end.invalid && (end.dirty || end.touched))">
+      <div *ngIf="start.invalid && start.errors.required">L'heure de début est obligatoire</div>
+      <div *ngIf="end.invalid && end.errors.required">L'heure de fin est obligatoire</div>
+    </div>
     <ion-button type="submit" [disabled]="!hoursForm.valid" size="small">
       <ion-icon slot="icon-only" name="custom-submit"></ion-icon>
     </ion-button>

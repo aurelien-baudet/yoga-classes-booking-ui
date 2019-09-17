@@ -50,20 +50,23 @@ form {
     margin-top: 20px;
   }
 
-  .validation-errors {
+  .validation-errors,
+  .response-errors {
+    // FIXME: display correctly when several error messages or several lines
     color: var(--ion-color-danger);
     font-size: 14px;
-    padding-left: 28px;
-    position: relative;
-    display: block;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
     text-align: left;
     @include fas-icon($fa-var-exclamation-triangle);
 
     &::before {
-      position: absolute;
-      top: 5px;
-      left: 0;
       font-size: 18px;
+      flex: 0 34px;
+    }
+    div {
+      flex: 1 1 auto;
     }
 
     // animation
@@ -73,10 +76,14 @@ form {
     padding-bottom: 0;
     transition: max-height 0.2s linear, padding 0.2s linear;
 
-    &.invalid {
+    &.invalid,
+    &.has-errors {
       max-height: 50px;
       padding-top: 10px;
       padding-bottom: 15px;
+    }
+    &.has-errors {
+      padding-top: 30px;
     }
   }
 }

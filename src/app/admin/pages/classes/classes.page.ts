@@ -1,4 +1,4 @@
-import { Lesson, sameClassPredicate, sameLessonPredicate } from './../../../booking/domain/reservation';
+import { Lesson, sameClassPredicate, sameLessonPredicate, Place } from './../../../booking/domain/reservation';
 import { NextLessonOpenedDetailsClassStateProvider } from './../../services/local/next-lesson-opened-details-state.provider';
 import { ManageableProvider } from './../../services/local/manageable.provider';
 import { InMemoryUpdatablePendingStateProvider } from './../../../booking/services/local/in-memory-pending-state.provider';
@@ -32,6 +32,8 @@ export class ClassesPage {
 
   @ViewChild('cancelMessage')
   cancelMessage: TemplateRef<any>;
+  @ViewChild('placeDetails')
+  placeDetails: TemplateRef<any>;
   lastClick: Event; // used for popover
 
   private popover: PopoverWrapper;
@@ -84,6 +86,13 @@ export class ClassesPage {
 
   async removeLesson(lesson: Lesson) {
     // TODO: implement in next version
+  }
+
+  async showPlaceDetails(place: Place) {
+    // wrap in setTimeout in order to be able to retrieve the click event
+    setTimeout(async () => {
+      await this.popoverService.show(this.placeDetails, {place}/*, this.lastClick*/);
+    }, 0);
   }
 
   private async refreshClasses() {

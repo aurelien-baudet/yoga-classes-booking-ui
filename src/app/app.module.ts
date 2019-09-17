@@ -54,7 +54,9 @@ import { ApplicationEventService } from './common/services/application-event.ser
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: 'yoga-saint-pierre'
+    }),
     AppRoutingModule,
     HttpClientModule,
     CommonComponentsModule,

@@ -14,7 +14,7 @@
 .select-hours {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
@@ -34,5 +34,9 @@
     }
     ion-button[type="submit"] {
         margin-top: 0;
+    }
+    .validation-errors {
+        order: 99;
+        flex: 0 0 100%;
     }
 }

@@ -32,18 +32,30 @@
     (edit)="edit($event)"
     (cancel)="askCancelMessage($event)"
     (viewDetails)="detailsProvider.viewDetails($event)"
-    (hideDetails)="detailsProvider.hideDetails($event)"></app-classes>
+    (hideDetails)="detailsProvider.hideDetails($event)"
+    (showPlaceDetails)="showPlaceDetails($event)"></app-classes>
 </ion-content>
 
 <ng-template #cancelMessage let-cancelingClass="cancelingClass" let-form="form">
   <form #cancelForm="ngForm" class="cancel-form" (ngSubmit)="cancel(cancelingClass, form.message)">
-    <ion-textarea 
-      class="message" 
-      type="text" 
-      name="message" 
-      placeholder="Message"
-      [(ngModel)]="form.message" 
-      required></ion-textarea>
+    <ion-item>
+      <ion-textarea 
+        class="message" 
+        type="text" 
+        name="message" 
+        placeholder="Message"
+        #message="ngModel"
+        [(ngModel)]="form.message" 
+        required></ion-textarea>
+    </ion-item>
+    <div class="validation-errors" [class.invalid]="message.invalid && (message.dirty || message.touched)">
+      <div *ngIf="message.invalid && message.errors.required">Le message d'annulation est obligatoire</div>
+    </div>
     <ion-button type="submit" [disabled]="!cancelForm.valid" size="small">Annuler le cours</ion-button>
   </form>
 </ng-template>
+
+
+<ng-template #placeDetails let-place="place">
+    <app-place-details [place]="place"></app-place-details>
+  </ng-template>

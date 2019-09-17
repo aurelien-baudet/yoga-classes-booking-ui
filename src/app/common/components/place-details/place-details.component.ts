@@ -19,6 +19,7 @@ export class PlaceDetailsComponent {
   constructor(private sanitizer: DomSanitizer) { }
 
   getInteractiveMap(maps: Image[]) {
-    return maps.find((m) => m.type === 'INTERACTIVE_MAP');
+    const map = maps.find((m) => m.type === 'INTERACTIVE_MAP');
+    return map ? map.url : '';
   }
 }

@@ -12,7 +12,7 @@
           <a (click)="refresh(); close()" routerLink="/lessons" routerLinkActive="active">Réserver un cours</a>
         </ion-item>
         <ion-item *ngIf="isTeacher()">
-          <ion-icon name="custom-menu-classes" slot="start"></ion-icon>
+          <ion-icon name="custom-menu-next-classes" slot="start"></ion-icon>
           <a (click)="close()" routerLink="/admin/classes" routerLinkActive="active">Cours</a>
         </ion-item>
         <ion-item *ngIf="(isAuthenticated() || isRegistered()) && isStudent()">
@@ -52,6 +52,10 @@
           <a (click)="close()" routerLink="/admin/place/add" routerLinkActive="active">Ajouter un lieu</a>
         </ion-item>
       </ion-list>
+      <div class="current-user" *ngIf="currentUser">
+        <ion-icon name="custom-current-user" slot="start"></ion-icon>
+        <span class="display-name">{{ currentUser.displayName }}</span>
+      </div>
     </ion-content>
   </ion-menu>
 

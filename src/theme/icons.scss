@@ -133,10 +133,13 @@ ion-icon {
     @include fas-icon($fa-var-book-medical);
   }
   &[name="custom-menu-add-event"] {
-    @include fas-icon($fa-var-qrcode);
+    @include fa-icon($fa-var-qrcode);
   }
   &[name="custom-menu-add-place"] {
     @include fas-icon($fa-var-map-marked-alt);
   }
 
+  &[name="custom-current-user"] {
+    @include fa-icon($fa-var-user-circle);
+  }
 }

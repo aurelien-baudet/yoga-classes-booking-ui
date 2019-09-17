@@ -6,13 +6,13 @@ import { AccountService } from '../account.service';
 import { Student, StudentRegistration } from '../../domain/student';
 import * as pouet from './data/student-pouet.json';
 import * as cyril from './data/teacher-cyril.json';
-import { ReplaySubject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MockAccountService implements AccountService {
-  readonly currentUser$ = new ReplaySubject<User | UnregisteredUser | null>();
+  readonly currentUser$ = new Subject<User | UnregisteredUser | null>();
 
   constructor() {}
 
@@ -45,4 +45,9 @@ export class MockAccountService implements AccountService {
   async saveUnregisterdUserInfo(user: UnregisteredUser): Promise<void> {
     throw new Error('not implemented');
   }
+
+  async isLoginAvailable(login: string): Promise<boolean> {
+    return true;
+  }
+
 }

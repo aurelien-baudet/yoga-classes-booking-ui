@@ -3,7 +3,7 @@ import { PopoverController } from '@ionic/angular';
 import { TemplateRef, Injectable, ComponentRef } from '@angular/core';
 import { PopoverComponent } from './popover.component';
 import { Components, OverlayEventDetail, PopoverOptions } from '@ionic/core';
-import { ReplaySubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 
 export class PopoverWrapper {

@@ -1,4 +1,6 @@
 ion-toolbar {
+  text-align: left;
+  
   ion-menu-button,
   ion-title {
     display: inline-block;
@@ -6,6 +8,10 @@ ion-toolbar {
 }
 
 ion-menu {
+  ion-content {
+    position: relative;
+  }
+
   ion-item {
     ion-icon {
       -webkit-margin-start: 12px;
@@ -21,6 +27,30 @@ ion-menu {
     a {
       text-decoration: none;
       color: var(--ion-color-primary);
+    }
+  }
+
+  .current-user {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: var(--ion-color-tertiary);
+    padding: 10px 0;
+
+    ion-icon {
+      -webkit-margin-start: 12px;
+      margin-inline-start: 12px;
+      -webkit-margin-end: 12px;
+      margin-inline-end: 12px;
+      text-align: center;
+      font-size: 24px;
+      line-height: 21px !important;
+      vertical-align: middle;
+    }
+    span {
+      display: inline-block;
+      vertical-align: middle;
     }
   }
 }

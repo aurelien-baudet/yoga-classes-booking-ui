@@ -8,14 +8,14 @@ export class AuthenticationIonicLocalStorage implements AuthenticationStorage {
     constructor(private storage: Storage) { }
 
     async store(authentication: Authentication): Promise<void> {
-        this.storage.set('auth', authentication);
+        await this.storage.set('auth', authentication);
     }
 
     async clear(): Promise<void> {
-        this.storage.remove('auth');
+        await this.storage.remove('auth');
     }
 
     async get(): Promise<Authentication> {
-        return this.storage.get('auth');
+        return await this.storage.get('auth');
     }
 }

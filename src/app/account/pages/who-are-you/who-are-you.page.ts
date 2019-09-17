@@ -1,3 +1,4 @@
+import { ApplicationError } from 'src/app/booking/domain/general';
 import { SocialAuthenticator } from './../../../booking/domain/general';
 import { Router } from '@angular/router';
 import { Credentials, User, isUnregisteredUser } from './../../domain/user';
@@ -14,6 +15,7 @@ import { BookingService } from 'src/app/booking/services/booking.service';
 export class WhoAreYouPage {
   private segment = 'login';
   currentUser: User | UnregisteredUser | null;
+  loginErrors: ApplicationError[];
 
   constructor(private accountService: AccountService,
               private router: Router) { }
@@ -23,11 +25,14 @@ export class WhoAreYouPage {
   }
 
   async login(credentials: Credentials) {
-    // TODO: handle errors
-    await this.accountService.login(credentials.login, credentials.password);
-    this.router.navigate([''], {
-      queryParamsHandling: 'preserve'
-    });
+    try {
+      await this.accountService.login(credentials.login, credentials.password);
+      this.router.navigate([''], {
+        queryParamsHandling: 'preserve'
+      });
+    } catch(e) {
+      this.loginErrors = [e];
+    }
   }
 
   async finishBooking(student: UnregisteredUser) {

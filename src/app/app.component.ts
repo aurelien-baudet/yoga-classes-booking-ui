@@ -18,7 +18,7 @@ import { PushNotificationService } from './account/services/push-notification.se
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  private currentUser: User | UnregisteredUser | null;
+  currentUser: User | UnregisteredUser | null;
 
   constructor(private platform: Platform,
               private splashScreen: SplashScreen,

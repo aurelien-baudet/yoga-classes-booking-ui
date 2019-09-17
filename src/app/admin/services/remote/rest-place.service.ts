@@ -12,13 +12,13 @@ export class RestPlaceService implements PlaceService {
                 private serverConfig: ServerConfig) {}
 
     async list(): Promise<Place[]> {
-        return this.http.get<Place[]>(`${this.serverConfig.url}/places`)
+        return await this.http.get<Place[]>(`${this.serverConfig.url}/places`)
             .pipe(first())
             .toPromise();
     }
 
     async getPlaceInfo(place: PlaceId): Promise<Place> {
-        return this.http.get<Place>(`${this.serverConfig.url}/places/${place.id}`)
+        return await this.http.get<Place>(`${this.serverConfig.url}/places/${place.id}`)
             .pipe(first())
             .toPromise();
     }

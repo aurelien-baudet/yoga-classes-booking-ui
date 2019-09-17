@@ -8,11 +8,11 @@ export class UnregisteredUserIonicLocalStorage implements UnregisteredUserInfoSt
   constructor(private storage: Storage) { }
 
   async store(user: UnregisteredUser): Promise<void> {
-    this.storage.set('unregisteredUser', JSON.stringify(user));
+    await this.storage.set('unregisteredUser', JSON.stringify(user));
   }
 
   async clear(): Promise<void> {
-    this.storage.remove('unregisteredUser');
+    await this.storage.remove('unregisteredUser');
   }
 
   async get(): Promise<UnregisteredUser> {
