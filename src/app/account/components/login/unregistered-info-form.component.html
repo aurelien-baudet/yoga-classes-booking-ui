@@ -1,16 +1,19 @@
 <form (ngSubmit)="continue.emit(unregisteredUserModel)" #form="ngForm" novalidate>
   <ion-item class="display-name">
     <ion-label position="floating">Nom affiché</ion-label>
-    <ion-input type="text" name="displayName" [(ngModel)]="unregisteredUserModel.displayName" required></ion-input>
+    <ion-input type="text" name="displayName" #displayName="ngModel" [(ngModel)]="unregisteredUserModel.displayName" required></ion-input>
     <ion-icon name="custom-display-name" slot="start"></ion-icon>
     <app-help-button slot="end" title="Nom affiché">
       C'est le nom qui sera visible par les autres utilisateurs. C'est aussi ce nom que ton professeur de yoga
       uilisera lors de son cours.
     </app-help-button>
   </ion-item>
+  <div class="validation-errors" [class.invalid]="displayName.invalid && (displayName.dirty || displayName.touched)">
+    <div *ngIf="displayName.invalid && displayName.errors?.required">Le nom affiché est obligatoire</div>
+  </div>
   <ion-item class="email">
     <ion-label position="floating">Email (optionnel)</ion-label>
-    <ion-input type="email" name="email" [(ngModel)]="unregisteredUserModel.email"></ion-input>
+    <ion-input type="email" name="email" #email="ngModel" [(ngModel)]="unregisteredUserModel.email" email></ion-input>
     <ion-icon name="custom-email" slot="start"></ion-icon>
     <app-help-button slot="end" title="Adresse email">
       Ton adresse email si tu souhaites recevoir les informations relatives aux cours 
@@ -19,9 +22,12 @@
       Tu dois renseigner soit ton adresse email soit ton numéro de téléphone.
     </app-help-button>
   </ion-item>
+  <div class="validation-errors" [class.invalid]="email.invalid && (email.dirty || email.touched)">
+    <div *ngIf="email.invalid && email.errors.email">Le format de l'adresse email n'est pas valide</div>
+  </div>
   <ion-item class="phone-number">
     <ion-label position="floating">Numéro de téléphone (optionnel)</ion-label>
-    <ion-input type="tel" name="phoneNumber" [(ngModel)]="unregisteredUserModel.phoneNumber"></ion-input>
+    <ion-input type="tel" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="unregisteredUserModel.phoneNumber"></ion-input>
     <ion-icon name="custom-phone" slot="start"></ion-icon>
     <app-help-button slot="end" title="Numéro de téléphone">
       Ton numéro de téléphone pour être prévenu rapidement d'un changement 
@@ -30,6 +36,8 @@
       Tu dois renseigner soit ton adresse email soit ton numéro de téléphone.
     </app-help-button>
   </ion-item>
+  <div class="validation-errors" [class.invalid]="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)">
+  </div>
   <ion-item class="send-booked-email">
     <ion-toggle name="sendBookedMail" [(ngModel)]="unregisteredUserModel.sendBookedMail"></ion-toggle>
     <ion-label>Envoyer un mail lorsque je réserve un cours</ion-label>

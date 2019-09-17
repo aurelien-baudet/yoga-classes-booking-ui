@@ -1,3 +1,4 @@
+@import "icons-utils";
 
 form {
   ion-item {
@@ -47,5 +48,35 @@ form {
 
   ion-button[type="submit"] {
     margin-top: 20px;
+  }
+
+  .validation-errors {
+    color: var(--ion-color-danger);
+    font-size: 14px;
+    padding-left: 28px;
+    position: relative;
+    display: block;
+    text-align: left;
+    @include fas-icon($fa-var-exclamation-triangle);
+
+    &::before {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      font-size: 18px;
+    }
+
+    // animation
+    overflow: hidden;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: max-height 0.2s linear, padding 0.2s linear;
+
+    &.invalid {
+      max-height: 50px;
+      padding-top: 10px;
+      padding-bottom: 15px;
+    }
   }
 }
