@@ -9,7 +9,7 @@ export interface Lesson {
     title: string;
     description: string;
     maxStudents: number;
-    photos: string[];
+    photos: Image[];
     place: Place;
     teacher: TeacherInfo;
 }
@@ -21,11 +21,17 @@ export type NewLesson = Pick<Lesson, 'title' | 'description' | 'maxStudents' | '
 
 export type LessonId = Pick<Lesson, 'id'>;
 
+export interface Image {
+    url: string;
+    type: string;
+    size: string;
+}
+
 export interface Place {
     id: string;
     name: string;
     address: string;
-    plan: string;
+    maps: Image[];
 }
 
 export type PlaceId = Pick<Place, 'id'>;

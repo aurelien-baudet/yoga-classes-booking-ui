@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Place } from 'src/app/booking/domain/reservation';
+import { Place, Image } from 'src/app/booking/domain/reservation';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -17,4 +17,8 @@ export class PlaceDetailsComponent {
   showItinerary = new EventEmitter<Place>();
 
   constructor(private sanitizer: DomSanitizer) { }
+
+  getInteractiveMap(maps: Image[]) {
+    return maps.find((m) => m.type === 'INTERACTIVE_MAP');
+  }
 }

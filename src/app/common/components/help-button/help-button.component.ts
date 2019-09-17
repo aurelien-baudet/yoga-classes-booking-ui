@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
+import { PopoverService } from '../popover/popover.service';
 
 @Component({
   selector: 'app-help-button',
@@ -7,5 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HelpButtonComponent {
   @Input()
-  message: string;
+  title: string;
+
+  @ViewChild('content')
+  content: TemplateRef<any>;
+
+  constructor(private popoverService: PopoverService) { }
+
+  async showHelp(event) {
+      await this.popoverService.show(this.content, {title: this.title}, event);
+  }
 }

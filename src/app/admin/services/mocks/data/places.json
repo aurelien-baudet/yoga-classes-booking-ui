@@ -2,11 +2,17 @@
   "id": "5d6526e3bcf35a5acc6eb6b1",
   "name": "Terre Sainte",
   "address": "128 rue Amiral Lacaze, Saint Pierre",
-  "plan": "https://www.google.com/maps/@-21.3492488,55.4836983,18z"
+  "maps": [{
+    "url": "https://www.google.com/maps/@-21.3492488,55.4836983,18z",
+    "type": "INTERACTIVE_MAP"
+  }]
 },
 {
   "id": "5d6526e3bcf35a5acc6eb6b2",
   "name": "Villa",
   "address": "120 rue Amiral Lacaze, Saint Pierre",
-  "plan": "https://www.google.com/maps/@-21.3492488,55.4836983,18z"
+  "maps": [{
+    "url": "https://www.google.com/maps/@-21.3492488,55.4836983,18z",
+    "type": "INTERACTIVE_MAP"
+  }]
 }]

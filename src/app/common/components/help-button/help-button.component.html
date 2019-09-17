@@ -1,3 +1,12 @@
-<ion-button>
+<ion-button (click)="showHelp($event)">
   <ion-icon slot="icon-only" name="custom-help"></ion-icon>
 </ion-button>
+
+<ng-template #content let-title="title">
+  <div class="header" *ngIf="title">
+      <span class="title">{{ title }}</span>
+  </div>
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+</ng-template>

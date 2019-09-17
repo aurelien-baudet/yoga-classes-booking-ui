@@ -3,25 +3,41 @@
     <ion-label position="floating">Nom affiché</ion-label>
     <ion-input type="text" name="displayName" [(ngModel)]="unregisteredUserModel.displayName" required></ion-input>
     <ion-icon name="custom-display-name" slot="start"></ion-icon>
-    <app-help-button message="" slot="end"></app-help-button>
+    <app-help-button slot="end" title="Nom affiché">
+      C'est le nom qui sera visible par les autres utilisateurs. C'est aussi ce nom que ton professeur de yoga
+      uilisera lors de son cours.
+    </app-help-button>
   </ion-item>
   <ion-item class="email">
     <ion-label position="floating">Email (optionnel)</ion-label>
     <ion-input type="email" name="email" [(ngModel)]="unregisteredUserModel.email"></ion-input>
     <ion-icon name="custom-email" slot="start"></ion-icon>
-    <app-help-button message="" slot="end"></app-help-button>
+    <app-help-button slot="end" title="Adresse email">
+      Ton adresse email si tu souhaites recevoir les informations relatives aux cours 
+      (confirmation de réservation, rappels, changement de lieu...).
+      <br />
+      Tu dois renseigner soit ton adresse email soit ton numéro de téléphone.
+    </app-help-button>
   </ion-item>
   <ion-item class="phone-number">
     <ion-label position="floating">Numéro de téléphone (optionnel)</ion-label>
     <ion-input type="tel" name="phoneNumber" [(ngModel)]="unregisteredUserModel.phoneNumber"></ion-input>
     <ion-icon name="custom-phone" slot="start"></ion-icon>
-    <app-help-button message="" slot="end"></app-help-button>
+    <app-help-button slot="end" title="Numéro de téléphone">
+      Ton numéro de téléphone pour être prévenu rapidement d'un changement 
+      (changement de lieu ou annulation).
+      <br />
+      Tu dois renseigner soit ton adresse email soit ton numéro de téléphone.
+    </app-help-button>
   </ion-item>
   <ion-item class="send-booked-email">
     <ion-toggle name="sendBookedMail" [(ngModel)]="unregisteredUserModel.sendBookedMail"></ion-toggle>
     <ion-label>Envoyer un mail lorsque je réserve un cours</ion-label>
     <ion-icon name="custom-send-booked-email" slot="start"></ion-icon>
-    <app-help-button message="" slot="end"></app-help-button>
+    <app-help-button slot="end" title="Email de réservation">
+      Chaque fois que tu réserves, tu recevras une confirmation avec les informations
+      du cours et la possibilité d'ajouter le cours à ton calendrier.
+    </app-help-button>
   </ion-item>
   <ion-button type="submit" [disabled]="!form.valid">Terminer la réservation</ion-button>
 </form>

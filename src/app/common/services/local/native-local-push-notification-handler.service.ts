@@ -60,7 +60,7 @@ export class NativeLocalPushNotificationHandlerService implements PushNotificati
     return {
       title: 'Changement de lieu',
       text: `Le cours du ${this.dateUtil.formatRange(scheduledClass)}\naura lieu à ${place.name}.\n\n${place.address}`,
-      attachments: [place.plan],
+      attachments: [place.maps.find((m) => m.type === 'STATIC_MAP').url],
       launch: true,
       lockscreen: true,
       foreground: true

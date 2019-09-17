@@ -3,4 +3,4 @@
   <ion-icon name="custom-address"></ion-icon>
   <span>{{ place.address }}</span>
 </div>
-<iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(place.plan)"></iframe>
+<iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(getInteractiveMap(place.maps))"></iframe>
