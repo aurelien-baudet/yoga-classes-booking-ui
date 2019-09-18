@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "191353546130",
-    "firebase_url": "https://yoga-saint-pierre-dev.firebaseio.com",
-    "project_id": "yoga-saint-pierre-dev",
-    "storage_bucket": "yoga-saint-pierre-dev.appspot.com"
+    "project_number": "",
+    "firebase_url": "",
+    "project_id": "",
+    "storage_bucket": ""
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:191353546130:android:4fc62458bab99128fd4d4b",
+        "mobilesdk_app_id": "",
         "android_client_info": {
           "package_name": "fr.aba.yogasaintpierre"
         }
       },
       "oauth_client": [
         {
-          "client_id": "191353546130-122c33m8djskn91nbvpvf3o3m1o1gokv.apps.googleusercontent.com",
+          "client_id": "",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCFFv9w4nWqxzXGEdtInOkivGu0K_w9c5w"
+          "current_key": ""
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "191353546130-122c33m8djskn91nbvpvf3o3m1o1gokv.apps.googleusercontent.com",
+              "client_id": "",
               "client_type": 3
             }
           ]
