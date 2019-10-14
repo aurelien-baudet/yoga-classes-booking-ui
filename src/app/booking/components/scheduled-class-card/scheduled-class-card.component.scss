@@ -1,4 +1,5 @@
 @import "../../../../theme/button-utils";
+@import "../../../../theme/icons-utils";
 
 :host {
     display: block;
@@ -144,6 +145,31 @@ app-class-details {
 }
 
 /* states */
+.place-changed {
+    .preview .place {
+        ion-button {
+            font-size: 16px;
+            --color: var(--ion-color-danger);
+            --color-activated: var(--ion-color-danger);
+            --color-focused: var(--ion-color-danger);
+            --color-hover: var(--ion-color-danger);
+        }
+            
+        .warning {
+            font-size: 16px;
+            color: var(--ion-color-warning);
+            text-transform: none;
+            display: block;
+            padding-left: 5px;
+            @include fas-icon($fa-var-exclamation-triangle);
+            margin-bottom: 10px;
+
+            &:before {
+                padding-right: 5px;
+            }
+        }
+    }
+}
 .booked.booking-approved {
     ion-card-header {
         background: var(--ion-color-success);

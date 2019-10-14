@@ -6,7 +6,8 @@
           [class.pending]="pending"
           [class.canceled]="canceled"
           [class.editable]="editable"
-          [class.cancelable]="cancelable">
+          [class.cancelable]="cancelable"
+          [class.place-changed]="scheduledClass.lesson.placeChanged">
   <ion-card-header>
     <ion-card-title (click)="showClassDetails.emit(scheduledClass)">{{ scheduledClass | dateRange }}</ion-card-title>
     <ion-button (click)="book.emit(scheduledClass)" *ngIf="bookable && !booked && !pending" size="small">
@@ -41,6 +42,7 @@
           {{ scheduledClass.lesson.place.name }}
           <ion-icon slot="start" name="custom-place"></ion-icon>
         </ion-button>
+        <span class="warning" *ngIf="scheduledClass.lesson.placeChanged">le lieu de dispense a été modifié</span>
       </div>
     </div>
     <div class="details">

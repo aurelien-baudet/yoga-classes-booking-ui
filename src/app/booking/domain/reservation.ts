@@ -11,6 +11,7 @@ export interface Lesson {
     maxStudents: number;
     photos: Image[];
     place: Place;
+    placeChanged: boolean;
     teacher: TeacherInfo;
 }
 
