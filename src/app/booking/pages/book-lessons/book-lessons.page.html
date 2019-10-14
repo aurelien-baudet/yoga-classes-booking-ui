@@ -4,7 +4,7 @@
     <ion-title>Les prochains cours de Yoga</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content [class.loading]="loading">
   <p *ngIf="classes && classes.length === 0">Pas de cours programmé prochainement</p>
   <app-classes 
     *ngIf="classes"

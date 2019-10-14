@@ -1,3 +1,26 @@
+@import "../../../../theme/icons-utils";
+
+.loading {
+  /*@include fas-icon($fa-var-spinner);
+
+  &:before {
+    display: inline-block;
+    animation: fa-spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    font-size: 80px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -40px;
+    margin-top: -40px;
+    z-index: 1000;
+    color: var(--ion-color-tertiary);
+  }
+
+  > * {
+    visibility: hidden;
+  }*/
+}
+
 /deep/ ion-item {
   --padding-start: 0;
   --padding-end: 0;

@@ -19,6 +19,7 @@ import { BookedClassesBookingStateProvider } from '../../services/local/booked-c
 import { PopoverService, PopoverWrapper } from 'src/app/common/components/popover/popover.service';
 import { PushNotificationHandlerService } from 'src/app/common/services/push-notification-handler.service';
 import { ApplicationEventService } from 'src/app/common/services/application-event.service';
+import { IonContent } from '@ionic/angular';
 
 @Component({
   selector: 'app-book-lessons-page',
@@ -30,6 +31,8 @@ export class BookLessonsPage {
   private bookedClassesForCurrentUser: ScheduledClass[] = [];
   protected lastClick: Event;
 
+  @ViewChild(IonContent)
+  content: IonContent;
   @ViewChild('placeDetails')
   placeDetails: TemplateRef<any>;
   @ViewChild('approvedNotification')
@@ -50,6 +53,7 @@ export class BookLessonsPage {
   searchFriendProvider: AutoCompleteService;
 
   classes: ScheduledClass[];
+  loading = true;
 
   constructor(private classService: ClassService,
               private accountService: AccountService,
@@ -90,7 +94,8 @@ export class BookLessonsPage {
     const template = booked.approved ? this.approvedNotification : this.waitingListNotification;
     this.notificationService.success(template, booked);
     this.router.navigate(['lessons'], {queryParams: {}});
-    this.refreshClassesAndBookings();
+    await this.refreshClassesAndBookings();
+    this.scrollTo(bookedClass);
   }
 
   async unbook(bookedClass: ScheduledClass) {
@@ -104,7 +109,8 @@ export class BookLessonsPage {
     this.pendingProvider.unmarkPending(bookedClass);
     this.notificationService.success(this.unbookedNotification, {bookedClass});
     this.router.navigate(['lessons'], {queryParams: {}});
-    this.refreshClassesAndBookings();
+    await this.refreshClassesAndBookings();
+    this.scrollTo(bookedClass);
   }
 
   async showPlaceDetails(place: Place) {
@@ -187,8 +193,10 @@ export class BookLessonsPage {
   }
 
   private async refreshClassesAndBookings() {
+    this.loading = true;
     await this.refreshClasses();
     await this.refreshBookings();
+    this.loading = false;
   }
 
   private async finishBookingIfNecessary() {
@@ -207,5 +215,12 @@ export class BookLessonsPage {
       await this.unbook(bookedClass);
       this.router.navigate(['']);
     }
+  }
+
+  private async scrollTo(scheduledClass: ScheduledClass) {
+    setTimeout(() => {
+      const yOffset = document.getElementById(`scheduled-class-${scheduledClass.id}`).offsetTop;
+      this.content.scrollToPoint(0, yOffset);
+    }, 0);
   }
 }
