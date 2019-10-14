@@ -46,6 +46,8 @@ const routes: Routes = [
       loadChildren: './admin/pages/add-place/add-place.module#AddPlacePageModule' },
   { path: 'errors/forbidden',
       loadChildren: './common/pages/forbidden/forbidden.module#ForbiddenPageModule' },
+  { path: 'classes/:classId',
+      loadChildren: './booking/pages/scheduled-class-details/scheduled-class-details.module#ScheduledClassDetailsPageModule' },
 ];
 
 @NgModule({

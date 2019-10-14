@@ -10,6 +10,7 @@ export class NotificationService {
     success(template: TemplateRef<any>, templateContext: any, title?: string, override?: Partial<IndividualConfig>) {
         const toast = this.toastr.success(null, title, {
             ...override,
+            timeOut: 10000,
             closeButton: true,
             enableHtml: true,
             toastComponent: NotificationComponent,

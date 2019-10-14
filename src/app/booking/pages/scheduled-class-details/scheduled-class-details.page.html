@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button></ion-menu-button>
+    <ion-title>Détail du cours</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-card
+      *ngIf="scheduledClass"
+      [class.bookable]="bookingStateProvider.isBookable(scheduledClass)" 
+      [class.booked]="bookingStateProvider.isBooked(scheduledClass)" 
+      [class.booking-approved]="bookingStateProvider.isBookingApproved(scheduledClass)"
+      [class.booking-waiting]="bookingStateProvider.isBookingInWaitingList(scheduledClass)"
+      [class.pending]="pendingProvider.isPending(scheduledClass)"
+      [class.canceled]="manageClassStateProvider.isCanceled(scheduledClass)"
+      [class.place-changed]="scheduledClass.lesson.placeChanged">
+      <ion-card-header>
+        <ion-card-title>{{ scheduledClass | dateRange }}</ion-card-title>
+        <ion-button (click)="book(scheduledClass)" *ngIf="isBookable(scheduledClass)">
+          M'inscrire
+          <ion-icon slot="start" name="custom-book"></ion-icon>
+        </ion-button>
+        <ion-button (click)="unbook(scheduledClass)" *ngIf="isUnbookable(scheduledClass)">
+          Me désinscrire
+          <ion-icon slot="start" name="custom-unbook"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="isPending(scheduledClass)">
+          <ion-icon slot="icon-only" name="custom-pending"></ion-icon>
+        </ion-button>
+      </ion-card-header>
+      <ion-card-content>
+        <span class="title">{{ scheduledClass.lesson.title }}</span>
+        <div class="place">
+          <ion-button (click)="showPlaceDetails(scheduledClass.lesson.place)">
+            {{ scheduledClass.lesson.place.name }}
+            <ion-icon slot="start" name="custom-place"></ion-icon>
+          </ion-button>
+          <span class="warning" *ngIf="scheduledClass.lesson.placeChanged">le lieu de dispense a été modifié</span>
+        </div>
+        <app-class-details 
+          [scheduledClass]="scheduledClass"
+          [searchFriendProvider]="searchFriendProvider"
+          (bookForFriend)="bookForFriend($event)"
+          (unbookForFriend)="unbookForFriend($event)"></app-class-details>
+        <div class="cancel-details" *ngIf="manageClassStateProvider.isCanceled(scheduledClass)">
+          <h3>Cours annulé</h3>
+          <p class="lesson-canceled">Cours annulé</p>
+          <p class="teacher-message">
+            <span class="intro">Message de {{ scheduledClass.lesson.teacher.displayName }} :</span>
+            <span class="message">{{ scheduledClass.state.message }}</span>
+          </p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+</ion-content>
+
+
+
+<ng-template #placeDetails let-place="place">
+  <app-place-details [place]="place"></app-place-details>
+</ng-template>
+
+
+  
+<ng-template #approvedNotification let-bookedClass="bookedClass">
+  <div class="header">
+    <span class="title">Inscription confirmée</span>
+  </div>
+  <div class="content">
+    <p>Tu es inscrit au cours du <strong>{{ bookedClass | dateRange }}</strong></p>
+    <ion-button *ngIf="isMobileApp()" (click)="addToCalendar(bookedClass)" size="small">ajouter au calendrier</ion-button>
+  </div>
+</ng-template>
+
+<ng-template #waitingListNotification let-bookedClass="bookedClass">
+  <div class="header">
+    <span class="title">Inscription en file d'attente</span>
+  </div>
+  <div class="content">
+    <p>Tu es sur liste d'attente pour le cours du <strong>{{ bookedClass | dateRange }}</strong>.<br />
+      Tu recevras une notification lorsqu'une place se libèrera.</p>
+  </div>
+</ng-template>
+
+<ng-template #unbookedNotification let-bookedClass="bookedClass">
+  <div class="header">
+    <span classs="title">Désinscription</span>
+  </div>
+  <div class="content">
+    <p>Tu es désinscrit du cours du <strong>{{ bookedClass | dateRange }}</strong>.</p>
+    <ion-button *ngIf="isMobileApp()" (click)="removeFromCalendar(bookedClass)" size="small">retirer du calendrier</ion-button>
+  </div>
+</ng-template>

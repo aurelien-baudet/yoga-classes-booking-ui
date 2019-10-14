@@ -6,3 +6,11 @@
   --inner-border-width: 0 0 0 0;
   --border-width: 0 0 0 0;
 }
+
+/deep/ app-popover {
+  app-approved-students,
+  app-waiting-students {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
