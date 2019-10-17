@@ -10,6 +10,8 @@
     *ngIf="lesson && scheduledClassesForLesson"
     [lesson]="lesson"
     [scheduledClasses]="scheduledClassesForLesson"
-    (schedule)="schedule($event.lesson, $event.start, $event.end)"></app-calendar>
+    (schedule)="schedule($event.lesson, $event.start, $event.end, $event.recurrence)"
+    [firstDateToShow]="displayedMonth"
+    (monthChanged)="displayedMonth = $event"></app-calendar>
   <ion-button (click)="finish()">Terminé</ion-button>
 </ion-content>

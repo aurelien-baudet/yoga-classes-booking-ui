@@ -5,6 +5,11 @@ export interface DateRange {
     end: Instant;
 }
 
+export interface Recurrence {
+    frequency: string;
+    until: Instant;
+}
+
 export const isSameDay = (a: Instant, b: Instant) => {
     const aDate = new Date(a);
     const bDate = new Date(b);

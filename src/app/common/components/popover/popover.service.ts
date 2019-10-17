@@ -62,6 +62,7 @@ export class PopoverService {
                 templateContext
             },
             event,
+            cssClass: event ? '' : 'center',
             ...opts
         });
         popover.present();

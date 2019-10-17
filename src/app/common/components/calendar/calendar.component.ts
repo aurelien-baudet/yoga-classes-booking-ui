@@ -1,4 +1,4 @@
-import { DateRange, isSameDay } from './../../../booking/domain/general';
+import { DateRange, isSameDay, Recurrence } from './../../../booking/domain/general';
 import { ScheduledClass, Lesson, sameClassPredicate } from 'src/app/booking/domain/reservation';
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, TemplateRef } from '@angular/core';
 import { Instant } from 'src/app/booking/domain/general';
@@ -14,6 +14,7 @@ interface DayConfig {
   subTitle?: string;
   cssClass?: string;
 }
+
 
 @Component({
   selector: 'app-calendar',
@@ -31,13 +32,24 @@ export class CalendarComponent {
   }
   @Input()
   pending: ScheduledClass[];
+  @Input()
+  set firstDateToShow(day: Date) {
+    // FIXME: display month of last viewed date (provided externally)
+    this._firstDateToShow = this.dateUtil.startOfDay(day);
+    console.log('firstDateToShow', this._firstDateToShow);
+  }
 
   @Output()
-  schedule = new EventEmitter<{lesson: Lesson} & DateRange>();
+  monthChanged = new EventEmitter<Date>();
+  @Output()
+  schedule = new EventEmitter<{lesson: Lesson} & DateRange &  {recurrence: Recurrence}>();
 
   @ViewChild('selectHours')
   private selectHours: TemplateRef<any>;
+  @ViewChild('recurrence')
+  private recurrence: TemplateRef<any>;
   private _scheduledClasses: ScheduledClass[];
+  private _firstDateToShow: Date;
   protected daysConfig: DayConfig[] = [];
   protected selectedDates: Date[] = [];
   protected lastClick: Event;
@@ -60,13 +72,30 @@ export class CalendarComponent {
     }, 0);
   }
 
-  setHours(date: number, hours: {start: string, end: string}) {
+  async setHours(date: number, hours: {start: string, end: string}) {
     // TODO: handle edition of hours and trigger unschedule/update event ?
-    this.popover.success();
+    await this.popover.success();
+    this.popover = await this.popoverService.show(this.recurrence, {
+      date,
+      hours,
+      recurrence: {
+        frequency: 'week',
+        until: this.dateUtil.formatDate(date + 4*7*24*60*60*1000)
+      }
+    });
+    this.popover.onDidDismiss().catch(() => this.unselect(date));
+  }
+
+  async chooseRecurrence(date: number, hours: {start: string, end: string}, recurrence: {frequency: string, until: string}) {
+    await this.popover.success();
     this.schedule.emit({
       lesson: this.lesson,
       start: this.setHour(date, hours.start).valueOf(),
-      end: this.setHour(date, hours.end).valueOf()
+      end: this.setHour(date, hours.end).valueOf(),
+      recurrence: {
+        frequency: recurrence.frequency,
+        until: this.dateUtil.parseDate(recurrence.until).valueOf()
+      }
     });
   }
 

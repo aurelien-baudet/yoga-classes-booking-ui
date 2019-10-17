@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { CalendarModule  } from 'ion4-calendar';
 import { TimeMaskDirective } from './time-mask.directive';
 import { PlaceDetailsComponent } from './place-details/place-details.component';
+import { DateMaskDirective } from './date-mask.directive';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { PlaceDetailsComponent } from './place-details/place-details.component';
     DateRangePipe,
     CalendarComponent,
     TimeMaskDirective,
+    DateMaskDirective,
     PlaceDetailsComponent,
     LoginAvailableValidator
   ],

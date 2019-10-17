@@ -2,8 +2,9 @@
   (click)="lastClick = $event"
   type="js-date"
   [(ngModel)]="selectedDates"
-  [options]="{pickMode: 'multi', daysConfig: daysConfig, weekStart: 1, weekdays: ['D', 'L', 'M', 'M', 'J', 'V', 'S']}"
-  (onSelect)="chooseHours($event.time)"></ion-calendar>
+  [options]="{pickMode: 'multi', defaultScrollTo: _firstDateToShow, daysConfig: daysConfig, weekStart: 1, weekdays: ['D', 'L', 'M', 'M', 'J', 'V', 'S']}"
+  (onSelect)="chooseHours($event.time)"
+  (monthChange)="monthChanged.emit($event.dateObj)"></ion-calendar>
 
 <ng-template #selectHours let-date="date" let-hours="hours">
   <form class="select-hours" #hoursForm="ngForm" (ngSubmit)="setHours(date, hours)">
@@ -35,6 +36,52 @@
     </div>
     <ion-button type="submit" [disabled]="!hoursForm.valid" size="small">
       <ion-icon slot="icon-only" name="custom-submit"></ion-icon>
+    </ion-button>
+  </form>
+</ng-template>
+
+
+<ng-template #recurrence let-date="date" let-hours="hours" let-recurrenceModel="recurrence">
+  <form class="recurrence" #recurrenceForm="ngForm" (ngSubmit)="chooseRecurrence(date, hours, recurrenceModel)">
+    <ion-list>
+      <ion-radio-group
+        name="frequency"
+        #frequency="ngModel"
+        [(ngModel)]="recurrenceModel.frequency">
+        <ion-list-header>
+          <ion-label>Fréquence</ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Evénement unique</ion-label>
+          <ion-radio value="none"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Toutes les jours</ion-label>
+          <ion-radio value="day"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Toutes les semaines</ion-label>
+          <ion-radio value="week"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Tous les mois</ion-label>
+          <ion-radio value="month"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+    <ion-item *ngIf="recurrenceForm.value.frequency !== 'none'">
+      <ion-label>Jusqu'au</ion-label>
+      <ion-input
+        type="text" 
+        name="until" 
+        #until="ngModel"
+        [(ngModel)]="recurrenceModel.until"
+        appDateMask
+        required></ion-input>
+    </ion-item>
+    <ion-button type="submit" [disabled]="!recurrenceForm.valid">
+      <ion-icon slot="start" name="custom-submit"></ion-icon>
+      Planifier
     </ion-button>
   </form>
 </ng-template>
