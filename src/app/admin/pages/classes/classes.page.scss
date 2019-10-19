@@ -29,3 +29,12 @@ h2 + ion-button {
     align-self: center;
   }
 }
+
+
+/deep/ app-popover {
+  app-approved-students,
+  app-waiting-students {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

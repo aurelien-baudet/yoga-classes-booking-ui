@@ -35,6 +35,10 @@ export class ClassesPage {
   cancelMessage: TemplateRef<any>;
   @ViewChild('placeDetails')
   placeDetails: TemplateRef<any>;
+  @ViewChild('approvedStudents')
+  approvedStudents: TemplateRef<any>;
+  @ViewChild('waitingStudents')
+  waitingStudents: TemplateRef<any>;
   lastClick: Event; // used for popover
 
   private popover: PopoverWrapper;
@@ -94,6 +98,20 @@ export class ClassesPage {
     // wrap in setTimeout in order to be able to retrieve the click event
     setTimeout(async () => {
       await this.popoverService.show(this.placeDetails, {place}/*, this.lastClick*/);
+    }, 0);
+  }
+
+  async showApprovedStudents(scheduledClass: ScheduledClass) {
+    // wrap in setTimeout in order to be able to retrieve the click event
+    setTimeout(async () => {
+      await this.popoverService.show(this.approvedStudents, {scheduledClass}, this.lastClick);
+    }, 0);
+  }
+
+  async showWaitingStudents(scheduledClass: ScheduledClass) {
+    // wrap in setTimeout in order to be able to retrieve the click event
+    setTimeout(async () => {
+      await this.popoverService.show(this.waitingStudents, {scheduledClass}, this.lastClick);
     }, 0);
   }
 

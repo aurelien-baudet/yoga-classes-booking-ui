@@ -33,7 +33,9 @@
     (cancel)="askCancelMessage($event)"
     (viewDetails)="detailsProvider.viewDetails($event)"
     (hideDetails)="detailsProvider.hideDetails($event)"
-    (showPlaceDetails)="showPlaceDetails($event)"></app-classes>
+    (showPlaceDetails)="showPlaceDetails($event)"
+    (showApprovedStudents)="showApprovedStudents($event)"
+    (showWaitingStudents)="showWaitingStudents($event)"></app-classes>
 </ion-content>
 
 <ng-template #cancelMessage let-cancelingClass="cancelingClass" let-form="form">
@@ -57,5 +59,22 @@
 
 
 <ng-template #placeDetails let-place="place">
-    <app-place-details [place]="place"></app-place-details>
-  </ng-template>
+  <app-place-details [place]="place"></app-place-details>
+</ng-template>
+
+
+<ng-template #approvedStudents
+  let-approvedBookings="scheduledClass.bookings.approved"
+  let-maxStudents="scheduledClass.lesson.maxStudents">
+  <app-approved-students 
+    [approvedBookings]="approvedBookings" 
+    [maxStudents]="maxStudents"
+    (unbook)="unbookForFriend($event)"></app-approved-students>
+</ng-template>
+
+<ng-template #waitingStudents
+  let-waitingBookings="scheduledClass.bookings.waiting">
+  <app-waiting-students
+    [waitingBookings]="waitingBookings"
+    (unbook)="unbookForFriend($event)"></app-waiting-students>
+</ng-template>
