@@ -20,6 +20,13 @@ export type NewLesson = Pick<Lesson, 'title' | 'description' | 'maxStudents' | '
     teacher: TeacherId
 };
 
+export type UpdatedLesson = Pick<Lesson, 'id' | 'title' | 'description' | 'maxStudents' | 'photos'> & {
+    place: PlaceId,
+    teacher: TeacherId
+};
+
+
+
 export type LessonId = Pick<Lesson, 'id'>;
 
 export interface Image {

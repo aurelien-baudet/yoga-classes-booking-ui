@@ -1,3 +1,4 @@
+import { PlaceId, UpdatedLesson } from './../../domain/reservation';
 import { DateUtil } from './../../../common/util/date.util';
 import { Instant } from '../../domain/general';
 import { Injectable } from '@angular/core';
@@ -82,8 +83,20 @@ export class RestClassService implements ClassService {
       .toPromise();
   }
 
-  async changePlace(scheduledClass: ClassId, newPlace: Place): Promise<ScheduledClass> {
+  async changePlace(scheduledClass: ClassId, newPlace: PlaceId): Promise<ScheduledClass> {
     return await this.http.patch<ScheduledClass>(`${this.serverConfig.url}/classes/${scheduledClass.id}/places/${newPlace.id}`, {})
+      .pipe(first())
+      .toPromise();
+  }
+
+  async updateLessonInfoForSpecificClass(scheduledClass: ClassId, updatedInfo: UpdatedLesson): Promise<ScheduledClass> {
+    return await this.http.patch<ScheduledClass>(`${this.serverConfig.url}/classes/${scheduledClass.id}/lesson/info`, updatedInfo)
+      .pipe(first())
+      .toPromise();
+  }
+
+  async updateLessonInfoForAllClasses(updatedInfo: UpdatedLesson): Promise<Lesson> {
+    return await this.http.patch<Lesson>(`${this.serverConfig.url}/lessons/${updatedInfo.id}/info`, updatedInfo)
       .pipe(first())
       .toPromise();
   }

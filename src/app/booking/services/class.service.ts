@@ -1,3 +1,5 @@
+import { UpdatedLesson } from 'src/app/booking/domain/reservation';
+import { PlaceId } from './../domain/reservation';
 import { ScheduledClass, Lesson, LessonId, ClassId, Place, NewLesson } from '../domain/reservation';
 import { Instant } from '../domain/general';
 
@@ -11,5 +13,7 @@ export abstract class ClassService {
   async abstract cancel(scheduledClass: ClassId, message: string): Promise<ScheduledClass>;
   async abstract getClassInfo(scheduledClass: ClassId): Promise<ScheduledClass>;
   async abstract list(): Promise<ScheduledClass[]>;
-  async abstract changePlace(scheduledClass: ClassId, newPlace: Place): Promise<ScheduledClass>;
+  async abstract changePlace(scheduledClass: ClassId, newPlace: PlaceId): Promise<ScheduledClass>;
+  async abstract updateLessonInfoForSpecificClass(scheduledClass: ClassId, updatedInfo: UpdatedLesson): Promise<ScheduledClass>;
+  async abstract updateLessonInfoForAllClasses(updatedInfo: UpdatedLesson): Promise<Lesson>;
 }

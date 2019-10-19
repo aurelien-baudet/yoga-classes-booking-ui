@@ -1,0 +1,11 @@
+/deep/ app-popover {
+  text-align: center;
+  padding: 10px;
+}
+
+ion-button.button-small.specific-class {
+  --padding-top: 5px;
+  --padding-bottom: 5px;
+  white-space: normal;
+  height: auto;
+}

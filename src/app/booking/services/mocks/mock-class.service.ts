@@ -1,3 +1,4 @@
+import { PlaceId, UpdatedLesson } from './../../domain/reservation';
 import { Instant } from '../../domain/general';
 import { Injectable } from '@angular/core';
 import { ScheduledClass, Lesson, LessonId, ClassId, ClassState, Booking, Place, NewLesson, isSameLesson, sameLessonPredicate } from '../../domain/reservation';
@@ -49,7 +50,15 @@ export class MockClassService implements ClassService {
     return classes['default'] as any;
   }
 
-  async changePlace(scheduledClass: ClassId, newPlace: Place): Promise<ScheduledClass> {
+  async changePlace(scheduledClass: ClassId, newPlace: PlaceId): Promise<ScheduledClass> {
     throw new Error('not implemented');
+  }
+
+  async updateLessonInfoForSpecificClass(scheduledClass: ClassId, updatedInfo: UpdatedLesson): Promise<ScheduledClass> {
+    throw new Error("Method not implemented.");
+  }
+
+  async updateLessonInfoForAllClasses(updatedInfo: UpdatedLesson): Promise<Lesson> {
+    throw new Error("Method not implemented.");
   }
 }

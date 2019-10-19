@@ -62,5 +62,5 @@
     type="hidden" 
     name="teacher.id" 
     [(ngModel)]="lessonModel.teacher.id" />
-  <ion-button type="submit" [disabled]="!form.valid">Ajouter</ion-button>
+  <ion-button type="submit" [disabled]="!form.valid">{{ buttonText }}</ion-button>
 </form>

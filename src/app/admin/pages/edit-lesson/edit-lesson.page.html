@@ -6,8 +6,18 @@
 </ion-header>
 
 <ion-content>
-  <app-lesson-form
+  <app-lesson-form *ngIf="scheduledClass"
+    buttonText="Modifier"
+    [lesson]="scheduledClass.lesson"
     [places]="places"
-    (updateInfo)="updateLessonInfo($event)"
-    (changePlace)="changePlace($event)"></app-lesson-form>
+    (update)="selectOccurrences(scheduledClass, $event)"></app-lesson-form>
 </ion-content>
+
+
+<ng-template #chooseOccurrences 
+  let-scheduledClass="scheduledClass"
+  let-updatedLesson="updatedLesson">
+  <ion-title>Mettre à jour</ion-title>
+  <ion-button class="specific-class" (click)="popover.success(); updateSpecificClass(scheduledClass, updatedLesson)" size="small">Seulement le cours du {{ scheduledClass | dateRange }}</ion-button>
+  <ion-button class="all-classes" (click)="popover.success(); updateLesson(updatedLesson)" size="small">Toutes les occurrences du cours</ion-button>
+</ng-template>

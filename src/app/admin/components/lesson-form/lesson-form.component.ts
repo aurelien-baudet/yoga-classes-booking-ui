@@ -1,7 +1,7 @@
-import { Lesson } from 'src/app/booking/domain/reservation';
-import { NewLesson, Place, PlaceId } from './../../../booking/domain/reservation';
+import { Lesson, UpdatedLesson } from 'src/app/booking/domain/reservation';
+import { NewLesson, Place, PlaceId, isSamePlace } from './../../../booking/domain/reservation';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { TeacherInfo, TeacherId } from 'src/app/account/domain/teacher';
+import { TeacherInfo, TeacherId, isSameTeacher } from 'src/app/account/domain/teacher';
 
 type LessonModel = Pick<Lesson, 'title' | 'description' | 'maxStudents' | 'photos'> & {
   place: PlaceId,
@@ -31,7 +31,7 @@ export class LessonFormComponent {
   set lesson(lesson: Lesson) {
     if (lesson) {
       this.lessonId = lesson.id;
-      this.lessonModel = lesson;
+      this.lessonModel = {...lesson};
     } else {
       this.lessonId = '';
       this.lessonModel = defaultModel();
@@ -43,13 +43,13 @@ export class LessonFormComponent {
   set teacher(teacher: TeacherInfo) {
     this.lessonModel.teacher.id = teacher ? teacher.id : '';
   }
+  @Input()
+  buttonText: string;
 
   @Output()
   add = new EventEmitter<NewLesson>();
   @Output()
-  updateInfo = new EventEmitter<Lesson>();
-  @Output()
-  changePlace = new EventEmitter<Lesson>();
+  update = new EventEmitter<UpdatedLesson>();
 
   private lessonId: string;
   protected lessonModel: LessonModel = defaultModel();
@@ -57,25 +57,11 @@ export class LessonFormComponent {
   save(model: LessonModel) {
     if (!this.lessonId) {
       this.add.emit(model);
+    } else {
+      this.update.emit({
+        id: this.lessonId,
+        ...model
+      });
     }
-    if (this.hasInfoChanged(model)) {
-      // this.updateInfo.emit({
-      //   id: this.lessonId,
-      //   ...model
-      // });
-    }
-    if (this.hasPlaceChanged(model)) {
-      // this.changePlace.emit({
-
-      // })
-    }
-  }
-
-  private hasInfoChanged(model: LessonModel): boolean {
-    return false;
-  }
-
-  private hasPlaceChanged(model: LessonModel): boolean {
-    return false;
   }
 }

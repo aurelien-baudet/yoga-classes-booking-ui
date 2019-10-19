@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'admin/lesson/:lessonId/schedule',
       canActivate: [TeacherAuthRequiredGuard],
       loadChildren: './admin/pages/schedule-lesson/schedule-lesson.module#ScheduleLessonPageModule' },
-  { path: 'admin/lesson/:lessonId/edit',
+  { path: 'admin/lesson/:classId/edit',
       canActivate: [TeacherAuthRequiredGuard],
       loadChildren: './admin/pages/edit-lesson/edit-lesson.module#EditLessonPageModule' },
   { path: 'admin/event/add',

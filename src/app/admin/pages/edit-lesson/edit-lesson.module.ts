@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { EditLessonPage } from './edit-lesson.page';
+import { CommonComponentsModule } from 'src/app/common/components/common-components.module';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    AdminComponentsModule
+    AdminComponentsModule,
+    CommonComponentsModule
   ],
   declarations: [EditLessonPage]
 })
