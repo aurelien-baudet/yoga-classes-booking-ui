@@ -45,7 +45,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { PushNotificationHandlerService } from './common/services/push-notification-handler.service';
 import { NativeLocalPushNotificationHandlerService } from './common/services/local/native-local-push-notification-handler.service';
 import { ApplicationEventService } from './common/services/application-event.service';
-
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -71,6 +71,7 @@ import { ApplicationEventService } from './common/services/application-event.ser
     DateUtil,
     FCM,
     LocalNotifications,
+    Keyboard,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

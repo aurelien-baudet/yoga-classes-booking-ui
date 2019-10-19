@@ -1,12 +1,18 @@
 @import "../../../../theme/button-utils";
 
+:host-context(.keyboard-opened) {
+  .register {
+    display: none;
+  }
+}
+
 ion-content > p {
   text-align: center;
   margin-bottom: 30px;
 }
 
 .register {
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   bottom: 20px;

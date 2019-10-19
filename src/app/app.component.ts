@@ -12,6 +12,7 @@ import { AngularFireMessaging } from '@angular/fire/messaging';
 import { mergeMapTo } from 'rxjs/operators';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { PushNotificationService } from './account/services/push-notification.service';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,8 @@ export class AppComponent {
               private menuController: MenuController,
               private router: Router,
               private pushNotificationService: PushNotificationService,
-              private applicationEventService: ApplicationEventService) {
+              private applicationEventService: ApplicationEventService,
+              public keyboard: Keyboard) {
     this.initializeApp();
     this.accountService.currentUser$.subscribe(this.updateCurrentUser.bind(this));
   }
