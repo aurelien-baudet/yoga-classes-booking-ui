@@ -35,6 +35,8 @@ export class ClassesComponent {
   @Output()
   edit = new EventEmitter<ScheduledClass>();
   @Output()
+  schedule = new EventEmitter<ScheduledClass>();
+  @Output()
   cancel = new EventEmitter<ScheduledClass>();
   @Output()
   showPlaceDetails = new EventEmitter<Place>();

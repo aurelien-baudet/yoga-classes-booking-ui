@@ -7,6 +7,10 @@ export class ManageableProvider implements ManageClassStateProvider {
         return !isCanceled(scheduledClass);
     }
 
+    isSchedulable(scheduledClass: ScheduledClass): boolean {
+        return !isCanceled(scheduledClass);
+    }
+
     isCancelable(scheduledClass: ScheduledClass): boolean {
         return !isCanceled(scheduledClass);
     }

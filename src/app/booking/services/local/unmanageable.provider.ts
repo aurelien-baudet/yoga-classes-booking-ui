@@ -7,6 +7,10 @@ export class UnmanageableProvider implements ManageClassStateProvider {
         return false;
     }
 
+    isSchedulable(scheduledClass: ScheduledClass): boolean {
+        return false;
+    }
+
     isCancelable(scheduledClass: ScheduledClass): boolean {
         return false;
     }

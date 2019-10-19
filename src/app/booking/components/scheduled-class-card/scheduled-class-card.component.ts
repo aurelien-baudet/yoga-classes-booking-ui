@@ -28,6 +28,8 @@ export class ScheduledClassCardComponent {
   @Input()
   editable = false;
   @Input()
+  schedulable = false;
+  @Input()
   cancelable = false;
   @Input()
   canceled = false;
@@ -46,6 +48,8 @@ export class ScheduledClassCardComponent {
   hideDetails = new EventEmitter<ScheduledClass>();
   @Output()
   edit = new EventEmitter<ScheduledClass>();
+  @Output()
+  schedule = new EventEmitter<ScheduledClass>();
   @Output()
   cancel = new EventEmitter<ScheduledClass>();
   @Output()

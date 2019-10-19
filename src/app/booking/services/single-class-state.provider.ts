@@ -9,6 +9,7 @@ export abstract class BookingStateProvider {
 
 export abstract class ManageClassStateProvider {
     abstract isEditable(scheduledClass: ScheduledClass): boolean;
+    abstract isSchedulable(scheduledClass: ScheduledClass): boolean;
     abstract isCancelable(scheduledClass: ScheduledClass): boolean;
     abstract isCanceled(scheduledClass: ScheduledClass): boolean;
     abstract getCanceledInfo(scheduledClass: ScheduledClass): CancelInfo;

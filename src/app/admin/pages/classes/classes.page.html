@@ -30,6 +30,7 @@
     [pendingStateProvider]="pendingProvider"
     [manageClassStateProvider]="manageClassStateProvider"
     (edit)="edit($event)"
+    (schedule)="schedule($event.lesson)"
     (cancel)="askCancelMessage($event)"
     (viewDetails)="detailsProvider.viewDetails($event)"
     (hideDetails)="detailsProvider.hideDetails($event)"

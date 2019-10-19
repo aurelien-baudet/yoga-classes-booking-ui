@@ -6,6 +6,7 @@
           [class.pending]="pending"
           [class.canceled]="canceled"
           [class.editable]="editable"
+          [class.schedulable]="schedulable"
           [class.cancelable]="cancelable"
           [class.place-changed]="scheduledClass.lesson.placeChanged">
   <ion-card-header>
@@ -24,6 +25,9 @@
     </ion-button>
     <ion-button (click)="edit.emit(scheduledClass)" *ngIf="editable" size="small">
         <ion-icon slot="icon-only" name="custom-edit-class"></ion-icon>
+    </ion-button>
+    <ion-button (click)="schedule.emit(scheduledClass)" *ngIf="schedulable" size="small">
+        <ion-icon slot="icon-only" name="custom-schedule-lesson"></ion-icon>
     </ion-button>
   </ion-card-header>
   <ion-card-content>
