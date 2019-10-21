@@ -161,6 +161,11 @@ export class BookLessonsPage {
     alert('Bientôt disponible');
   }
 
+  async manualRefresh(event: any) {
+    await this.refreshClassesAndBookings();
+    event.target.complete();
+  }
+
   private updateCurrentUser(user: User | UnregisteredUser | null) {
     this.currentUser = user;
     this.refreshBookings();
@@ -192,7 +197,7 @@ export class BookLessonsPage {
     this.bookedClassesForCurrentUser.push(...bookings);
   }
 
-  private async refreshClassesAndBookings() {
+  async refreshClassesAndBookings() {
     this.loading = true;
     await this.refreshClasses();
     await this.refreshBookings();

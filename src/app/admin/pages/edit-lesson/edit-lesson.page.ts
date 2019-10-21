@@ -33,7 +33,7 @@ export class EditLessonPage {
   async ionViewDidEnter() {
     const classId = this.route.getPathParam('classId');
     this.scheduledClass = await this.classService.getClassInfo({id: classId});
-    this.originalLesson = await this.classService.getLessonInfo(this.scheduledClass.lesson);
+    this.originalLesson = {...this.scheduledClass.lesson};
     this.places = await this.placeService.list();
   }
 

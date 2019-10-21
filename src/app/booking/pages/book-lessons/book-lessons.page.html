@@ -5,6 +5,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [class.loading]="loading">
+  <ion-refresher slot="fixed" (ionRefresh)="manualRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <p *ngIf="classes && classes.length === 0">Pas de cours programmé prochainement</p>
   <app-classes 
     *ngIf="classes"

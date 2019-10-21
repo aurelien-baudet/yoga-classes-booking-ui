@@ -1,4 +1,4 @@
-<form #form="ngForm" (ngSubmit)="save(lessonModel)">
+<form #form="ngForm" (ngSubmit)="save(form.value)">
   <ion-item class="title">
     <ion-label position="floating">Titre</ion-label>
     <ion-input 
@@ -43,9 +43,9 @@
     <ion-label position="floating">Lieu</ion-label>
     <ion-select
       type="text" 
-      name="place.id" 
+      name="placeId" 
       #place="ngModel"
-      [(ngModel)]="lessonModel.place.id" 
+      [(ngModel)]="lessonModel.placeId" 
       [interfaceOptions]="{header: 'Choix du lieu'}"
       interface="popover"
       required>
@@ -60,7 +60,7 @@
   </div>
   <input 
     type="hidden" 
-    name="teacher.id" 
-    [(ngModel)]="lessonModel.teacher.id" />
+    name="teacherId" 
+    [(ngModel)]="lessonModel.teacherId" />
   <ion-button type="submit" [disabled]="!form.valid">{{ buttonText }}</ion-button>
 </form>

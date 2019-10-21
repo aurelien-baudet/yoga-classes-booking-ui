@@ -4,8 +4,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TeacherInfo, TeacherId, isSameTeacher } from 'src/app/account/domain/teacher';
 
 type LessonModel = Pick<Lesson, 'title' | 'description' | 'maxStudents' | 'photos'> & {
-  place: PlaceId,
-  teacher: TeacherId
+  placeId: string,
+  teacherId: string
 };
 
 const defaultModel = (): LessonModel => ({
@@ -13,12 +13,8 @@ const defaultModel = (): LessonModel => ({
   description: '',
   maxStudents: null,
   photos: [],
-  place: {
-    id: ''
-  },
-  teacher: {
-    id: ''
-  }
+  placeId: '',
+  teacherId: ''
 });
 
 @Component({
@@ -31,7 +27,14 @@ export class LessonFormComponent {
   set lesson(lesson: Lesson) {
     if (lesson) {
       this.lessonId = lesson.id;
-      this.lessonModel = {...lesson};
+      this.lessonModel = {
+        title: lesson.title,
+        description: lesson.description,
+        maxStudents: lesson.maxStudents,
+        photos: lesson.photos,
+        placeId: lesson.place.id,
+        teacherId: lesson.teacher.id
+      };
     } else {
       this.lessonId = '';
       this.lessonModel = defaultModel();
@@ -41,7 +44,7 @@ export class LessonFormComponent {
   places: Place[];
   @Input()
   set teacher(teacher: TeacherInfo) {
-    this.lessonModel.teacher.id = teacher ? teacher.id : '';
+    this.lessonModel.teacherId = teacher ? teacher.id : '';
   }
   @Input()
   buttonText: string;
@@ -55,13 +58,26 @@ export class LessonFormComponent {
   protected lessonModel: LessonModel = defaultModel();
 
   save(model: LessonModel) {
+    const lesson = {
+      title: model.title,
+      description: model.description,
+      maxStudents: model.maxStudents,
+      photos: model.photos,
+      place: {
+        id: model.placeId
+      },
+      teacher: {
+        id: model.teacherId
+      }
+    };
     if (!this.lessonId) {
-      this.add.emit(model);
+      this.add.emit(lesson);
     } else {
       this.update.emit({
         id: this.lessonId,
-        ...model
+        ...lesson
       });
     }
   }
+
 }
