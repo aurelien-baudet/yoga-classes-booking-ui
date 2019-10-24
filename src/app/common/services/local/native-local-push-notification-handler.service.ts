@@ -13,6 +13,7 @@ import { BookingService } from 'src/app/booking/services/booking.service';
 import { User } from 'firebase';
 import { UnregisteredUser } from 'src/app/account/domain/unregistered';
 import { StudentId } from 'src/app/account/domain/student';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Injectable()
 export class NativeLocalPushNotificationHandlerService implements PushNotificationHandlerService {
@@ -22,10 +23,12 @@ export class NativeLocalPushNotificationHandlerService implements PushNotificati
               private bookingService: BookingService,
               private localNotifications: LocalNotifications,
               private dateUtil: DateUtil,
-              private applicationEventService: ApplicationEventService) {
+              private applicationEventService: ApplicationEventService,
+              private inAppBrowser: InAppBrowser) {
     localNotifications.on('confirm-presence').subscribe((data) => this.confirmPresence(data));
     localNotifications.on('unbook').subscribe((data) => this.unbook(data));
     localNotifications.on('remove-from-calendar').subscribe((data) => this.removeFromCalendar(data));
+    localNotifications.on('show-directions').subscribe((data) => this.showDirections(data));
     localNotifications.on('click').subscribe(() => applicationEventService.refreshBookings.emit());
   }
 
@@ -41,8 +44,8 @@ export class NativeLocalPushNotificationHandlerService implements PushNotificati
   private async build(data: NotificationData): Promise<ILocalNotification | null> {
     switch (data.type) {
       case 'PLACE_CHANGED':
-        return this.placeChanged(await this.classService.getClassInfo({id: data.classId}),
-                                 await this.placeService.getPlaceInfo({id: data.newPlaceId}));
+        return await this.placeChanged(await this.classService.getClassInfo({id: data.classId}),
+                                       await this.placeService.getPlaceInfo({id: data.newPlaceId}));
       case 'CANCELED':
         return this.classCanceled(await this.classService.getClassInfo({id: data.canceledClassId}), data.cancelMessage);
       case 'FREE_PLACE_AUTOMATICALLY_BOOKED':
@@ -56,15 +59,33 @@ export class NativeLocalPushNotificationHandlerService implements PushNotificati
     }
   }
 
-  private placeChanged(scheduledClass: ScheduledClass, place: Place): ILocalNotification {
+  private async placeChanged(scheduledClass: ScheduledClass, place: Place): Promise<ILocalNotification> {
+    const mapUrl = place.maps.find((m) => m.type === 'STATIC_MAP').url;
+    // const localUrl = await this.fileCacheProvider.cachedFile(mapUrl);
+    console.log('mapUrl', mapUrl);
+    // console.log('localUrl', localUrl);
     return {
       title: 'Changement de lieu',
       text: `Le cours du ${this.dateUtil.formatRange(scheduledClass)}\naura lieu à ${place.name}.\n\n${place.address}`,
-      attachments: [place.maps.find((m) => m.type === 'STATIC_MAP').url],
+      // attachments: [mapUrl],
+      actions: [{
+        id: 'show-directions',
+        title: 'Itinéraire'
+      }],
+      data: {
+        scheduledClass,
+        place
+      },
       launch: true,
       lockscreen: true,
       foreground: true
     };
+  }
+
+  private async showDirections(notification) {
+    console.log('showDirections', notification);
+    const place = notification.data.place;
+    window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(place.address)}`, '_system');
   }
 
   private classCanceled(canceledClass: ScheduledClass, message: string): ILocalNotification {
