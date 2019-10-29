@@ -8,6 +8,6 @@ then
     exit
 fi
 
-mkdir -p dist/output
-cp platforms/android/build/outputs/apk/android-release-unsigned.apk dist/output/yoga-booking-release-unsigned.apk
+mkdir -p dist
+cp platforms/android/build/outputs/apk/android-release-unsigned.apk dist/yoga-booking-release-unsigned.apk
 
