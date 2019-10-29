@@ -48,11 +48,11 @@ export class CalendarComponent {
   private selectHours: TemplateRef<any>;
   @ViewChild('recurrence')
   private recurrence: TemplateRef<any>;
-  private _scheduledClasses: ScheduledClass[];
-  private _firstDateToShow: Date;
-  protected daysConfig: DayConfig[] = [];
-  protected selectedDates: Date[] = [];
-  protected lastClick: Event;
+  public _scheduledClasses: ScheduledClass[];
+  public _firstDateToShow: Date;
+  public daysConfig: DayConfig[] = [];
+  public selectedDates: Date[] = [];
+  public lastClick: Event;
   private popover: PopoverWrapper;
 
   constructor(private popoverService: PopoverService,

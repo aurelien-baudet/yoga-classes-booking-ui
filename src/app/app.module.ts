@@ -7,13 +7,13 @@ import { BasicAuthInterceptor } from './account/services/remote/basic-auth.inter
 import { AuthenticationInSessionStorage } from './account/services/local/authentication-in-session-storage.storage';
 import { AccountService } from './account/services/account.service';
 import { ClassService } from './booking/services/class.service';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy, IonIcon } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -47,6 +47,15 @@ import { NativeLocalPushNotificationHandlerService } from './common/services/loc
 import { ApplicationEventService } from './common/services/application-event.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr);
+
+// export function createTranslateLoader(http: HttpClient) {
+//   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+// }
 
 @NgModule({
   declarations: [AppComponent],
@@ -58,6 +67,13 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     IonicStorageModule.forRoot({
       name: 'yoga-saint-pierre'
     }),
+    // TranslateModule.forRoot({
+    //   loader: {
+    //     provide: TranslateLoader,
+    //     useFactory: createTranslateLoader,
+    //     deps: [HttpClient]
+    //   }
+    // }),
     AppRoutingModule,
     HttpClientModule,
     CommonComponentsModule,
@@ -66,6 +82,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     AngularFireMessagingModule
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
     StatusBar,
     SplashScreen,
     CurrentRoute,

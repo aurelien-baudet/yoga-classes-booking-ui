@@ -16,7 +16,7 @@ export class PlaceDetailsComponent {
   @Output()
   showItinerary = new EventEmitter<Place>();
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(public sanitizer: DomSanitizer) { }
 
   getInteractiveMap(maps: Image[]) {
     const map = maps.find((m) => m.type === 'INTERACTIVE_MAP');

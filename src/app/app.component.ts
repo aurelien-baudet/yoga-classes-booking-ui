@@ -13,6 +13,7 @@ import { mergeMapTo } from 'rxjs/operators';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { PushNotificationService } from './account/services/push-notification.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -86,5 +87,12 @@ export class AppComponent {
 
   close() {
     this.menuController.close();
+  }
+
+  isKeyboardVisible() {
+    if (this.platform.is('desktop')) {
+      return false;
+    }
+    return this.keyboard.isVisible;
   }
 }

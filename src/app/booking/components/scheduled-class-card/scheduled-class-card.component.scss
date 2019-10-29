@@ -118,31 +118,32 @@ ion-card-content {
 ion-card-content .details {
     padding-top: 0;
     padding-bottom: 0;
-    transition: padding 0.2s linear 0.8s;
+    // transition: padding 0.2s linear 0.8s;
 }
 app-class-details {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 1s ease-out;
+    // transition: max-height 1s ease-out;
 }
 
 .show-details {
     ion-card-content .details {
         padding-top: 5px;
         padding-bottom: 5px;
-        transition: padding 0.2s linear;
+        // transition: padding 0.2s linear;
     }
     app-class-details {
-        max-height: 600px;
+        // max-height: 600px;
+        max-height: 100%;
     }
 }
 
-app-class-details {
-    /deep/ ion-list {
-        max-height: 280px;
-        overflow-y: auto;
-    }
-}
+// app-class-details {
+//     /deep/ ion-list {
+//         max-height: 280px;
+//         overflow-y: auto;
+//     }
+// }
 
 /* states */
 .place-changed {

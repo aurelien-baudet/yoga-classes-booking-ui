@@ -55,7 +55,7 @@ export class LessonFormComponent {
   update = new EventEmitter<UpdatedLesson>();
 
   private lessonId: string;
-  protected lessonModel: LessonModel = defaultModel();
+  public lessonModel: LessonModel = defaultModel();
 
   save(model: LessonModel) {
     const lesson = {
