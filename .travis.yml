@@ -61,8 +61,8 @@ matrix:
       - $HOME/.gradle/wrapper/
       - $HOME/.android/build-cache
     before_script:
-    - openssl aes-256-cbc -K $encrypted_f3734ef198a2_key -iv $encrypted_f3734ef198a2_iv -in google-services.json.enc -out google-services.json -d
-    - openssl aes-256-cbc -K $encrypted_f3734ef198a2_key -iv $encrypted_f3734ef198a2_iv -in debug.keystore.enc -out debug.keystore -d
+    - openssl aes-256-cbc -K $encrypted_f3734ef198a2_key -iv $encrypted_f3734ef198a2_iv -in secrets.tar.enc -out secrets.tar -d
+    - tar xf secrets.tar
     script:
     - yarn install
     - ionic cordova build android --prod --release
