@@ -2,7 +2,7 @@ export const environment = {
   production: true,
   mock: false,
   server: {
-    url: 'http://yoga.onenightwerewolf.ovh:11080'
+    url: 'https://yoga.abaudet.ovh/backend'
   },
   firebase: {
     apiKey: "AIzaSyCFFv9w4nWqxzXGEdtInOkivGu0K_w9c5w",
