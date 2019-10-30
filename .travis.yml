@@ -66,7 +66,7 @@ matrix:
     script:
     - yarn install
     - ionic cordova build android --prod --release
-    - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore debug.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk debug
+    - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore debug.keystore -storepass $storepass -keypass $keypass platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk debug
     - zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk platforms/android/app/build/outputs/apk/release/app-release-signed.apk
     before_deploy:
     - rm -f dist/yoga-booking-release.apk
