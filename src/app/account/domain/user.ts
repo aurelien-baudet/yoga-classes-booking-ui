@@ -1,5 +1,4 @@
-import { StudentId } from './student';
-import { UnregisteredUser } from './unregistered';
+import { UnregisteredUser, isSameUnregisteredUser } from './unregistered';
 export enum Role {
     STUDENT = 'STUDENT',
     TEACHER = 'TEACHER'
@@ -26,6 +25,7 @@ export interface Credentials {
     login: string;
     password: string;
 }
+
 
 
 export const isRegisteredUser = (user: User | UserId | UnregisteredUser): boolean => {
@@ -80,4 +80,16 @@ export const isAuthenticated = (user: User | UserId | UnregisteredUser): boolean
 
 export const hasRole = (user: User, role: Role) => {
     return user.account.roles.some((r) => role === r);
+};
+
+
+export const isSameUser = (a: User | UserId | UnregisteredUser,
+                           b: User | UserId | UnregisteredUser) => {
+    if (isRegisteredUser(a) && isRegisteredUser(b)) {
+        return (a as UserId).id === (b as UserId).id;
+    }
+    if (isUnregisteredUser(a) && isUnregisteredUser(b)) {
+        return isSameUnregisteredUser(a as UnregisteredUser, b as UnregisteredUser);
+    }
+    return false;
 };

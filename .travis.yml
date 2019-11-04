@@ -43,8 +43,8 @@ matrix:
       components:
       - tools
       - platform-tools
-      - build-tools-$ANDROID_BUILD_TOOLS
-      - android-$ANDROID_API
+      - build-tools-$ANDROID_BUILD_TOOLS_VERSION
+      - android-$ANDROID_API_VERSION
       - extra-google-google_play_services
       - extra-google-m2repository
       - extra-android-m2repository
@@ -67,7 +67,7 @@ matrix:
     - yarn install
     - ionic cordova build android --prod --release
     - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore debug.keystore -storepass $storepass -keypass $keypass platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk debug
-    - $ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS/zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk platforms/android/app/build/outputs/apk/release/app-release-signed.apk
+    - $ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS_VERSION/zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk platforms/android/app/build/outputs/apk/release/app-release-signed.apk
     before_deploy:
     - rm -f dist/yoga-booking-release.apk
     - mkdir -p dist

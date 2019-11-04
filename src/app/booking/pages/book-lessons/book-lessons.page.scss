@@ -1,7 +1,7 @@
 @import "../../../../theme/icons-utils";
 
 .loading {
-  /*@include fas-icon($fa-var-spinner);
+  @include fas-icon($fa-var-spinner);
 
   &:before {
     display: inline-block;
@@ -18,7 +18,7 @@
 
   > * {
     visibility: hidden;
-  }*/
+  }
 }
 
 /deep/ ion-item {

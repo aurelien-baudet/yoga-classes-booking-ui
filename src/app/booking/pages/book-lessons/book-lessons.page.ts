@@ -1,3 +1,4 @@
+import { matchesErrorCode } from './../../domain/general';
 import { ComingSoonFriendProvider } from './../../services/local/coming-soon-friend.provider';
 import { AutoCompleteService } from 'ionic4-auto-complete';
 import { Place, BookingForFriend, UnbookingForFriend } from 'src/app/booking/domain/reservation';
@@ -45,6 +46,10 @@ export class BookLessonsPage {
   approvedStudents: TemplateRef<any>;
   @ViewChild('waitingStudents')
   waitingStudents: TemplateRef<any>;
+  @ViewChild('alreadyBookedNotification')
+  alreadyBookedNotification: TemplateRef<any>;
+  @ViewChild('notBookedNotification')
+  notBookedNotification: TemplateRef<any>;
 
   bookingStateProvider: BookingStateProvider;
   detailsProvider: DetailsStateProvider<ScheduledClass> & DetailsStateUpdateProvider<ScheduledClass>;
@@ -83,34 +88,58 @@ export class BookLessonsPage {
   }
 
   async book(bookedClass: ScheduledClass) {
-    if (isUnknown(this.currentUser)) {
-      console.log('unknown user so ask who he is before booking');
-      return this.authenticateForBooking(bookedClass);
+    try {
+      if (isUnknown(this.currentUser)) {
+        console.log('unknown user so ask who he is before booking');
+        return this.authenticateForBooking(bookedClass);
+      }
+      this.pendingProvider.markPending(bookedClass);
+      // TODO: handle case when user registers another user
+      const booked = await this.bookingService.book(this.currentUser, bookedClass);
+      this.pendingProvider.unmarkPending(bookedClass);
+      const template = booked.approved ? this.approvedNotification : this.waitingListNotification;
+      this.notificationService.success(template, booked);
+      this.router.navigate(['lessons'], {queryParams: {}});
+      await this.refreshClassesAndBookings();
+      this.scrollTo(bookedClass);
+    } catch (e) {
+      if (matchesErrorCode(e, 'ALREADY_BOOKED')) {
+        this.pendingProvider.unmarkPending(bookedClass);
+        this.notificationService.warn(this.alreadyBookedNotification, {bookedClass});
+        this.router.navigate(['lessons'], {queryParams: {}});
+        await this.refreshClassesAndBookings();
+        this.scrollTo(bookedClass);
+        return;
+      }
+      throw e;
     }
-    this.pendingProvider.markPending(bookedClass);
-    // TODO: handle case when user registers another user
-    const booked = await this.bookingService.book(this.currentUser, bookedClass);
-    this.pendingProvider.unmarkPending(bookedClass);
-    const template = booked.approved ? this.approvedNotification : this.waitingListNotification;
-    this.notificationService.success(template, booked);
-    this.router.navigate(['lessons'], {queryParams: {}});
-    await this.refreshClassesAndBookings();
-    this.scrollTo(bookedClass);
   }
 
   async unbook(bookedClass: ScheduledClass) {
-    if (isUnknown(this.currentUser)) {
-      console.log('unknown user so ask who he is before unbooking');
-      return this.authenticateForUnbooking(bookedClass);
+    try {
+      if (isUnknown(this.currentUser)) {
+        console.log('unknown user so ask who he is before unbooking');
+        return this.authenticateForUnbooking(bookedClass);
+      }
+      this.pendingProvider.markPending(bookedClass);
+      // TODO: handle case when user registers another user
+      await this.bookingService.unbook(this.currentUser, bookedClass);
+      this.pendingProvider.unmarkPending(bookedClass);
+      this.notificationService.success(this.unbookedNotification, {bookedClass});
+      this.router.navigate(['lessons'], {queryParams: {}});
+      await this.refreshClassesAndBookings();
+      this.scrollTo(bookedClass);
+    } catch (e) {
+      if (matchesErrorCode(e, 'NOT_BOOKED')) {
+        this.pendingProvider.unmarkPending(bookedClass);
+        this.notificationService.warn(this.notBookedNotification, {bookedClass});
+        this.router.navigate(['lessons'], {queryParams: {}});
+        await this.refreshClassesAndBookings();
+        this.scrollTo(bookedClass);
+        return;
+      }
+      throw e;
     }
-    this.pendingProvider.markPending(bookedClass);
-    // TODO: handle case when user registers another user
-    await this.bookingService.unbook(this.currentUser, bookedClass);
-    this.pendingProvider.unmarkPending(bookedClass);
-    this.notificationService.success(this.unbookedNotification, {bookedClass});
-    this.router.navigate(['lessons'], {queryParams: {}});
-    await this.refreshClassesAndBookings();
-    this.scrollTo(bookedClass);
   }
 
   async showPlaceDetails(place: Place) {

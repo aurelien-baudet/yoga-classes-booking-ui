@@ -1,5 +1,5 @@
-import { ScheduledClass, Booking } from './../../booking/domain/reservation';
-import { User, Account, Credentials, isRegisteredUser, isUnregisteredUser } from './user';
+import { Booking } from './../../booking/domain/reservation';
+import { User, Credentials, isRegisteredUser, isUnregisteredUser } from './user';
 import { UnregisteredUser, isSameUnregisteredUser } from './unregistered';
 
 export interface Student extends User {
@@ -37,7 +37,7 @@ export const isBookedForRegisteredStudent = (booking: Booking, student: StudentI
         return (booking.student as StudentInfo).id === student.id;
     }
     return false;
-}
+};
 export const isBookedForRegisteredStudentPredicate = (student: StudentId) =>
     (booking: Booking) => isBookedForRegisteredStudent(booking, student);
 

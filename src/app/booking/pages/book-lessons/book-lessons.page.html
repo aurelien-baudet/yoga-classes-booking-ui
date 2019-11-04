@@ -82,3 +82,22 @@
     <ion-button *ngIf="isMobileApp()" (click)="removeFromCalendar(bookedClass)" size="small">retirer du calendrier</ion-button>
   </div>
 </ng-template>
+
+  
+<ng-template #alreadyBookedNotification let-bookedClass="bookedClass">
+  <div class="header">
+    <span class="title">Déjà inscrit</span>
+  </div>
+  <div class="content">
+    <p>Tu es déjà inscrit au cours du <strong>{{ bookedClass | dateRange }}</strong></p>
+  </div>
+</ng-template>
+  
+<ng-template #notBookedNotification let-bookedClass="bookedClass">
+  <div class="header">
+    <span class="title">Pas encore inscrit</span>
+  </div>
+  <div class="content">
+    <p>Tu n'es pas inscrit au cours du <strong>{{ bookedClass | dateRange }}</strong></p>
+  </div>
+</ng-template>

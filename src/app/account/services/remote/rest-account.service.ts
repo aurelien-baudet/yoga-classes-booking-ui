@@ -1,3 +1,4 @@
+import { isSameUser } from './../../domain/user';
 import { ApplicationError, matchesErrorCode } from './../../../booking/domain/general';
 import { Teacher } from './../../domain/teacher';
 import { UnregisteredUser } from './../../domain/unregistered';
@@ -18,6 +19,7 @@ import { UnregisteredUserInfoStorage } from '../unregistered-user-info.storage';
   providedIn: 'root'
 })
 export class RestAccountService implements AccountService {
+  private currentUser: User | UnregisteredUser | null;
   readonly currentUser$ = new Subject<User | UnregisteredUser | null>();
 
   constructor(private http: HttpClient,
@@ -32,7 +34,7 @@ export class RestAccountService implements AccountService {
         .pipe(first())
         .toPromise();
       await this.authenticationStorage.store(btoa(`${student.credentials.login}:${student.credentials.password}`));
-      this.currentUser$.next(user);
+      this.updateCurrentUser(user);
       return user;
     } catch (e) {
       if (matchesErrorCode(e, 'LOGIN_ALREADY_USED')) {
@@ -44,11 +46,12 @@ export class RestAccountService implements AccountService {
 
   async login(login: string, password: string): Promise<User> {
     try {
+      await this.unregisteredUserStorage.clear();
       await this.authenticationStorage.store(btoa(`${login}:${password}`));
       const user = await this.http.get<User>(`${this.serverConfig.url}/users`)
         .pipe(first())
         .toPromise();
-      this.currentUser$.next(user);
+      this.updateCurrentUser(user);
       return user;
     } catch (e) {
       await this.authenticationStorage.clear();
@@ -62,23 +65,24 @@ export class RestAccountService implements AccountService {
   async logout(): Promise<void> {
     await this.authenticationStorage.clear();
     await this.unregisteredUserStorage.clear();
-    this.currentUser$.next(null);
+    this.updateCurrentUser(null);
   }
 
   async getUserInfo(): Promise<User | UnregisteredUser | null> {
     try {
       const unregisteredUser = await this.unregisteredUserStorage.get();
       if (unregisteredUser) {
+        this.updateCurrentUser(unregisteredUser);
         return unregisteredUser;
       }
       const user = await this.http.get<User>(`${this.serverConfig.url}/users`)
         .pipe(first())
         .toPromise();
-      this.currentUser$.next(user);
+      this.updateCurrentUser(user);
       return user;
     } catch (e) {
       if (e.status === 401) {
-        this.currentUser$.next(null);
+        this.updateCurrentUser(null);
         return null;
       }
       throw e;
@@ -89,13 +93,13 @@ export class RestAccountService implements AccountService {
     const teacher = await this.http.get<Teacher>(`${this.serverConfig.url}/users`)
       .pipe(first())
       .toPromise();
-    this.currentUser$.next(teacher);
+    this.updateCurrentUser(teacher);
     return teacher;
   }
 
   async saveUnregisterdUserInfo(user: UnregisteredUser): Promise<void> {
     this.unregisteredUserStorage.store(user);
-    this.currentUser$.next(user);
+    this.updateCurrentUser(user);
   }
 
   async isLoginAvailable(login: string): Promise<boolean> {
@@ -104,4 +108,10 @@ export class RestAccountService implements AccountService {
       .pipe(first())
       .toPromise();
   }
+
+  private updateCurrentUser(user: User | UnregisteredUser) {
+    if (!isSameUser(user, this.currentUser)) {
+      this.currentUser$.next(user);
+    }
+    this.currentUser = user;  }
 }

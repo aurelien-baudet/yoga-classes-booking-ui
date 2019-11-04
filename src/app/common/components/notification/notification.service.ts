@@ -19,4 +19,17 @@ export class NotificationService {
             // disableTimeOut: true
         } as any);
     }
+
+    warn(template: TemplateRef<any>, templateContext: any, title?: string, override?: Partial<IndividualConfig>) {
+        const toast = this.toastr.warning(null, title, {
+            ...override,
+            timeOut: 10000,
+            closeButton: true,
+            enableHtml: true,
+            toastComponent: NotificationComponent,
+            template,
+            templateContext,
+            // disableTimeOut: true
+        } as any);
+    }
 }
