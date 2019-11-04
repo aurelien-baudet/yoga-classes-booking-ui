@@ -1,3 +1,4 @@
+import { BookingHelperComponent } from './booking-helper/booking-helper.component';
 import { WaitingStudentsComponent } from './class-details/waiting-students.component';
 import { CommonComponentsModule } from './../../common/components/common-components.module';
 import { RegisterFriendComponent } from './register-friend/register-friend.component';
@@ -17,7 +18,8 @@ import { ApprovedStudentsComponent } from './class-details/approved-students.com
     ApprovedStudentsComponent,
     WaitingStudentsComponent,
     ClassDetailsComponent,
-    RegisterFriendComponent
+    RegisterFriendComponent,
+    BookingHelperComponent
   ],
   exports: [
     ScheduledClassCardComponent,
@@ -25,7 +27,8 @@ import { ApprovedStudentsComponent } from './class-details/approved-students.com
     ApprovedStudentsComponent,
     WaitingStudentsComponent,
     ClassDetailsComponent,
-    RegisterFriendComponent
+    RegisterFriendComponent,
+    BookingHelperComponent
   ],
   imports: [
     CommonModule,

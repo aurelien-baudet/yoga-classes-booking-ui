@@ -18,11 +18,11 @@
       [class.place-changed]="scheduledClass.lesson.placeChanged">
       <ion-card-header>
         <ion-card-title>{{ scheduledClass | dateRange }}</ion-card-title>
-        <ion-button (click)="book(scheduledClass)" *ngIf="isBookable(scheduledClass)">
+        <ion-button (click)="bookingHelper.book(scheduledClass)" *ngIf="isBookable(scheduledClass)">
           M'inscrire
           <ion-icon slot="start" name="custom-book"></ion-icon>
         </ion-button>
-        <ion-button (click)="unbook(scheduledClass)" *ngIf="isUnbookable(scheduledClass)">
+        <ion-button (click)="bookingHelper.unbook(scheduledClass)" *ngIf="isUnbookable(scheduledClass)">
           Me désinscrire
           <ion-icon slot="start" name="custom-unbook"></ion-icon>
         </ion-button>
@@ -42,8 +42,8 @@
         <app-class-details 
           [scheduledClass]="scheduledClass"
           [searchFriendProvider]="searchFriendProvider"
-          (bookForFriend)="bookForFriend($event)"
-          (unbookForFriend)="unbookForFriend($event)"></app-class-details>
+          (bookForFriend)="bookingHelper.bookForFriend($event)"
+          (unbookForFriend)="bookingHelper.unbookForFriend($event)"></app-class-details>
         <div class="cancel-details" *ngIf="manageClassStateProvider.isCanceled(scheduledClass)">
           <h3>Cours annulé</h3>
           <p class="lesson-canceled">Cours annulé</p>
@@ -58,39 +58,15 @@
 </ion-content>
 
 
+<app-booking-helper
+  #bookingHelper
+  [redirection]="['classes', scheduledClassId]"
+  [pendingProvider]="pendingProvider"
+  (refresh)="refreshDetailsAndBooking()">
+</app-booking-helper>
+
 
 <ng-template #placeDetails let-place="place">
   <app-place-details [place]="place"></app-place-details>
 </ng-template>
 
-
-  
-<ng-template #approvedNotification let-bookedClass="bookedClass">
-  <div class="header">
-    <span class="title">Inscription confirmée</span>
-  </div>
-  <div class="content">
-    <p>Tu es inscrit au cours du <strong>{{ bookedClass | dateRange }}</strong></p>
-    <ion-button *ngIf="isMobileApp()" (click)="addToCalendar(bookedClass)" size="small">ajouter au calendrier</ion-button>
-  </div>
-</ng-template>
-
-<ng-template #waitingListNotification let-bookedClass="bookedClass">
-  <div class="header">
-    <span class="title">Inscription en file d'attente</span>
-  </div>
-  <div class="content">
-    <p>Tu es sur liste d'attente pour le cours du <strong>{{ bookedClass | dateRange }}</strong>.<br />
-      Tu recevras une notification lorsqu'une place se libèrera.</p>
-  </div>
-</ng-template>
-
-<ng-template #unbookedNotification let-bookedClass="bookedClass">
-  <div class="header">
-    <span classs="title">Désinscription</span>
-  </div>
-  <div class="content">
-    <p>Tu es désinscrit du cours du <strong>{{ bookedClass | dateRange }}</strong>.</p>
-    <ion-button *ngIf="isMobileApp()" (click)="removeFromCalendar(bookedClass)" size="small">retirer du calendrier</ion-button>
-  </div>
-</ng-template>

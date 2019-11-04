@@ -1,3 +1,4 @@
+import { CurrentRoute } from 'src/app/common/util/router.util';
 import { ApplicationError } from 'src/app/booking/domain/general';
 import { SocialAuthenticator } from './../../../booking/domain/general';
 import { Router } from '@angular/router';
@@ -18,7 +19,8 @@ export class WhoAreYouPage {
   loginErrors: ApplicationError[];
 
   constructor(private accountService: AccountService,
-              private router: Router) { }
+              private router: Router,
+              private route: CurrentRoute) { }
 
   async ionViewDidEnter() {
     this.currentUser = await this.accountService.getUserInfo();
@@ -27,9 +29,7 @@ export class WhoAreYouPage {
   async login(credentials: Credentials) {
     try {
       await this.accountService.login(credentials.login, credentials.password);
-      this.router.navigate([''], {
-        queryParamsHandling: 'preserve'
-      });
+      this.redirect(['']);
     } catch(e) {
       this.loginErrors = [e];
     }
@@ -37,9 +37,7 @@ export class WhoAreYouPage {
 
   async finishBooking(student: UnregisteredUser) {
     await this.accountService.saveUnregisterdUserInfo(student);
-    this.router.navigate([''], {
-      queryParamsHandling: 'preserve'
-    });
+    this.redirect(['']);
   }
 
   register() {
@@ -69,5 +67,16 @@ export class WhoAreYouPage {
 
   async authenticate(authenticator: SocialAuthenticator) {
     alert(`Authentification via ${authenticator} bientôt disponible`);
+  }
+
+  private redirect(defaultPage: any[]) {
+    const returnUrl = this.route.getQueryParam('returnUrl');
+    if (returnUrl) {
+      this.router.navigateByUrl(returnUrl);
+    } else {
+      this.router.navigate(defaultPage, {
+        queryParamsHandling: 'preserve'
+      });
+    }
   }
 }

@@ -13,7 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy, IonIcon } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy, IonIcon, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -50,12 +50,28 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { registerLocaleData } from '@angular/common';
+import { Calendar } from '@ionic-native/calendar/ngx';
 import localeFr from '@angular/common/locales/fr';
+import { CalendarService } from './common/services/calendar.service';
+import { NativeCalendarService } from './common/services/local/native-calendar.service';
+import { GoogleCalendarService } from './common/services/local/google-calendar.service';
+
+
 registerLocaleData(localeFr);
 
 // export function createTranslateLoader(http: HttpClient) {
 //   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 // }
+
+export const calendarServiceFactory = (platform: Platform, nativeCalendar: Calendar, dateUtil: DateUtil) => {
+  if (platform.is('mobile')) {
+    console.log('using native calendar');
+    return new NativeCalendarService(nativeCalendar, dateUtil);
+  }
+  // TODO: provide other calendars ?
+  console.log('using web calendar');
+  return new GoogleCalendarService(dateUtil);
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -103,7 +119,9 @@ registerLocaleData(localeFr);
     { provide: AuthenticationStorage, useClass: AuthenticationIonicLocalStorage },
     { provide: UnregisteredUserInfoStorage, useClass: UnregisteredUserIonicLocalStorage },
     { provide: PushNotificationHandlerService, useClass: NativeLocalPushNotificationHandlerService },
-    ApplicationEventService
+    ApplicationEventService,
+    Calendar,
+    { provide: CalendarService, deps: [Platform, Calendar, DateUtil], useFactory: calendarServiceFactory }
   ],
   bootstrap: [AppComponent]
 })

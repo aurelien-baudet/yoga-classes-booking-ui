@@ -43,7 +43,7 @@ export class AppComponent {
   }
 
   private async updateCurrentUser(user: User) {
-    console.log('update current user', user);
+    console.log('[app.component] update current user', user);
     this.currentUser = user;
     await this.pushNotificationService.registerCurrentDeviceForUser(user);
   }

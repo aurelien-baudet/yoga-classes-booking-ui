@@ -427,6 +427,13 @@
     lodash.camelcase "^4.3.0"
     protobufjs "^6.8.6"
 
+"@ionic-native/calendar@5.16.0":
+  version "5.16.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/calendar/-/calendar-5.16.0.tgz#b6da7939338e68f47d6836d45c1346e104ad2549"
+  integrity sha512-svMEIrFP+YxnMLf3Y7sFQAMDRAfVMm196wgFNYt2b7FARa4MgRAuOmCg2CO38K8p03GTn02oaeuV/4Dyr7kBWQ==
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/core@5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/core/-/core-5.1.0.tgz#e3649aee691ee5495485bd4ac5d0d8fc0ccceb80"
@@ -441,7 +448,7 @@
   dependencies:
     "@types/cordova" latest
 
-"@ionic-native/in-app-browser@^5.15.1":
+"@ionic-native/in-app-browser@5.15.1":
   version "5.15.1"
   resolved "https://registry.yarnpkg.com/@ionic-native/in-app-browser/-/in-app-browser-5.15.1.tgz#00dd37559a7ea09445b0105573f82031da820049"
   integrity sha512-tpTrajo42HU045K5FUUrLY4hn9DVT2E3w19PeMMD3MqpyRUCT9gN3f3Dt+MEMhqR55Y34UZqrZvKzlWlrnUxvA==
@@ -1084,13 +1091,6 @@ angular-oauth2-oidc@8.0.4:
   dependencies:
     jsrsasign "^8.0.12"
     tslib "^1.9.0"
-
-angularfire2@5.2.1:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/angularfire2/-/angularfire2-5.2.1.tgz#35a92e99668d8bd71d2c03ab7f47005c0e04ad0a"
-  integrity sha512-5C0wtm5V1LLJD3TdWzzqa0PwUeM8OEQc+WIRVpD27XyDqAXEr/ejH09eKDwC74fUNF0I65+w1o01Mz0KHkrufQ==
-  dependencies:
-    "@angular/fire" "5.2.1"
 
 ansi-colors@^3.0.0:
   version "3.2.4"
@@ -2359,6 +2359,11 @@ cordova-plugin-badge@0.8.8:
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/cordova-plugin-badge/-/cordova-plugin-badge-0.8.8.tgz#0924018699b48f92dd3b33615452737582144c96"
   integrity sha512-RhIBtd5xhD/iLnxjt35jvOae28oNW/wtMZBOmQR3Rf0y4wirvA1bpAZEhBoFqL+rZGhsd6ddOdQXdex1T0DRyQ==
+
+cordova-plugin-calendar@5.1.5:
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-calendar/-/cordova-plugin-calendar-5.1.5.tgz#a3fc334eec01731a3b0e4c05eae9db99aa3c3653"
+  integrity sha512-Qrz+Yo3ifpCsi0CWfLFrnP37Tgp3jxDmtNKILhU+f3g2EsbWwLc7VsKq8zCrxJihGr/vKpEoSFtWZGpEM3zobQ==
 
 cordova-plugin-device@2.0.2:
   version "2.0.2"

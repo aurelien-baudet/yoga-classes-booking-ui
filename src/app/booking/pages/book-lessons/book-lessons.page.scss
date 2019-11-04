@@ -1,6 +1,6 @@
 @import "../../../../theme/icons-utils";
 
-.loading {
+/*.loading {
   @include fas-icon($fa-var-spinner);
 
   &:before {
@@ -19,7 +19,7 @@
   > * {
     visibility: hidden;
   }
-}
+}*/
 
 /deep/ ion-item {
   --padding-start: 0;

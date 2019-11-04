@@ -11,7 +11,10 @@ export class BookedClassesBookingStateProvider {
 
     constructor(private bookedClassesForCurrentUser: ScheduledClass[],
                 currentUser$: Observable<User | UnregisteredUser | null>) {
-        currentUser$.subscribe((u) => this.currentUser = u);
+        currentUser$.subscribe((u) => {
+            console.log('[booked-classes-booking-state-provider] update current user', u);
+            this.currentUser = u;
+        });
     }
 
     isBookable(scheduledClass: ScheduledClass): boolean {

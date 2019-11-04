@@ -1,3 +1,4 @@
+import { isRegisteredUser } from './../../account/domain/user';
 import { Instant } from './general';
 import { User, UserInfo } from 'src/app/account/domain/user';
 import { Student, StudentInfo, isBookedForStudentPredicate, StudentId, isBookedForUnregisteredStudentPredicate, isBookedForRegisteredStudentPredicate } from 'src/app/account/domain/student';
@@ -108,14 +109,9 @@ export const sameClassPredicate = (a: ScheduledClass) => (b: ScheduledClass) => 
 export const isSamePlace = (a: Place | PlaceId, b: Place | PlaceId) => a.id === b.id;
 export const samePlacePredicate = (a: Place | PlaceId) => (b: Place | PlaceId) => isSamePlace(a, b);
 
-export const bookingApprovedForStudent = (bookedClass: ScheduledClass, student: StudentId) =>
+
+export const bookingApprovedForStudent = (bookedClass: ScheduledClass, student: StudentId | UnregisteredUser) =>
     bookedClass.bookings.approved.some(isBookedForStudentPredicate(student));
-export const bookingInWaitingListForStudent = (bookedClass: ScheduledClass, student: StudentId) =>
+export const bookingInWaitingListForStudent = (bookedClass: ScheduledClass, student: StudentId | UnregisteredUser) =>
     bookedClass.bookings.waiting.some(isBookedForStudentPredicate(student));
 
-
-export const bookingApprovedForRegisteredStudent = (bookedClass: ScheduledClass, student: StudentId) =>
-    bookedClass.bookings.approved.some(isBookedForRegisteredStudentPredicate(student));
-
-export const bookingApprovedForUnregisteredStudent = (bookedClass: ScheduledClass, student: UnregisteredUser) =>
-    bookedClass.bookings.approved.some(isBookedForUnregisteredStudentPredicate(student));

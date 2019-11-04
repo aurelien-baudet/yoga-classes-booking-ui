@@ -11,7 +11,7 @@ import { ServerConfig } from 'src/environments/config';
 import { first } from 'rxjs/operators';
 import { AuthenticationStorage } from '../authentication.storage';
 import { Student, StudentRegistration } from '../../domain/student';
-import { Subject } from 'rxjs';
+import { Subject, ReplaySubject } from 'rxjs';
 import { UnregisteredUserInfoStorage } from '../unregistered-user-info.storage';
 
 
@@ -20,7 +20,7 @@ import { UnregisteredUserInfoStorage } from '../unregistered-user-info.storage';
 })
 export class RestAccountService implements AccountService {
   private currentUser: User | UnregisteredUser | null;
-  readonly currentUser$ = new Subject<User | UnregisteredUser | null>();
+  readonly currentUser$ = new ReplaySubject<User | UnregisteredUser | null>(1);
 
   constructor(private http: HttpClient,
               private serverConfig: ServerConfig,
@@ -110,7 +110,9 @@ export class RestAccountService implements AccountService {
   }
 
   private updateCurrentUser(user: User | UnregisteredUser) {
+    console.log('[rest-account-service] updateCurrentUser', user, this.currentUser);
     if (!isSameUser(user, this.currentUser)) {
+      console.log('[rest-account-service] updateCurrentUser:different user', user);
       this.currentUser$.next(user);
     }
     this.currentUser = user;  }

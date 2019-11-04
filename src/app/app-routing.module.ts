@@ -53,7 +53,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, enableTracing: !environment.production })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, enableTracing: false })
   ],
   exports: [RouterModule]
 })

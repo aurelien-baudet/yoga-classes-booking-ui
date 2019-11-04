@@ -50,4 +50,8 @@ export class ClassesComponent {
   bookForFriend = new EventEmitter<BookingForFriend>();
   @Output()
   unbookForFriend = new EventEmitter<UnbookingForFriend>();
+
+  identify(index, item) {
+    return item.id;
+  }
 }
