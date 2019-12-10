@@ -46,13 +46,18 @@ export class EditLessonPage {
       await this.classService.updateLessonInfoForSpecificClass(scheduledClass, updatedLesson);
     }
     if (this.hasPlaceChanged(this.originalLesson, updatedLesson)) {
-      await this.classService.changePlace(scheduledClass, updatedLesson.place);
+      await this.classService.changePlaceForSpecificClass(scheduledClass, updatedLesson.place);
     }
     this.router.navigate(['admin', 'classes']);
   }
 
   async updateLesson(lesson: UpdatedLesson) {
-    await this.classService.updateLessonInfoForAllClasses(lesson);
+    if (this.hasInfoChanged(this.originalLesson, lesson)) {
+      await this.classService.updateLessonInfoForAllClasses(lesson);
+    }
+    if (this.hasPlaceChanged(this.originalLesson, lesson)) {
+      await this.classService.changePlaceForAllClasses(lesson, lesson.place);
+    }
     this.router.navigate(['admin', 'classes']);
   }
 

@@ -17,7 +17,6 @@ import { BookingStateProvider, DetailsStateProvider, DetailsStateUpdateProvider,
 import { InMemoryUpdatablePendingStateProvider } from '../../services/local/in-memory-pending-state.provider';
 import { BookedClassesBookingStateProvider } from '../../services/local/booked-classes-booking-state.provider';
 import { PopoverService, PopoverWrapper } from 'src/app/common/components/popover/popover.service';
-import { PushNotificationHandlerService } from 'src/app/common/services/push-notification-handler.service';
 import { ApplicationEventService } from 'src/app/common/services/application-event.service';
 
 

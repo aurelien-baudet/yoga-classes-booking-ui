@@ -8,13 +8,9 @@ export const environment = {
   server: {
     url: 'http://yoga.booking.localdomain.com:8080'
   },
-  firebase: {
-    apiKey: "AIzaSyCFFv9w4nWqxzXGEdtInOkivGu0K_w9c5w",
-    authDomain: "",
-    databaseURL: "",
-    projectId: "yoga-saint-pierre-dev",
-    storageBucket: "yoga-saint-pierre-dev.appspot.com",
-    messagingSenderId: "191353546130"
+  onesignal: {
+    appId: '2973b0ae-c479-481e-aa13-8a8239a05430',
+    googleProjectNumber: '191353546130'
   }
 };
 

@@ -50,7 +50,11 @@ export class MockClassService implements ClassService {
     return classes['default'] as any;
   }
 
-  async changePlace(scheduledClass: ClassId, newPlace: PlaceId): Promise<ScheduledClass> {
+  async changePlaceForSpecificClass(scheduledClass: ClassId, newPlace: PlaceId): Promise<ScheduledClass> {
+    throw new Error('not implemented');
+  }
+
+  async changePlaceForAllClasses(lesson: LessonId, newPlace: PlaceId): Promise<Lesson> {
     throw new Error('not implemented');
   }
 

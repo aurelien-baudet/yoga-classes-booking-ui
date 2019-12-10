@@ -88,6 +88,17 @@ export class RestClassService implements ClassService {
       .pipe(first())
       .toPromise();
   }
+  async changePlaceForSpecificClass(scheduledClass: ClassId, newPlace: PlaceId): Promise<ScheduledClass> {
+    return await this.http.patch<ScheduledClass>(`${this.serverConfig.url}/classes/${scheduledClass.id}/places/${newPlace.id}`, {})
+      .pipe(first())
+      .toPromise();
+  }
+
+  async changePlaceForAllClasses(lesson: LessonId, newPlace: PlaceId): Promise<Lesson> {
+    return await this.http.patch<Lesson>(`${this.serverConfig.url}/lessons/${lesson.id}/places/${newPlace.id}`, {})
+      .pipe(first())
+      .toPromise();
+  }
 
   async updateLessonInfoForSpecificClass(scheduledClass: ClassId, updatedInfo: UpdatedLesson): Promise<ScheduledClass> {
     return await this.http.patch<ScheduledClass>(`${this.serverConfig.url}/classes/${scheduledClass.id}/lesson/info`, updatedInfo)

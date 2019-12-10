@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   mock: true,
-  server: null
+  server: null,
+  onesignal: null
 };
 
 /*

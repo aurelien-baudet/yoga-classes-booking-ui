@@ -1,10 +1,9 @@
+import { OnesignalPushNotificationService } from './account/services/remote/onesignal-push-notification.service';
 import { UnregisteredUserIonicLocalStorage } from './account/services/local/unregistered-user-info-ionic-local-storage.storage';
 import { AuthenticationIonicLocalStorage } from './account/services/local/authentication-ionic-local-storage.storage';
-import { FcmPushNotificationService } from './account/services/remote/rest-push-notification.service';
 import { MockAccountService } from './account/services/mocks/mock-account.service';
 import { CurrentRoute } from 'src/app/common/util/router.util';
 import { BasicAuthInterceptor } from './account/services/remote/basic-auth.interceptor';
-import { AuthenticationInSessionStorage } from './account/services/local/authentication-in-session-storage.storage';
 import { AccountService } from './account/services/account.service';
 import { ClassService } from './booking/services/class.service';
 import { NgModule, LOCALE_ID } from '@angular/core';
@@ -23,7 +22,7 @@ import { BookingService } from './booking/services/booking.service';
 import { RestClassService } from './booking/services/remote/rest-class.service';
 import { RestBookingService } from './booking/services/remote/rest-booking.service';
 import { RestAccountService } from './account/services/remote/rest-account.service';
-import { ServerConfig } from 'src/environments/config';
+import { ServerConfig, OneSignalConfig } from 'src/environments/config';
 import { environment } from 'src/environments/environment';
 import { AuthenticationStorage } from './account/services/authentication.storage';
 import { UnauthorizedInterceptor } from './account/services/remote/unauthorized.interceptor';
@@ -35,15 +34,8 @@ import { MockClassService } from './booking/services/mocks/mock-class.service';
 import { MockBookingService } from './booking/services/mocks/mock-booking.service';
 import { MockPlaceService } from './admin/services/mocks/mock-place.service';
 import { UnregisteredUserInfoStorage } from './account/services/unregistered-user-info.storage';
-import { UnregisteredUserInfoInSessionStorage } from './account/services/local/unregistered-user-info-in-session-storage.storage';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireMessagingModule } from '@angular/fire/messaging';
-import { FCM } from '@ionic-native/fcm/ngx';
 import { PushNotificationService } from './account/services/push-notification.service';
 import { IonicStorageModule } from '@ionic/storage';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-import { PushNotificationHandlerService } from './common/services/push-notification-handler.service';
-import { NativeLocalPushNotificationHandlerService } from './common/services/local/native-local-push-notification-handler.service';
 import { ApplicationEventService } from './common/services/application-event.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
@@ -55,6 +47,7 @@ import localeFr from '@angular/common/locales/fr';
 import { CalendarService } from './common/services/calendar.service';
 import { NativeCalendarService } from './common/services/local/native-calendar.service';
 import { GoogleCalendarService } from './common/services/local/google-calendar.service';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 
 registerLocaleData(localeFr);
@@ -93,9 +86,7 @@ export const calendarServiceFactory = (platform: Platform, nativeCalendar: Calen
     AppRoutingModule,
     HttpClientModule,
     CommonComponentsModule,
-    BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireMessagingModule
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR' },
@@ -103,8 +94,7 @@ export const calendarServiceFactory = (platform: Platform, nativeCalendar: Calen
     SplashScreen,
     CurrentRoute,
     DateUtil,
-    FCM,
-    LocalNotifications,
+    OneSignal,
     Keyboard,
     InAppBrowser,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
@@ -114,11 +104,11 @@ export const calendarServiceFactory = (platform: Platform, nativeCalendar: Calen
     { provide: ClassService, useClass: environment.mock ? MockClassService : RestClassService },
     { provide: BookingService, useClass: environment.mock ? MockBookingService : RestBookingService },
     { provide: AccountService, useClass: environment.mock ? MockAccountService : RestAccountService },
-    { provide: PushNotificationService, useClass: FcmPushNotificationService },
+    { provide: PushNotificationService, useClass: OnesignalPushNotificationService },
     { provide: ServerConfig, useValue: environment.server },
+    { provide: OneSignalConfig, useValue: environment.onesignal },
     { provide: AuthenticationStorage, useClass: AuthenticationIonicLocalStorage },
     { provide: UnregisteredUserInfoStorage, useClass: UnregisteredUserIonicLocalStorage },
-    { provide: PushNotificationHandlerService, useClass: NativeLocalPushNotificationHandlerService },
     ApplicationEventService,
     Calendar,
     { provide: CalendarService, deps: [Platform, Calendar, DateUtil], useFactory: calendarServiceFactory }

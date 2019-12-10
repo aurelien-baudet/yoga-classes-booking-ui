@@ -8,9 +8,6 @@ import { Component } from '@angular/core';
 import { Platform, MenuController, ToastController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { AngularFireMessaging } from '@angular/fire/messaging';
-import { mergeMapTo } from 'rxjs/operators';
-import { FCM } from '@ionic-native/fcm/ngx';
 import { PushNotificationService } from './account/services/push-notification.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import {TranslateService} from '@ngx-translate/core';
@@ -20,6 +17,7 @@ import {TranslateService} from '@ngx-translate/core';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+  private ready = false;
   currentUser: User | UnregisteredUser | null;
 
   constructor(private platform: Platform,
@@ -32,11 +30,12 @@ export class AppComponent {
               private applicationEventService: ApplicationEventService,
               public keyboard: Keyboard) {
     this.initializeApp();
-    this.accountService.currentUser$.subscribe(this.updateCurrentUser.bind(this));
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.ready = true;
+      this.accountService.currentUser$.subscribe(this.updateCurrentUser.bind(this));
       this.statusBar.styleDefault();
       this.statusBar.overlaysWebView(true);
       this.statusBar.show();
@@ -92,7 +91,10 @@ export class AppComponent {
   }
 
   isKeyboardVisible() {
-    if (this.platform.is('desktop')) {
+    if (!this.ready) {
+      return false;
+    }
+    if (!this.platform.is('cordova')) {
       return false;
     }
     return this.keyboard.isVisible;
