@@ -13,7 +13,7 @@
   </div>
   <ion-item class="login">
     <ion-label position="floating">Identifiant utilisateur</ion-label>
-    <ion-input type="text" name="login" #login="ngModel" [(ngModel)]="student.credentials.login" required appLoginAvailable></ion-input>
+    <ion-input type="text" name="login" #login="ngModel" [(ngModel)]="student.credentials.login" required appLoginAvailable autocapitalize="off"></ion-input>
     <ion-icon name="custom-login" slot="start"></ion-icon>
     <app-help-button slot="end" title="Identifiant utilisateur">
       Un identifiant qui te servira pour te connecter à ton compte.
@@ -36,7 +36,7 @@
   </div>
   <ion-item class="email">
     <ion-label position="floating">Email (optionnel)</ion-label>
-    <ion-input type="email" name="contact.email" #email="ngModel" [(ngModel)]="student.contact.email" email></ion-input>
+    <ion-input type="email" name="contact.email" #email="ngModel" [(ngModel)]="student.contact.email" email autocapitalize="off"></ion-input>
     <ion-icon name="custom-email" slot="start"></ion-icon>
     <app-help-button slot="end" title="Adresse email">
       Ton adresse email si tu souhaites recevoir les informations relatives aux cours 

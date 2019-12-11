@@ -13,7 +13,7 @@
   </div>
   <ion-item class="email">
     <ion-label position="floating">Email (optionnel)</ion-label>
-    <ion-input type="email" name="email" #email="ngModel" [(ngModel)]="unregisteredUserModel.email" email></ion-input>
+    <ion-input type="email" name="email" #email="ngModel" [(ngModel)]="unregisteredUserModel.email" email autocapitalize="off"></ion-input>
     <ion-icon name="custom-email" slot="start"></ion-icon>
     <app-help-button slot="end" title="Adresse email">
       Ton adresse email si tu souhaites recevoir les informations relatives aux cours 
