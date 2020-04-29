@@ -1,6 +1,6 @@
 <ion-list class="waiting">
   <ion-list-header>
-    <ion-icon name="custom-waiting-list"></ion-icon>
+    <ion-icon name="app-waiting-list"></ion-icon>
     <ion-title>Liste d'attente</ion-title>
     <ion-badge>{{ waitingBookings.length }}</ion-badge>
   </ion-list-header>
@@ -8,7 +8,7 @@
   <ion-item *ngFor="let booking of waitingBookings">
     <ion-label>{{ booking.student.displayName }}</ion-label>
     <ion-button (click)="unbook.emit(booking)" size="small">
-      <ion-icon slot="icon-only" name="custom-unregister-friend"></ion-icon>
+      <ion-icon slot="icon-only" name="app-unregister-friend"></ion-icon>
     </ion-button>
   </ion-item>
 </ion-list>

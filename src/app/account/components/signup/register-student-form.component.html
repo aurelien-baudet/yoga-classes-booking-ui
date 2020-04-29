@@ -2,7 +2,7 @@
   <ion-item class="display-name">
     <ion-label position="floating">Nom affiché</ion-label>
     <ion-input type="text" name="displayName" #displayName="ngModel" [(ngModel)]="student.displayName" required></ion-input>
-    <ion-icon name="custom-display-name" slot="start"></ion-icon>
+    <ion-icon name="app-display-name" slot="start"></ion-icon>
     <app-help-button slot="end" title="Nom affiché">
       C'est le nom qui sera visible par les autres utilisateurs. C'est aussi ce nom que ton professeur de yoga
       uilisera lors de son cours.
@@ -14,7 +14,7 @@
   <ion-item class="login">
     <ion-label position="floating">Identifiant utilisateur</ion-label>
     <ion-input type="text" name="login" #login="ngModel" [(ngModel)]="student.credentials.login" required appLoginAvailable autocapitalize="off"></ion-input>
-    <ion-icon name="custom-login" slot="start"></ion-icon>
+    <ion-icon name="app-login" slot="start"></ion-icon>
     <app-help-button slot="end" title="Identifiant utilisateur">
       Un identifiant qui te servira pour te connecter à ton compte.
     </app-help-button>
@@ -26,7 +26,7 @@
   <ion-item class="password">
     <ion-label position="floating">Mot de passe</ion-label>
     <ion-input type="password" name="password" #password="ngModel" [(ngModel)]="student.credentials.password" required></ion-input>
-    <ion-icon name="custom-password" slot="start"></ion-icon>
+    <ion-icon name="app-password" slot="start"></ion-icon>
     <app-help-button slot="end" title="Mot de passe">
       Choisis ton mot de passe.
     </app-help-button>
@@ -37,7 +37,7 @@
   <ion-item class="email">
     <ion-label position="floating">Email (optionnel)</ion-label>
     <ion-input type="email" name="contact.email" #email="ngModel" [(ngModel)]="student.contact.email" email autocapitalize="off"></ion-input>
-    <ion-icon name="custom-email" slot="start"></ion-icon>
+    <ion-icon name="app-email" slot="start"></ion-icon>
     <app-help-button slot="end" title="Adresse email">
       Ton adresse email si tu souhaites recevoir les informations relatives aux cours 
       (confirmation de réservation, rappels, changement de lieu...).
@@ -49,7 +49,7 @@
   <ion-item class="phone">
     <ion-label position="floating">Numéro de téléphone (optionnel)</ion-label>
     <ion-input type="tel" name="contact.phoneNumber" #phoneNumber="ngModel" [(ngModel)]="student.contact.phoneNumber"></ion-input>
-    <ion-icon name="custom-phone" slot="start"></ion-icon>
+    <ion-icon name="app-phone" slot="start"></ion-icon>
     <app-help-button slot="end" title="Numéro de téléphone">
       Ton numéro de téléphone pour être prévenu rapidement d'un changement 
       (changement de lieu ou annulation).
@@ -60,7 +60,7 @@
   <ion-item class="visible-by-others">
     <ion-toggle name="preferences.visibleByOtherStudents" [(ngModel)]="student.preferences.visibleByOtherStudents"></ion-toggle>
     <ion-label>Mon nom affiché est visible par les autres</ion-label>
-    <ion-icon name="custom-visible-by-others" slot="start"></ion-icon>
+    <ion-icon name="app-visible-by-others" slot="start"></ion-icon>
     <app-help-button slot="end">
       Si activé, les autres utilisateurs peuvent voir le nom que tu as choisi et savoir à quels cours tu participes.
       <br />
@@ -70,7 +70,7 @@
   <ion-item class="agrees-to-be-assisted">
     <ion-toggle name="preferences.agreesToBeAssisted" [(ngModel)]="student.preferences.agreesToBeAssisted"></ion-toggle>
     <ion-label>J'accepte d'être assisté</ion-label>
-    <ion-icon name="custom-agrees-to-be-assisted" slot="start"></ion-icon>
+    <ion-icon name="app-agrees-to-be-assisted" slot="start"></ion-icon>
     <app-help-button slot="end">
       Lors d'un cours de Yoga, le professeur peut êter amené à corriger et assiter les participants.
       <br />
@@ -80,7 +80,7 @@
   <ion-item class="add-to-calendar">
     <ion-toggle name="preferences.addBookedClassesToCalendar" [(ngModel)]="student.preferences.addBookedClassesToCalendar"></ion-toggle>
     <ion-label>Ajouter mes cours à mon calendrier</ion-label>
-    <ion-icon name="custom-add-to-calendar" slot="start"></ion-icon>
+    <ion-icon name="app-add-to-calendar" slot="start"></ion-icon>
     <app-help-button slot="end">
       Lorsque tu réserves un cours via l'application mobile, un rappel sera automatiquement
       ajouté à ton calendrier.

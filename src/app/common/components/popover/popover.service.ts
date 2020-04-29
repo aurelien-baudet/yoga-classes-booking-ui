@@ -70,7 +70,7 @@ export class PopoverService {
     }
 
     async dismiss(data?: any, role?: string, id?: string): Promise<void> {
-        return this.popoverController.dismiss(data, role, id);
+        await this.popoverController.dismiss(data, role, id);
     }
 }
 

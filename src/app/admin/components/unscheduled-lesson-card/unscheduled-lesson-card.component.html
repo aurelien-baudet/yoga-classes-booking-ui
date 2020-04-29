@@ -3,26 +3,26 @@
   <ion-card-header>
     <ion-card-title>Pas encore programmé</ion-card-title>
     <ion-button (click)="schedule.emit(lesson)" *ngIf="schedulable" size="small">
-        <ion-icon slot="icon-only" name="custom-schedule-lesson"></ion-icon>
+        <ion-icon slot="icon-only" name="app-schedule-lesson"></ion-icon>
     </ion-button>
     <ion-button (click)="remove.emit(lesson)" *ngIf="removable" size="small">
-        <ion-icon slot="icon-only" name="custom-remove-lesson"></ion-icon>
+        <ion-icon slot="icon-only" name="app-remove-lesson"></ion-icon>
     </ion-button>
   </ion-card-header>
   <ion-card-content>
     <div class="preview">
       <span class="title">{{ lesson.title }}</span>
       <div class="max-students">
-        <ion-icon slot="icon-only" name="custom-max-students"></ion-icon>
+        <ion-icon slot="icon-only" name="app-max-students"></ion-icon>
         <ion-badge>{{ lesson.maxStudents }}</ion-badge>
       </div>
     </div>
     <div class="details">
       <ion-button (click)="viewDetails.emit(lesson)" *ngIf="!showDetails" size="small">
-        <ion-icon slot="icon-only" name="custom-view-details"></ion-icon>
+        <ion-icon slot="icon-only" name="app-view-details"></ion-icon>
       </ion-button>
       <ion-button (click)="hideDetails.emit(lesson)" *ngIf="showDetails" size="small">
-        <ion-icon slot="icon-only" name="custom-hide-details"></ion-icon>
+        <ion-icon slot="icon-only" name="app-hide-details"></ion-icon>
       </ion-button>
       <div class="details-content">
         <p>{{ lesson.description }}</p>

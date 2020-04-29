@@ -20,14 +20,14 @@
         <ion-card-title>{{ scheduledClass | dateRange }}</ion-card-title>
         <ion-button (click)="bookingHelper.book(scheduledClass)" *ngIf="isBookable(scheduledClass)">
           M'inscrire
-          <ion-icon slot="start" name="custom-book"></ion-icon>
+          <ion-icon slot="start" name="app-book"></ion-icon>
         </ion-button>
         <ion-button (click)="bookingHelper.unbook(scheduledClass)" *ngIf="isUnbookable(scheduledClass)">
           Me désinscrire
-          <ion-icon slot="start" name="custom-unbook"></ion-icon>
+          <ion-icon slot="start" name="app-unbook"></ion-icon>
         </ion-button>
         <ion-button *ngIf="isPending(scheduledClass)">
-          <ion-icon slot="icon-only" name="custom-pending"></ion-icon>
+          <ion-icon slot="icon-only" name="app-pending"></ion-icon>
         </ion-button>
       </ion-card-header>
       <ion-card-content>
@@ -35,7 +35,7 @@
         <div class="place">
           <ion-button (click)="showPlaceDetails(scheduledClass.lesson.place)">
             {{ scheduledClass.lesson.place.name }}
-            <ion-icon slot="start" name="custom-place"></ion-icon>
+            <ion-icon slot="start" name="app-place"></ion-icon>
           </ion-button>
           <span class="warning" *ngIf="scheduledClass.lesson.placeChanged">le lieu de dispense a été modifié</span>
         </div>

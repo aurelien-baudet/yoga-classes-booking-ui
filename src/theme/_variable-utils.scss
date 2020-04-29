@@ -1,0 +1,10 @@
+@import "common-utils";
+
+@function value($variable, $property) {
+  $keys: str-split($property, ".");
+  $value: $variable;
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+  @return $value;
+}

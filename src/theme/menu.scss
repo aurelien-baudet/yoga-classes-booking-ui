@@ -1,9 +1,16 @@
+@import "variables";
+
 ion-toolbar {
   text-align: left;
   
   ion-menu-button,
   ion-title {
     display: inline-block;
+  }
+
+  ion-title {
+    font-size: $menu-toolbar-title-font-size;
+    font-weight: bold;
   }
 }
 
@@ -21,12 +28,12 @@ ion-menu {
       text-align: center;
       font-size: 26px;
       line-height: 22px !important;
-      color: var(--ion-color-primary);
+      color: $menu-button-color;
     }
 
     a {
       text-decoration: none;
-      color: var(--ion-color-primary);
+      color: $menu-button-color;
     }
   }
 

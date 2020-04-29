@@ -1,14 +1,22 @@
 @import "icons-utils";
 @import "animations";
 
+
 ion-icon {
-  &[name="custom-book"] {
+  &[name^="app-"] /deep/ .icon-inner,
+  &[name^="app-"] /deep/ svg {
+    stroke: none;
+  }
+}
+/*
+ion-icon {
+  &[name="app-book"] {
     @include fas-icon($fa-var-user-plus);
   }
-  &[name="custom-unbook"] {
+  &[name="app-unbook"] {
     @include fas-icon($fa-var-user-minus);
   }
-  &[name="custom-pending"] {
+  &[name="app-pending"] {
     @include fas-icon($fa-var-spinner);
 
     &:before {
@@ -16,130 +24,131 @@ ion-icon {
       animation: fa-spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     }
   }
-  &[name="custom-cancel-class"] {
+  &[name="app-cancel-class"] {
     @include fas-icon($fa-var-times);    
   }
-  &[name="custom-edit-class"] {
+  &[name="app-edit-class"] {
     // @include fas-icon($fa-var-pencil-alt);
     @include fas-icon($fa-var-edit);
   }
-  &[name="custom-approved-list"] {
+  &[name="app-approved-list"] {
     @include fas-icon($fa-var-user-check);
   }
-  &[name="custom-waiting-list"] {
+  &[name="app-waiting-list"] {
     @include fas-icon($fa-var-user-clock);
   }
-  &[name="custom-register-friend"] {
+  &[name="app-register-friend"] {
     @include fas-icon($fa-var-plus);
   }
-  &[name="custom-unregister-friend"] {
+  &[name="app-unregister-friend"] {
     @include fas-icon($fa-var-minus-circle);
   }
-  &[name="custom-google-auth"] {
+  &[name="app-google-auth"] {
     @include fab-icon($fa-var-google);
   }
-  &[name="custom-facebook-auth"] {
+  &[name="app-facebook-auth"] {
     @include fab-icon($fa-var-facebook-f);
   }
-  &[name="custom-schedule-lesson"] {
+  &[name="app-schedule-lesson"] {
     @include fas-icon($fa-var-calendar-plus);
   }
-  &[name="custom-remove-lesson"] {
+  &[name="app-remove-lesson"] {
     @include fa-icon($fa-var-trash-alt);
   }
-  &[name="custom-add-lesson"] {
+  &[name="app-add-lesson"] {
     @include fas-icon($fa-var-plus);
   }
-  &[name="custom-help"] {
+  &[name="app-help"] {
     @include fa-icon($fa-var-question-circle);
   }
-  &[name="custom-submit"] {
+  &[name="app-submit"] {
     @include fas-icon($fa-var-check);
   }
-  &[name="custom-view-details"] {
+  &[name="app-view-details"] {
     @include fas-icon($fa-var-angle-down);
   }
-  &[name="custom-hide-details"] {
+  &[name="app-hide-details"] {
     @include fas-icon($fa-var-angle-up);
   }
 
 
-  &[name="custom-login"] {
+  &[name="app-login"] {
     @include fas-icon($fa-var-user);
   }
-  &[name="custom-password"] {
+  &[name="app-password"] {
     @include fas-icon($fa-var-key);
   }
 
-  &[name="custom-display-name"] {
+  &[name="app-display-name"] {
     @include fas-icon($fa-var-user-tag);
   }
-  &[name="custom-email"] {
+  &[name="app-email"] {
     @include fas-icon($fa-var-envelope);
   }
-  &[name="custom-phone"] {
+  &[name="app-phone"] {
     @include fas-icon($fa-var-phone-alt);
   }
-  &[name="custom-send-booked-email"] {
+  &[name="app-send-booked-email"] {
     @include fas-icon($fa-var-bell);
   }
 
-  &[name="custom-title"] {
+  &[name="app-title"] {
     @include fas-icon($fa-var-feather-alt);
   }
-  &[name="custom-max-students"] {
+  &[name="app-max-students"] {
     @include fas-icon($fa-var-user-lock);
   }
-  &[name="custom-description"] {
+  &[name="app-description"] {
     @include fas-icon($fa-var-quote-left);
   }
-  &[name="custom-place"] {
+  &[name="app-place"] {
     @include fas-icon($fa-var-map-marked);
   }
 
-  &[name="custom-select-hours"] {
+  &[name="app-select-hours"] {
     @include fas-icon($fa-var-clock);
   }
-  &[name="custom-address"] {
+  &[name="app-address"] {
     @include fas-icon($fa-var-map-marker-alt);
   }
 
-  &[name="custom-menu-next-lessons"] {
+  &[name="app-menu-next-lessons"] {
     @include fas-icon($fa-var-calendar-plus);
   }
-  &[name="custom-menu-my-next-lessons"] {
+  &[name="app-menu-my-next-lessons"] {
     @include fas-icon($fa-var-calendar-check);
   }
-  &[name="custom-menu-login"] {
+  &[name="app-menu-login"] {
     @include fas-icon($fa-var-key);
   }
-  &[name="custom-menu-signup"] {
+  &[name="app-menu-signup"] {
     @include fas-icon($fa-var-address-card);
   }
-  &[name="custom-menu-logout"] {
+  &[name="app-menu-logout"] {
     @include fas-icon($fa-var-lock);
   }
-  &[name="custom-menu-profile"] {
+  &[name="app-menu-profile"] {
     @include fas-icon($fa-var-id-card);
   }
-  &[name="custom-menu-preferences"] {
+  &[name="app-menu-preferences"] {
     @include fas-icon($fa-var-sliders-h);
   }
 
-  &[name="custom-menu-next-classes"] {
+  &[name="app-menu-next-classes"] {
     @include fas-icon($fa-var-calendar-alt);
   }
-  &[name="custom-menu-add-lesson"] {
+  &[name="app-menu-add-lesson"] {
     @include fas-icon($fa-var-book-medical);
   }
-  &[name="custom-menu-add-event"] {
+  &[name="app-menu-add-event"] {
     @include fa-icon($fa-var-qrcode);
   }
-  &[name="custom-menu-add-place"] {
+  &[name="app-menu-add-place"] {
     @include fas-icon($fa-var-map-marked-alt);
   }
 
-  &[name="custom-current-user"] {
+  &[name="app-current-user"] {
     @include fa-icon($fa-var-user-circle);
   }
 }
+*/

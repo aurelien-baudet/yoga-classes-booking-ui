@@ -7,7 +7,7 @@
       #title="ngModel"
       [(ngModel)]="lessonModel.title" 
       required></ion-input>
-    <ion-icon name="custom-title" slot="start"></ion-icon>
+    <ion-icon name="app-title" slot="start"></ion-icon>
   </ion-item>
   <div class="validation-errors" [class.invalid]="title.invalid && (title.dirty || title.touched)">
     <div *ngIf="title.invalid && title.errors.required">Le titre du cours est obligatoire</div>
@@ -20,7 +20,7 @@
       #maxStudents="ngModel"
       [(ngModel)]="lessonModel.maxStudents" 
       required></ion-input>
-    <ion-icon name="custom-max-students" slot="start"></ion-icon>
+    <ion-icon name="app-max-students" slot="start"></ion-icon>
   </ion-item>
   <div class="validation-errors" [class.invalid]="maxStudents.invalid && (maxStudents.dirty || maxStudents.touched)">
     <div *ngIf="maxStudents.invalid && maxStudents.errors.required">Le nombre de places maximum est obligatoire</div>
@@ -34,7 +34,7 @@
       [(ngModel)]="lessonModel.description" 
       required
       rows="10"></ion-textarea>
-    <ion-icon name="custom-description" slot="start"></ion-icon>
+    <ion-icon name="app-description" slot="start"></ion-icon>
   </ion-item>
   <div class="validation-errors" [class.invalid]="description.invalid && (description.dirty || description.touched)">
     <div *ngIf="description.invalid && description.errors.required">La description du cours est obligatoire</div>
@@ -53,7 +53,7 @@
         *ngFor="let place of places"
         [value]="place.id">{{ place.name }}</ion-select-option>
     </ion-select>
-    <ion-icon name="custom-place" slot="start"></ion-icon>
+    <ion-icon name="app-place" slot="start"></ion-icon>
   </ion-item>
   <div class="validation-errors" [class.invalid]="place.invalid && (place.dirty || place.touched)">
     <div *ngIf="place.invalid && place.errors.required">Le lieu de dispense est obligatoire</div>

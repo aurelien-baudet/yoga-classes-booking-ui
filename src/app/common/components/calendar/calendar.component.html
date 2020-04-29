@@ -8,7 +8,7 @@
 
 <ng-template #selectHours let-date="date" let-hours="hours">
   <form class="select-hours" #hoursForm="ngForm" (ngSubmit)="setHours(date, hours)">
-    <ion-icon name="custom-select-hours"></ion-icon>
+    <ion-icon name="app-select-hours"></ion-icon>
     <ion-item class="start">
       <ion-input 
         type="text" 
@@ -35,7 +35,7 @@
       <div *ngIf="end.invalid && end.errors.required">L'heure de fin est obligatoire</div>
     </div>
     <ion-button type="submit" [disabled]="!hoursForm.valid" size="small">
-      <ion-icon slot="icon-only" name="custom-submit"></ion-icon>
+      <ion-icon slot="icon-only" name="app-submit"></ion-icon>
     </ion-button>
   </form>
 </ng-template>
@@ -80,7 +80,7 @@
         required></ion-input>
     </ion-item>
     <ion-button type="submit" [disabled]="!recurrenceForm.valid">
-      <ion-icon slot="start" name="custom-submit"></ion-icon>
+      <ion-icon slot="start" name="app-submit"></ion-icon>
       Planifier
     </ion-button>
   </form>

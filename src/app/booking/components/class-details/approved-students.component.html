@@ -1,6 +1,6 @@
 <ion-list class="approved">
   <ion-list-header>
-    <ion-icon name="custom-approved-list"></ion-icon>
+    <ion-icon name="app-approved-list"></ion-icon>
     <ion-title>Participants</ion-title>
     <ion-badge>{{ approvedBookings.length }} / {{ maxStudents }}</ion-badge>
   </ion-list-header>
@@ -8,7 +8,7 @@
   <ion-item *ngFor="let booking of approvedBookings">
     <ion-label>{{ booking.student.displayName }}</ion-label>
     <ion-button (click)="unbook.emit(booking)" size="small">
-      <ion-icon slot="icon-only" name="custom-unregister-friend"></ion-icon>
+      <ion-icon slot="icon-only" name="app-unregister-friend"></ion-icon>
     </ion-button>
   </ion-item>
 </ion-list>

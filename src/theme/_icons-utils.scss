@@ -32,3 +32,10 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
   @extend .fab;
   @include fa-icon-base($icon);
 }
+
+
+@mixin icon-styles($styles) {
+  color: map-get($styles, "color");
+  width: map-get($styles, "width");
+  height: map-get($styles, "height");
+}
