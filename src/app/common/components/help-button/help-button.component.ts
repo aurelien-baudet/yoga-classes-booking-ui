@@ -10,7 +10,7 @@ export class HelpButtonComponent {
   @Input()
   title: string;
 
-  @ViewChild('content')
+  @ViewChild('content', { static: true })
   content: TemplateRef<any>;
 
   constructor(private popoverService: PopoverService) { }

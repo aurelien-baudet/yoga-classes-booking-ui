@@ -3,8 +3,8 @@
 
 
 ion-icon {
-  &[name^="app-"] /deep/ .icon-inner,
-  &[name^="app-"] /deep/ svg {
+  &[name^="app-"] ::ng-deep .icon-inner,
+  &[name^="app-"] ::ng-deep svg {
     stroke: none;
   }
 }

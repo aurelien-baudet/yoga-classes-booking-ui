@@ -19,7 +19,7 @@ export class EditLessonPage {
   originalLesson: Lesson;
   places: Place[];
 
-  @ViewChild('chooseOccurrences')
+  @ViewChild('chooseOccurrences', { static: true })
   private chooseOccurrences: TemplateRef<any>;
   popover: PopoverWrapper;
 

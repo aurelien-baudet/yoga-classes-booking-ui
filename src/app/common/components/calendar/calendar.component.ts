@@ -44,9 +44,9 @@ export class CalendarComponent {
   @Output()
   schedule = new EventEmitter<{lesson: Lesson} & DateRange &  {recurrence: Recurrence}>();
 
-  @ViewChild('selectHours')
+  @ViewChild('selectHours', { static: true })
   private selectHours: TemplateRef<any>;
-  @ViewChild('recurrence')
+  @ViewChild('recurrence', { static: true })
   private recurrence: TemplateRef<any>;
   public _scheduledClasses: ScheduledClass[];
   public _firstDateToShow: Date;

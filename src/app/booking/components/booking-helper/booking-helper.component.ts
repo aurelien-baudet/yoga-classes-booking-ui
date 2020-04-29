@@ -33,15 +33,15 @@ export class BookingHelperComponent {
 
   private currentUser: User | UnregisteredUser;
 
-  @ViewChild('approvedNotification')
+  @ViewChild('approvedNotification', { static: true })
   private approvedNotification: TemplateRef<any>;
-  @ViewChild('waitingListNotification')
+  @ViewChild('waitingListNotification', { static: true })
   private waitingListNotification: TemplateRef<any>;
-  @ViewChild('unbookedNotification')
+  @ViewChild('unbookedNotification', { static: true })
   private unbookedNotification: TemplateRef<any>;
-  @ViewChild('alreadyBookedNotification')
+  @ViewChild('alreadyBookedNotification', { static: true })
   private alreadyBookedNotification: TemplateRef<any>;
-  @ViewChild('notBookedNotification')
+  @ViewChild('notBookedNotification', { static: true })
   private notBookedNotification: TemplateRef<any>;
 
   constructor(private classService: ClassService,

@@ -2,11 +2,11 @@
     display: block;
 }
 
-/deep/ ion-calendar-month .days {
+::ng-deep ion-calendar-month .days {
     height: 60px;
 }
 
-/deep/ ion-calendar-month button.days-btn.on-selected small {
+::ng-deep ion-calendar-month button.days-btn.on-selected small {
     bottom: auto;
     top: 40px;
 }

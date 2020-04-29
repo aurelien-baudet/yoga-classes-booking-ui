@@ -29,13 +29,13 @@ export class UserBookingsPage {
   private currentUser: User | UnregisteredUser;
   protected lastClick: Event;
 
-  @ViewChild('placeDetails')
+  @ViewChild('placeDetails', { static: true })
   placeDetails: TemplateRef<any>;
-  @ViewChild('approvedNotification')
+  @ViewChild('approvedNotification', { static: true })
   approvedNotification: TemplateRef<any>;
-  @ViewChild('waitingListNotification')
+  @ViewChild('waitingListNotification', { static: true })
   waitingListNotification: TemplateRef<any>;
-  @ViewChild('unbookedNotification')
+  @ViewChild('unbookedNotification', { static: true })
   unbookedNotification: TemplateRef<any>;
 
   bookingStateProvider: BookingStateProvider;

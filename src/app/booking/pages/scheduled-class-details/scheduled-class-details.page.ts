@@ -30,9 +30,9 @@ export class ScheduledClassDetailsPage implements OnInit {
   private bookedClassesForCurrentUser: ScheduledClass[] = [];
   protected lastClick: Event;
 
-  @ViewChild('placeDetails')
+  @ViewChild('placeDetails', { static: true })
   private placeDetails: TemplateRef<any>;
-  @ViewChild('bookingHelper')
+  @ViewChild('bookingHelper', { static: true })
   private bookingHelper: BookingHelperComponent;
 
   scheduledClass: ScheduledClass;
@@ -106,7 +106,7 @@ export class ScheduledClassDetailsPage implements OnInit {
       && this.pendingProvider.isPending(scheduledClass);
   }
 
-  private async refreshDetailsAndBooking() {
+  async refreshDetailsAndBooking() {
     this.refreshClass();
     this.refreshBookings();
   }

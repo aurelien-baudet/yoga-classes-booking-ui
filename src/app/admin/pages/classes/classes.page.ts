@@ -31,13 +31,13 @@ export class ClassesPage {
   classes: ScheduledClass[] = [];
   unscheduledLessons: Lesson[] = [];
 
-  @ViewChild('cancelMessage')
+  @ViewChild('cancelMessage', { static: true })
   cancelMessage: TemplateRef<any>;
-  @ViewChild('placeDetails')
+  @ViewChild('placeDetails', { static: true })
   placeDetails: TemplateRef<any>;
-  @ViewChild('approvedStudents')
+  @ViewChild('approvedStudents', { static: true })
   approvedStudents: TemplateRef<any>;
-  @ViewChild('waitingStudents')
+  @ViewChild('waitingStudents', { static: true })
   waitingStudents: TemplateRef<any>;
   lastClick: Event; // used for popover
 

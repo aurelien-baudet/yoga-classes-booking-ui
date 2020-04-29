@@ -7,9 +7,9 @@
 
 <ion-content>
     <p>Avant de t'inscire à un cours, dis nous qui tu es</p>
-    <ion-segment (ionChange)="segmentChanged($event)">
-        <ion-segment-button value="login" [checked]="showLogin()">Connecte toi</ion-segment-button>
-        <ion-segment-button value="unregistered" [checked]="showUnregistered()">Continue sans compte</ion-segment-button>
+    <ion-segment (ionChange)="segmentChanged($event)" [value]="showLogin() ? 'login' : 'unregistered'">
+        <ion-segment-button value="login">Connecte toi</ion-segment-button>
+        <ion-segment-button value="unregistered">Continue sans compte</ion-segment-button>
     </ion-segment>
     <app-social-login *ngIf="showLogin()" (authenticate)="authenticate($event)"></app-social-login>
     <app-login-form *ngIf="showLogin()" (login)="login($event)" (change)="loginErrors = []" [errors]="loginErrors"></app-login-form>

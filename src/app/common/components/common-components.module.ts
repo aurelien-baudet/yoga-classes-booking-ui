@@ -31,10 +31,6 @@ import { TimeRangePipe } from './time-range.pipe';
     PlaceDetailsComponent,
     LoginAvailableValidator
   ],
-  entryComponents: [
-    PopoverComponent,
-    NotificationComponent
-  ],
   exports: [
     HelpButtonComponent,
     PopoverComponent,

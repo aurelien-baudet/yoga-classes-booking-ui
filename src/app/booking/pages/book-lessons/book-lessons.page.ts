@@ -33,15 +33,15 @@ export class BookLessonsPage implements OnInit {
   private bookedClassesForCurrentUser: ScheduledClass[] = [];
   protected lastClick: Event;
 
-  @ViewChild(IonContent)
+  @ViewChild(IonContent, { static: true })
   private content: IonContent;
-  @ViewChild('placeDetails')
+  @ViewChild('placeDetails', { static: true })
   private placeDetails: TemplateRef<any>;
-  @ViewChild('approvedStudents')
+  @ViewChild('approvedStudents', { static: true })
   private approvedStudents: TemplateRef<any>;
-  @ViewChild('waitingStudents')
+  @ViewChild('waitingStudents', { static: true })
   private waitingStudents: TemplateRef<any>;
-  @ViewChild('bookingHelper')
+  @ViewChild('bookingHelper', { static: true })
   private bookingHelper: BookingHelperComponent;
 
   bookingStateProvider: BookingStateProvider;

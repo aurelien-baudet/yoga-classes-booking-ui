@@ -68,8 +68,6 @@ export const calendarServiceFactory = (platform: Platform, nativeCalendar: Calen
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [
-  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

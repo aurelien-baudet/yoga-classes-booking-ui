@@ -21,7 +21,7 @@
   }
 }*/
 
-/deep/ ion-item {
+::ng-deep ion-item {
   --padding-start: 0;
   --padding-end: 0;
   --inner-padding-start: 0;
@@ -30,7 +30,7 @@
   --border-width: 0 0 0 0;
 }
 
-/deep/ app-popover {
+::ng-deep app-popover {
   app-approved-students,
   app-waiting-students {
     padding-left: 10px;

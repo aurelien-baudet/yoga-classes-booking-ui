@@ -24,7 +24,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     password: ''
   };
 
-  @ViewChild('form')
+  @ViewChild('form', { static: true })
   ngForm: NgForm;
 
   private formChangesSubscription: Subscription;

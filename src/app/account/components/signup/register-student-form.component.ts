@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
   };
 
-  @ViewChild('form')
+  @ViewChild('form', { static: true })
   ngForm: NgForm;
 
 
