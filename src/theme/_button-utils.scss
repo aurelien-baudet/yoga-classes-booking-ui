@@ -1,3 +1,6 @@
+@import "icons-utils";
+
+
 @mixin secondary-button {
   --color: var(--ion-color-primary);
   --background: none;
@@ -21,3 +24,17 @@
   --color-focused: #{$color-focused};
   --color-hover: #{$color-hover};
 }
+
+@mixin round-icon-button($root-styles) {
+  border-radius: #{max(value($root-styles, "icon.width"), value($root-styles, "icon.height")) / 2 + 1px};
+  width: value($root-styles, "icon.width");
+  height: value($root-styles, "icon.height");
+  @include discreet-button(transparent);
+  --padding-start: 0;
+  --padding-end: 0;
+
+  ion-icon {
+      @include icon-styles(value($root-styles, "icon"));
+  }
+}
+

@@ -1,17 +1,43 @@
 ion-auto-complete {
   width: 100% !important;
-
-  ion-searchbar .searchbar-input.sc-ion-searchbar-md {
-    -webkit-padding-start: 30px;
-    padding-inline-start: 30px;
-    -webkit-padding-end: 5px;
-    padding-inline-end: 5px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    line-height: normal;
+  
+  ion-searchbar .searchbar-input-container {
+    --box-shadow: none;
+    --background: #{value($autocomplete, "background")};
+    --color: #{value($autocomplete, "color")};
   }
+  ion-searchbar .searchbar-input.sc-ion-searchbar-md {
+    padding-inline-start: value($autocomplete, "padding", 2);
+    padding-inline-end: value($autocomplete, "padding", 2);
+    padding-top: value($autocomplete, "padding", 1);
+    padding-bottom: value($autocomplete, "padding", 1);
+    border: value($autocomplete, "border");
+    border-radius: value($autocomplete, "border-radius");
+    font-size: value($autocomplete, "font-size");
+    line-height: normal;
+
+    &::-webkit-input-placeholder,
+    &::placeholder {
+      color: value($autocomplete, "placeholder.color");
+      font-size: value($autocomplete, "placeholder.font-size");
+      font-weight: bold;
+    }
+  }
+
   ion-searchbar .searchbar-search-icon.sc-ion-searchbar-md {
-    top: 1px;
-    left: 5px;
+    display: none !important;
+  }
+
+  ul {
+    width: auto;
+  }
+  ul li {
+    padding: value($autocomplete, "results.padding");
+    color: value($autocomplete, "results.color");
+    font-size: value($autocomplete, "results.font-size");
+  }
+  ul li:focus, 
+  ul li.focus {
+    background: value($autocomplete, "results.background");
   }
 }

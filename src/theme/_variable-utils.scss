@@ -1,10 +1,13 @@
 @import "common-utils";
 
-@function value($variable, $property) {
+@function value($variable, $property, $shorthand-index: null) {
   $keys: str-split($property, ".");
   $value: $variable;
   @each $key in $keys {
     $value: map-get($value, $key);
+  }
+  @if ($shorthand-index != null) {
+    $value: nth($value, $shorthand-index);
   }
   @return $value;
 }

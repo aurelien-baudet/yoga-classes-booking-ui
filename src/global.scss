@@ -30,6 +30,13 @@ $colors: (
 @import "~ion4-calendar/dist/index";
 
 
+@import "./theme/animations";
+@import "./theme/button-utils";
+@import "./theme/common-utils";
+@import "./theme/icons-utils";
+@import "./theme/variable-utils";
+
+
 @import "./theme/general";
 @import "./theme/fonts";
 @import "./theme/icons";

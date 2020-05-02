@@ -1,5 +1,6 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
+@import "variable-utils";
 
 /** Ionic CSS Variables **/
 :root {
@@ -22,8 +23,8 @@
   --ion-color-secondary-tint: #24d6ea;
 
   /** tertiary **/
-  --ion-color-tertiary: #15101F;
-  --ion-color-tertiary-rgb: 21, 16, 31;
+  --ion-color-tertiary: #D5D3EB;
+  --ion-color-tertiary-rgb: 213, 211, 235;
   --ion-color-tertiary-contrast: #ffffff;
   --ion-color-tertiary-contrast-rgb: 255, 255, 255;
   --ion-color-tertiary-shade: #633ce0;
@@ -38,8 +39,8 @@
   --ion-color-success-tint: #28e070;
 
   /** warning **/
-  --ion-color-warning: #ffce00;
-  --ion-color-warning-rgb: 255, 206, 0;
+  --ion-color-warning: #5A1478;
+  --ion-color-warning-rgb: 90, 20, 120;
   --ion-color-warning-contrast: #ffffff;
   --ion-color-warning-contrast-rgb: 255, 255, 255;
   --ion-color-warning-shade: #e0b500;
@@ -83,9 +84,20 @@ $font-family-ios-base: "Comfortaa";
 $font-family-wp-base: "Comfortaa";
 
 
-$menu-toolbar-color: var(--ion-color-primary-shade);
-$menu-toolbar-title-font-size: 18px;
-$menu-button-color: var(--ion-color-primary);
+$menu: (
+  "toolbar": (
+    "color": var(--ion-color-primary-shade),
+    "font-size": 18px,
+    "button": (
+      "color": var(--ion-color-primary)
+    )
+  )
+);
+
+$pages: (
+  "background": linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(201,206,212,1) 100%)
+);
+
 
 $scheduled-class-card-layout: (
   "border-radius": 30px 30px 60px 30px,
@@ -93,6 +105,13 @@ $scheduled-class-card-layout: (
   "margin-bottom": 25px,
   "summary": (
     "padding": 11px 2px 0 2px
+  ),
+  "details": (
+    "margin-top": 10px,
+    "padding-bottom": 50px
+  ),
+  "cancel-details": (
+    "margin-top": 10px
   )
 );
 $scheduled-class-card-header: (
@@ -105,36 +124,146 @@ $scheduled-class-card-header: (
     "font-size": 15px
   )
 );
+$scheduled-class-card-content: (
+  "background": #fff
+);
 $scheduled-class-card-time: (
   "color": var(--ion-color-secondary),
-  "font-size": 14px,
+  "font-size": 13px,
+  "space-between": 6px,
   "icon": (
-    "color": var(--ion-color-primary-tint),
+    "colors": var(--ion-color-primary-tint) var(--ion-color-primary-contrast),
     "width": 24px, 
     "height": 22px
   )
 );
 $scheduled-class-card-place: (
   "color": var(--ion-color-secondary),
-  "font-size": 14px,
+  "font-size": 13px,
   "icon": (
-    "color": var(--ion-color-primary-tint),
+    "colors": var(--ion-color-primary-tint) var(--ion-color-primary-contrast),
     "width": 22px, 
     "height": 22px
   )
 );
-$scheduled-class-card-remaining-places: (
+$scheduled-class-card-place-changed: (
+  "border-radius": 25px,
+  "padding": 4px 15px,
+  "font-size": 9px,
+  "spacing": 5px,
+  "background": var(--ion-color-secondary),
+  "color": var(--ion-color-secondary-contrast),
   "icon": (
-    "color": var(--ion-color-primary),
-    "width": 24px, 
-    "height": 24px
+    "colors": var(--ion-color-secondary-contrast) var(--ion-color-secondary),
+    "width": 16px,
+    "height": 12px
+  )
+);
+$scheduled-class-card-remaining-places: (
+  "color": var(--ion-color-primary),
+  "font-size": 10px,
+  "position": (
+    "top": 11px,
+    "right": 41px
+  ),
+  "padding": (
+    "top": 0,
+    "left": 0,
+    "bottom": 0,
+    "right": 0
+  ),
+  "icon": (
+    "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+    "width": 28px, 
+    "height": 28px
   )
 );
 $scheduled-class-card-waiting-places: (
+  "color": var(--ion-color-primary),
+  "font-size": 10px,
+  "position": (
+    "top": 10px,
+    "right": 0
+  ),
+  "padding": (
+    "top": 0,
+    "left": 0,
+    "bottom": 0,
+    "right": 0
+  ),
   "icon": (
-    "color": var(--ion-color-primary),
-    "width": 24px, 
-    "height": 24px
+    "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+    "width": 31px, 
+    "height": 31px
+  )
+);
+$scheduled-class-card-details: (
+  "description": (
+    "font-size": 11px
+  ),
+  "margin": 0 0 20px 0
+);
+$scheduled-class-card-details-button: (
+  "background": var(--ion-color-tertiary),
+  "color": var(--ion-color-primary),
+  "font-size": 11.5px,
+  "padding": 12px 25px,
+  "border-radius": 50px,
+  "space-between": 18px,
+  "height": 35px,
+  "position": (
+    "bottom": 10px
+  ),
+  "icon": (
+    "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+    "width": 18px,
+    "height": 10px
+  )
+);
+$scheduled-class-card-book-button: (
+  "position": (
+    "bottom": -15px,
+    "right": 35px
+  ),
+  "icon": (
+    "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+    "width": 78px,
+    "height": 78px
+  )
+);
+$scheduled-class-card-unbook-button: (
+  "position": (
+    "bottom": 16px,
+    "right": -8px
+  ),
+  "icon": (
+    "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+    "width": 46px,
+    "height": 46px
+  )
+);
+$scheduled-class-card-cancel-details: (
+  "message": (
+    "font-size": 12px,
+    "color": var(--ion-color-secondary),
+    "icon": (
+      "colors": var(--ion-color-warning) var(--ion-color-warning-contrast),
+      "width": 20px,
+      "height": 20px,
+      "margin": 0 7px 0 4px
+    ),
+    "spacing": 10px,
+    "teacher-name": (
+      "color":  var(--ion-color-warning)
+    )
+  ),
+  "spacing": 23px,
+  "lesson-canceled": (
+    "font-size": 11.5px,
+    "color": var(--ion-color-warning-contrast),
+    "background": var(--ion-color-warning),
+    "border-radius": 25px,
+    "padding": 9px 25px
   )
 );
 $scheduled-class-card-states: (
@@ -143,5 +272,82 @@ $scheduled-class-card-states: (
       "background": var(--ion-color-primary),
       "color": var(--ion-color-primary-contrast)
     )
+  ),
+  "booking-approved": (
+    "header": (
+      "background": var(--ion-color-secondary)
+    ),
+    "icon": (
+      "position": (
+        "bottom": -12px,
+        "right": 37px
+      ),
+      "colors": var(--ion-color-secondary) var(--ion-color-secondary-contrast),
+      "width": 78px,
+      "height": 78px
+    )
+  ),
+  "booking-waiting": (
+    "header": (
+      "background": var(--ion-color-primary)
+    ),
+    "icon": (
+      "position": (
+        "bottom": -9px,
+        "right": 39px
+      ),
+      "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+      "width": 73px,
+      "height": 73px
+    )
+  ),
+  "canceled": (
+    "header": (
+      "background": var(--ion-color-warning)
+    ),
+    "icon": (
+      "position": (
+        "bottom": -9px,
+        "right": 39px
+      ),
+      "colors": var(--ion-color-warning-contrast) var(--ion-color-warning),
+      "width": 73px,
+      "height": 73px
+    )
   )
+);
+
+
+$register-friend-button: (
+  "icon": (
+    "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+    "width": 35px,
+    "height": 35px
+  )
+);
+
+
+$autocomplete: (
+  "background": var(--ion-color-tertiary),
+  "color": var(--ion-color-primary),
+  "border-radius": 12px,
+  "padding": 10px 18px,
+  "border": 1px solid var(--ion-color-primary-tint),
+  "font-size": 11.5px,
+  "placeholder": (
+    "color": var(--ion-color-primary-shade),
+    "font-size": 12px
+  ),
+  "results": (
+    "padding": 10px 18px,
+    "color": var(--ion-color-primary),
+    "background": var(--ion-color-tertiary),
+    "font-size": 11.5px
+  )
+);
+
+
+$class-details-description: (
+  "color": var(--ion-color-primary-shade),
+  "margin": 20px 0
 );

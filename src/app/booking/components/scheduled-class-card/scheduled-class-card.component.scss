@@ -1,5 +1,4 @@
 @import "../../../../theme/variables";
-@import "../../../../theme/variable-utils";
 @import "../../../../theme/button-utils";
 @import "../../../../theme/icons-utils";
 
@@ -13,11 +12,17 @@ ion-card {
     margin-inline-start: value($scheduled-class-card-layout, "margin-inline");
     margin-inline-end: value($scheduled-class-card-layout, "margin-inline");
     margin-bottom: value($scheduled-class-card-layout, "margin-bottom");
+    position: relative;
+    overflow: visible;
+    box-shadow: none;
 }
 
 ion-card-header {
+    border-top-left-radius: value($scheduled-class-card-layout, "border-radius", 1);
+    border-top-right-radius: value($scheduled-class-card-layout, "border-radius", 2);
     background: value($scheduled-class-card-states, "bookable.header.background");
     padding: value($scheduled-class-card-header, "padding");
+    position: relative;
 
     ion-card-title {
         span {
@@ -41,9 +46,13 @@ ion-card-header {
 }
 
 ion-card-content {
-    
+    background: value($scheduled-class-card-content, "background");
+    border-bottom-left-radius: value($scheduled-class-card-layout, "border-radius", 4);
+    border-bottom-right-radius: value($scheduled-class-card-layout, "border-radius", 3);
+
     .summary {
         padding: value($scheduled-class-card-layout, "summary.padding");
+        position: relative;
         
         .time {
             ion-icon {
@@ -56,143 +65,243 @@ ion-card-content {
                 color: value($scheduled-class-card-time, "color");
                 display: inline-block;
                 vertical-align: middle;
+                padding-left: value($scheduled-class-card-time, "space-between");
             }
         }
         .place {
-            ion-icon {
-                @include icon-styles(value($scheduled-class-card-place, "icon"));
-            }
             ion-button {
+                --padding-start: 0.33em;
                 font-size: value($scheduled-class-card-place, "font-size");
                 font-weight: bold;
                 @include discreet-button(value($scheduled-class-card-place, "color"));
+
+                ion-icon {
+                    @include icon-styles(value($scheduled-class-card-place, "icon"));
+                    vertical-align: middle;
+                }
+                span {
+                    padding-top: 1px;
+                    padding-left: 1px;
+                    display: inline-block;
+                }
+            }
+            .place-changed {
+                border-radius: value($scheduled-class-card-place-changed, "border-radius");
+                padding: value($scheduled-class-card-place-changed, "padding");
+                font-size: value($scheduled-class-card-place-changed, "font-size");
+                font-weight: bold;
+                background: value($scheduled-class-card-place-changed, "background");
+                color: value($scheduled-class-card-place-changed, "color");
+                width: fit-content;
+
+                ion-icon {
+                    @include icon-styles(value($scheduled-class-card-place-changed, "icon"));
+                    padding-right: value($scheduled-class-card-place-changed, "spacing");
+                    vertical-align: middle;
+                    display: none;
+                }
+                span {
+                    display: inline-block;
+                    height: value($scheduled-class-card-place-changed, "icon.height");
+                    line-height: value($scheduled-class-card-place-changed, "icon.height");
+                    vertical-align: middle;
+                    font-weight: bold;
+                }
+            }
+        }
+        .remaining-places,
+        .waiting-queue {
+            position: absolute;
+
+            ion-badge {
+                display: block;
+                --background: none;
             }
         }
         .remaining-places {
+            top: value($scheduled-class-card-remaining-places, "position.top");
+            right: value($scheduled-class-card-remaining-places, "position.right");
+
             ion-icon {
                 @include icon-styles(value($scheduled-class-card-remaining-places, "icon"));
             }
+            ion-badge {
+                --color: #{value($scheduled-class-card-remaining-places, "color")};
+                --padding-top: #{value($scheduled-class-card-remaining-places, "padding.top") + 1px};
+                --padding-end: #{value($scheduled-class-card-remaining-places, "padding.right")};
+                --padding-bottom: #{value($scheduled-class-card-remaining-places, "padding.bottom")};
+                --padding-start: #{value($scheduled-class-card-remaining-places, "padding.left")};
+                font-size: value($scheduled-class-card-remaining-places, "font-size");
+                margin-top: -2px;
+            }
         }
         .waiting-queue {
+            top: value($scheduled-class-card-waiting-places, "position.top");
+            right: value($scheduled-class-card-waiting-places, "position.right");
+
             ion-icon {
                 @include icon-styles(value($scheduled-class-card-waiting-places, "icon"));
             }
-        }
-    }
-}
-
-
-
-
-/* animation */
-ion-card-content .details {
-    padding-top: 0;
-    padding-bottom: 0;
-    // transition: padding 0.2s linear 0.8s;
-}
-app-class-details {
-    max-height: 0;
-    overflow: hidden;
-    // transition: max-height 1s ease-out;
-}
-
-.show-details {
-    ion-card-content .details {
-        padding-top: 5px;
-        padding-bottom: 5px;
-        // transition: padding 0.2s linear;
-    }
-    app-class-details {
-        // max-height: 600px;
-        max-height: 100%;
-    }
-}
-
-
-/* states */
-.place-changed {
-    .summary .place {
-        ion-button {
-            font-size: 16px;
-            --color: var(--ion-color-danger);
-            --color-activated: var(--ion-color-danger);
-            --color-focused: var(--ion-color-danger);
-            --color-hover: var(--ion-color-danger);
-        }
-            
-        .warning {
-            font-size: 16px;
-            color: var(--ion-color-warning);
-            text-transform: none;
-            display: block;
-            padding-left: 5px;
-            @include fas-icon($fa-var-exclamation-triangle);
-            margin-bottom: 10px;
-
-            &:before {
-                padding-right: 5px;
+            ion-badge {
+                --color: #{value($scheduled-class-card-waiting-places, "color")};
+                --padding-top: #{value($scheduled-class-card-waiting-places, "padding.top") + 1px};
+                --padding-end: #{value($scheduled-class-card-waiting-places, "padding.right")};
+                --padding-bottom: #{value($scheduled-class-card-waiting-places, "padding.bottom")};
+                --padding-start: #{value($scheduled-class-card-waiting-places, "padding.left")};
+                font-size: value($scheduled-class-card-waiting-places, "font-size");
+                margin-top: -4px;
             }
         }
     }
+    .details {
+        margin-top: value($scheduled-class-card-layout, "details.margin-top");
+        padding-bottom: value($scheduled-class-card-layout, "details.padding-bottom");
+
+        ion-button {
+            --padding-top: #{value($scheduled-class-card-details-button, "padding", 1)};
+            --padding-bottom: #{value($scheduled-class-card-details-button, "padding", 1)};
+            --padding-start: #{value($scheduled-class-card-details-button, "padding", 2)};
+            --padding-end: #{value($scheduled-class-card-details-button, "padding", 2)};
+            --background: #{value($scheduled-class-card-details-button, "background")};
+            --color: #{value($scheduled-class-card-details-button, "color")};
+            font-size: value($scheduled-class-card-details-button, "font-size");
+            border-radius: value($scheduled-class-card-details-button, "border-radius");
+            text-transform: none;
+            overflow: hidden;
+            height: value($scheduled-class-card-details-button, "height");
+            position: absolute;
+            bottom: value($scheduled-class-card-details-button, "position.bottom");
+
+            ion-icon {
+                @include icon-styles(value($scheduled-class-card-details-button, "icon"));
+            }
+            span {
+                display: inline-block;
+                margin-right: value($scheduled-class-card-details-button, "space-between");
+            }
+        }
+
+        ::ng-deep app-class-details {
+            height: 0;
+            overflow: hidden;
+            margin-bottom: value($scheduled-class-card-details, "description.margin");
+
+            p {
+                font-size: value($scheduled-class-card-details, "description.font-size");
+            }
+            app-approved-students,
+            app-waiting-students {
+                display: none;
+            }
+        }
+    }
+    .cancel-details {
+        .teacher-message {
+            margin-top: value($scheduled-class-card-layout, "cancel-details.margin-top");
+            font-size: value($scheduled-class-card-cancel-details, "message.font-size");
+            color: value($scheduled-class-card-cancel-details, "message.color");
+            font-weight: bold;
+
+            span {
+                display: inline-block;
+                height: value($scheduled-class-card-cancel-details, "message.icon.height");
+                line-height: value($scheduled-class-card-cancel-details, "message.icon.height");
+                vertical-align: middle;
+            }
+
+            .intro {
+                padding-right: value($scheduled-class-card-cancel-details, "message.spacing");
+                color: value($scheduled-class-card-cancel-details, "message.teacher-name.color");
+            }
+
+            ion-icon {
+                @include icon-styles(value($scheduled-class-card-cancel-details, "message.icon"));
+                vertical-align: middle;
+                margin: value($scheduled-class-card-cancel-details, "message.icon.margin");
+            }
+        }
+        .lesson-canceled {
+            margin-top: value($scheduled-class-card-cancel-details, "spacing");
+            font-size: value($scheduled-class-card-cancel-details, "lesson-canceled.font-size");
+            color: value($scheduled-class-card-cancel-details, "lesson-canceled.color");
+            background: value($scheduled-class-card-cancel-details, "lesson-canceled.background");
+            border-radius: value($scheduled-class-card-cancel-details, "lesson-canceled.border-radius");
+            padding: value($scheduled-class-card-cancel-details, "lesson-canceled.padding");
+            width: fit-content;
+            font-weight: bold;
+        }
+    }
+    .actions {
+        ion-button.book-class {
+            position: absolute;
+            bottom: value($scheduled-class-card-book-button, "position.bottom");
+            right: value($scheduled-class-card-book-button, "position.right");
+            @include round-icon-button($scheduled-class-card-book-button);
+        }
+        ion-button.unbook-class {
+            position: absolute;
+            bottom: value($scheduled-class-card-unbook-button, "position.bottom");
+            right: value($scheduled-class-card-unbook-button, "position.right");
+            @include round-icon-button($scheduled-class-card-unbook-button);
+        }
+    }
 }
+
+
+
+
+
+
+/* states */
+.show-details {
+    ion-card-content .details ::ng-deep app-class-details {
+        height: auto;
+    }
+}
+
 .booked.booking-approved {
     ion-card-header {
-        background: var(--ion-color-success);
+        background: value($scheduled-class-card-states, "booking-approved.header.background");
+    }
+    .state-icons {
+        ion-icon {
+            position: absolute;
+            bottom: value($scheduled-class-card-states, "booking-approved.icon.position.bottom");
+            right: value($scheduled-class-card-states, "booking-approved.icon.position.right");
+            @include icon-styles(value($scheduled-class-card-states, "booking-approved.icon"));
+        }
     }
 }
 .booked.booking-waiting {
     ion-card-header {
-        background: var(--ion-color-tertiary);
+        background: value($scheduled-class-card-states, "booking-waiting.header.background");
+    }
+    .state-icons {
+        ion-icon {
+            position: absolute;
+            bottom: value($scheduled-class-card-states, "booking-waiting.icon.position.bottom");
+            right: value($scheduled-class-card-states, "booking-waiting.icon.position.right");
+            @include icon-styles(value($scheduled-class-card-states, "booking-waiting.icon"));
+        }
     }
 }
 .canceled,
 .booked.canceled {
-    min-height: 150px;
-    position: relative;
-
     ion-card-header {
-        background: var(--ion-color-warning);
+        background: value($scheduled-class-card-states, "canceled.header.background");
     }
-    .summary,
+    .state-icons {
+        ion-icon {
+            position: absolute;
+            bottom: value($scheduled-class-card-states, "canceled.icon.position.bottom");
+            right: value($scheduled-class-card-states, "canceled.icon.position.right");
+            @include icon-styles(value($scheduled-class-card-states, "canceled.icon"));
+        }
+    }
+    .summary {
+        opacity: 0.5;
+    }
     .details {
         display: none;
-    }
-    &:before {
-        content: "";
-        display: block;
-        border: 50px solid var(--ion-color-warning);
-        border-left-color: transparent;
-        border-bottom-color: transparent;
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 1;
-    }
-    .cancel-details {
-        h3 {
-            position: absolute;
-            top: -15px;
-            right: 2px;
-            color: var(--ion-color-warning-contrast);
-            transform: rotate(45deg);
-            font-size: 16px;
-            font-weight: bold;
-            width: 50px;
-            z-index: 2;
-        }
-        p {
-            padding: 0 50px 0 5px;
-            margin: 10px 0;
-        }
-        .lesson-canceled {
-            text-transform: uppercase;
-        }
-        p span {
-            display: block;
-        }
-        .message {
-            font-weight: bold;
-            white-space: pre-wrap;
-        }
     }
 }
