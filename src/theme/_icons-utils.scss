@@ -37,9 +37,12 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @mixin icon-styles($styles) {
   width: map-get($styles, "width");
   height: map-get($styles, "height");
+  @include icon-colors(map-get($styles, "colors"));
+}
 
+@mixin icon-colors($colors) {
   $i: 1;
-  @each $color in map-get($styles, "colors") {
+  @each $color in $colors {
     --icon-color-#{$i}: #{$color};
     $i: $i + 1;
   }

@@ -85,11 +85,34 @@ $font-family-wp-base: "Comfortaa";
 
 
 $menu: (
-  "toolbar": (
+  "width": 295px,
+  "border-radius": 0 35px 35px 0,
+  "page-header": (
     "color": var(--ion-color-primary-shade),
     "font-size": 18px,
     "button": (
-      "color": var(--ion-color-primary)
+      "icon": (
+        "colors": var(--ion-color-primary)
+      )
+    )
+  ),
+  "list": (
+    "margin": 40px,
+    "border-bottom": 2px solid var(--ion-color-tertiary)
+  ),
+  "menu-item": (
+    "color": var(--ion-color-primary),
+    "font-size": 15px,
+    "icon": (
+      "width": 22px,
+      "height": 22px,
+      "padding": 0 0 0 12px,
+    ),
+    "icon-odd": (
+      "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+    ),
+    "icon-even": (
+      "colors": var(--ion-color-primary-tint) var(--ion-color-primary-contrast),
     )
   )
 );

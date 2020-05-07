@@ -1,71 +1,85 @@
 @import "variables";
 
-ion-header {
+/* page header */
+.ion-page ion-header {
   &::after {
     display: none;
   }
-}
 
-ion-toolbar {
-  text-align: left;
-  border-bottom: 1px solid var(--ion-color-tertiary);
-  
-  ion-menu-button,
-  ion-title {
-    display: inline-block;
+  ion-toolbar {
     text-align: left;
-  }
-
-  ion-title {
-    font-size: value($menu, "toolbar.font-size");
-    font-weight: bold;
+    border-bottom: 1px solid var(--ion-color-tertiary);
+    
+    ion-menu-button,
+    ion-title {
+      display: inline-block;
+      text-align: left;
+    }
+    
+    ion-title {
+      font-size: value($menu, "page-header.font-size");
+      font-weight: bold;
+    }
+    
+    ion-menu-button {
+      @include icon-colors(value($menu, "page-header.button.icon.colors"));
+    }
   }
 }
 
+
+/* menu */
 ion-menu {
+  --width: #{value($menu, "width")};
+  --background: transparent;
+  // TODO: remove box-shadow on .menu-inner (shadow dom...)
+
+  ion-header {
+    display: none;
+  }
   ion-content {
     position: relative;
+    border-radius: value($menu, "border-radius");
+    overflow: hidden;
+  }
+
+  ion-list,
+  .list-md {
+    margin: value($menu, "list.margin");
+    border-bottom: value($menu, "list.border-bottom");
   }
 
   ion-item {
     ion-icon {
-      -webkit-margin-start: 12px;
-      margin-inline-start: 12px;
-      -webkit-margin-end: 12px;
-      margin-inline-end: 12px;
-      text-align: center;
-      font-size: 26px;
-      line-height: 22px !important;
-      color: value($menu, "toolbar.button.color");
+      -webkit-margin-start: value($menu, "menu-item.icon.padding", 2);
+      margin-inline-start: value($menu, "menu-item.icon.padding", 2);
+      -webkit-margin-end: value($menu, "menu-item.icon.padding", 4);
+      margin-inline-end: value($menu, "menu-item.icon.padding", 4);
+      @include icon-styles(value($menu, "menu-item.icon"));
+      vertical-align: middle;
     }
 
     a {
       text-decoration: none;
-      color: value($menu, "toolbar.button.color");
+      color: value($menu, "menu-item.color");
+      font-size: value($menu, "menu-item.font-size");
+      font-weight: bold;
+      display: inline-block;
+      line-height: value($menu, "menu-item.icon.height");
+      height: value($menu, "menu-item.icon.height");
+      vertical-align: middle;
+    }
+  }
+  ion-item {
+    &:nth-child(odd) ion-icon {
+      @include icon-colors(value($menu, "menu-item.icon-odd.colors"));
+    }
+    &:nth-child(even) ion-icon {
+      @include icon-colors(value($menu, "menu-item.icon-even.colors"));
     }
   }
 
   .current-user {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    color: var(--ion-color-tertiary);
-    padding: 10px 0;
-
-    ion-icon {
-      -webkit-margin-start: 12px;
-      margin-inline-start: 12px;
-      -webkit-margin-end: 12px;
-      margin-inline-end: 12px;
-      text-align: center;
-      font-size: 24px;
-      line-height: 21px !important;
-      vertical-align: middle;
-    }
-    span {
-      display: inline-block;
-      vertical-align: middle;
-    }
+    display: none;
   }
 }

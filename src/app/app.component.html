@@ -1,5 +1,5 @@
 <ion-app [class.keyboard-opened]="isKeyboardVisible()">
-  <ion-menu side="start" type="push" contentId="main">
+  <ion-menu side="start" contentId="main">
     <ion-header>
       <ion-toolbar translucent>
         <ion-title>Menu</ion-title>
@@ -17,7 +17,7 @@
         </ion-item>
         <ion-item *ngIf="(isAuthenticated() || isRegistered()) && isStudent()">
           <ion-icon name="app-menu-my-next-lessons" slot="start"></ion-icon>
-          <a (click)="close()" routerLink="/user/bookings" routerLinkActive="active">Mes prochains cours réservés</a>
+          <a (click)="close()" routerLink="/user/bookings" routerLinkActive="active">Mes prochains cours</a>
         </ion-item>
         <ion-item *ngIf="!isAuthenticated()">
           <ion-icon name="app-menu-login" slot="start"></ion-icon>
