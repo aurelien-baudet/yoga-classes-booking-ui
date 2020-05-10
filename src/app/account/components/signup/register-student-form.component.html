@@ -7,10 +7,10 @@
       C'est le nom qui sera visible par les autres utilisateurs. C'est aussi ce nom que ton professeur de yoga
       uilisera lors de son cours.
     </app-help-button>
+    <div class="validation-errors" [class.invalid]="displayName.invalid && (displayName.dirty || displayName.touched)">
+      <div *ngIf="displayName.invalid && displayName.errors.required">Le nom affiché est obligatoire</div>
+    </div>
   </ion-item>
-  <div class="validation-errors" [class.invalid]="displayName.invalid && (displayName.dirty || displayName.touched)">
-    <div *ngIf="displayName.invalid && displayName.errors.required">Le nom affiché est obligatoire</div>
-  </div>
   <ion-item class="login">
     <ion-label position="floating">Identifiant utilisateur</ion-label>
     <ion-input type="text" name="login" #login="ngModel" [(ngModel)]="student.credentials.login" required appLoginAvailable autocapitalize="off"></ion-input>
@@ -18,11 +18,11 @@
     <app-help-button slot="end" title="Identifiant utilisateur">
       Un identifiant qui te servira pour te connecter à ton compte.
     </app-help-button>
+    <div class="validation-errors" [class.invalid]="(login.invalid && (login.dirty || login.touched))">
+      <div *ngIf="login.invalid && login.errors.required">L'identifiant utilisateur est obligatoire</div>
+      <div *ngIf="login.invalid && login.errors.loginAvailable">L'identifiant utilisateur est déjà utilisé</div>
+    </div>
   </ion-item>
-  <div class="validation-errors" [class.invalid]="(login.invalid && (login.dirty || login.touched))">
-    <div *ngIf="login.invalid && login.errors.required">L'identifiant utilisateur est obligatoire</div>
-    <div *ngIf="login.invalid && login.errors.loginAvailable">L'identifiant utilisateur est déjà utilisé</div>
-  </div>
   <ion-item class="password">
     <ion-label position="floating">Mot de passe</ion-label>
     <ion-input type="password" name="password" #password="ngModel" [(ngModel)]="student.credentials.password" required></ion-input>
@@ -30,10 +30,10 @@
     <app-help-button slot="end" title="Mot de passe">
       Choisis ton mot de passe.
     </app-help-button>
+    <div class="validation-errors" [class.invalid]="password.invalid && (password.dirty || password.touched)">
+      <div *ngIf="password.invalid && password.errors.required">Le mot de passe est obligatoire</div>
+    </div>
   </ion-item>
-  <div class="validation-errors" [class.invalid]="password.invalid && (password.dirty || password.touched)">
-    <div *ngIf="password.invalid && password.errors.required">Le mot de passe est obligatoire</div>
-  </div>
   <ion-item class="email">
     <ion-label position="floating">Email (optionnel)</ion-label>
     <ion-input type="email" name="contact.email" #email="ngModel" [(ngModel)]="student.contact.email" email autocapitalize="off"></ion-input>
@@ -42,10 +42,10 @@
       Ton adresse email si tu souhaites recevoir les informations relatives aux cours 
       (confirmation de réservation, rappels, changement de lieu...).
     </app-help-button>
+    <div class="validation-errors" [class.invalid]="email.invalid && (email.dirty || email.touched)">
+      <div *ngIf="email.invalid && email.errors.email">Le format de l'adresse email n'est pas valide</div>
+    </div>
   </ion-item>
-  <div class="validation-errors" [class.invalid]="email.invalid && (email.dirty || email.touched)">
-    <div *ngIf="email.invalid && email.errors.email">Le format de l'adresse email n'est pas valide</div>
-  </div>
   <ion-item class="phone">
     <ion-label position="floating">Numéro de téléphone (optionnel)</ion-label>
     <ion-input type="tel" name="contact.phoneNumber" #phoneNumber="ngModel" [(ngModel)]="student.contact.phoneNumber"></ion-input>
@@ -54,9 +54,9 @@
       Ton numéro de téléphone pour être prévenu rapidement d'un changement 
       (changement de lieu ou annulation).
     </app-help-button>
+    <div class="validation-errors" [class.invalid]="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)">
+    </div>
   </ion-item>
-  <div class="validation-errors" [class.invalid]="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)">
-  </div>
   <ion-item class="visible-by-others">
     <ion-toggle name="preferences.visibleByOtherStudents" [(ngModel)]="student.preferences.visibleByOtherStudents"></ion-toggle>
     <ion-label>Mon nom affiché est visible par les autres</ion-label>

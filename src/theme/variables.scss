@@ -519,3 +519,12 @@ $who-are-you-page: (
     "color": var(--ion-color-primary-shade)
   )
 );
+
+$register-student-form: (
+  "background": (
+    "position-y": 30px
+  ),
+  "checkboxes": (
+    "margin": -10px 0 10px 0
+  )
+)
