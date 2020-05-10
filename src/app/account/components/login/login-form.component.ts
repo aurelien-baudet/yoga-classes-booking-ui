@@ -1,5 +1,5 @@
-import { ErrorCode, matchesErrorCode } from './../../../booking/domain/general';
-import { Credentials } from '../../domain/user';
+import { ErrorCode, matchesErrorCode } from 'src/app/booking/domain/general';
+import { Credentials } from 'src/app/account/domain/user';
 import { Component, OnInit, Output, EventEmitter, Input, ViewChild, OnDestroy } from '@angular/core';
 import { ApplicationError } from 'src/app/booking/domain/general';
 import { NgForm } from '@angular/forms';
@@ -13,6 +13,8 @@ import { Subscription } from 'rxjs';
 export class LoginFormComponent implements OnInit, OnDestroy {
   @Input()
   errors: ApplicationError[];
+  @Input()
+  submitText = 'Me connecter';
 
   @Output()
   login = new EventEmitter<Credentials>();
@@ -42,4 +44,5 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   hasError(code: ErrorCode) {
     return this.errors && this.errors.some((e) => matchesErrorCode(e, code));
   }
+
 }

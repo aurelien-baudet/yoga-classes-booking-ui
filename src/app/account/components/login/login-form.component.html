@@ -3,20 +3,20 @@
     <ion-label position="floating">Identifiant utilisateur ou email</ion-label>
     <ion-input class="login" type="text" name="login" #loginInput="ngModel" [(ngModel)]="credentials.login" required autocapitalize="off"></ion-input>
     <ion-icon name="app-login" slot="start"></ion-icon>
+    <div class="validation-errors" [class.invalid]="loginInput.invalid && (loginInput.dirty || loginInput.touched)">
+      <div *ngIf="loginInput.invalid && loginInput.errors.required">L'identifiant utilisateur est obligatoire</div>
+    </div>
   </ion-item>
-  <div class="validation-errors" [class.invalid]="loginInput.invalid && (loginInput.dirty || loginInput.touched)">
-    <div *ngIf="loginInput.invalid && loginInput.errors.required">L'identifiant utilisateur est obligatoire</div>
-  </div>
   <ion-item>
     <ion-label position="floating">Mot de passe</ion-label>
     <ion-input class="password" type="password" name="password" #password="ngModel" [(ngModel)]="credentials.password" required></ion-input>
     <ion-icon name="app-password" slot="start"></ion-icon>
+    <div class="validation-errors" [class.invalid]="password.invalid && (password.dirty || password.touched)">
+      <div *ngIf="password.invalid && password.errors.required">Le mot de passe est obligatoire</div>
+    </div>
   </ion-item>
-  <div class="validation-errors" [class.invalid]="password.invalid && (password.dirty || password.touched)">
-    <div *ngIf="password.invalid && password.errors.required">Le mot de passe est obligatoire</div>
-  </div>
   <div class="response-errors" [class.has-errors]="errors && errors.length > 0">
     <div *ngIf="hasError('LOGIN_FAILED')">Utilisateur inconnu ou mauvais mot de passe</div>
   </div>
-  <ion-button type="submit" [disabled]="!form.valid">Me connecter</ion-button>
+  <ion-button type="submit" [disabled]="!form.valid">{{ submitText }}</ion-button>
 </form>

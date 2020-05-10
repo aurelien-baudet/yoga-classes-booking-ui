@@ -7,15 +7,15 @@
 
 <ion-content>
     <p>Avant de t'inscire à un cours, dis nous qui tu es</p>
+    <app-social-login (authenticate)="authenticate($event)"></app-social-login>
     <ion-segment (ionChange)="segmentChanged($event)" [value]="showLogin() ? 'login' : 'unregistered'">
         <ion-segment-button value="login">Connecte toi</ion-segment-button>
-        <ion-segment-button value="unregistered">Continue sans compte</ion-segment-button>
+        <ion-segment-button value="unregistered">Connexion rapide</ion-segment-button>
     </ion-segment>
-    <app-social-login *ngIf="showLogin()" (authenticate)="authenticate($event)"></app-social-login>
-    <app-login-form *ngIf="showLogin()" (login)="login($event)" (change)="loginErrors = []" [errors]="loginErrors"></app-login-form>
+    <app-login-form *ngIf="showLogin()" (login)="login($event)" (change)="loginErrors = []" [errors]="loginErrors" submitText="Terminer ma réservation"></app-login-form>
     <div *ngIf="showLogin()" class="register">
       <p>Pas encore de compte ?</p>
       <ion-button (click)="register()">Créé ton compte</ion-button>
     </div>
-    <app-unregistered-info-form *ngIf="showUnregistered()" [unregisteredUser]="getUnregisteredUserInfo()" (continue)="finishBooking($event)"></app-unregistered-info-form>
+    <app-unregistered-info-form *ngIf="showUnregistered()" [unregisteredUser]="getUnregisteredUserInfo()" (continue)="finishBooking($event)" submitText="Terminer ma réservation"></app-unregistered-info-form>
 </ion-content>

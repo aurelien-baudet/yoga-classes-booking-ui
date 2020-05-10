@@ -1,23 +1,28 @@
+@import "variables";
+
 ion-segment[class*="md"] {
-  width: 80%;
+  width: value($segment, "width");
   margin-left: auto;
   margin-right: auto;
+  border-radius: value($segment, "border-radius");
+  overflow: hidden;
 }
 
 ion-segment-button {
-  --border-width: 1px 1px 1px 1px;
-  --border-color: var(--ion-color-primary);
-  --border-style: solid;
-  --border-radius: 10px;
-  --background: var(--ion-color-primary-contrast);
-  --background-activated: var(--ion-color-primary);
-  --background-checked: var(--ion-color-primary);
-  --color-checked: var(--ion-color-primary-contrast);
-  --indicator-color-checked: var(--ion-color-primary);
-  min-height: 27px;
-  font-size: 12px;
+  --border-width: #{value($segment, "button.border", "border-width")} #{value($segment, "button.border", "border-width")} #{value($segment, "button.border", "border-width")} #{value($segment, "button.border", "border-width")};
+  --border-color: #{value($segment, "button.border", "border-color")};
+  --border-style: #{value($segment, "button.border", "border-style")};
+  --border-radius: none;
+  --background: #{value($segment, "button.background")};
+  --color: #{value($segment, "button.color")};
+  --background-activated: #{value($segment, "button.selected.background")};
+  --background-checked: #{value($segment, "button.selected.background")};
+  --color-checked: #{value($segment, "button.selected.color")};
+  --indicator-color-checked: transparent;
+  --indicator-height: 0;
+  min-height: value($segment, "height");
+  font-size: value($segment, "font-size");
   letter-spacing: normal;
+  text-transform: none;
+  font-weight: bold;
 }
-// .sc-ion-segment-md-h {
-//   @extend .sc-ion-segment-ios-h;
-// }

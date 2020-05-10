@@ -18,8 +18,8 @@ ion-card {
 }
 
 ion-card-header {
-    border-top-left-radius: value($scheduled-class-card-layout, "border-radius", 1);
-    border-top-right-radius: value($scheduled-class-card-layout, "border-radius", 2);
+    border-top-left-radius: value($scheduled-class-card-layout, "border-radius", "top-left");
+    border-top-right-radius: value($scheduled-class-card-layout, "border-radius", "top-right");
     background: value($scheduled-class-card-states, "bookable.header.background");
     padding: value($scheduled-class-card-header, "padding");
     position: relative;
@@ -47,8 +47,8 @@ ion-card-header {
 
 ion-card-content {
     background: value($scheduled-class-card-content, "background");
-    border-bottom-left-radius: value($scheduled-class-card-layout, "border-radius", 4);
-    border-bottom-right-radius: value($scheduled-class-card-layout, "border-radius", 3);
+    border-bottom-left-radius: value($scheduled-class-card-layout, "border-radius", "bottom-left");
+    border-bottom-right-radius: value($scheduled-class-card-layout, "border-radius", "bottom-right");
 
     .summary {
         padding: value($scheduled-class-card-layout, "summary.padding");
@@ -158,10 +158,10 @@ ion-card-content {
         padding-bottom: value($scheduled-class-card-layout, "details.padding-bottom");
 
         ion-button {
-            --padding-top: #{value($scheduled-class-card-details-button, "padding", 1)};
-            --padding-bottom: #{value($scheduled-class-card-details-button, "padding", 1)};
-            --padding-start: #{value($scheduled-class-card-details-button, "padding", 2)};
-            --padding-end: #{value($scheduled-class-card-details-button, "padding", 2)};
+            --padding-top: #{value($scheduled-class-card-details-button, "padding", "top")};
+            --padding-bottom: #{value($scheduled-class-card-details-button, "padding", "bottom")};
+            --padding-start: #{value($scheduled-class-card-details-button, "padding", "start")};
+            --padding-end: #{value($scheduled-class-card-details-button, "padding", "end")};
             --background: #{value($scheduled-class-card-details-button, "background")};
             --color: #{value($scheduled-class-card-details-button, "color")};
             font-size: value($scheduled-class-card-details-button, "font-size");

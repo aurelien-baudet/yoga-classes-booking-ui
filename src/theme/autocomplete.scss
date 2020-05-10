@@ -7,10 +7,10 @@ ion-auto-complete {
     --color: #{value($autocomplete, "color")};
   }
   ion-searchbar .searchbar-input.sc-ion-searchbar-md {
-    padding-inline-start: value($autocomplete, "padding", 2);
-    padding-inline-end: value($autocomplete, "padding", 2);
-    padding-top: value($autocomplete, "padding", 1);
-    padding-bottom: value($autocomplete, "padding", 1);
+    padding-inline-start: value($autocomplete, "padding", "start");
+    padding-inline-end: value($autocomplete, "padding", "end");
+    padding-top: value($autocomplete, "padding", "top");
+    padding-bottom: value($autocomplete, "padding", "bottom");
     border: value($autocomplete, "border");
     border-radius: value($autocomplete, "border-radius");
     font-size: value($autocomplete, "font-size");

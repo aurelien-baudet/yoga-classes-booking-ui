@@ -1,7 +1,15 @@
+@import "variables";
 
+ion-button {
+  --box-shadow: none;
+  --border-radius: #{value($buttons, "primary.border-radius")};
+  text-transform: none;
+  font-weight: bold;
+  font-size: value($buttons, "primary.font-size");
+}
 
 ion-button.button-small {
-  --padding-start: 0.4em;
-  --padding-end: 0.4em;
-  font-size: 10px;
+  --padding-start: #{value($buttons, "small.padding", "left")};
+  --padding-end: #{value($buttons, "small.padding", "right")};
+  font-size: value($buttons, "small.font-size");
 }

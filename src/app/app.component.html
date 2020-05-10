@@ -8,7 +8,7 @@
     <ion-content>
       <ion-list>
         <ion-item *ngIf="!isTeacher()">
-          <ion-icon name="app-menu-next-lessons" slot="start"></ion-icon>
+          <ion-icon name="app-menu-next-classes" slot="start"></ion-icon>
           <a (click)="refresh(); close()" routerLink="/lessons" routerLinkActive="active">Réserver un cours</a>
         </ion-item>
         <ion-item *ngIf="isTeacher()">

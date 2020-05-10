@@ -1,12 +1,9 @@
 @import "icons-utils";
 
 
-@mixin secondary-button {
-  --color: var(--ion-color-primary);
-  --background: none;
-  --background-activated: none;
-  --background-focused: none;
-  --background-hover: none;
+@mixin secondary-button() {
+  --border-radius: #{value($buttons, "secondary.border-radius")};
+  font-size: value($buttons, "secondary.font-size");
 }
 
 @mixin discreet-button($color: var(--ion-color-primary), 
@@ -26,7 +23,11 @@
 }
 
 @mixin round-icon-button($root-styles) {
-  border-radius: #{max(value($root-styles, "icon.width"), value($root-styles, "icon.height")) / 2 + 1px};
+  @if (value($root-styles, "icon.border-radius") != null) {
+    border-radius: value($root-styles, "icon.border-radius");
+  } @else {
+    border-radius: #{max(value($root-styles, "icon.width"), value($root-styles, "icon.height")) / 2 + 1px};
+  }
   width: value($root-styles, "icon.width");
   height: value($root-styles, "icon.height");
   @include discreet-button(transparent);

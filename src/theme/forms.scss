@@ -1,89 +1,110 @@
+@import "variables";
 @import "icons-utils";
 
 form {
-  ion-item {
+  background: value($forms, "background");
+  padding: value($forms, "layout.padding");
+
+  ion-item.item {
+    font-size: value($forms, "font-size");
+    margin: value($forms, "layout.space-between") 0;
+    --background: none;
+    --full-highlight-height: 0;
     --padding-start: 0;
     --inner-padding-end: 0;
+    --border-width: 0;
+    --inner-border-width: 0;
+    position: relative;
+    overflow: visible;
 
-    ion-label {
-      --color: var(--ion-color-medium) !important;
-      font-size: 14px !important;
-    }
-    
-    ion-icon[slot=start] {
-      -webkit-margin-end: 5px;
-      margin-inline-end: 5px;
-      -webkit-margin-start: 5px;
-      margin-inline-start: 5px;
-      margin-top: 0;
-      margin-bottom: 9px;
-      align-self: flex-end;
-    }
+    &.item-label {
+      ion-label {
+        --color: #{value($labels, "color")};
+        font-weight: bold;
+      }
 
-    app-help-button[slot=end] {
-      -webkit-margin-end: 0;
-      margin-inline-end: 0;
-      -webkit-margin-start: 0;
-      margin-inline-start: 0;
-      margin-bottom: 0;
-      align-self: flex-end;
-
-      ion-button {
-        --padding-start: 0;
-        --padding-end: 0;
-        -webkit-margin-start: 0;
-        margin-inline-start: 0;
-        -webkit-margin-end: 0;
-        margin-inline-end: 0;
+      ion-toggle + ion-label {
+        --color: #{value($checkboxes, "label.color")};
+        font-size: value($checkboxes, "label.font-size");
       }
     }
 
-    ion-toggle {
-      -webkit-padding-start: 0;
-      -webkit-margin-start: 0;
-      margin-inline-start: 0;
-      padding-inline-start: 0;
-    }
-  }
+    &.item-input {
+      > ion-icon {
+        display: none;
+      }
+  
+      ion-label {
+        align-self: center;
+        z-index: 5;
 
-  ion-button[type="submit"] {
-    margin-top: 20px;
+        &.label-floating {
+          transform-origin: center top;
+          transform: translate3d(0,  200%,  0);
+        }
+
+      }
+      &.item-has-focus, 
+      &.item-has-placeholder, 
+      &.item-has-value {
+        ion-label.label-floating {
+          transform: translate3d(0,  5%,  0) scale(0.85);
+        }
+      }
+
+      ion-input {
+        border: value($inputs, "border");
+        border-radius: value($inputs, "border-radius");
+        height: value($inputs, "height");
+        --padding-start: 0;
+        --padding-end: 0;
+        --padding-top: value($inputs, "padding", "top");
+        --padding-bottom: value($inputs, "padding", "bottom");
+        padding-left: value($inputs, "padding", "left") !important;
+        padding-right: value($inputs, "padding", "right") !important;
+        background: value($inputs, "background");
+      }
+    }
+
+    app-help-button {
+      position: absolute;
+      right: value($forms, "layout.help.position.right");
+      margin: 0;
+    }
   }
 
   .validation-errors,
   .response-errors {
     // FIXME: display correctly when several error messages or several lines
-    color: var(--ion-color-danger);
-    font-size: 14px;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    text-align: left;
-    @include fas-icon($fa-var-exclamation-triangle);
+    color: value($forms, "errors.color");
+    font-size: value($forms, "errors.font-size");
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+  }
 
-    &::before {
-      font-size: 18px;
-      flex: 0 34px;
-    }
-    div {
-      flex: 1 1 auto;
-    }
-
-    // animation
+  .validation-errors {
+    padding: value($forms, "layout.validation.padding");
+    min-height: value($forms, "layout.validation.min-height");
     overflow: hidden;
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    transition: max-height 0.2s linear, padding 0.2s linear;
-
+    
+    // animation
+    > div {
+      transform: translate3d(0, -30px, 0);
+      transition: transform 0.3s linear;
+    }
     &.invalid,
     &.has-errors {
-      max-height: 50px;
-      padding-top: 10px;
-      padding-bottom: 15px;
-    }
-    &.has-errors {
-      padding-top: 30px;
+      > div {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
     }
   }
+
+  .response-errors {
+    margin: value($forms, "layout.response.margin");
+    min-height: value($forms, "layout.response.min-height");
+  }
 }
+

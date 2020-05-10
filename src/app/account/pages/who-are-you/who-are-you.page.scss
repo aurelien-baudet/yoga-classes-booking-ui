@@ -1,3 +1,4 @@
+@import "../../../../theme/variables";
 @import "../../../../theme/button-utils";
 
 :host-context(.keyboard-opened) {
@@ -6,25 +7,34 @@
   }
 }
 
+
 ion-content > p {
-  text-align: center;
-  margin-bottom: 30px;
+  display: none;
 }
+
+app-social-login {
+  margin: value($who-are-you-page, "layout.social-login.margin");
+}
+ion-segment {
+  margin-bottom: value($who-are-you-page, "layout.segments.margin", "bottom");
+}
+
 
 .register {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 20px;
+  bottom: value($who-are-you-page, "layout.signup.position.bottom");
   text-align: center;
 
   ion-button {
     @include secondary-button;
-    font-size: 12px;
-    height: 28px;
   }
 
   & > p {
     margin-bottom: 0;
+    font-size: value($who-are-you-page, "signup.font-size");
+    font-weight: bold;
+    color: value($who-are-you-page, "signup.color");
   }
 }

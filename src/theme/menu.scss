@@ -8,7 +8,7 @@
 
   ion-toolbar {
     text-align: left;
-    border-bottom: 1px solid var(--ion-color-tertiary);
+    border-bottom: value($menu, "page-header.border-bottom");
     
     ion-menu-button,
     ion-title {
@@ -50,11 +50,18 @@ ion-menu {
   }
 
   ion-item {
+    --padding-start: 0;
+    --padding-end: 0;
+    --inner-padding-start: 0;
+    --inner-padding-end: 0;
+    --inner-border-width: 0 0 0 0;
+    --border-width: 0 0 0 0;
+
     ion-icon {
-      -webkit-margin-start: value($menu, "menu-item.icon.padding", 2);
-      margin-inline-start: value($menu, "menu-item.icon.padding", 2);
-      -webkit-margin-end: value($menu, "menu-item.icon.padding", 4);
-      margin-inline-end: value($menu, "menu-item.icon.padding", 4);
+      -webkit-margin-start: value($menu, "menu-item.icon.padding", "start");
+      margin-inline-start: value($menu, "menu-item.icon.padding", "start");
+      -webkit-margin-end: value($menu, "menu-item.icon.padding", "end");
+      margin-inline-end: value($menu, "menu-item.icon.padding", "end");
       @include icon-styles(value($menu, "menu-item.icon"));
       vertical-align: middle;
     }
