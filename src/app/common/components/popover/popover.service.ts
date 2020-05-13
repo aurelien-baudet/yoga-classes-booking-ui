@@ -54,15 +54,17 @@ export class PopoverWrapper {
 export class PopoverService {
     constructor(private popoverController: PopoverController) { }
 
-    async show(template: TemplateRef<any>, templateContext: any, event?: Event, opts?: PopoverOptions): Promise<PopoverWrapper> {
+    async show(template: TemplateRef<any>, templateContext: any, opts?: Partial<PopoverOptions>, event?: Event): Promise<PopoverWrapper> {
         const popover = await this.popoverController.create({
             component: PopoverComponent,
             componentProps: {
                 template,
-                templateContext
+                templateContext,
+                close: () => {
+                    popover.dismiss();
+                }
             },
             event,
-            cssClass: event ? '' : 'center',
             ...opts
         });
         popover.present();

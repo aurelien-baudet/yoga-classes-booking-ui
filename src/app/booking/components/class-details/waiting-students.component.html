@@ -1,8 +1,10 @@
 <ion-list class="waiting">
   <ion-list-header>
-    <ion-icon name="app-waiting-list"></ion-icon>
-    <ion-title>Liste d'attente</ion-title>
-    <ion-badge>{{ waitingBookings.length }}</ion-badge>
+    <div class="header-wrapper">
+      <ion-icon name="app-waiting-list"></ion-icon>
+      <ion-title>Liste d'attente</ion-title>
+      <ion-badge>{{ waitingBookings.length }}</ion-badge>
+    </div>
   </ion-list-header>
   <p *ngIf="waitingBookings.length === 0">Aucun inscrit sur liste d'attente</p>
   <ion-item *ngFor="let booking of waitingBookings">

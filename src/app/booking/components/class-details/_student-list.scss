@@ -1,52 +1,68 @@
+@import "../../../../theme/variables";
 @import "../../../../theme/icons-utils";
 @import "../../../../theme/button-utils";
 
 
-ion-list {
+ion-list-header {
+  padding-left: 0;
+  text-align: center;
 
-  ion-list-header {
-      padding-left: 0;
-      min-height: 30px;
+  .header-wrapper {
+    width: 100%;
   }
+
   ion-title {
-      font-size: 14px;
-      font-weight: bold;
-      -webkit-padding-start: 5px;
-      padding-inline-start: 5px;
-      color: var(--ion-color-dark-tint);
+    display: inline-block;
+    font-size: value($student-list-popover, "header.font-size");
+    font-weight: bold;
+    color: value($student-list-popover, "header.color");
+    padding: 0;
+    text-transform: uppercase;
+    vertical-align: bottom;
+    height: value($student-list-popover, "header.icon.height");
+    line-height: value($student-list-popover, "header.icon.height");
   }
   ion-icon {
-      color: var(--ion-color-dark-tint);
-      font-size: 20px;
+    @include icon-styles(value($student-list-popover, "header.icon"));
+    padding-right: value($student-list-popover, "header.icon.spacing");
+
+    &[name="app-waiting-list"] {
+      width: value($student-list-popover, "header.waiting-icon.width");
+      height: value($student-list-popover, "header.waiting-icon.height");
+    }
   }
   ion-badge {
-      --padding-top: 3px;
-      --padding-end: 3px;
-      --padding-start: 3px;
-      --padding-bottom: 3px;
-      font-size: 10px;
+    display: block;
+    --background: none;
+    --color: #{value($student-list-popover, "header.counter.color")};
+    font-size: value($student-list-popover, "header.counter.font-size");
+    font-weight: bold;
   }
+}
 
-  ion-item {
-      --min-height: 0;
-      --border-width: 0 0 1px 0;
-      font-size: 12px;
-      color: var(--ion-color-dark-tint);
+ion-item {
+  --border-color: #{value($student-list-popover, "item.line", "border-color")};
+  --inner-padding-end: 0;
+  --padding-start: 0;
+  --min-height: 0;
+  --padding-top: #{value($student-list-popover, "item.spacing")};
+  margin: value($student-list-popover, "item.margin");
 
-      ion-label {
-          margin-top: 0;
-          margin-bottom: 0;
-          flex: 1;
-      }
-
-      ion-button {
-          @include discreet-button(var(--ion-color-tertiary));
-          align-self: flex-end;
-
-          ion-icon {
-              font-size: 14px;
-          }
-          height: 15px;
-      }
+  ion-label {
+    font-size: value($student-list-popover, "item.font-size");
+    color: value($student-list-popover, "item.color");
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 0;
   }
+  ion-button {
+    @include round-icon-button(value($student-list-popover, "item.unregister-button"));
+  }
+}
+
+p {
+  font-size: value($student-list-popover, "item.font-size");
+  color: value($student-list-popover, "item.color");
+  font-weight: bold;
+  text-align: center;
 }

@@ -67,7 +67,7 @@ export class CalendarComponent {
           start: this.getStartHour(date),
           end: this.getEndHour(date)
         }
-      }, this.lastClick);
+      }, {cssClass: 'select-hours'}, this.lastClick);
       this.popover.onDidDismiss().catch(() => this.unselect(date));
     }, 0);
   }
@@ -82,7 +82,7 @@ export class CalendarComponent {
         frequency: 'week',
         until: this.dateUtil.formatDate(date + 4*7*24*60*60*1000)
       }
-    });
+    }, {cssClass: 'recurrence'});
     this.popover.onDidDismiss().catch(() => this.unselect(date));
   }
 

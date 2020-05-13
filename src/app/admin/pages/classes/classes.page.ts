@@ -74,6 +74,8 @@ export class ClassesPage {
       this.popover = await this.popoverService.show(this.cancelMessage, {
         cancelingClass,
         form: {message: ''}
+      }, {
+        cssClass: 'cancel-message'
       }, this.lastClick);
     }, 0);
   }
@@ -97,21 +99,21 @@ export class ClassesPage {
   async showPlaceDetails(place: Place) {
     // wrap in setTimeout in order to be able to retrieve the click event
     setTimeout(async () => {
-      await this.popoverService.show(this.placeDetails, {place}/*, this.lastClick*/);
+      await this.popoverService.show(this.placeDetails, {place}, {cssClass: 'place-details'});
     }, 0);
   }
 
   async showApprovedStudents(scheduledClass: ScheduledClass) {
     // wrap in setTimeout in order to be able to retrieve the click event
     setTimeout(async () => {
-      await this.popoverService.show(this.approvedStudents, {scheduledClass}, this.lastClick);
+      await this.popoverService.show(this.approvedStudents, {scheduledClass}, {cssClass: 'approved-students'});
     }, 0);
   }
 
   async showWaitingStudents(scheduledClass: ScheduledClass) {
     // wrap in setTimeout in order to be able to retrieve the click event
     setTimeout(async () => {
-      await this.popoverService.show(this.waitingStudents, {scheduledClass}, this.lastClick);
+      await this.popoverService.show(this.waitingStudents, {scheduledClass}, {cssClass: 'waiting-students'});
     }, 0);
   }
 

@@ -224,6 +224,23 @@ $segment: (
   )
 );
 
+$popover: (
+  "width": 300px,
+  "border-radius": 30px,
+  "padding": 5px,
+  "close-button": (
+    "position": (
+      "top": -8px,
+      "right": -6px
+    ),
+    "icon": (
+      "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+      "width": 40px,
+      "height": 40px,
+    )
+  )
+);
+
 $scheduled-class-card-layout: (
   "border-radius": 30px 30px 60px 30px,
   "margin-inline": 30px,
@@ -535,4 +552,64 @@ $register-student-form: (
   "checkboxes": (
     "margin": -10px 0 10px 0
   )
-)
+);
+
+$place-details-popover: (
+  "header": (
+    "padding": 18px,
+    "spacing": 10px,
+    "color": var(--ion-color-primary-contrast),
+    "background": var(--ion-color-primary-shade),
+    "name": (
+      "font-size": 16px,
+    ),
+    "address": (
+      "font-size": 12px,
+    ),
+    "icon": (
+      "colors": var(--ion-color-primary-contrast),
+      "height": 22px,
+      "width": 22px,
+      "spacing": 5px
+    )
+  ),
+  "map": (
+    "background": var(--ion-color-primary-contrast),
+    "height": 400px
+  )
+);
+
+$student-list-popover: (
+  "header": (
+    "font-size": 16px,
+    "color": var(--ion-color-primary-shade),
+    "icon": (
+      "colors": var(--ion-color-primary-shade),
+      "width": 22px,
+      "height": 22px,
+      "spacing": 10px
+    ),
+    "waiting-icon": (
+      "width": 25px,
+      "height": 25px
+    ),
+    "counter": (
+      "font-size": 15px,
+      "color": var(--ion-color-primary)
+    ),
+  ),
+  "item": (
+    "font-size": 12px,
+    "color": var(--ion-color-secondary),
+    "line": 1px solid var(--ion-color-tertiary),
+    "spacing": 5px,
+    "unregister-button": (
+      "icon": (
+        "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+        "width": 18px,
+        "height": 18px,
+      )
+    ),
+    "margin": 0 10px
+  )
+);

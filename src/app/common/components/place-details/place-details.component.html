@@ -1,6 +1,6 @@
+<ion-icon name="app-place"></ion-icon>
 <span class="name">{{ place.name }}</span>
 <div class="address">
-  <ion-icon name="app-address"></ion-icon>
   <span>{{ place.address }}</span>
 </div>
 <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(getInteractiveMap(place.maps))"></iframe>

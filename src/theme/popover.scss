@@ -1,9 +1,38 @@
-// TODO: arrow
+@import "variables";
+@import "icons-utils";
+@import "button-utils";
 
-ion-popover.center {
-  div.popover-content {
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
+ion-popover {
+  .popover-wrapper {
+    --width: #{value($popover, "width")};
+
+    div.popover-content {
+      border-radius: value($popover, "border-radius");
+      //padding: value($popover, "padding");
+      overflow: visible;
+    }
+  }
+
+  app-popover {
+    position: relative;
+
+    > * {
+      border-radius: value($popover, "border-radius");
+      overflow: hidden;
+    }
+
+    ion-button.close {
+      @include round-icon-button(value($popover, "close-button"));
+      position: absolute;
+      top: value($popover, "close-button.position.top");
+      right: value($popover, "close-button.position.right");
+      z-index: 100;
+    }
+  }
+
+  &.place-details {
+    ion-button.close {
+      display: none;
+    }
   }
 }

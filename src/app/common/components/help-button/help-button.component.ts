@@ -16,6 +16,6 @@ export class HelpButtonComponent {
   constructor(private popoverService: PopoverService) { }
 
   async showHelp(event) {
-      await this.popoverService.show(this.content, {title: this.title}, event);
+      await this.popoverService.show(this.content, {title: this.title}, {cssClass: 'help'}, event);
   }
 }

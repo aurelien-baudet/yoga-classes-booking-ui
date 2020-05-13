@@ -38,7 +38,7 @@ export class EditLessonPage {
   }
 
   async selectOccurrences(scheduledClass: ScheduledClass, updatedLesson: UpdatedLesson) {
-    this.popover = await this.popoverService.show(this.chooseOccurrences, {scheduledClass, updatedLesson}/*, this.lastClick*/);
+    this.popover = await this.popoverService.show(this.chooseOccurrences, {scheduledClass, updatedLesson}, {cssClass: 'choose-occurrences'});
   }
 
   async updateSpecificClass(scheduledClass: ScheduledClass, updatedLesson: UpdatedLesson) {

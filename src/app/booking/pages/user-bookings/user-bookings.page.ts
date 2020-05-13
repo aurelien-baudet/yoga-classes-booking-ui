@@ -89,7 +89,7 @@ export class UserBookingsPage {
   async showPlaceDetails(place: Place) {
     // wrap in setTimeout in order to be able to retrieve the click event
     setTimeout(async () => {
-      await this.popoverService.show(this.placeDetails, {place}/*, this.lastClick*/);
+      await this.popoverService.show(this.placeDetails, {place}, {cssClass: 'place-details'});
     }, 0);
   }
 

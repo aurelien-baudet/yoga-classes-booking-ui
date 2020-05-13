@@ -1,8 +1,10 @@
 <ion-list class="approved">
   <ion-list-header>
-    <ion-icon name="app-approved-list"></ion-icon>
-    <ion-title>Participants</ion-title>
-    <ion-badge>{{ approvedBookings.length }} / {{ maxStudents }}</ion-badge>
+    <div class="header-wrapper">
+      <ion-icon name="app-approved-list"></ion-icon>
+      <ion-title>Participants</ion-title>
+      <ion-badge>{{ approvedBookings.length }} / {{ maxStudents }}</ion-badge>
+    </div>
   </ion-list-header>
   <p *ngIf="approvedBookings.length === 0">Aucun participant</p>
   <ion-item *ngFor="let booking of approvedBookings">
