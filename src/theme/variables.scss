@@ -149,14 +149,21 @@ $forms: (
 );
 
 $labels: (
-  "color": var(--ion-color-primary)
+  "color": var(--ion-color-primary),
+  "animation": (
+    "empty": (
+      "y": 27px
+    ),
+    "filled": (
+      "y": 2px
+    )
+  )
 );
 
 $inputs: (
   "border": 1px solid var(--ion-color-primary-tint),
   "border-radius": 20px,
-  "height": 40px,
-  "padding": 0 20px,
+  "padding": 12px 20px,
   "background": var(--ion-color-primary-contrast)
 );
 
@@ -497,6 +504,7 @@ $quick-connect-form: (
 
 $who-are-you-page: (
   "layout": (
+    "min-height": 500px,
     "social-login": (
       "margin": 30px
     ),

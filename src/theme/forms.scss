@@ -40,7 +40,7 @@ form {
 
         &.label-floating {
           transform-origin: center top;
-          transform: translate3d(0,  200%,  0);
+          transform: translate3d(0,  value($labels, "animation.empty.y"),  0);
         }
 
       }
@@ -48,18 +48,17 @@ form {
       &.item-has-placeholder, 
       &.item-has-value {
         ion-label.label-floating {
-          transform: translate3d(0,  5%,  0) scale(0.85);
+          transform: translate3d(0, value($labels, "animation.filled.y"),  0) scale(0.85);
         }
       }
 
       ion-input {
         border: value($inputs, "border");
         border-radius: value($inputs, "border-radius");
-        height: value($inputs, "height");
         --padding-start: 0;
         --padding-end: 0;
-        --padding-top: value($inputs, "padding", "top");
-        --padding-bottom: value($inputs, "padding", "bottom");
+        --padding-top: #{value($inputs, "padding", "top")};
+        --padding-bottom: #{value($inputs, "padding", "bottom")};
         padding-left: value($inputs, "padding", "left") !important;
         padding-right: value($inputs, "padding", "right") !important;
         background: value($inputs, "background");

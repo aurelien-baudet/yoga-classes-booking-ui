@@ -1,10 +1,14 @@
 @import "../../../../theme/variables";
 @import "../../../../theme/button-utils";
 
-:host-context(.keyboard-opened) {
+/*:host-context(.keyboard-opened) {
   .register {
     display: none;
   }
+}*/
+
+ion-content {
+  min-height: value($who-are-you-page, "layout.min-height");
 }
 
 
