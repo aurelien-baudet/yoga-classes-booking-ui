@@ -1,4 +1,5 @@
 before_install:
+- source .travis-env-vars.sh
 - nvm install
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.19.2
 - export PATH="$HOME/.yarn/bin:$PATH"
@@ -12,16 +13,16 @@ matrix:
     script:
     - yarn --version
     - yarn
-    - ionic build --prod
+    - ionic build --configuration=$PROFILE
     before_deploy:
-    - rm -f dist/yoga-booking-app.tar.gz
+    - rm -f dist/yoga-booking-app-$PROFILE.tar.gz
     - mkdir -p dist
-    - tar czf dist/yoga-booking-app.tar.gz www
+    - tar czf dist/yoga-booking-app-$PROFILE.tar.gz www
     deploy:
       provider: releases
       api_key: "$GITHUB_API_TOKEN"
       file:
-      - dist/yoga-booking-app.tar.gz
+      - dist/yoga-booking-app-$PROFILE.tar.gz
       skip_cleanup: true
       draft: true
       on:
@@ -52,27 +53,26 @@ matrix:
       - "$HOME/.gradle/wrapper/"
       - "$HOME/.android/build-cache"
     before_script:
-    - openssl aes-256-cbc -K $encrypted_3b9f0b9d36d1_key -iv $encrypted_3b9f0b9d36d1_iv
-      -in secrets.tar.enc -out secrets.tar -d
+    - openssl aes-256-cbc -K $secrets_key -iv $secrets_iv -in secrets.tar.enc -out secrets.tar -d
     - tar xf secrets.tar
     script:
     - yarn --version
     - yarn
-    - ionic cordova build android --prod --release
-    - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $keystore
-      -storepass $storepass -keypass $keypass platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+    - ionic cordova build android  --configuration=$PROFILE --release
+    - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $keystore -storepass
+      $storepass -keypass $keypass platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
       $alias
     - "$ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS_VERSION/zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
       platforms/android/app/build/outputs/apk/release/app-release-signed.apk"
     before_deploy:
-    - rm -f dist/yoga-booking-release.apk
+    - rm -f dist/yoga-booking-release-$PROFILE.apk
     - mkdir -p dist
-    - cp platforms/android/app/build/outputs/apk/release/app-release-signed.apk dist/yoga-booking-release.apk
+    - cp platforms/android/app/build/outputs/apk/release/app-release-signed.apk dist/yoga-booking-release-$PROFILE.apk
     deploy:
       provider: releases
       api_key: "$GITHUB_API_TOKEN"
       file:
-      - dist/yoga-booking-release.apk
+      - dist/yoga-booking-release-$PROFILE.apk
       skip_cleanup: true
       draft: true
       on:

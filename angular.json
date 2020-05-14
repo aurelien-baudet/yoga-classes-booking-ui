@@ -67,6 +67,34 @@
             "es5BrowserSupport": true
           },
           "configurations": {
+            "preprod": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.preprod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -126,6 +154,9 @@
             "browserTarget": "app:build"
           },
           "configurations": {
+            "preprod": {
+              "browserTarget": "app:build:preprod"
+            },
             "production": {
               "browserTarget": "app:build:production"
             },
@@ -185,6 +216,9 @@
             "browserTarget": "app:build"
           },
           "configurations": {
+            "preprod": {
+              "browserTarget": "app:build:preprod"
+            },
             "production": {
               "browserTarget": "app:build:production"
             }
@@ -197,6 +231,10 @@
             "devServerTarget": "app:serve"
           },
           "configurations": {
+            "preprod": {
+              "cordovaBuildTarget": "app:ionic-cordova-build:preprod",
+              "devServerTarget": "app:serve:preprod"
+            },
             "production": {
               "cordovaBuildTarget": "app:ionic-cordova-build:production",
               "devServerTarget": "app:serve:production"
