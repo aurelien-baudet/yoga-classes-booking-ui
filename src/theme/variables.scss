@@ -2,31 +2,52 @@
 // http://ionicframework.com/docs/theming/
 @import "variable-utils";
 
+$main-colors: (
+  primary: (
+    normal:     #7B57BB,
+    contrast:   #ffffff,
+    shade:      #443464,
+    tint:       #9F9AEB
+  ),
+  secondary: (
+    normal:     #15101F,
+    contrast:   #ffffff,
+  ),
+  tertiary: (
+    normal:     #D5D3EB,
+    contrast:   #ffffff,
+  ),
+  warning: (
+    normal:     #5A1478,
+    contrast:   #ffffff,
+  )
+);
+
 /** Ionic CSS Variables **/
 :root {
   --ion-font-family: "Comfortaa";
 
   /** primary **/
-  --ion-color-primary: #7B57BB;
-  --ion-color-primary-rgb: 123, 87, 187;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #443464;
-  --ion-color-primary-tint: #9F9AEB;
+  --ion-color-primary: #{value($main-colors, "primary.normal")};
+  --ion-color-primary-rgb: #{red(value($main-colors, "primary.normal"))}, #{green(value($main-colors, "primary.normal"))}, #{blue(value($main-colors, "primary.normal"))};
+  --ion-color-primary-contrast: #{value($main-colors, "primary.contrast")};
+  --ion-color-primary-contrast-rgb: #{red(value($main-colors, "primary.contrast"))}, #{green(value($main-colors, "primary.contrast"))}, #{blue(value($main-colors, "primary.contrast"))};
+  --ion-color-primary-shade: #{value($main-colors, "primary.shade")};
+  --ion-color-primary-tint: #{value($main-colors, "primary.tint")};
 
   /** secondary **/
-  --ion-color-secondary: #15101F;
-  --ion-color-secondary-rgb: 21, 16, 31;
-  --ion-color-secondary-contrast: #ffffff;
-  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary: #{value($main-colors, "secondary.normal")};
+  --ion-color-secondary-rgb: #{red(value($main-colors, "secondary.normal"))}, #{green(value($main-colors, "secondary.normal"))}, #{blue(value($main-colors, "secondary.normal"))};
+  --ion-color-secondary-contrast: #{value($main-colors, "secondary.contrast")};
+  --ion-color-secondary-contrast-rgb: #{red(value($main-colors, "secondary.contrast"))}, #{green(value($main-colors, "secondary.contrast"))}, #{blue(value($main-colors, "secondary.contrast"))};
   --ion-color-secondary-shade: #0bb8cc;
   --ion-color-secondary-tint: #24d6ea;
 
   /** tertiary **/
-  --ion-color-tertiary: #D5D3EB;
-  --ion-color-tertiary-rgb: 213, 211, 235;
-  --ion-color-tertiary-contrast: #ffffff;
-  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary: #{value($main-colors, "tertiary.normal")};
+  --ion-color-tertiary-rgb: #{red(value($main-colors, "tertiary.normal"))}, #{green(value($main-colors, "tertiary.normal"))}, #{blue(value($main-colors, "tertiary.normal"))};
+  --ion-color-tertiary-contrast: #{value($main-colors, "tertiary.contrast")};
+  --ion-color-tertiary-contrast-rgb: #{red(value($main-colors, "tertiary.contrast"))}, #{green(value($main-colors, "tertiary.contrast"))}, #{blue(value($main-colors, "tertiary.contrast"))};
   --ion-color-tertiary-shade: #633ce0;
   --ion-color-tertiary-tint: #7e57ff;
 
@@ -39,10 +60,10 @@
   --ion-color-success-tint: #28e070;
 
   /** warning **/
-  --ion-color-warning: #5A1478;
-  --ion-color-warning-rgb: 90, 20, 120;
-  --ion-color-warning-contrast: #ffffff;
-  --ion-color-warning-contrast-rgb: 255, 255, 255;
+  --ion-color-warning: #{value($main-colors, "warning.normal")};
+  --ion-color-warning-rgb: #{red(value($main-colors, "warning.normal"))}, #{green(value($main-colors, "warning.normal"))}, #{blue(value($main-colors, "warning.normal"))};
+  --ion-color-warning-contrast: #{value($main-colors, "warning.contrast")};
+  --ion-color-warning-contrast-rgb: #{red(value($main-colors, "warning.contrast"))}, #{green(value($main-colors, "warning.contrast"))}, #{blue(value($main-colors, "warning.contrast"))};
   --ion-color-warning-shade: #e0b500;
   --ion-color-warning-tint: #ffd31a;
 
@@ -78,6 +99,16 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
+// calendar colors
+$colors: (
+  primary:    value($main-colors, "primary.normal"),
+  secondary:  value($main-colors, "secondary.normal"),
+  danger:     value($main-colors, "warning.normal"),
+  light:      value($main-colors, "tertiary.normal"),
+  dark:       value($main-colors, "secondary.normal"),
+  cal-color:  value($main-colors, "primary.normal")
+);
 
 $font-family-md-base: "Comfortaa";
 $font-family-ios-base: "Comfortaa";
