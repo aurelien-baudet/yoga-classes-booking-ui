@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ "${TRAVIS_BRANCH}" == "master" ]; then
-  PROFILE=prod
+  PROFILE=production
 else
   PROFILE=preprod
 fi
