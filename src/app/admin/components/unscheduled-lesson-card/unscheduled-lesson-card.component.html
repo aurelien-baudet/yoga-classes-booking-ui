@@ -1,17 +1,23 @@
 <ion-card [class.show-details]="showDetails"
           [class.schedulable]="schedulable">
   <ion-card-header>
-    <ion-card-title>Pas encore programmé</ion-card-title>
-    <ion-button (click)="schedule.emit(lesson)" *ngIf="schedulable" size="small">
-        <ion-icon slot="icon-only" name="app-schedule-lesson"></ion-icon>
-    </ion-button>
-    <ion-button (click)="remove.emit(lesson)" *ngIf="removable" size="small">
-        <ion-icon slot="icon-only" name="app-remove-lesson"></ion-icon>
-    </ion-button>
+    <ion-card-title>
+      <span class="date">Pas de date programmée</span>
+      <span class="title">{{ lesson.title }}</span>
+    </ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <div class="preview">
-      <span class="title">{{ lesson.title }}</span>
+    <div class="summary">
+      <div class="time">
+        <ion-icon slot="start" name="app-time"></ion-icon>
+        <span>-</span>
+      </div>
+      <div class="place">
+        <ion-button>
+          <ion-icon slot="start" name="app-place"></ion-icon>
+          <span>-</span>
+        </ion-button>
+      </div>
       <div class="max-students">
         <ion-icon slot="icon-only" name="app-max-students"></ion-icon>
         <ion-badge>{{ lesson.maxStudents }}</ion-badge>
@@ -19,14 +25,24 @@
     </div>
     <div class="details">
       <ion-button (click)="viewDetails.emit(lesson)" *ngIf="!showDetails" size="small">
-        <ion-icon slot="icon-only" name="app-view-details"></ion-icon>
+        <ion-icon slot="end" name="app-view-details"></ion-icon>
+        <span>Détails</span>
       </ion-button>
       <ion-button (click)="hideDetails.emit(lesson)" *ngIf="showDetails" size="small">
-        <ion-icon slot="icon-only" name="app-hide-details"></ion-icon>
+        <ion-icon slot="end" name="app-hide-details"></ion-icon>
+        <span>Détails</span>
       </ion-button>
       <div class="details-content">
         <p>{{ lesson.description }}</p>
       </div>
+    </div>
+    <div class="actions">
+      <ion-button class="schedule-lesson" (click)="schedule.emit(lesson)" *ngIf="schedulable" size="small">
+          <ion-icon slot="icon-only" name="app-schedule-lesson"></ion-icon>
+      </ion-button>
+      <ion-button class="remove-lesson" (click)="remove.emit(lesson)" *ngIf="removable" size="small">
+          <ion-icon slot="icon-only" name="app-remove-lesson"></ion-icon>
+      </ion-button>
     </div>
   </ion-card-content>
 </ion-card>

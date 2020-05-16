@@ -23,8 +23,8 @@
       </div>
       <div class="place">
         <ion-button (click)="showPlaceDetails.emit(scheduledClass.lesson.place)">
-          <span>{{ scheduledClass.lesson.place.name }}</span>
           <ion-icon slot="start" name="app-place"></ion-icon>
+          <span>{{ scheduledClass.lesson.place.name }}</span>
         </ion-button>
         <div class="place-changed" *ngIf="scheduledClass.lesson.placeChanged">
           <ion-icon slot="icon-only" name="app-place-changed"></ion-icon>

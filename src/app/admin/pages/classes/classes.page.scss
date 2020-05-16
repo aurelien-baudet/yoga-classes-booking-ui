@@ -1,40 +1,41 @@
+@import "../../../../theme/variables";
+@import "../../../../theme/button-utils";
+
 :host {
+  display: block;
   text-align: center;
 }
 
-h2 {
-  padding-left: 10px;
-  padding-right: 10px;
-  display: inline-block;
+ion-button.add-lesson {
+  @include round-icon-button(value($admin-manage-classes-page, "add-lesson-button"));
+  margin: value($admin-manage-classes-page, "add-lesson-button.margin");
 }
 
-h2 + ion-button {
-  vertical-align: middle;
+ion-list {
+  --ion-item-background: none;
 }
 
-::ng-deep ion-item {
+ion-content ::ng-deep ion-item {
   --padding-start: 0;
   --padding-end: 0;
   --inner-padding-start: 0;
   --inner-padding-end: 0;
   --inner-border-width: 0 0 0 0;
+  --border-width: 0 0 0 0;
 }
+
 
 .cancel-form {
-  display: flex;
-  flex-direction: column;
+  background: none;
+  padding: value($cancel-popover, "form.padding");
+  text-align: center;
 
-  ion-button[type="submit"] {
-    margin-top: 5px;
-    align-self: center;
-  }
-}
-
-
-::ng-deep app-popover {
-  app-approved-students,
-  app-waiting-students {
-    padding-left: 10px;
-    padding-right: 10px;
+  ion-item.item.item-input {
+    ion-textarea {
+      --padding-start: #{value($cancel-popover, "message.padding", "start")};
+      --padding-end: #{value($cancel-popover, "message.padding", "end")};
+      --padding-top: #{value($cancel-popover, "message.padding", "top")};
+      --padding-bottom: #{value($cancel-popover, "message.padding", "bottom")};
+    }
   }
 }

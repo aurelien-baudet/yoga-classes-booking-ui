@@ -6,7 +6,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="addLesson()" size="small">
+  <ion-button class="add-lesson" (click)="addLesson()" size="small">
     <ion-icon slot="icon-only" name="app-add-lesson"></ion-icon>
   </ion-button>
   <ion-list> 
@@ -42,18 +42,18 @@
 <ng-template #cancelMessage let-cancelingClass="cancelingClass" let-form="form">
   <form #cancelForm="ngForm" class="cancel-form" (ngSubmit)="cancel(cancelingClass, form.message)">
     <ion-item>
+      <ion-label position="floating">Message d'annulation</ion-label>
       <ion-textarea 
         class="message" 
         type="text" 
         name="message" 
-        placeholder="Message"
         #message="ngModel"
         [(ngModel)]="form.message" 
         required></ion-textarea>
+      <div class="validation-errors" [class.invalid]="message.invalid && (message.dirty || message.touched)">
+        <div *ngIf="message.invalid && message.errors.required">Le message d'annulation est obligatoire</div>
+      </div>
     </ion-item>
-    <div class="validation-errors" [class.invalid]="message.invalid && (message.dirty || message.touched)">
-      <div *ngIf="message.invalid && message.errors.required">Le message d'annulation est obligatoire</div>
-    </div>
     <ion-button type="submit" [disabled]="!cancelForm.valid" size="small">Annuler le cours</ion-button>
   </form>
 </ng-template>

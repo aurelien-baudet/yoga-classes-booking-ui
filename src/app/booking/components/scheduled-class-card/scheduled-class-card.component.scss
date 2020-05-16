@@ -5,6 +5,7 @@
 :host {
     display: block;
     width: 100%;
+    padding: value($scheduled-class-card-layout, "padding");
 }
 
 ion-card {
@@ -49,6 +50,7 @@ ion-card-content {
     background: value($scheduled-class-card-content, "background");
     border-bottom-left-radius: value($scheduled-class-card-layout, "border-radius", "bottom-left");
     border-bottom-right-radius: value($scheduled-class-card-layout, "border-radius", "bottom-right");
+    position: static;
 
     .summary {
         padding: value($scheduled-class-card-layout, "summary.padding");
@@ -204,14 +206,14 @@ ion-card-content {
 
             span {
                 display: inline-block;
-                height: value($scheduled-class-card-cancel-details, "message.icon.height");
-                line-height: value($scheduled-class-card-cancel-details, "message.icon.height");
                 vertical-align: middle;
             }
-
+            
             .intro {
                 padding-right: value($scheduled-class-card-cancel-details, "message.spacing");
                 color: value($scheduled-class-card-cancel-details, "message.teacher-name.color");
+                line-height: value($scheduled-class-card-cancel-details, "message.icon.height");
+                height: value($scheduled-class-card-cancel-details, "message.icon.height");
             }
 
             ion-icon {
@@ -243,6 +245,24 @@ ion-card-content {
             bottom: value($scheduled-class-card-unbook-button, "position.bottom");
             right: value($scheduled-class-card-unbook-button, "position.right");
             @include round-icon-button($scheduled-class-card-unbook-button);
+        }
+        ion-button.edit-class {
+            position: absolute;
+            bottom: value($scheduled-class-card-edit-button, "position.bottom");
+            right: value($scheduled-class-card-edit-button, "position.right");
+            @include round-icon-button($scheduled-class-card-edit-button);
+        }
+        ion-button.schedule-class {
+            position: absolute;
+            bottom: value($scheduled-class-card-schedule-button, "position.bottom");
+            right: value($scheduled-class-card-schedule-button, "position.right");
+            @include round-icon-button($scheduled-class-card-schedule-button);
+        }
+        ion-button.cancel-class {
+            position: absolute;
+            top: value($scheduled-class-card-cancel-button, "position.top");
+            right: value($scheduled-class-card-cancel-button, "position.right");
+            @include round-icon-button($scheduled-class-card-cancel-button);
         }
     }
 }

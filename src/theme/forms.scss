@@ -63,6 +63,27 @@ form {
         padding-right: value($inputs, "padding", "right") !important;
         background: value($inputs, "background");
       }
+      ion-textarea {
+        border: value($textareas, "border");
+        border-radius: value($textareas, "border-radius");
+        --padding-start: #{value($textareas, "padding", "start")};
+        --padding-end: #{value($textareas, "padding", "end")};
+        --padding-top: #{value($textareas, "padding", "top")};
+        --padding-bottom: #{value($textareas, "padding", "bottom")};
+        background: value($textareas, "background");
+        margin-top: 0;
+        min-height: value($textareas, "min-height");
+        
+        .textarea-wrapper {
+          height: 100%;
+          border-radius: value($textareas, "border-radius");
+          overflow: hidden;
+        }
+
+        textarea {
+          height: 100%;
+        }
+      }
     }
 
     app-help-button {

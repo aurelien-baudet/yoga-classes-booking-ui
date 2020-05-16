@@ -76,7 +76,7 @@ export class ClassesPage {
         form: {message: ''}
       }, {
         cssClass: 'cancel-message'
-      }, this.lastClick);
+      }/*, this.lastClick*/);
     }, 0);
   }
 

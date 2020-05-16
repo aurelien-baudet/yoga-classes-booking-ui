@@ -1,11 +1,186 @@
+@import "../../../../theme/variables";
 @import "../../../../theme/button-utils";
+@import "../../../../theme/icons-utils";
 
 :host {
     display: block;
     width: 100%;
+    padding: value($unscheduled-lesson-card-layout, "padding");
 }
 
 
+ion-card {
+    border-radius: value($unscheduled-lesson-card-layout, "border-radius");
+    margin-inline-start: value($unscheduled-lesson-card-layout, "margin-inline");
+    margin-inline-end: value($unscheduled-lesson-card-layout, "margin-inline");
+    margin-bottom: value($unscheduled-lesson-card-layout, "margin-bottom");
+    position: relative;
+    overflow: visible;
+    box-shadow: none;
+}
+
+ion-card-header {
+    border-top-left-radius: value($unscheduled-lesson-card-layout, "border-radius", "top-left");
+    border-top-right-radius: value($unscheduled-lesson-card-layout, "border-radius", "top-right");
+    background: value($unscheduled-lesson-card-header, "background");
+    padding: value($unscheduled-lesson-card-header, "padding");
+    position: relative;
+
+    ion-card-title {
+        span {
+            text-align: center;
+            display: block;
+            font-weight: bold;
+            color: value($unscheduled-lesson-card-header, "color");
+        }
+        .date {
+            font-size: value($unscheduled-lesson-card-header, "date.font-size");
+            padding-bottom: value($unscheduled-lesson-card-header, "date.padding-bottom");
+
+            &::first-letter {
+                text-transform: capitalize;
+            }
+        }
+        .title {
+            font-size: value($unscheduled-lesson-card-header, "title.font-size");;
+        }
+    }
+}
+
+ion-card-content {
+    background: value($unscheduled-lesson-card-content, "background");
+    border-bottom-left-radius: value($unscheduled-lesson-card-layout, "border-radius", "bottom-left");
+    border-bottom-right-radius: value($unscheduled-lesson-card-layout, "border-radius", "bottom-right");
+    position: static;
+
+    .summary {
+        padding: value($unscheduled-lesson-card-layout, "summary.padding");
+        position: relative;
+        
+        .time {
+            ion-icon {
+                @include icon-styles(value($unscheduled-lesson-card-time, "icon"));
+                vertical-align: middle;
+            }
+            span {
+                font-size: value($unscheduled-lesson-card-time, "font-size");
+                font-weight: bold;
+                color: value($unscheduled-lesson-card-time, "color");
+                display: inline-block;
+                vertical-align: middle;
+                padding-left: value($unscheduled-lesson-card-time, "space-between");
+            }
+        }
+        .place {
+            ion-button {
+                --padding-start: 0.33em;
+                font-size: value($unscheduled-lesson-card-place, "font-size");
+                font-weight: bold;
+                @include discreet-button(value($unscheduled-lesson-card-place, "color"));
+
+                ion-icon {
+                    @include icon-styles(value($unscheduled-lesson-card-place, "icon"));
+                    vertical-align: middle;
+                }
+                span {
+                    padding-top: 1px;
+                    padding-left: 1px;
+                    display: inline-block;
+                }
+            }
+        }
+        .max-students {
+            position: absolute;
+            top: value($unscheduled-lesson-card-max-students, "position.top");
+            right: value($unscheduled-lesson-card-max-students, "position.right");
+
+            ion-badge {
+                display: block;
+                --background: none;
+                --color: #{value($unscheduled-lesson-card-max-students, "color")};
+                --padding-top: #{value($unscheduled-lesson-card-max-students, "padding.top") + 1px};
+                --padding-end: #{value($unscheduled-lesson-card-max-students, "padding.right")};
+                --padding-bottom: #{value($unscheduled-lesson-card-max-students, "padding.bottom")};
+                --padding-start: #{value($unscheduled-lesson-card-max-students, "padding.left")};
+                font-size: value($unscheduled-lesson-card-max-students, "font-size");
+                margin-top: -4px;
+            }
+
+            ion-icon {
+                @include icon-styles(value($unscheduled-lesson-card-max-students, "icon"));
+            }
+        }
+    }
+    .details {
+        margin-top: value($unscheduled-lesson-card-layout, "details.margin-top");
+        padding-bottom: value($unscheduled-lesson-card-layout, "details.padding-bottom");
+
+        ion-button {
+            --padding-top: #{value($unscheduled-lesson-card-details-button, "padding", "top")};
+            --padding-bottom: #{value($unscheduled-lesson-card-details-button, "padding", "bottom")};
+            --padding-start: #{value($unscheduled-lesson-card-details-button, "padding", "start")};
+            --padding-end: #{value($unscheduled-lesson-card-details-button, "padding", "end")};
+            --background: #{value($unscheduled-lesson-card-details-button, "background")};
+            --color: #{value($unscheduled-lesson-card-details-button, "color")};
+            font-size: value($unscheduled-lesson-card-details-button, "font-size");
+            border-radius: value($unscheduled-lesson-card-details-button, "border-radius");
+            text-transform: none;
+            overflow: hidden;
+            height: value($unscheduled-lesson-card-details-button, "height");
+            position: absolute;
+            bottom: value($unscheduled-lesson-card-details-button, "position.bottom");
+
+            ion-icon {
+                @include icon-styles(value($unscheduled-lesson-card-details-button, "icon"));
+            }
+            span {
+                display: inline-block;
+                margin-right: value($unscheduled-lesson-card-details-button, "space-between");
+            }
+        }
+
+       .details-content {
+            height: 0;
+            overflow: hidden;
+            margin-bottom: value($unscheduled-lesson-card-details, "description.margin");
+
+            p {
+                font-size: value($unscheduled-lesson-card-details, "description.font-size");
+            }
+            app-approved-students,
+            app-waiting-students {
+                display: none;
+            }
+        }
+    }
+
+    .actions {
+        ion-button.schedule-lesson {
+            position: absolute;
+            bottom: value($unscheduled-lesson-card-schedule-button, "position.bottom");
+            right: value($unscheduled-lesson-card-schedule-button, "position.right");
+            @include round-icon-button($unscheduled-lesson-card-schedule-button);
+        }
+        ion-button.remove-lesson {
+            position: absolute;
+            top: value($unscheduled-lesson-card-remove-button, "position.top");
+            right: value($unscheduled-lesson-card-remove-button, "position.right");
+            @include round-icon-button($unscheduled-lesson-card-remove-button);
+        }
+    }
+}
+
+
+
+/* states */
+.show-details {
+    ion-card-content .details-content {
+        height: auto;
+    }
+}
+
+
+/*
 ion-card-header {
     border-bottom: 1px solid var(--border-color);
     display: flex;
@@ -90,11 +265,11 @@ ion-card-content {
         top: 0;
         left: 18px;
     }
-}
+}*/
 
 
 /* animation */
-ion-card-content .details {
+/*ion-card-content .details {
     padding-top: 0;
     padding-bottom: 0;
     transition: padding 0.2s linear 0.8s;
@@ -114,4 +289,4 @@ ion-card-content .details {
     .details-content {
         max-height: 600px;
     }
-}
+}*/

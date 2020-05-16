@@ -198,6 +198,10 @@ $inputs: (
   "background": var(--ion-color-primary-contrast)
 );
 
+$textareas: map-merge($inputs, (
+  "min-height": 80px
+));
+
 
 $checkboxes: (
   "label": (
@@ -276,6 +280,7 @@ $scheduled-class-card-layout: (
   "border-radius": 30px 30px 60px 30px,
   "margin-inline": 30px,
   "margin-bottom": 25px,
+  "padding": 12px 0 0 0,
   "summary": (
     "padding": 11px 2px 0 2px
   ),
@@ -489,7 +494,39 @@ $scheduled-class-card-states: (
     )
   )
 );
-
+$scheduled-class-card-schedule-button: (
+  "position": (
+    "bottom": 10px,
+    "right": 15px
+  ),
+  "icon": (
+    "colors": var(--ion-color-primary-tint) var(--ion-color-primary-contrast),
+    "width": 45px,
+    "height": 45px
+  )
+);
+$scheduled-class-card-edit-button: (
+  "position": (
+    "bottom": 10px,
+    "right": #{value($scheduled-class-card-schedule-button, "position.right") + value($scheduled-class-card-schedule-button, "icon.width") + 8px}
+  ),
+  "icon": (
+    "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+    "width": 45px,
+    "height": 45px
+  )
+);
+$scheduled-class-card-cancel-button: (
+  "position": (
+    "top": -25px,
+    "right": -5px
+  ),
+  "icon": (
+    "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+    "width": 45px,
+    "height": 45px
+  )
+);
 
 $register-friend-button: (
   "icon": (
@@ -644,3 +681,50 @@ $student-list-popover: (
     "margin": 0 10px
   )
 );
+
+
+$admin-manage-classes-page: (
+  "add-lesson-button": (
+    "margin": 20px 0 0 0,
+    "icon": (
+      "colors": var(--ion-color-primary-tint) var(--ion-color-primary-contrast),
+      "width": 74px,
+      "height": 74px
+    )
+  )
+);
+
+
+
+$unscheduled-lesson-card-layout: map-merge($scheduled-class-card-layout, ());
+
+$unscheduled-lesson-card-header: map-merge($scheduled-class-card-header, (
+  "background": var(--ion-color-primary-tint),
+  "color": var(--ion-color-primary-contrast)
+));
+
+$unscheduled-lesson-card-content: map-merge($scheduled-class-card-content, ());
+
+$unscheduled-lesson-card-time: map-merge($scheduled-class-card-time, ());
+
+$unscheduled-lesson-card-place: map-merge($scheduled-class-card-place, ());
+
+$unscheduled-lesson-card-max-students: map-merge($scheduled-class-card-waiting-places, ());
+
+$unscheduled-lesson-card-details: map-merge($scheduled-class-card-details, ());
+
+$unscheduled-lesson-card-details-button: map-merge($scheduled-class-card-details-button, ());
+
+$unscheduled-lesson-card-schedule-button: map-merge($scheduled-class-card-schedule-button, ());
+
+$unscheduled-lesson-card-remove-button: map-merge($scheduled-class-card-cancel-button, ());
+
+
+$cancel-popover: (
+  "form": (
+    "padding": 15px 20px 10px 20px
+  ),
+  "message": (
+    "padding": 8px
+  )
+)
