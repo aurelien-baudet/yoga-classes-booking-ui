@@ -29,7 +29,8 @@ form {
       }
     }
 
-    &.item-input {
+    &.item-input,
+    &.item-select {
       > ion-icon {
         display: none;
       }
@@ -84,6 +85,26 @@ form {
           height: 100%;
         }
       }
+      ion-select {
+        border: value($selects, "border");
+        border-radius: value($selects, "border-radius");
+        --padding-start: 0;
+        --padding-end: 0;
+        --padding-top: #{value($selects, "padding", "top")};
+        --padding-bottom: #{value($selects, "padding", "bottom")};
+        padding-left: value($selects, "padding", "left") !important;
+        padding-right: value($selects, "padding", "right") !important;
+        background: value($selects, "background");
+        position: relative;
+
+        &::part(icon) {
+          opacity: 1;
+          background: value($selects, "arrow.background");
+        }
+        &::part(icon-inner) {
+          display: none;
+        }
+      }
     }
 
     app-help-button {
@@ -128,3 +149,42 @@ form {
   }
 }
 
+
+ion-select-popover {
+  position: relative;
+  --width: #{value($selects, "popover.width")};
+
+  > * {
+    border-radius: value($selects, "popover.border-radius");
+    overflow: hidden;
+  }
+
+  ion-list-header {
+    font-size: value($selects, "popover.title.font-size");
+    font-weight: bold;
+    color: value($selects, "popover.title.color");
+    width: fit-content;
+    margin: auto;
+    padding-left: 0;
+  }
+
+  ion-radio-group {
+    ion-item.item {
+      --min-height: 0;
+      --background: none;
+      --full-highlight-height: 0;
+      --border-width: 0;
+      --inner-border-width: 0;
+      font-size: value($selects, "option.font-size");
+
+      ion-label {
+        margin: value($selects, "option.margin");
+      }
+      ion-radio {
+        width: value($selects, "option.radio-button.width");
+        height: value($selects, "option.radio-button.height");
+        margin: value($selects, "option.margin");
+      }
+    }
+  }
+}

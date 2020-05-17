@@ -153,6 +153,24 @@ $pages: (
   "background": linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(201,206,212,1) 100%),
 );
 
+
+$popover: (
+  "width": 300px,
+  "border-radius": 30px,
+  "padding": 5px,
+  "close-button": (
+    "position": (
+      "top": -8px,
+      "right": -6px
+    ),
+    "icon": (
+      "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+      "width": 40px,
+      "height": 40px,
+    )
+  )
+);
+
 $forms: (
   "background": top center / 95% no-repeat url('src/assets/background/form.svg'),
   "font-size": 12px,
@@ -200,6 +218,28 @@ $inputs: (
 
 $textareas: map-merge($inputs, (
   "min-height": 80px
+));
+
+$selects: map-merge($inputs, (
+  "padding": 10px 20px,
+  "arrow": (
+    "background": center center / 18px no-repeat url('src/assets/icon/app-select-arrow.svg')
+  ),
+  "popover": map-merge($popover, (
+    "width": 250px,
+    "title": (
+      "font-size": 14px,
+      "color": var(--ion-color-primary)
+    )
+  )),
+  "option": (
+    "font-size": 12px,
+    "margin": 5px 0,
+    "radio-button": (
+      "width": 16px,
+      "height": 16px,
+    )
+  )
 ));
 
 
@@ -259,22 +299,6 @@ $segment: (
   )
 );
 
-$popover: (
-  "width": 300px,
-  "border-radius": 30px,
-  "padding": 5px,
-  "close-button": (
-    "position": (
-      "top": -8px,
-      "right": -6px
-    ),
-    "icon": (
-      "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
-      "width": 40px,
-      "height": 40px,
-    )
-  )
-);
 
 $scheduled-class-card-layout: (
   "border-radius": 30px 30px 60px 30px,

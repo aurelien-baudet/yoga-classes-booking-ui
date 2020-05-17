@@ -1,6 +1,6 @@
 import { Lesson, UpdatedLesson } from 'src/app/booking/domain/reservation';
 import { NewLesson, Place, PlaceId, isSamePlace } from './../../../booking/domain/reservation';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, SimpleChanges } from '@angular/core';
 import { TeacherInfo, TeacherId, isSameTeacher } from 'src/app/account/domain/teacher';
 
 type LessonModel = Pick<Lesson, 'title' | 'description' | 'maxStudents' | 'photos'> & {
@@ -25,20 +25,22 @@ const defaultModel = (): LessonModel => ({
 export class LessonFormComponent {
   @Input()
   set lesson(lesson: Lesson) {
-    if (lesson) {
-      this.lessonId = lesson.id;
-      this.lessonModel = {
-        title: lesson.title,
-        description: lesson.description,
-        maxStudents: lesson.maxStudents,
-        photos: lesson.photos,
-        placeId: lesson.place.id,
-        teacherId: lesson.teacher.id
-      };
-    } else {
-      this.lessonId = '';
-      this.lessonModel = defaultModel();
-    }
+    setTimeout(() => {  // FIXME: fix ion-select initial value correctly
+      if (lesson) {
+        this.lessonId = lesson.id;
+        this.lessonModel = {
+          title: lesson.title,
+          description: lesson.description,
+          maxStudents: lesson.maxStudents,
+          photos: lesson.photos,
+          placeId: lesson.place.id,
+          teacherId: lesson.teacher.id
+        };
+      } else {
+        this.lessonId = '';
+        this.lessonModel = defaultModel();
+      }
+    }, 500);
   }
   @Input()
   places: Place[];
@@ -56,6 +58,7 @@ export class LessonFormComponent {
 
   private lessonId: string;
   public lessonModel: LessonModel = defaultModel();
+
 
   save(model: LessonModel) {
     const lesson = {

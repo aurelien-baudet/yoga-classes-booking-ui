@@ -8,10 +8,10 @@
       [(ngModel)]="lessonModel.title" 
       required></ion-input>
     <ion-icon name="app-title" slot="start"></ion-icon>
+    <div class="validation-errors" [class.invalid]="title.invalid && (title.dirty || title.touched)">
+      <div *ngIf="title.invalid && title.errors.required">Le titre du cours est obligatoire</div>
+    </div>
   </ion-item>
-  <div class="validation-errors" [class.invalid]="title.invalid && (title.dirty || title.touched)">
-    <div *ngIf="title.invalid && title.errors.required">Le titre du cours est obligatoire</div>
-  </div>
   <ion-item class="max-students">
     <ion-label position="floating">Nombre de places</ion-label>
     <ion-input 
@@ -21,10 +21,10 @@
       [(ngModel)]="lessonModel.maxStudents" 
       required></ion-input>
     <ion-icon name="app-max-students" slot="start"></ion-icon>
+    <div class="validation-errors" [class.invalid]="maxStudents.invalid && (maxStudents.dirty || maxStudents.touched)">
+      <div *ngIf="maxStudents.invalid && maxStudents.errors.required">Le nombre de places maximum est obligatoire</div>
+    </div>
   </ion-item>
-  <div class="validation-errors" [class.invalid]="maxStudents.invalid && (maxStudents.dirty || maxStudents.touched)">
-    <div *ngIf="maxStudents.invalid && maxStudents.errors.required">Le nombre de places maximum est obligatoire</div>
-  </div>
   <ion-item class="description">
     <ion-label position="floating">Description</ion-label>
     <ion-textarea 
@@ -35,14 +35,13 @@
       required
       rows="10"></ion-textarea>
     <ion-icon name="app-description" slot="start"></ion-icon>
+    <div class="validation-errors" [class.invalid]="description.invalid && (description.dirty || description.touched)">
+      <div *ngIf="description.invalid && description.errors.required">La description du cours est obligatoire</div>
+    </div>
   </ion-item>
-  <div class="validation-errors" [class.invalid]="description.invalid && (description.dirty || description.touched)">
-    <div *ngIf="description.invalid && description.errors.required">La description du cours est obligatoire</div>
-  </div>
   <ion-item class="place">
     <ion-label position="floating">Lieu</ion-label>
     <ion-select
-      type="text" 
       name="placeId" 
       #place="ngModel"
       [(ngModel)]="lessonModel.placeId" 
@@ -54,10 +53,10 @@
         [value]="place.id">{{ place.name }}</ion-select-option>
     </ion-select>
     <ion-icon name="app-place" slot="start"></ion-icon>
+    <div class="validation-errors" [class.invalid]="place.invalid && (place.dirty || place.touched)">
+      <div *ngIf="place.invalid && place.errors.required">Le lieu de dispense est obligatoire</div>
+    </div>
   </ion-item>
-  <div class="validation-errors" [class.invalid]="place.invalid && (place.dirty || place.touched)">
-    <div *ngIf="place.invalid && place.errors.required">Le lieu de dispense est obligatoire</div>
-  </div>
   <input 
     type="hidden" 
     name="teacherId" 
