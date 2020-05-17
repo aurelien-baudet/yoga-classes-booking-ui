@@ -21,10 +21,12 @@ matrix:
     deploy:
       provider: releases
       api_key: "$GITHUB_API_TOKEN"
+      name: "$PROFILE $TRAVIS_BRANCH $DATE_TIME"
       file:
       - dist/yoga-booking-app-$PROFILE.tar.gz
       skip_cleanup: true
       draft: true
+      overwrite: true
       on:
         all_branches: true
         repo: aurelien-baudet/yoga-classes-booking-ui
@@ -71,10 +73,12 @@ matrix:
     deploy:
       provider: releases
       api_key: "$GITHUB_API_TOKEN"
+      name: "$PROFILE $TRAVIS_BRANCH $DATE_TIME"
       file:
       - dist/yoga-booking-release-$PROFILE.apk
       skip_cleanup: true
       draft: true
+      overwrite: true
       on:
         all_branches: true
         repo: aurelien-baudet/yoga-classes-booking-ui
