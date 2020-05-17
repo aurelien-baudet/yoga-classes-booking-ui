@@ -1,3 +1,4 @@
+import { BookingHelperComponent } from './../../components/booking-helper/booking-helper.component';
 import { ComingSoonFriendProvider } from './../../services/local/coming-soon-friend.provider';
 import { AutoCompleteService } from 'ionic4-auto-complete';
 import { Place, BookingForFriend, UnbookingForFriend } from 'src/app/booking/domain/reservation';
@@ -30,13 +31,15 @@ export class UserBookingsPage {
   protected lastClick: Event;
 
   @ViewChild('placeDetails', { static: true })
-  placeDetails: TemplateRef<any>;
+  private placeDetails: TemplateRef<any>;
   @ViewChild('approvedNotification', { static: true })
-  approvedNotification: TemplateRef<any>;
+  private approvedNotification: TemplateRef<any>;
   @ViewChild('waitingListNotification', { static: true })
-  waitingListNotification: TemplateRef<any>;
+  private waitingListNotification: TemplateRef<any>;
   @ViewChild('unbookedNotification', { static: true })
-  unbookedNotification: TemplateRef<any>;
+  private unbookedNotification: TemplateRef<any>;
+  @ViewChild('bookingHelper', { static: true })
+  private bookingHelper: BookingHelperComponent;
 
   bookingStateProvider: BookingStateProvider;
   detailsProvider: DetailsStateProvider<ScheduledClass> & DetailsStateUpdateProvider<ScheduledClass>;
@@ -73,17 +76,7 @@ export class UserBookingsPage {
 
 
   async unbook(bookedClass: ScheduledClass) {
-    if (isUnknown(this.currentUser)) {
-      console.log('unknown user so ask who he is before unbooking');
-      return this.authenticateForUnbooking(bookedClass);
-    }
-    this.pendingProvider.markPending(bookedClass);
-    // TODO: handle case when user registers another user
-    await this.bookingService.unbook(this.currentUser, bookedClass);
-    this.pendingProvider.unmarkPending(bookedClass);
-    this.notificationService.success(this.unbookedNotification, {bookedClass});
-    this.router.navigate(['user', 'bookings'], {queryParams: {}});
-    this.refreshBookings();
+    await this.bookingHelper.unbook(bookedClass);
   }
 
   async showPlaceDetails(place: Place) {
@@ -135,16 +128,8 @@ export class UserBookingsPage {
     this.currentUser = user;
     this.refreshBookings();
   }
-
-  private authenticateForUnbooking(bookedClass: ScheduledClass) {
-    this.router.navigate(['users', 'whoareyou'], {
-      queryParams: {
-        unbooking: bookedClass.id
-      }
-    });
-  }
   
-  private async refreshBookings() {
+  async refreshBookings() {
     const bookings = await this.bookingService.getBookedClasses(this.currentUser);
     this.bookedClassesForCurrentUser.splice(0, this.bookedClassesForCurrentUser.length);
     this.bookedClassesForCurrentUser.push(...bookings);

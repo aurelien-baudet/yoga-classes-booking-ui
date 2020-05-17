@@ -7,9 +7,10 @@ import { NotificationComponent } from './notification.component';
 export class NotificationService {
     constructor(private toastr: ToastrService) { }
 
-    success(template: TemplateRef<any>, templateContext: any, title?: string, override?: Partial<IndividualConfig>) {
+    success(template: TemplateRef<any>, templateContext: any, override?: Partial<IndividualConfig>, title?: string) {
         const toast = this.toastr.success(null, title, {
             ...override,
+            toastClass: `ngx-toastr ${override && override.toastClass || ''}`,
             timeOut: 10000,
             closeButton: true,
             enableHtml: true,
@@ -20,7 +21,7 @@ export class NotificationService {
         } as any);
     }
 
-    warn(template: TemplateRef<any>, templateContext: any, title?: string, override?: Partial<IndividualConfig>) {
+    warn(template: TemplateRef<any>, templateContext: any, override?: Partial<IndividualConfig>, title?: string) {
         const toast = this.toastr.warning(null, title, {
             ...override,
             timeOut: 10000,

@@ -843,3 +843,37 @@ $recurrence-popover: (
     "width": 100px
   )
 );
+
+
+$toast: map-merge($popover, (
+  "padding": 10px,
+  "margin": 0 0 20px 0,
+  "box-shadow": 0px 0px 10px 5px rgba(125, 125, 125, 0.3),
+  "title": (
+    "font-size": 14px,
+    "padding": 0 30px
+  ),
+  "color": var(--ion-color-primary-contrast),
+  "close-button": (
+    "icon": (
+      "colors": var(--ion-color-primary-contrast) var(--ion-color-primary),
+      "width": 35px,
+      "height": 35px
+    ),
+    "position": (
+      "top": -8px,
+      "right": -6px
+    )
+  )
+));
+
+$toast-states: (
+  "booking-approved": map-merge(value($scheduled-class-card-states, "booking-approved.header"), ()),
+  "booking-waiting": map-merge(value($scheduled-class-card-states, "booking-waiting.header"), ()),
+  "unbooked": (
+    "background": var(--ion-color-primary-shade)
+  ),
+  "failed": (
+    "background": var(--ion-color-warning)
+  )
+);

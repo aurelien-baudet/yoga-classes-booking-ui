@@ -1,39 +1,3 @@
-$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
-
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/regular";
-@import "~@fortawesome/fontawesome-free/scss/solid";
-@import "~@fortawesome/fontawesome-free/scss/brands";
-
-
-@mixin fa-icon-base($icon) {
-  @extend %fa-icon;
-  background: transparent;
-  
-  &:before {
-    content: fa-content($icon);
-    font-size: 0.75em;
-    vertical-align: middle;
-  }
-}
-
-@mixin fas-icon($icon) {
-  @extend .fas;
-  @include fa-icon-base($icon);
-}
-
-@mixin fa-icon($icon) {
-  @extend .fa;
-  @include fa-icon-base($icon);
-  font-weight: 500;
-}
-
-@mixin fab-icon($icon) {
-  @extend .fab;
-  @include fa-icon-base($icon);
-}
-
-
 @mixin icon-styles($styles) {
   width: map-get($styles, "width");
   height: map-get($styles, "height");

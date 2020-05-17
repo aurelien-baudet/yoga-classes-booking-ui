@@ -65,13 +65,13 @@ export class BookingHelperComponent {
       const booked = await this.bookingService.book(this.currentUser, bookedClass);
       this.pendingProvider.unmarkPending(bookedClass);
       const template = booked.approved ? this.approvedNotification : this.waitingListNotification;
-      this.notificationService.success(template, booked);
+      this.notificationService.success(template, booked, {toastClass: `booked ${booked.approved ? 'approved' : 'waiting'}`});
       this.router.navigate(this.redirection, {queryParams: {}});
       this.refresh.emit();
     } catch (e) {
       if (matchesErrorCode(e, 'ALREADY_BOOKED')) {
         this.pendingProvider.unmarkPending(bookedClass);
-        this.notificationService.warn(this.alreadyBookedNotification, {bookedClass});
+        this.notificationService.warn(this.alreadyBookedNotification, {bookedClass}, {toastClass: 'already-booked'});
         this.router.navigate(this.redirection, {queryParams: {}});
         this.refresh.emit();
         return;
@@ -90,13 +90,13 @@ export class BookingHelperComponent {
       // TODO: handle case when user registers another user
       await this.bookingService.unbook(this.currentUser, bookedClass);
       this.pendingProvider.unmarkPending(bookedClass);
-      this.notificationService.success(this.unbookedNotification, {bookedClass});
+      this.notificationService.success(this.unbookedNotification, {bookedClass}, {toastClass: 'unbooked'});
       this.router.navigate(this.redirection, {queryParams: {}});
       this.refresh.emit();
     } catch (e) {
       if (matchesErrorCode(e, 'NOT_BOOKED')) {
         this.pendingProvider.unmarkPending(bookedClass);
-        this.notificationService.warn(this.notBookedNotification, {bookedClass});
+        this.notificationService.warn(this.notBookedNotification, {bookedClass}, {toastClass: 'not-booked'});
         this.router.navigate(this.redirection, {queryParams: {}});
         this.refresh.emit();
         return;

@@ -1,0 +1,53 @@
+@import "variables";
+@import "button-utils";
+
+.toast-container {
+  .ngx-toastr {
+    border-radius: value($toast, "border-radius");
+    background-image: none;
+    border: none;
+    padding: value($toast, "padding");
+    position: relative;
+    overflow: visible;
+    margin: value($toast, "margin");
+    text-align: center;
+    box-shadow:value($toast, "box-shadow");
+    color: value($toast, "color");
+
+    &.booked.approved {
+      background: value($toast-states, "booking-approved.background");
+    }
+    &.booked.waiting {
+      background: value($toast-states, "booking-waiting.background");
+    }
+    &.unbooked {
+      background: value($toast-states, "unbooked.background");
+    }
+    &.not-booked,
+    &.already-booked {
+      background: value($toast-states, "failed.background");
+    }
+
+    .toast-close-button {
+      position: absolute;
+      top: value($toast, "close-button.position.top");
+      right: value($toast, "close-button.position.right");
+      @include round-icon-button(value($toast, "close-button"));
+      opacity: 1;
+    }
+
+    .header {
+      padding: value($toast, "title.padding");
+    }
+  
+    .title {
+      text-transform: uppercase;
+      font-size: value($toast, "font-size");
+      font-weight: bold;
+    }
+
+    p {
+      text-align: left;
+    }
+  }
+}

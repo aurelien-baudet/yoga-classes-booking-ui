@@ -1,7 +1,7 @@
-<button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button" aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button>
-<div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
+<ion-button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button" aria-label="Close">
+  <ion-icon name="app-close-notification" slot="icon-only"></ion-icon>
+</ion-button>
+<div *ngIf="title" [class]="'title ' + options.titleClass" [attr.aria-label]="title">
   {{ title }} <ng-container *ngIf="duplicatesCount">[{{ duplicatesCount + 1 }}]</ng-container>
 </div>
 <div *ngIf="message && options.enableHtml" role="alertdialog" aria-live="polite"
