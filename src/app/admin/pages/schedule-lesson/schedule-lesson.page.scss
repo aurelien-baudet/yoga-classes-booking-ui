@@ -1,3 +1,9 @@
+@import "../../../../theme/variables";
+
 :host {
   text-align: center;
+}
+
+:host > ion-content {
+  --background: none !important;
 }

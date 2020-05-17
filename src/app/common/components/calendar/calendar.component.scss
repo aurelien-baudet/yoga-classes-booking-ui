@@ -1,47 +1,215 @@
+@import "../../../../theme/variables";
+@import "../../../../theme/icons-utils";
+@import "../../../../theme/button-utils";
+
+
 :host {
-    display: block;
+  display: block;
 }
 
-::ng-deep ion-calendar-month .days {
-    height: 60px;
+ion-calendar {
+  padding: 0;
 }
 
-::ng-deep ion-calendar-month button.days-btn.on-selected small {
-    bottom: auto;
-    top: 40px;
+::ng-deep ion-calendar .title {
+  background: value($calendar, "select-month.background");
+  font-size: value($calendar, "select-month.font-size");
+  height: value($calendar, "select-month.height");
+  padding-top: value($calendar, "select-month.padding-top");
+  
+  ion-button.switch-btn {
+    color: value($calendar, "select-month.color");
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  ion-button {
+    &.forward,
+    &.back {
+      ion-icon {
+        @include icon-styles(value($calendar, "select-month.back-forward-icons"));
+      }
+    }
+    ion-icon {
+      &.arrow-dropdown {
+        @include icon-styles(value($calendar, "select-month.drop-icons"));
+      }
+    }
+  }
 }
+
+
+::ng-deep ion-calendar-week {
+  padding-top: value($calendar, "padding", "top");
+  padding-left: value($calendar, "padding", "left") + 8px;
+  padding-right: value($calendar, "padding", "right") + 8px;
+  display: block;
+
+  ion-toolbar {
+    --min-height: 0;
+  }
+
+  .week-title.transparent {
+    color: value($calendar, "week-days.color");
+    font-size: value($calendar, "week-days.font-size");
+    font-weight: bold;
+    height: value($calendar, "week-days.height");
+  }
+}
+
+::ng-deep ion-calendar-month {
+  padding-bottom: value($calendar, "padding", "bottom");
+  padding-left: value($calendar, "padding", "left");
+  padding-right: value($calendar, "padding", "right");
+
+  .days {
+    height: value($calendar, "days.height");
+  }
+
+  button.days-btn {
+    
+    &[disabled] {
+      opacity: 0.5;
+    }
+
+    p {
+      color: value($calendar, "days.current-month.color");
+      font-size: value($calendar, "days.font-size");
+    }
+
+    &.last-month-day p,
+    &.next-month-day p {
+      color: value($calendar, "days.last-or-next-month.color");
+    }
+    &.today p {
+      color: value($calendar, "days.today.color");
+    }
+  }
+
+  button.days-btn.on-selected {
+    background: value($calendar, "days.selected.background");
+    border-radius: value($calendar, "days.selected.border-radius");
+    width: value($calendar, "days.selected.width");
+    height: value($calendar, "days.selected.height");
+    margin-top: value($calendar, "days.selected.margin-top");
+    
+    p {
+      color: value($calendar, "days.selected.color");
+      font-size: value($calendar, "days.font-size");
+      font-weight: bold;
+    }
+
+    small {
+      bottom: auto;
+      top: value($calendar, "hours.position.top");
+      font-size: value($calendar, "hours.font-size");
+      color: value($calendar, "hours.color");
+      font-weight: normal;
+      line-height: value($calendar, "hours.line-height");
+    }
+  }
+}
+
 
 .select-hours {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: value($select-hours-popover, "padding");
+  background: none;
 
-    ion-item {
-        --min-height: 0;
-        display: flex;
-        width: 50px;
+  ion-icon[name=app-select-hours] {
+    @include icon-styles(value($select-hours-popover, "select-hours-icon"));
+  }
+
+  ion-item {
+    --min-height: 0;
+    display: flex;
+    width: value($select-hours-popover, "input.width");
+  }
+  ion-input {
+    --padding-top: 0;
+    --padding-bottom: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-radius: 0;
+    border: none;
+    text-align: center;
+  }
+  span {
+    display: flex;
+  }
+  ion-button[type="submit"] {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    @include round-icon-button(value($select-hours-popover, "submit-button"));
+  }
+  .validation-errors {
+    order: 99;
+    flex: 0 0 100%;
+    height: 0;
+    min-height: unset;
+
+    &.invalid {
+      height: auto;
     }
-    ion-input {
-        --padding-top: 0;
-        --padding-bottom: 0;
-        text-align: center;
-    }
-    span {
-        display: flex;
-    }
-    ion-button[type="submit"] {
-        margin-top: 0;
-    }
-    .validation-errors {
-        order: 99;
-        flex: 0 0 100%;
-    }
+  }
 }
 
+
 .recurrence {
-    padding: 10px;
+  padding: value($recurrence-popover, "padding");
+  text-align: center;
+  background: none;
+
+  ion-list-header {
     text-align: center;
+
+    ion-label {
+      font-size: value($recurrence-popover, "title.font-size");
+      font-weight: bold;
+      color: value($recurrence-popover, "title.color");
+      text-transform: uppercase;
+    }
+  }
+  
+  ion-item.item {
+    --min-height: 0;
+    --background: none;
+    --full-highlight-height: 0;
+    --border-width: 0;
+    --inner-border-width: 0;
+    font-size: value($recurrence-popover, "item.font-size");
+    
+    ion-label {
+      --color: #{value($recurrence-popover, "item.color")};
+      margin: value($recurrence-popover, "item.margin");
+      flex: 1 1 auto;
+    }
+    ion-radio {
+      --color: #{value($recurrence-popover, "item.radio-button.color")};
+      width: value($recurrence-popover, "item.radio-button.width");
+      height: value($recurrence-popover, "item.radio-button.height");
+      margin: value($recurrence-popover, "item.margin");
+    }
+    ion-input {
+      --padding-top: #{value($recurrence-popover, "until.padding", "top")};
+      --padding-bottom: #{value($recurrence-popover, "until.padding", "bottom")};
+      padding-left: value($recurrence-popover, "until.padding", "left") !important;
+      padding-right: value($recurrence-popover, "until.padding", "right") !important;
+      flex: 0 0 value($recurrence-popover, "until.width");
+      text-align: center;
+    }
+  }
+
+  ion-button[type=submit] {
+    margin: value($recurrence-popover, "submit-button.margin");
+
+    ion-icon {
+      display: none;
+    }
+  }
 }

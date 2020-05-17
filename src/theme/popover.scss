@@ -30,7 +30,9 @@ ion-popover {
     }
   }
 
-  &.place-details {
+  &.place-details,
+  &.select-hours,
+  &.recurrence {
     ion-button.close {
       display: none;
     }

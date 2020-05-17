@@ -238,6 +238,7 @@ $selects: map-merge($inputs, (
     "radio-button": (
       "width": 16px,
       "height": 16px,
+      "color": var(--ion-color-primary-tint)
     )
   )
 ));
@@ -751,4 +752,94 @@ $cancel-popover: (
   "message": (
     "padding": 8px
   )
-)
+);
+
+$calendar: (
+  "select-month": (
+    "background": var(--ion-color-primary),
+    "color": var(--ion-color-primary-contrast),
+    "font-size": 14px,
+    "height": 60px,
+    "padding-top": 12px,
+    "drop-icons": (
+      "width": 10px,
+      "height": 10px,
+    ),
+    "back-forward-icons": (
+      "width": 15px,
+      "height": 15px,
+    )
+  ),
+  "padding": 30px 30px 20px 30px,
+  "week-days": (
+    "color": var(--ion-color-primary),
+    "font-size": 12px,
+    "height": 36px
+  ),
+  "days": (
+    "font-size": 14px,
+    "height": 55px,
+    "current-month": (
+      "color": var(--ion-color-primary-tint),
+    ),
+    "last-or-next-month": (
+      "color": var(--ion-color-tertiary),
+    ),
+    "today": (
+      "color": var(--ion-color-primary-shade),
+    ),
+    "selected": (
+      "background": var(--ion-color-primary),
+      "color": var(--ion-color-primary-contrast),
+      "border-radius": 15px,
+      "width": 25px,
+      "height": 25px,
+      "margin-top": 5px
+    )
+  ),
+  "hours": (
+    "font-size": 9px,
+    "line-height": 8px,
+    "color": var(--ion-color-primary),
+    "position": (
+      "top": 30px
+    )
+  )
+);
+
+$select-hours-popover: (
+  "padding": 10px 20px,
+  "input": (
+    "width": 70px
+  ),
+  "select-hours-icon": (
+    "colors": var(--ion-color-primary-tint) var(--ion-color-primary-contrast),
+    "width": 22px,
+    "height": 22px,
+  ),
+  "submit-button": (
+    "icon": (
+      "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+      "width": 26px,
+      "height": 26px,
+    )
+  )
+);
+
+$recurrence-popover: (
+  "padding": 10px,
+  "title": (
+    "font-size": 16px,
+    "color": var(--ion-color-primary),
+  ),
+  "submit-button": (
+    "margin": 20px auto 0 auto
+  ),
+  "item": map-merge(value($selects, "option"), (
+    "color": var(--ion-color-secondary)
+  )),
+  "until": (
+    "padding": 5px 10px,
+    "width": 100px
+  )
+);

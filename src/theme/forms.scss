@@ -181,6 +181,7 @@ ion-select-popover {
         margin: value($selects, "option.margin");
       }
       ion-radio {
+        --color: #{value($selects, "option.radio-button.color")};
         width: value($selects, "option.radio-button.width");
         height: value($selects, "option.radio-button.height");
         margin: value($selects, "option.margin");
