@@ -22,7 +22,7 @@ import { BookingService } from './booking/services/booking.service';
 import { RestClassService } from './booking/services/remote/rest-class.service';
 import { RestBookingService } from './booking/services/remote/rest-booking.service';
 import { RestAccountService } from './account/services/remote/rest-account.service';
-import { ServerConfig, OneSignalConfig } from 'src/environments/config';
+import { ServerConfig, OneSignalConfig, SplashScreenConfig } from 'src/environments/config';
 import { environment } from 'src/environments/environment';
 import { AuthenticationStorage } from './account/services/authentication.storage';
 import { UnauthorizedInterceptor } from './account/services/remote/unauthorized.interceptor';
@@ -105,6 +105,7 @@ export const calendarServiceFactory = (platform: Platform, nativeCalendar: Calen
     { provide: PushNotificationService, useClass: OnesignalPushNotificationService },
     { provide: ServerConfig, useValue: environment.server },
     { provide: OneSignalConfig, useValue: environment.onesignal },
+    { provide: SplashScreenConfig, useValue: environment.splashscreen },
     { provide: AuthenticationStorage, useClass: AuthenticationIonicLocalStorage },
     { provide: UnregisteredUserInfoStorage, useClass: UnregisteredUserIonicLocalStorage },
     ApplicationEventService,

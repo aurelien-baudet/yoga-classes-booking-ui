@@ -12,3 +12,9 @@ export abstract class OneSignalConfig implements OneSignalConfig {
     appId: string;
     googleProjectNumber: string;
 }
+export interface SplashScreenConfig {
+    duration: number;
+}
+export abstract class SplashScreenConfig implements SplashScreenConfig {
+    duration: number;
+}

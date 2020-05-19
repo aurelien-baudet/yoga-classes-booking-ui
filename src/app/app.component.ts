@@ -11,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { PushNotificationService } from './account/services/push-notification.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import {TranslateService} from '@ngx-translate/core';
+import { SplashScreenConfig } from 'src/environments/config';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,8 @@ export class AppComponent {
               private router: Router,
               private pushNotificationService: PushNotificationService,
               private applicationEventService: ApplicationEventService,
-              public keyboard: Keyboard) {
+              public keyboard: Keyboard,
+              private splashScreenConfig: SplashScreenConfig              ) {
     this.initializeApp();
   }
 
@@ -40,6 +42,9 @@ export class AppComponent {
       this.statusBar.overlaysWebView(true);
       this.statusBar.show();
       this.splashScreen.hide();
+      setTimeout(() => {
+        document.getElementById('splashscreen').remove();
+      }, this.splashScreenConfig.duration);
     });
   }
 

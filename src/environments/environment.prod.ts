@@ -7,5 +7,8 @@ export const environment = {
   onesignal: {
     appId: '511c74ec-9556-4196-b1d4-0e31e63599d4',
     googleProjectNumber: '531961567702'
+  },
+  splashscreen: {
+    duration: 1000
   }
 };

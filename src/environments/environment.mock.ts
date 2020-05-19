@@ -6,7 +6,10 @@ export const environment = {
   production: false,
   mock: true,
   server: null,
-  onesignal: null
+  onesignal: null,
+  splashscreen: {
+    duration: 0
+  }
 };
 
 /*
