@@ -1,25 +1,27 @@
+@import "../../../../theme/variables";
 @import "../../../../theme/icons-utils";
 
-/*.loading {
-  @include fas-icon($fa-var-spinner);
-
-  &:before {
-    display: inline-block;
-    animation: fa-spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    font-size: 80px;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    margin-left: -40px;
-    margin-top: -40px;
-    z-index: 1000;
-    color: var(--ion-color-tertiary);
-  }
-
+.loading {
   > * {
     visibility: hidden;
   }
-}*/
+
+  ion-refresher {
+    visibility: visible;
+  }
+  ion-spinner {
+    visibility: visible;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: value($book-lessons-page, "loader.width");
+    height: value($book-lessons-page, "loader.height");
+    margin-left: - value($book-lessons-page, "loader.width") / 2;
+    margin-top: - value($book-lessons-page, "loader.height") / 2;
+    z-index: 1000;
+    color: value($book-lessons-page, "loader.color");
+  }
+}
 
 ion-content ::ng-deep ion-item {
   --padding-start: 0;
@@ -33,7 +35,6 @@ ion-content ::ng-deep ion-item {
 ::ng-deep app-popover {
   app-approved-students,
   app-waiting-students {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: value($book-lessons-page, "student-list.padding");
   }
 }

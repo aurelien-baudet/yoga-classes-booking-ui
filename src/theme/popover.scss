@@ -38,3 +38,22 @@ ion-popover {
     }
   }
 }
+
+
+ion-popover.help {
+  div.popover-content {
+    border-radius: value($help-popover, "border-radius");
+  }
+
+  app-popover {
+    > * {
+      border-radius: value($help-popover, "border-radius");
+    }
+  
+    ion-button.close {
+      @include round-icon-button(value($help-popover, "close-button"));
+      top: value($help-popover, "close-button.position.top");
+      right: value($help-popover, "close-button.position.right");
+    }
+  }
+}

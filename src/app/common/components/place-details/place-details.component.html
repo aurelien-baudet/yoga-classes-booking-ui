@@ -1,6 +1,11 @@
-<ion-icon name="app-place"></ion-icon>
-<span class="name">{{ place.name }}</span>
-<div class="address">
-  <span>{{ place.address }}</span>
+<div class="header">
+  <ion-icon name="app-place"></ion-icon>
+  <span class="name">{{ place.name }}</span>
+  <div class="address">
+    <span>{{ place.address }}</span>
+  </div>
 </div>
-<iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(getInteractiveMap(place.maps))"></iframe>
+<div class="content">
+  <ion-spinner></ion-spinner>
+  <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(getInteractiveMap(place.maps))"></iframe>
+</div>

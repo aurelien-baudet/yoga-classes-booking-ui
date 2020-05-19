@@ -60,19 +60,16 @@
         <ion-icon slot="icon-only" name="app-book"></ion-icon>
       </ion-button>
       <ion-button class="unbook-class" (click)="unbook.emit(scheduledClass)" *ngIf="bookable && booked && !pending" size="small">
-          <ion-icon slot="icon-only" name="app-unbook"></ion-icon>
-      </ion-button>
-      <ion-button class="pending-action" *ngIf="bookable && pending" size="small">
-          <ion-icon slot="icon-only" name="app-pending"></ion-icon>
+        <ion-icon slot="icon-only" name="app-unbook"></ion-icon>
       </ion-button>
       <ion-button class="cancel-class" (click)="cancel.emit(scheduledClass)" *ngIf="cancelable" size="small">
-          <ion-icon slot="icon-only" name="app-cancel-class"></ion-icon>
+        <ion-icon slot="icon-only" name="app-cancel-class"></ion-icon>
       </ion-button>
       <ion-button class="edit-class" (click)="edit.emit(scheduledClass)" *ngIf="editable" size="small">
-          <ion-icon slot="icon-only" name="app-edit-class"></ion-icon>
+        <ion-icon slot="icon-only" name="app-edit-class"></ion-icon>
       </ion-button>
       <ion-button class="schedule-class" (click)="schedule.emit(scheduledClass)" *ngIf="schedulable" size="small">
-          <ion-icon slot="icon-only" name="app-schedule-lesson"></ion-icon>
+        <ion-icon slot="icon-only" name="app-schedule-lesson"></ion-icon>
       </ion-button>
     </div>
     <div class="cancel-details" *ngIf="canceled">
@@ -86,7 +83,7 @@
     <div class="state-icons">
       <ion-icon class="approved" slot="icon-only" name="app-booking-approved" *ngIf="bookable && booked && !pending && bookingApproved"></ion-icon>
       <ion-icon class="waiting" slot="icon-only" name="app-booking-waiting" *ngIf="bookable && booked && !pending && bookingWaiting"></ion-icon>
-      <ion-icon class="pending" slot="icon-only" name="app-pending" *ngIf="bookable && pending"></ion-icon>
+      <ion-spinner *ngIf="bookable && pending"></ion-spinner>
       <ion-icon class="canceled" slot="icon-only" name="app-canceled" *ngIf="canceled"></ion-icon>
     </div>
   </ion-card-content>

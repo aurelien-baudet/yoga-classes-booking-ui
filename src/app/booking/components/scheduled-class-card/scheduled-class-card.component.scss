@@ -29,19 +29,19 @@ ion-card-header {
         span {
             text-align: center;
             display: block;
-            font-weight: bold;
             color: value($scheduled-class-card-states, "bookable.header.color");
         }
         .date {
             font-size: value($scheduled-class-card-header, "date.font-size");
             padding-bottom: value($scheduled-class-card-header, "date.padding-bottom");
-
+            
             &::first-letter {
                 text-transform: capitalize;
             }
         }
         .title {
             font-size: value($scheduled-class-card-header, "title.font-size");;
+            font-weight: bold;
         }
     }
 }
@@ -264,6 +264,18 @@ ion-card-content {
             right: value($scheduled-class-card-cancel-button, "position.right");
             @include round-icon-button($scheduled-class-card-cancel-button);
         }
+    }
+
+    ion-spinner {
+        position: absolute;
+        bottom: value($scheduled-class-card-pending, "position.bottom");
+        right: value($scheduled-class-card-pending, "position.right");
+        width: value($scheduled-class-card-pending, "width");
+        height: value($scheduled-class-card-pending, "height");
+        color: value($scheduled-class-card-pending, "color");
+        background: value($scheduled-class-card-pending, "background");
+        border-radius: value($scheduled-class-card-pending, "width") / 2 + 1;
+        border: value($scheduled-class-card-pending, "padding") solid value($scheduled-class-card-pending, "background");
     }
 }
 

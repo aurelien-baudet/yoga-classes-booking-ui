@@ -5,14 +5,16 @@
 :host {
   display: block;
   text-align: center;
-  padding-top: value($place-details-popover, "header.padding", "top");
+  background: value($place-details-popover, "map.background");
+}
+
+.header {
+  padding: value($place-details-popover, "header.padding");
   color: value($place-details-popover, "header.color");
   background: value($place-details-popover, "header.background");
 }
 
 ion-icon {
-  padding-left: value($place-details-popover, "header.padding", "left");
-  padding-right: value($place-details-popover, "header.icon.spacing");
   @include icon-styles(value($place-details-popover, "header.icon"));
   vertical-align: middle;
 }
@@ -25,15 +27,22 @@ ion-icon {
   height: value($place-details-popover, "header.icon.height");
   line-height: value($place-details-popover, "header.icon.height");
   vertical-align: middle;
-  padding-right: value($place-details-popover, "header.padding", "right");
 }
 .address {
   font-size: value($place-details-popover, "header.address.font-size");
   font-weight: bold;
   margin-top: value($place-details-popover, "header.spacing");
-  margin-bottom: value($place-details-popover, "header.padding", "bottom");
-  padding-left: value($place-details-popover, "header.padding", "left");
-  padding-right: value($place-details-popover, "header.padding", "right");
+}
+
+ion-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: - value($place-details-popover, "loader.height") / 2;
+  margin-left: - value($place-details-popover, "loader.width") / 2;
+  width: value($place-details-popover, "loader.width");
+  height: value($place-details-popover, "loader.height");
+  color: value($place-details-popover, "loader.color");
 }
 
 iframe {
@@ -42,5 +51,5 @@ iframe {
   display: block;
   width: 100%;
   height: value($place-details-popover, "map.height");
-  background: value($place-details-popover, "map.background");
+  background: transparent;
 }

@@ -280,7 +280,22 @@ $help-button: (
   "message": (
     "font-size": 10px,
     "color": var(--ion-color-secondary),
-    "padding": 5px
+    "padding": 5px 10px 10px 10px
+  )
+);
+
+$help-popover: (
+  "border-radius": 20px,
+  "close-button": (
+    "position": (
+      "top": -6px,
+      "right": -3px
+    ),
+    "icon": (
+      "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+      "width": 20px,
+      "height": 20px,
+    )
   )
 );
 
@@ -469,6 +484,17 @@ $scheduled-class-card-cancel-details: (
     "padding": 9px 25px
   )
 );
+$scheduled-class-card-pending: (
+  "background": var(--ion-color-primary-contrast),
+  "color": var(--ion-color-primary),
+  "padding": 5px,
+  "width": 78px,
+  "height": 78px,
+  "position": (
+    "bottom": -12px,
+    "right": 37px
+  ),
+);
 $scheduled-class-card-states: (
   "bookable": (
     "header": (
@@ -517,7 +543,7 @@ $scheduled-class-card-states: (
       "width": 73px,
       "height": 73px
     )
-  )
+  ),
 );
 $scheduled-class-card-schedule-button: (
   "position": (
@@ -665,6 +691,11 @@ $place-details-popover: (
       "width": 22px,
       "spacing": 5px
     )
+  ),
+  "loader": (
+    "color": var(--ion-color-primary),
+    "width": 40px,
+    "height": 40px,
   ),
   "map": (
     "background": var(--ion-color-primary-contrast),
@@ -877,3 +908,15 @@ $toast-states: (
     "background": var(--ion-color-warning)
   )
 );
+
+
+$book-lessons-page: (
+  "student-list": (
+    "padding": 0 10px
+  ),
+  "loader": (
+    "color": var(--ion-color-primary),
+    "width": 40px,
+    "height": 40px
+  )
+)

@@ -5,6 +5,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [class.loading]="loading">
+  <ion-spinner *ngIf="loading"></ion-spinner>
   <ion-refresher slot="fixed" (ionRefresh)="manualRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
