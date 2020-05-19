@@ -1,4 +1,4 @@
-import { Lesson, sameClassPredicate, sameLessonPredicate, Place } from './../../../booking/domain/reservation';
+import { Lesson, sameClassPredicate, sameLessonPredicate, Place, BookingForFriend, UnbookingForFriend } from './../../../booking/domain/reservation';
 import { NextLessonOpenedDetailsClassStateProvider } from './../../services/local/next-lesson-opened-details-state.provider';
 import { ManageableProvider } from './../../services/local/manageable.provider';
 import { InMemoryUpdatablePendingStateProvider } from './../../../booking/services/local/in-memory-pending-state.provider';
@@ -115,6 +115,14 @@ export class ClassesPage {
     setTimeout(async () => {
       await this.popoverService.show(this.waitingStudents, {scheduledClass}, {cssClass: 'waiting-students'});
     }, 0);
+  }
+
+  async bookForFriend(booking: BookingForFriend) {
+    alert('Bientôt disponible');
+  }
+
+  async unbookForFriend(unbooking: UnbookingForFriend) {
+    alert('Bientôt disponible');
   }
 
   private async refreshClasses() {
