@@ -13,8 +13,8 @@ export abstract class OneSignalConfig implements OneSignalConfig {
     googleProjectNumber: string;
 }
 export interface SplashScreenConfig {
-    duration: number;
+    duration: {first: number, next: number};
 }
 export abstract class SplashScreenConfig implements SplashScreenConfig {
-    duration: number;
+    duration: {first: number, next: number};
 }

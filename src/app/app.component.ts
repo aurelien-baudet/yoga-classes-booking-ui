@@ -1,3 +1,4 @@
+import { Storage } from '@ionic/storage';
 import { ApplicationEventService } from './common/services/application-event.service';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/account/services/account.service';
@@ -30,7 +31,8 @@ export class AppComponent {
               private pushNotificationService: PushNotificationService,
               private applicationEventService: ApplicationEventService,
               public keyboard: Keyboard,
-              private splashScreenConfig: SplashScreenConfig              ) {
+              private splashScreenConfig: SplashScreenConfig,
+              private storage: Storage) {
     this.initializeApp();
   }
 
@@ -42,10 +44,16 @@ export class AppComponent {
       this.statusBar.overlaysWebView(true);
       this.statusBar.show();
       this.splashScreen.hide();
-      setTimeout(() => {
-        document.getElementById('splashscreen').remove();
-      }, this.splashScreenConfig.duration);
+      this.hideSplashcreen();
     });
+  }
+
+  private async hideSplashcreen() {
+    const first = !(await this.storage.get('splash-displayed'));
+    setTimeout(() => {
+      document.getElementById('splashscreen').remove();
+    }, this.splashScreenConfig.duration[first ? 'first' : 'next']);
+    this.storage.set('splash-displayed', true);
   }
 
   private async updateCurrentUser(user: User) {

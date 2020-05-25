@@ -13,7 +13,10 @@ export const environment = {
     googleProjectNumber: '191353546130'
   },
   splashscreen: {
-    duration: 0
+    duration: {
+      first: 5000,
+      next: 0
+    }
   }
 };
 

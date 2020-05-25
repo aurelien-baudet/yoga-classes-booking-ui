@@ -8,7 +8,10 @@ export const environment = {
   server: null,
   onesignal: null,
   splashscreen: {
-    duration: 0
+    duration: {
+      first: 0,
+      next: 0
+    }
   }
 };
 
