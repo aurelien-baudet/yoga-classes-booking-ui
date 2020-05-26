@@ -1,20 +1,19 @@
-import { Lesson, sameClassPredicate, sameLessonPredicate, Place, BookingForFriend, UnbookingForFriend } from './../../../booking/domain/reservation';
-import { NextLessonOpenedDetailsClassStateProvider } from './../../services/local/next-lesson-opened-details-state.provider';
-import { ManageableProvider } from './../../services/local/manageable.provider';
-import { InMemoryUpdatablePendingStateProvider } from './../../../booking/services/local/in-memory-pending-state.provider';
-import { InMemoryUpdatableDetailsStateProvider } from '../../../booking/services/local/in-memory-details-class-state.provider';
-import { UnbookableProvider } from './../../services/local/unbookable.provider';
-import { CurrentRoute } from 'src/app/common/util/router.util';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Teacher } from 'src/app/account/domain/teacher';
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { BookingStateProvider, DetailsStateProvider, PendingStateUpdateProvider, DetailsStateUpdateProvider, PendingStateProvider, ManageClassStateProvider } from 'src/app/booking/services/single-class-state.provider';
+import { Subject } from 'rxjs';
+import { PreferencesService } from 'src/app/account/services/preferences.service';
 import { ScheduledClass } from 'src/app/booking/domain/reservation';
 import { ClassService } from 'src/app/booking/services/class.service';
-import { AccountService } from 'src/app/account/services/account.service';
-import { PopoverController } from '@ionic/angular';
+import { PreferencesProvider } from 'src/app/booking/services/preferences.provider';
+import { BookingStateProvider, DetailsStateProvider, DetailsStateUpdateProvider, ManageClassStateProvider, PendingStateProvider, PendingStateUpdateProvider } from 'src/app/booking/services/single-class-state.provider';
 import { PopoverService, PopoverWrapper } from 'src/app/common/components/popover/popover.service';
-import { Subject } from 'rxjs';
+import { InMemoryUpdatableDetailsStateProvider } from '../../../booking/services/local/in-memory-details-class-state.provider';
+import { BookingForFriend, Lesson, Place, sameClassPredicate, sameLessonPredicate, UnbookingForFriend } from './../../../booking/domain/reservation';
+import { InMemoryUpdatablePendingStateProvider } from './../../../booking/services/local/in-memory-pending-state.provider';
+import { AccountPreferencesProvider } from './../../../booking/services/remote/account-preferences.provider';
+import { ManageableProvider } from './../../services/local/manageable.provider';
+import { NextLessonOpenedDetailsClassStateProvider } from './../../services/local/next-lesson-opened-details-state.provider';
+import { UnbookableProvider } from './../../services/local/unbookable.provider';
 
 @Component({
   selector: 'app-classes-page',
@@ -27,6 +26,7 @@ export class ClassesPage {
   pendingProvider: PendingStateProvider<ScheduledClass> & PendingStateUpdateProvider<ScheduledClass>;
   manageClassStateProvider: ManageClassStateProvider;
   lessonDetailsProvider: DetailsStateProvider<Lesson> & DetailsStateUpdateProvider<Lesson>;
+  preferencesProvider: PreferencesProvider;
 
   classes: ScheduledClass[] = [];
   unscheduledLessons: Lesson[] = [];
@@ -46,12 +46,14 @@ export class ClassesPage {
 
   constructor(private classService: ClassService,
               private router: Router,
-              private popoverService: PopoverService) {
+              private popoverService: PopoverService,
+              private preferencesService: PreferencesService) {
     this.bookingStateProvider = new UnbookableProvider();
     this.detailsProvider = new NextLessonOpenedDetailsClassStateProvider(this.classes$);
     this.pendingProvider = new InMemoryUpdatablePendingStateProvider(sameClassPredicate);
     this.manageClassStateProvider = new ManageableProvider();
     this.lessonDetailsProvider = new InMemoryUpdatableDetailsStateProvider(sameLessonPredicate);
+    this.preferencesProvider = new AccountPreferencesProvider(preferencesService);
   }
 
   async ionViewDidEnter() {

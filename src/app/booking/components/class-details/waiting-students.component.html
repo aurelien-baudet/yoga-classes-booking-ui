@@ -8,9 +8,11 @@
   </ion-list-header>
   <p *ngIf="waitingBookings.length === 0">Aucun inscrit sur liste d'attente</p>
   <ion-item *ngFor="let booking of waitingBookings">
-    <ion-label>{{ booking.student.displayName }}</ion-label>
-    <ion-button (click)="unbook.emit(booking)" size="small">
-      <ion-icon slot="icon-only" name="app-unregister-friend"></ion-icon>
-    </ion-button>
+    <app-student
+      [student]="booking.student"
+      [displayAssistInfo]="!!preferencesProvider"
+      [loading]="isLoading(booking.student)"
+      [assist]="getAssistState(booking.student)"
+      (unbook)="unbook.emit(booking)"></app-student>
   </ion-item>
 </ion-list>

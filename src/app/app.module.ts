@@ -1,3 +1,6 @@
+import { MockPreferencesService } from './account/services/mocks/mock-preferences.service';
+import { PreferencesService } from 'src/app/account/services/preferences.service';
+import { RestPreferencesService } from './account/services/remote/rest-preferences.service';
 import { OnesignalPushNotificationService } from './account/services/remote/onesignal-push-notification.service';
 import { UnregisteredUserIonicLocalStorage } from './account/services/local/unregistered-user-info-ionic-local-storage.storage';
 import { AuthenticationIonicLocalStorage } from './account/services/local/authentication-ionic-local-storage.storage';
@@ -102,6 +105,7 @@ export const calendarServiceFactory = (platform: Platform, nativeCalendar: Calen
     { provide: ClassService, useClass: environment.mock ? MockClassService : RestClassService },
     { provide: BookingService, useClass: environment.mock ? MockBookingService : RestBookingService },
     { provide: AccountService, useClass: environment.mock ? MockAccountService : RestAccountService },
+    { provide: PreferencesService, useClass: environment.mock ? MockPreferencesService : RestPreferencesService },
     { provide: PushNotificationService, useClass: OnesignalPushNotificationService },
     { provide: ServerConfig, useValue: environment.server },
     { provide: OneSignalConfig, useValue: environment.onesignal },

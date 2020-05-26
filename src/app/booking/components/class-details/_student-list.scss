@@ -47,17 +47,6 @@ ion-item {
   --min-height: 0;
   --padding-top: #{value($student-list-popover, "item.spacing")};
   margin: value($student-list-popover, "item.margin");
-
-  ion-label {
-    font-size: value($student-list-popover, "item.font-size");
-    color: value($student-list-popover, "item.color");
-    font-weight: bold;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  ion-button {
-    @include round-icon-button(value($student-list-popover, "item.unregister-button"));
-  }
 }
 
 p {

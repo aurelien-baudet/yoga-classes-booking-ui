@@ -1,0 +1,8 @@
+<ion-label>{{ student.displayName }}</ion-label>
+<div class="assisted" *ngIf="displayAssistInfo">
+  <ion-spinner *ngIf="loading"></ion-spinner>
+  <ion-icon *ngIf="!loading" [name]="getIcon()"></ion-icon>
+</div>
+<ion-button (click)="unbook.emit(student)" size="small">
+  <ion-icon slot="icon-only" name="app-unregister-friend"></ion-icon>
+</ion-button>

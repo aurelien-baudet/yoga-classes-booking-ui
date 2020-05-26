@@ -1,3 +1,4 @@
+import { StudentComponent } from './class-details/student.component';
 import { BookingHelperComponent } from './booking-helper/booking-helper.component';
 import { WaitingStudentsComponent } from './class-details/waiting-students.component';
 import { CommonComponentsModule } from './../../common/components/common-components.module';
@@ -15,6 +16,7 @@ import { ApprovedStudentsComponent } from './class-details/approved-students.com
   declarations: [
     ScheduledClassCardComponent,
     ClassesComponent,
+    StudentComponent,
     ApprovedStudentsComponent,
     WaitingStudentsComponent,
     ClassDetailsComponent,
@@ -24,6 +26,7 @@ import { ApprovedStudentsComponent } from './class-details/approved-students.com
   exports: [
     ScheduledClassCardComponent,
     ClassesComponent,
+    StudentComponent,
     ApprovedStudentsComponent,
     WaitingStudentsComponent,
     ClassDetailsComponent,

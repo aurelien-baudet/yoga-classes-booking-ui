@@ -746,7 +746,20 @@ $student-list-popover: (
         "height": 18px,
       )
     ),
-    "margin": 0 10px
+    "margin": 0 10px,
+    "assist": (
+      "loading": (
+        "color": var(--ion-color-primary),
+        "width": 18px,
+        "height": 18px
+      ),
+      "icon": (
+        "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+        "width": 18px,
+        "height": 18px,
+        "margin": 0 2px
+      )
+    )
   )
 );
 

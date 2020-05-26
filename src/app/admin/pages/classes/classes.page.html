@@ -70,6 +70,7 @@
   <app-approved-students 
     [approvedBookings]="approvedBookings" 
     [maxStudents]="maxStudents"
+    [preferencesProvider]="preferencesProvider"
     (unbook)="unbookForFriend($event)"></app-approved-students>
 </ng-template>
 
@@ -77,5 +78,6 @@
   let-waitingBookings="scheduledClass.bookings.waiting">
   <app-waiting-students
     [waitingBookings]="waitingBookings"
+    [preferencesProvider]="preferencesProvider"
     (unbook)="unbookForFriend($event)"></app-waiting-students>
 </ng-template>
