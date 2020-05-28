@@ -98,16 +98,52 @@ ion-card-content {
                 display: block;
                 --background: none;
                 --color: #{value($unscheduled-lesson-card-max-students, "color")};
-                --padding-top: #{value($unscheduled-lesson-card-max-students, "padding.top") + 1px};
-                --padding-end: #{value($unscheduled-lesson-card-max-students, "padding.right")};
-                --padding-bottom: #{value($unscheduled-lesson-card-max-students, "padding.bottom")};
-                --padding-start: #{value($unscheduled-lesson-card-max-students, "padding.left")};
+                --padding-top: #{value($unscheduled-lesson-card-max-students, "padding", "top") + 1px};
+                --padding-end: #{value($unscheduled-lesson-card-max-students, "padding", "right")};
+                --padding-bottom: #{value($unscheduled-lesson-card-max-students, "padding", "bottom")};
+                --padding-start: #{value($unscheduled-lesson-card-max-students, "padding", "left")};
                 font-size: value($unscheduled-lesson-card-max-students, "font-size");
                 margin-top: -4px;
             }
 
             ion-icon {
                 @include icon-styles(value($unscheduled-lesson-card-max-students, "icon"));
+            }
+        }
+        .posture-level {
+            display: inline-block;
+            padding: value($unscheduled-lesson-card-posture-level, "padding");
+            font-weight: bold;
+
+            ion-icon {
+                @include icon-styles(value($unscheduled-lesson-card-posture-level, "icon"));
+                vertical-align: middle;
+            }
+            span {
+                display: inline-block;
+                font-size: value($unscheduled-lesson-card-posture-level, "font-size");
+                color: value($unscheduled-lesson-card-posture-level, "color");
+                padding-left: value($unscheduled-lesson-card-posture-level, "spacing");
+                line-height: value($unscheduled-lesson-card-posture-level, "icon.height");
+                vertical-align: middle;
+            }
+        }
+        .sport-level {
+            display: inline-block;
+            padding: value($unscheduled-lesson-card-sport-level, "padding");
+            font-weight: bold;
+
+            ion-icon {
+                @include icon-styles(value($unscheduled-lesson-card-sport-level, "icon"));
+                vertical-align: middle;
+            }
+            span {
+                display: inline-block;
+                font-size: value($unscheduled-lesson-card-sport-level, "font-size");
+                color: value($unscheduled-lesson-card-sport-level, "color");
+                padding-left: value($unscheduled-lesson-card-sport-level, "spacing");
+                line-height: value($unscheduled-lesson-card-sport-level, "icon.height");
+                vertical-align: middle;
             }
         }
     }

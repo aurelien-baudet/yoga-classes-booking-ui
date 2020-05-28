@@ -18,11 +18,44 @@
       type="number" 
       name="maxStudents" 
       #maxStudents="ngModel"
-      [(ngModel)]="lessonModel.maxStudents" 
+      [(ngModel)]="lessonModel.maxStudents"
       required></ion-input>
     <ion-icon name="app-max-students" slot="start"></ion-icon>
     <div class="validation-errors" [class.invalid]="maxStudents.invalid && (maxStudents.dirty || maxStudents.touched)">
       <div *ngIf="maxStudents.invalid && maxStudents.errors.required">Le nombre de places maximum est obligatoire</div>
+    </div>
+  </ion-item>
+  <ion-item class="sport-level">
+    <ion-label position="floating">Intensité sportive</ion-label>
+    <ion-select
+      name="sportLevel" 
+      #sportLevel="ngModel"
+      [(ngModel)]="lessonModel.sportLevel" 
+      [interfaceOptions]="{header: 'Intensité sportive'}"
+      interface="popover">
+      <ion-select-option [value]="null">Aucun</ion-select-option>
+      <ion-select-option 
+        *ngFor="let level of sportLevels"
+        [value]="level.value">{{ level.label }}</ion-select-option>
+    </ion-select>
+    <div class="validation-errors" [class.invalid]="sportLevel.invalid && (sportLevel.dirty || sportLevel.touched)">
+    </div>
+  </ion-item>
+  <ion-item class="posture-level">
+    <ion-label position="floating">Intensité des postures</ion-label>
+    <ion-select
+      name="postureLevel" 
+      #postureLevel="ngModel"
+      [(ngModel)]="lessonModel.postureLevel" 
+      [interfaceOptions]="{header: 'Intensité des postures'}"
+      interface="popover">
+      <ion-select-option [value]="null">Aucun</ion-select-option>
+      <ion-select-option 
+        *ngFor="let level of postureLevels"
+        [value]="level.value">{{ level.label }}</ion-select-option>
+    </ion-select>
+    <div class="validation-errors" [class.invalid]="postureLevel.invalid && (postureLevel.dirty || sportLevel.touched)">
+      <div *ngIf="postureLevel.invalid && postureLevel.errors.required">Le niveau d'intensité est obligatoire</div>
     </div>
   </ion-item>
   <ion-item class="description">

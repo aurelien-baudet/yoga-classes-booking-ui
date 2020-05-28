@@ -1,9 +1,11 @@
 import { Lesson, UpdatedLesson } from 'src/app/booking/domain/reservation';
-import { NewLesson, Place, PlaceId, isSamePlace } from './../../../booking/domain/reservation';
+import { NewLesson, Place, PlaceId, isSamePlace, PostureLevel, SportLevel } from './../../../booking/domain/reservation';
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, SimpleChanges } from '@angular/core';
 import { TeacherInfo, TeacherId, isSameTeacher } from 'src/app/account/domain/teacher';
 
 type LessonModel = Pick<Lesson, 'title' | 'description' | 'maxStudents' | 'photos'> & {
+  sportLevel: number | null,
+  postureLevel: number | null,
   placeId: string,
   teacherId: string
 };
@@ -14,7 +16,9 @@ const defaultModel = (): LessonModel => ({
   maxStudents: null,
   photos: [],
   placeId: '',
-  teacherId: ''
+  teacherId: '',
+  sportLevel: null,
+  postureLevel: null
 });
 
 @Component({
@@ -34,7 +38,9 @@ export class LessonFormComponent {
           maxStudents: lesson.maxStudents,
           photos: lesson.photos,
           placeId: lesson.place.id,
-          teacherId: lesson.teacher.id
+          teacherId: lesson.teacher.id,
+          sportLevel: lesson.difficulty.sportLevel,
+          postureLevel: lesson.difficulty.postureLevel
         };
       } else {
         this.lessonId = '';
@@ -50,6 +56,10 @@ export class LessonFormComponent {
   }
   @Input()
   buttonText: string;
+  @Input()
+  sportLevels = SportLevel.all;
+  @Input()
+  postureLevels = PostureLevel.all;
 
   @Output()
   add = new EventEmitter<NewLesson>();
@@ -66,6 +76,10 @@ export class LessonFormComponent {
       description: model.description,
       maxStudents: model.maxStudents,
       photos: model.photos,
+      difficulty: {
+        sportLevel: model.sportLevel,
+        postureLevel: model.postureLevel,
+      },
       place: {
         id: model.placeId
       },

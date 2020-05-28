@@ -1,3 +1,4 @@
+import { SportLevel, PostureLevel } from './../../../booking/domain/reservation';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Lesson } from 'src/app/booking/domain/reservation';
 
@@ -24,4 +25,21 @@ export class UnscheduledLessonCardComponent {
   schedule = new EventEmitter<Lesson>();
   @Output()
   remove = new EventEmitter<Lesson>();
+
+
+  getSportLevel() {
+    const difficulty = this.lesson.difficulty;
+    if (!difficulty || difficulty.sportLevel === null) {
+      return null;
+    }
+    return SportLevel.from(difficulty.sportLevel);
+  }
+
+  getPostureLevel() {
+    const difficulty = this.lesson.difficulty;
+    if (!difficulty || difficulty.postureLevel === null) {
+      return null;
+    }
+    return PostureLevel.from(difficulty.postureLevel);
+  }
 }

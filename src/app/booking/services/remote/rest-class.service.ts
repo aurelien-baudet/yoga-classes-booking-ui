@@ -8,8 +8,10 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ServerConfig } from 'src/environments/config';
 import { first } from 'rxjs/operators';
 
+
+
 interface NewLessonServerDto {
-  info: Pick<Lesson, 'title' | 'description' | 'maxStudents' | 'photos'>;
+  info: Pick<Lesson, 'title' | 'description' | 'maxStudents' | 'photos' | 'difficulty'>;
   placeId: string;
   teacherId: string;
 }

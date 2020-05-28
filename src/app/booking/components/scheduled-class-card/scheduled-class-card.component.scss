@@ -129,10 +129,10 @@ ion-card-content {
             }
             ion-badge {
                 --color: #{value($scheduled-class-card-remaining-places, "color")};
-                --padding-top: #{value($scheduled-class-card-remaining-places, "padding.top") + 1px};
-                --padding-end: #{value($scheduled-class-card-remaining-places, "padding.right")};
-                --padding-bottom: #{value($scheduled-class-card-remaining-places, "padding.bottom")};
-                --padding-start: #{value($scheduled-class-card-remaining-places, "padding.left")};
+                --padding-top: #{value($scheduled-class-card-remaining-places, "padding", "top") + 1px};
+                --padding-end: #{value($scheduled-class-card-remaining-places, "padding", "right")};
+                --padding-bottom: #{value($scheduled-class-card-remaining-places, "padding", """bottom")};
+                --padding-start: #{value($scheduled-class-card-remaining-places, "padding", "left")};
                 font-size: value($scheduled-class-card-remaining-places, "font-size");
                 margin-top: -2px;
             }
@@ -146,12 +146,48 @@ ion-card-content {
             }
             ion-badge {
                 --color: #{value($scheduled-class-card-waiting-places, "color")};
-                --padding-top: #{value($scheduled-class-card-waiting-places, "padding.top") + 1px};
-                --padding-end: #{value($scheduled-class-card-waiting-places, "padding.right")};
-                --padding-bottom: #{value($scheduled-class-card-waiting-places, "padding.bottom")};
-                --padding-start: #{value($scheduled-class-card-waiting-places, "padding.left")};
+                --padding-top: #{value($scheduled-class-card-waiting-places, "padding", "top") + 1px};
+                --padding-end: #{value($scheduled-class-card-waiting-places, "padding", "right")};
+                --padding-bottom: #{value($scheduled-class-card-waiting-places, "padding", "bottom")};
+                --padding-start: #{value($scheduled-class-card-waiting-places, "padding", "left")};
                 font-size: value($scheduled-class-card-waiting-places, "font-size");
                 margin-top: -4px;
+            }
+        }
+        .posture-level {
+            display: inline-block;
+            padding: value($scheduled-class-card-posture-level, "padding");
+            font-weight: bold;
+
+            ion-icon {
+                @include icon-styles(value($scheduled-class-card-posture-level, "icon"));
+                vertical-align: middle;
+            }
+            span {
+                display: inline-block;
+                font-size: value($scheduled-class-card-posture-level, "font-size");
+                color: value($scheduled-class-card-posture-level, "color");
+                padding-left: value($scheduled-class-card-posture-level, "spacing");
+                line-height: value($scheduled-class-card-posture-level, "icon.height");
+                vertical-align: middle;
+            }
+        }
+        .sport-level {
+            display: inline-block;
+            padding: value($scheduled-class-card-sport-level, "padding");
+            font-weight: bold;
+
+            ion-icon {
+                @include icon-styles(value($scheduled-class-card-sport-level, "icon"));
+                vertical-align: middle;
+            }
+            span {
+                display: inline-block;
+                font-size: value($scheduled-class-card-sport-level, "font-size");
+                color: value($scheduled-class-card-sport-level, "color");
+                padding-left: value($scheduled-class-card-sport-level, "spacing");
+                line-height: value($scheduled-class-card-sport-level, "icon.height");
+                vertical-align: middle;
             }
         }
     }

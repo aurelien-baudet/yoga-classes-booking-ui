@@ -1,4 +1,4 @@
-import { Place, BookingForFriend, Booking, UnbookingForFriend } from './../../domain/reservation';
+import { Place, BookingForFriend, Booking, UnbookingForFriend, SportLevel, PostureLevel } from './../../domain/reservation';
 import { Instant } from './../../domain/general';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ScheduledClass, CancelInfo } from '../../domain/reservation';
@@ -87,4 +87,19 @@ export class ScheduledClassCardComponent {
     return this.scheduledClass.bookings.waiting.length;
   }
 
+  getSportLevel() {
+    const difficulty = this.scheduledClass.lesson.difficulty;
+    if (!difficulty || difficulty.sportLevel === null) {
+      return null;
+    }
+    return SportLevel.from(difficulty.sportLevel);
+  }
+
+  getPostureLevel() {
+    const difficulty = this.scheduledClass.lesson.difficulty;
+    if (!difficulty || difficulty.postureLevel === null) {
+      return null;
+    }
+    return PostureLevel.from(difficulty.postureLevel);
+  }
 }
