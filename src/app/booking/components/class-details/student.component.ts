@@ -1,5 +1,6 @@
+import { AssistState } from 'src/app/booking/services/preferences.provider';
 import { UnregisteredUser } from './../../../account/domain/unregistered';
-import { StudentInfo } from './../../../account/domain/student';
+import { StudentRef } from './../../../account/domain/student';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -9,21 +10,36 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class StudentComponent {
   @Input()
-  student: StudentInfo | UnregisteredUser;
+  student: StudentRef;
   @Input()
   displayAssistInfo = false;
   @Input()
   loading = true;
   @Input()
-  assist: boolean | null;
+  assist: AssistState;
 
   @Output()
-  unbook = new EventEmitter<StudentInfo | UnregisteredUser>();
+  unbook = new EventEmitter<StudentRef>();
 
   getIcon(): string {
-    if (this.assist === null) {
-      return 'app-assist-unknown';
+    if (this.isRefused()) {
+      return 'app-assist-refused';
     }
-    return this.assist ? 'app-assist-accepted' : 'app-assist-refused';
+    if (this.isAccepted()) {
+      return 'app-assist-accepted';
+    }
+    return 'app-assist-unknown';
+  }
+
+  isAccepted() {
+    return this.assist === AssistState.Accepted;
+  }
+
+  isRefused() {
+    return this.assist === AssistState.Refused;
+  }
+
+  isUnknown() {
+    return this.assist === AssistState.Unknown;
   }
 }

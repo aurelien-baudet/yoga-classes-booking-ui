@@ -9,7 +9,7 @@ import { User } from './../../../account/domain/user';
 import { BookingForFriend, UnbookingForFriend } from 'src/app/booking/domain/reservation';
 import { Component, TemplateRef, ViewChild, NgZone, Output, EventEmitter, Input } from '@angular/core';
 import { ScheduledClass } from '../../domain/reservation';
-import { isUnknown } from 'src/app/account/domain/user';
+import { isUnknown } from 'src/app/account/domain/utils';
 import { UnregisteredUser } from 'src/app/account/domain/unregistered';
 import { matchesErrorCode } from '../../domain/general';
 import { NotificationService } from 'src/app/common/components/notification/notification.service';

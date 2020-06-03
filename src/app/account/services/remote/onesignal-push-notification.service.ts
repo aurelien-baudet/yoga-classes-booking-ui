@@ -1,3 +1,4 @@
+import { isRegisteredUser } from './../../domain/utils';
 import { BookingService } from 'src/app/booking/services/booking.service';
 import { CalendarService } from 'src/app/common/services/calendar.service';
 import { ApplicationEventService } from './../../../common/services/application-event.service';
@@ -6,7 +7,7 @@ import { Platform } from '@ionic/angular';
 import { first } from 'rxjs/operators';
 import { UnregisteredUser } from 'src/app/account/domain/unregistered';
 import { HttpClient } from '@angular/common/http';
-import { User, isRegisteredUser } from 'src/app/account/domain/user';
+import { User } from 'src/app/account/domain/user';
 import { Injectable, NgZone } from '@angular/core';
 import { PushNotificationService } from '../push-notification.service';
 import { ServerConfig, OneSignalConfig } from 'src/environments/config';

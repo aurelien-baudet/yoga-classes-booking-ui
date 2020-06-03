@@ -13,7 +13,7 @@
   </ion-item>
   <ion-item class="email">
     <ion-label position="floating">Email (optionnel)</ion-label>
-    <ion-input type="email" name="email" #email="ngModel" [(ngModel)]="unregisteredUserModel.email" email autocapitalize="off"></ion-input>
+    <ion-input type="email" name="contact.email" #email="ngModel" [(ngModel)]="unregisteredUserModel.contact.email" email autocapitalize="off"></ion-input>
     <ion-icon name="app-email" slot="start"></ion-icon>
     <app-help-button slot="end" title="Adresse email">
       Ton adresse email si tu souhaites recevoir les informations relatives aux cours 
@@ -27,7 +27,7 @@
   </ion-item>
   <ion-item class="phone-number">
     <ion-label position="floating">Numéro de téléphone (optionnel)</ion-label>
-    <ion-input type="tel" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="unregisteredUserModel.phoneNumber"></ion-input>
+    <ion-input type="tel" name="contact.phoneNumber" #phoneNumber="ngModel" [(ngModel)]="unregisteredUserModel.contact.phoneNumber"></ion-input>
     <ion-icon name="app-phone" slot="start"></ion-icon>
     <app-help-button slot="end" title="Numéro de téléphone">
       Ton numéro de téléphone pour être prévenu rapidement d'un changement 
@@ -39,12 +39,22 @@
     </div>
   </ion-item>
   <ion-item class="send-booked-email">
-    <ion-toggle name="sendBookedMail" [(ngModel)]="unregisteredUserModel.sendBookedMail"></ion-toggle>
+    <ion-toggle name="preferences.sendBookedMail" [(ngModel)]="unregisteredUserModel.preferences.sendBookedMail"></ion-toggle>
     <ion-label>Envoyer un mail lorsque je réserve un cours</ion-label>
     <ion-icon name="app-send-booked-email" slot="start"></ion-icon>
     <app-help-button slot="end" title="Email de réservation">
       Chaque fois que tu réserves, tu recevras une confirmation avec les informations
       du cours et la possibilité d'ajouter le cours à ton calendrier.
+    </app-help-button>
+  </ion-item>
+  <ion-item class="agrees-to-be-assisted">
+    <ion-toggle name="preferences.agreesToBeAssisted" [(ngModel)]="unregisteredUserModel.preferences.agreesToBeAssisted"></ion-toggle>
+    <ion-label>J'accepte d'être assisté</ion-label>
+    <ion-icon name="app-agrees-to-be-assisted" slot="start"></ion-icon>
+    <app-help-button slot="end">
+      Lors d'un cours de Yoga, le professeur peut être amené à corriger et assiter les participants.
+      <br />
+      Indique nous si tu ne souhaites pas être assisté ou touché.
     </app-help-button>
   </ion-item>
   <div class="response-errors" [class.has-errors]="errors && errors.length > 0">

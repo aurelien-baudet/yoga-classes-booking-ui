@@ -32,7 +32,16 @@ ion-button {
   }
 
   ion-icon {
-    @include icon-styles(value($student-list-popover, "item.assist.icon"));
     margin: value($student-list-popover, "item.assist.icon.margin");
+   
+    &.accepted {
+      @include icon-styles(value($student-list-popover, "item.assist.icon.accepted"));
+    }
+    &.refused {
+      @include icon-styles(value($student-list-popover, "item.assist.icon.refused"));
+    }
+    &.unknown {
+      @include icon-styles(value($student-list-popover, "item.assist.icon.unknown"));
+    }
   }
 }

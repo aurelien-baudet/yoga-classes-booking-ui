@@ -1,13 +1,37 @@
+import { ContactInfo } from './contact';
+
 export interface UnregisteredUser {
-    displayName: string;
-    email?: string;
-    phoneNumber?: string;
-    sendBookedMail?: boolean;
+  id: string;
+  displayName: string;
+  contact: ContactInfo;
+  preferences: UnregisteredUserPreferences;
+  registered: false;
+}
+export class UnregisteredUser implements UnregisteredUser {
+  constructor(user: UnregisteredUser) {
+    this.id = user.id;
+    this.displayName = user.displayName;
+    this.contact = user.contact;
+    this.preferences = user.preferences;
+    this.registered = false;
+  }
+
+  static from(user?: UnregisteredUser) {
+    return user ? new UnregisteredUser(user) : user;
+  }
+}
+
+export type UnregisteredUserId = Pick<UnregisteredUser, 'id'>;
+
+export interface UnregisteredUserPreferences {
+  sendBookedMail?: boolean;
+  agreesToBeAssisted: boolean;
 }
 
 
-export const isSameUnregisteredUser = (a: UnregisteredUser, b: UnregisteredUser) => {
-    return a.displayName === b.displayName
-        && a.email === b.email
-        && a.phoneNumber === b.phoneNumber;
-};
+
+export interface UnregisteredUserRegistration {
+  displayName: string;
+  contact: ContactInfo;
+  preferences: UnregisteredUserPreferences;
+}

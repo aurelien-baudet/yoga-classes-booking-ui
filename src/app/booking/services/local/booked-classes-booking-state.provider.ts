@@ -1,10 +1,11 @@
+import { isUnknown } from './../../../account/domain/utils';
 import { UnregisteredUser } from 'src/app/account/domain/unregistered';
 import { Observable } from 'rxjs';
 import { bookingApprovedForStudent, bookingInWaitingListForStudent } from './../../domain/reservation';
 import { ClassState, sameClassPredicate, isCanceled } from '../../domain/reservation';
 import { ScheduledClass } from '../../domain/reservation';
 import { StudentId } from 'src/app/account/domain/student';
-import { isUnknown, User } from 'src/app/account/domain/user';
+import { User } from 'src/app/account/domain/user';
 
 export class BookedClassesBookingStateProvider {
     private currentUser: User | UnregisteredUser | null;
@@ -32,7 +33,7 @@ export class BookedClassesBookingStateProvider {
         if (!this.isBooked(scheduledClass)) {
             return false;
         }
-        return bookingApprovedForStudent(scheduledClass, this.currentUser as StudentId);
+        return bookingApprovedForStudent(scheduledClass, this.currentUser);
     }
 
     isBookingInWaitingList(scheduledClass: ScheduledClass): boolean {
@@ -42,6 +43,6 @@ export class BookedClassesBookingStateProvider {
         if (!this.isBooked(scheduledClass)) {
             return false;
         }
-        return bookingInWaitingListForStudent(scheduledClass, this.currentUser as StudentId);
+        return bookingInWaitingListForStudent(scheduledClass, this.currentUser);
     }
 }

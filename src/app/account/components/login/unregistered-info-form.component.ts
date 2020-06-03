@@ -1,12 +1,17 @@
 import { ApplicationError, ErrorCode, matchesErrorCode } from 'src/app/booking/domain/general';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { UnregisteredUser } from 'src/app/account/domain/unregistered';
+import { UnregisteredUser, UnregisteredUserRegistration } from 'src/app/account/domain/unregistered';
 
 const defaultModel = () => ({
   displayName: '',
-  email: '',
-  phoneNumber: '',
-  sendBookedMail: true
+  contact: {
+    email: '',
+    phoneNumber: '',
+  },
+  preferences: {
+    agreesToBeAssisted: true,
+    sendBookedMail: true
+  }
 });
 
 @Component({
@@ -20,14 +25,14 @@ export class UnregisteredInfoFormComponent {
   @Input()
   submitText = 'Terminer ma réservation';
   @Input()
-  set unregisteredUser(unregisteredUser: UnregisteredUser) {
+  set unregisteredUser(unregisteredUser: UnregisteredUserRegistration) {
     this.unregisteredUserModel = unregisteredUser || defaultModel();
   }
 
   @Output()
-  continue = new EventEmitter<UnregisteredUser>();
+  continue = new EventEmitter<UnregisteredUserRegistration>();
 
-  unregisteredUserModel: UnregisteredUser = defaultModel();
+  unregisteredUserModel: UnregisteredUserRegistration = defaultModel();
 
   hasError(code: ErrorCode) {
     return this.errors && this.errors.some((e) => matchesErrorCode(e, code));

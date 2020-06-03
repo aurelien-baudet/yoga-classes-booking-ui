@@ -7,7 +7,7 @@ import { UnmanageableProvider } from './../../services/local/unmanageable.provid
 import { UnregisteredUser } from './../../../account/domain/unregistered';
 import { NotificationService } from './../../../common/components/notification/notification.service';
 import { Router } from '@angular/router';
-import { User, isUnknown, UserInfo } from 'src/app/account/domain/user';
+import { User } from 'src/app/account/domain/user';
 import { AccountService } from './../../../account/services/account.service';
 import { ScheduledClass, sameClassPredicate } from '../../domain/reservation';
 import { ClassService } from '../../services/class.service';

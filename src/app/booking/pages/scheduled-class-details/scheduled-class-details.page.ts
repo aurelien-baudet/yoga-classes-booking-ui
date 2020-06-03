@@ -1,5 +1,4 @@
 import { BookingHelperComponent } from './../../components/booking-helper/booking-helper.component';
-import { isUnknown } from 'src/app/account/domain/user';
 import { ComingSoonFriendProvider } from './../../services/local/coming-soon-friend.provider';
 import { UnmanageableProvider } from './../../services/local/unmanageable.provider';
 import { InMemoryUpdatablePendingStateProvider } from './../../services/local/in-memory-pending-state.provider';

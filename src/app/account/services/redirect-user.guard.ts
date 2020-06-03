@@ -1,10 +1,10 @@
 import { CurrentRoute } from 'src/app/common/util/router.util';
 import { User } from 'src/app/account/domain/user';
-import { Role, isUnregisteredUser } from './../domain/user';
+import { Role } from './../domain/user';
 import { AccountService } from 'src/app/account/services/account.service';
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
-import { hasRole } from '../domain/user';
+import { hasRole, isUnregisteredUser } from '../domain/utils';
 
 @Injectable({ providedIn: 'root' })
 export class RedirectUserGuard implements CanActivate {

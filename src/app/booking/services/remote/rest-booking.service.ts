@@ -1,9 +1,10 @@
+import { isUnknown, isRegisteredUser } from './../../../account/domain/utils';
 import { bookingApprovedForStudent } from './../../domain/reservation';
 import { UnregisteredUser } from './../../../account/domain/unregistered';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Student, StudentId } from 'src/app/account/domain/student';
-import { User, UserId, Role, isUnknown, isRegisteredUser } from 'src/app/account/domain/user';
+import { User, UserId, Role } from 'src/app/account/domain/user';
 import { ClassId, ScheduledClass, ClassState, Booking, Booked } from '../../domain/reservation';
 import { BookingService } from '../booking.service';
 import { ServerConfig } from 'src/environments/config';

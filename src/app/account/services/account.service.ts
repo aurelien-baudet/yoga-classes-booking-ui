@@ -1,3 +1,4 @@
+import { UnregisteredUserRegistration } from './../domain/unregistered';
 import { Teacher } from 'src/app/account/domain/teacher';
 import { UnregisteredUser } from 'src/app/account/domain/unregistered';
 import { Injectable } from '@angular/core';
@@ -12,7 +13,7 @@ export abstract class AccountService {
   async abstract login(login: string, password: string): Promise<User>;
   async abstract logout(): Promise<void>;
   async abstract getUserInfo(): Promise<User | UnregisteredUser | null>;
-  async abstract saveUnregisterdUserInfo(user: UnregisteredUser): Promise<void>;
+  async abstract saveUnregisterdUserInfo(user: UnregisteredUserRegistration): Promise<void>;
   async abstract getTeacherInfo(): Promise<Teacher | null>;
   async abstract isLoginAvailable(login: string): Promise<boolean>;
 }

@@ -1,18 +1,18 @@
-import { Storage } from '@ionic/storage';
-import { ApplicationEventService } from './common/services/application-event.service';
-import { Router } from '@angular/router';
-import { AccountService } from 'src/app/account/services/account.service';
-import { User, isRegisteredUser, isAuthenticated, hasRole, Role, isUnregisteredUser, isUnknown } from './account/domain/user';
-import { UnregisteredUser } from 'src/app/account/domain/unregistered';
 import { Component } from '@angular/core';
-
-import { Platform, MenuController, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { PushNotificationService } from './account/services/push-notification.service';
-import { Keyboard } from '@ionic-native/keyboard/ngx';
-import {TranslateService} from '@ngx-translate/core';
+import { MenuController, Platform } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { UnregisteredUser } from 'src/app/account/domain/unregistered';
+import { AccountService } from 'src/app/account/services/account.service';
 import { SplashScreenConfig } from 'src/environments/config';
+import { hasRole, isAuthenticated, isRegisteredUser, isUnregisteredUser } from './account/domain/utils';
+import { Role, User } from './account/domain/user';
+import { PushNotificationService } from './account/services/push-notification.service';
+import { ApplicationEventService } from './common/services/application-event.service';
+
 
 @Component({
   selector: 'app-root',

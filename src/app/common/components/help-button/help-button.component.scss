@@ -15,13 +15,13 @@ ion-button {
 .header {
   text-align: center;
   font-weight: bold;
-  font-size: value($help-button, "header.font-size");
-  color: value($help-button, "header.color");
-  padding: value($help-button, "header.padding");
+  font-size: value($help-popover, "header.font-size");
+  color: value($help-popover, "header.color");
+  padding: value($help-popover, "header.padding");
 }
 
 .content {
-  font-size: value($help-button, "message.font-size");
-  color: value($help-button, "message.color");
-  padding: value($help-button, "message.padding");
+  font-size: value($help-popover, "message.font-size");
+  color: value($help-popover, "message.color");
+  padding: value($help-popover, "message.padding");
 }

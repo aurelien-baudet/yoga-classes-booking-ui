@@ -2,7 +2,8 @@
 @import "button-utils";
 
 .toast-container {
-  .ngx-toastr {
+  .ngx-toastr,
+  app-notification {
     border-radius: value($toast, "border-radius");
     background-image: none;
     border: none;

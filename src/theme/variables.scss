@@ -271,16 +271,6 @@ $help-button: (
     "colors": var(--ion-color-primary-tint) var(--ion-color-primary-contrast),
     "width": 20px,
     "height": 20px
-  ),
-  "header": (
-    "font-size": 11px,
-    "color": var(--ion-color-primary),
-    "padding": 5px
-  ),
-  "message": (
-    "font-size": 10px,
-    "color": var(--ion-color-secondary),
-    "padding": 5px 10px 10px 10px
   )
 );
 
@@ -296,6 +286,16 @@ $help-popover: (
       "width": 20px,
       "height": 20px,
     )
+  ),
+  "header": (
+    "font-size": 11px,
+    "color": var(--ion-color-primary),
+    "padding": 5px 5px 0 5px
+  ),
+  "message": (
+    "font-size": 10px,
+    "color": var(--ion-color-secondary),
+    "padding": 10px
   )
 );
 
@@ -646,6 +646,9 @@ $login-form: (
 
 $quick-connect-form: (
   "email": (
+    "margin": -10px 0 5px 0
+  ),
+  "assist": (
     "margin": -10px 0 15px 0
   )
 );
@@ -754,10 +757,22 @@ $student-list-popover: (
         "height": 18px
       ),
       "icon": (
-        "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
-        "width": 18px,
-        "height": 18px,
-        "margin": 0 2px
+        "margin": 0 2px,
+        "accepted": (
+          "colors": var(--ion-color-primary-contrast) var(--ion-color-primary),
+          "width": 18px,
+          "height": 18px
+        ),
+        "refused": (
+          "colors": var(--ion-color-primary-contrast) var(--ion-color-secondary) var(--ion-color-secondary),
+          "width": 18px,
+          "height": 18px
+        ),
+        "unknown": (
+          "colors": var(--ion-color-primary-contrast) var(--ion-color-primary),
+          "width": 18px,
+          "height": 18px
+        )
       )
     )
   )

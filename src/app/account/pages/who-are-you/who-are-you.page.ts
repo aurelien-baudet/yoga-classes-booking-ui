@@ -1,8 +1,10 @@
+import { UnregisteredUserRegistration } from './../../domain/unregistered';
+import { isUnregisteredUser } from './../../domain/utils';
 import { CurrentRoute } from 'src/app/common/util/router.util';
 import { ApplicationError } from 'src/app/booking/domain/general';
 import { SocialAuthenticator } from './../../../booking/domain/general';
 import { Router } from '@angular/router';
-import { Credentials, User, isUnregisteredUser } from './../../domain/user';
+import { Credentials, User } from './../../domain/user';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { UnregisteredUser } from '../../domain/unregistered';
@@ -35,7 +37,7 @@ export class WhoAreYouPage {
     }
   }
 
-  async finishBooking(student: UnregisteredUser) {
+  async finishBooking(student: UnregisteredUserRegistration) {
     await this.accountService.saveUnregisterdUserInfo(student);
     this.redirect(['']);
   }

@@ -1,9 +1,8 @@
-import { isUnregisteredUser } from './../domain/user';
 import { Role } from 'src/app/account/domain/user';
 import { AccountService } from 'src/app/account/services/account.service';
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
-import { hasRole } from '../domain/user';
+import { hasRole, isUnregisteredUser } from '../domain/utils';
 
 @Injectable({ providedIn: 'root' })
 export class TeacherAuthRequiredGuard implements CanActivate {

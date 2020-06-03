@@ -1,3 +1,4 @@
+import { UnregisteredUserRegistration } from './../../domain/unregistered';
 import { Teacher } from '../../domain/teacher';
 import { UnregisteredUser } from '../../domain/unregistered';
 import { Injectable } from '@angular/core';
@@ -42,7 +43,7 @@ export class MockAccountService implements AccountService {
     return teacher;
   }
 
-  async saveUnregisterdUserInfo(user: UnregisteredUser): Promise<void> {
+  async saveUnregisterdUserInfo(user: UnregisteredUserRegistration): Promise<void> {
     throw new Error('not implemented');
   }
 

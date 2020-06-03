@@ -1,9 +1,8 @@
-import { UnregisteredUser } from './../../../account/domain/unregistered';
-import { User, isSameUser } from './../../../account/domain/user';
-import { Student, StudentInfo } from './../../../account/domain/student';
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AssistState, PreferencesProvider } from 'src/app/booking/services/preferences.provider';
 import { Booking } from '../../domain/reservation';
-import { PreferencesProvider, AssistState } from 'src/app/booking/services/preferences.provider';
+import { StudentRef } from './../../../account/domain/student';
+import { isSameUser } from './../../../account/domain/utils';
 
 @Component({
   selector: 'app-approved-students',
@@ -21,25 +20,34 @@ export class ApprovedStudentsComponent implements OnInit {
   @Output()
   unbook = new EventEmitter<Booking>();
 
-  private assists: Array<{student: Student | User | UnregisteredUser, state: AssistState}> = [];
 
-  ngOnInit() {
+  private assists: Array<{student: StudentRef, state: AssistState}> = [];
+  private loading = false;
+
+  async ngOnInit() {
     if (!this.preferencesProvider) {
       return;
     }
-    this.approvedBookings
-      .map((b) => b.student)
-      .forEach((student) => {
-        this.assists.push({student, state: this.preferencesProvider.getAssistState(student)});
-      });
+    this.loading = true;
+    const students = this.approvedBookings.map((b) => b.student);
+    const promises = students.map((s) => this.preferencesProvider.getAssistState(s));
+    const states = await Promise.all(promises);
+    for (let i = 0 ; i < students.length ; i++) {
+      this.assists.push({student: students[i], state: states[i]});
+    }
+    this.loading = false;
   }
 
-  isLoading(student: StudentInfo | UnregisteredUser) {
-    return this.getAssistState(student) === null;
+  isLoading(student: StudentRef): boolean {
+    return this.loading;
   }
 
-  getAssistState(student: StudentInfo | UnregisteredUser) {
-    return this.assists.find((a) => isSameUser(a.student, student));
+  getAssistState(student: StudentRef): AssistState {
+    const pair = this.assists.find((a) => isSameUser(a.student, student));
+    if (!pair) {
+      return null;
+    }
+    return pair.state;
   }
 
 }

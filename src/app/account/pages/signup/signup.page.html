@@ -6,5 +6,9 @@
 </ion-header>
 
 <ion-content>
-  <app-register-student-form (register)="registerStudent($event)" (change)="signupErrors = []" [errors]="signupErrors"></app-register-student-form>
+  <app-register-student-form 
+    (register)="registerStudent($event)" 
+    (change)="signupErrors = []" 
+    [newStudent]="unregisteredUser"
+    [errors]="signupErrors"></app-register-student-form>
 </ion-content>

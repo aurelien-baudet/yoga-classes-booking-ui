@@ -17,6 +17,16 @@
     white-space: normal !important;
   }
 }
+.agrees-to-be-assisted {
+  margin: value($quick-connect-form, "assist.margin");
+
+  ion-icon {
+    display: none;
+  }
+  ion-label {
+    white-space: normal !important;
+  }
+}
 
 .response-errors {
   display: none;

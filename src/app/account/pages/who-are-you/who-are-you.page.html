@@ -10,7 +10,7 @@
     <app-social-login (authenticate)="authenticate($event)"></app-social-login>
     <ion-segment (ionChange)="segmentChanged($event)" [value]="showLogin() ? 'login' : 'unregistered'">
         <ion-segment-button value="login">Connecte toi</ion-segment-button>
-        <ion-segment-button value="unregistered">Connexion rapide</ion-segment-button>
+        <ion-segment-button value="unregistered">Essayer sans compte</ion-segment-button>
     </ion-segment>
     <app-login-form *ngIf="showLogin()" (login)="login($event)" (change)="loginErrors = []" [errors]="loginErrors" submitText="Terminer ma réservation"></app-login-form>
     <div *ngIf="showLogin()" class="register">
