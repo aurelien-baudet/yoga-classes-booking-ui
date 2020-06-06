@@ -1,5 +1,110 @@
+@import "../../../../theme/variables";
 @import "../../../../theme/icons-utils";
 @import "../../../../theme/button-utils";
+
+
+@mixin toggle-button() {
+  width: value($scheduled-class-details-page-actions, "button.width") + value($scheduled-class-details-page-actions, "toggle.container.width") + value($scheduled-class-details-page-actions, "button.spacing");
+  height: value($scheduled-class-details-page-actions, "button.height");
+  padding-left: value($scheduled-class-details-page-actions, "toggle.container.width") + value($scheduled-class-details-page-actions, "button.spacing");
+
+  /* toggle container */
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: - (value($scheduled-class-details-page-actions, "button.height") - value($scheduled-class-details-page-actions, "toggle.container.height")) / 2 - value($scheduled-class-details-page-actions, "toggle.container.border", "border-width");
+    width: value($scheduled-class-details-page-actions, "toggle.container.width");
+    height: value($scheduled-class-details-page-actions, "toggle.container.height");
+    border: value($scheduled-class-details-page-actions, "toggle.container.border");
+    border-radius: value($scheduled-class-details-page-actions, "toggle.container.border-radius");
+    padding: value($scheduled-class-details-page-actions, "toggle.container.padding");
+  }
+  /* toggle indicator (unchecked) */
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    margin-top: - (value($scheduled-class-details-page-actions, "button.height") - value($scheduled-class-details-page-actions, "toggle.container.height")) / 2 + value($scheduled-class-details-page-actions, "toggle.container.padding", "top");
+    width: value($scheduled-class-details-page-actions, "toggle.indicator.width");
+    height: value($scheduled-class-details-page-actions, "toggle.indicator.height");
+    border-radius: value($scheduled-class-details-page-actions, "toggle.indicator.border-radius");
+  }
+}
+@mixin toggle-color($colors) {
+  &::before {
+    border-color: value($colors, "border"); 
+    background: value($colors, "background"); 
+  }
+  &::after {
+    background: value($colors, "indicator");
+  }
+}
+@mixin toggle-pending($colors) {
+  position: relative;
+  width: value($scheduled-class-details-page-actions, "button.width") + value($scheduled-class-details-page-actions, "toggle.container.width") + value($scheduled-class-details-page-actions, "button.spacing");
+  height: value($scheduled-class-details-page-actions, "button.height");
+  padding-left: value($scheduled-class-details-page-actions, "toggle.container.width") + value($scheduled-class-details-page-actions, "button.spacing");
+  text-align: left;
+
+  ion-spinner {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: - (value($scheduled-class-details-page-actions, "button.height") - value($scheduled-class-details-page-actions, "toggle.container.height")) / 2 + value($scheduled-class-details-page-actions, "toggle.container.padding", "top");
+    width: value($scheduled-class-details-page-actions, "toggle.indicator.width");
+    height: value($scheduled-class-details-page-actions, "toggle.indicator.height");
+    left: value($scheduled-class-details-page-actions, "toggle.container.padding", "left") 
+          + value($scheduled-class-details-page-actions, "toggle.container.border", "border-width") 
+          + value($scheduled-class-details-page-actions, "toggle.container.width") / 2 
+          - value($scheduled-class-details-page-actions, "toggle.indicator.width") / 2;
+    color: value($scheduled-class-details-page-states, "pending.toggle.indicator");
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: - (value($scheduled-class-details-page-actions, "button.height") - value($scheduled-class-details-page-actions, "toggle.container.height")) / 2 - value($scheduled-class-details-page-actions, "toggle.container.border", "border-width");
+    width: value($scheduled-class-details-page-actions, "toggle.container.width");
+    height: value($scheduled-class-details-page-actions, "toggle.container.height");
+    border: value($scheduled-class-details-page-actions, "toggle.container.border");
+    border-radius: value($scheduled-class-details-page-actions, "toggle.container.border-radius");
+    padding: value($scheduled-class-details-page-actions, "toggle.container.padding");
+    border-color: value($scheduled-class-details-page-states, "pending.toggle.border");
+    background: value($scheduled-class-details-page-states, "pending.toggle.background");
+  }
+  
+  &::after {
+    content: "...";
+    padding-left: value($scheduled-class-details-page-actions, "button.spacing");
+    font-size: value($scheduled-class-details-page-actions, "button.font-size");
+    color: value($scheduled-class-details-page-actions, "button.color");
+    font-weight: bold;
+    text-align: left;
+  }
+}
+@mixin toggle-checked($colors) {
+  @include toggle-color($colors);
+  &::after {
+    left: value($scheduled-class-details-page-actions, "toggle.container.padding", "left") 
+          + value($scheduled-class-details-page-actions, "toggle.container.border", "border-width") 
+          + value($scheduled-class-details-page-actions, "toggle.container.width")
+          - value($scheduled-class-details-page-actions, "toggle.indicator.width");
+  }
+}
+@mixin toggle-unchecked($colors) {
+  @include toggle-color($colors);
+  &::after {
+    left: value($scheduled-class-details-page-actions, "toggle.container.padding", "left") 
+          + value($scheduled-class-details-page-actions, "toggle.container.border", "border-width");
+  }
+}
 
 ion-item {
   --padding-start: 0;
@@ -10,6 +115,9 @@ ion-card {
   margin-inline-start: 0;
   -webkit-margin-end: 0;
   margin-inline-end: 0;
+  box-shadow: none;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 ion-card-content {
@@ -19,80 +127,354 @@ ion-card-content {
   padding-inline-end: 0;
 }
 
+
 ion-card-header {
-  border-bottom: 1px solid var(--border-color);
-}
-
-.title {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 10px 0;
-  display: block;
-  padding-inline-start: 16px;
-  padding-inline-end: 16px;
-}
-
-.place {
-  width: 100%;
-  padding-inline-start: 16px;
-  padding-inline-end: 16px;
-
-  ion-button {
-    @include discreet-button(var(--ion-color-primary));
-    --padding-start: 0.5em;
-    --padding-end: 0.5em;
+  background: value($scheduled-class-details-page-states, "bookable.header.background");
   
-    ion-icon {
-        font-size: 18px;
-        line-height: 14px;
+  ion-card-title {
+    --color: #{value($scheduled-class-details-page-states, "bookable.header.color")};
+
+    span {
+      display: block;
+      text-align: center;
+    }
+    .title {
+      font-weight: bold;
+      font-size: value($scheduled-class-details-page-header, "title.font-size");
+      padding-bottom: value($scheduled-class-details-page-header, "spacing");
+    }
+    .date {
+      font-size: value($scheduled-class-details-page-header, "date.font-size");
+      
+      &::first-letter {
+          text-transform: capitalize;
+      }
     }
   }
 }
 
-app-class-details {
-  ::ng-deep > p {
-    margin-top: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    padding-inline-start: 16px;
-    padding-inline-end: 16px;
+ion-card-content {
+  padding-top: value($scheduled-class-details-page-layout, "content.padding", "top");
+  padding-bottom: value($scheduled-class-details-page-layout, "content.padding", "bottom");
+  background: value($scheduled-class-details-page-content, "background");
+
+  .actions {
+    padding-left: value($scheduled-class-details-page-layout, "content.padding", "left");
+    padding-right: value($scheduled-class-details-page-layout, "content.padding", "right");
+    text-align: center;
+
+    .toggle-container {
+      position: relative;
+      display: inline-block;
+
+      .pending {
+        @include toggle-pending(value($scheduled-class-details-page-states, "bookable.toggle"));
+      }
+    }
+
+    ion-button {
+      position: relative;
+      --padding-start: 0;
+      --padding-end: 0;
+      margin: 0;
+      margin-inline-start: 0;
+      margin-inline-end: 0;
+      @include discreet-button();
+      font-size: value($scheduled-class-details-page-actions, "button.font-size");
+      color: value($scheduled-class-details-page-actions, "button.color");
+      font-weight: bold;
+      text-align: left;
+      @include toggle-button();
+
+      &.book-class {
+        @include toggle-unchecked(value($scheduled-class-details-page-states, "bookable.toggle"));
+      }
+
+      span {
+        padding-left: value($scheduled-class-details-page-actions, "button.spacing");
+        flex: auto;
+      }
+    }
+
+    > span {
+      display: block;
+    }
+  }
+  .summary {
+    padding: value($scheduled-class-details-page-layout, "summary.padding");
+    padding-left: value($scheduled-class-details-page-layout, "content.padding", "left");
+    padding-right: value($scheduled-class-details-page-layout, "content.padding", "right");
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    
+    .time {
+      display: flex;
+      flex: 0 0 value($scheduled-class-details-page-layout, "summary.info.width");
+      align-items: center;
+      justify-content: flex-end;
+      margin-right: value($scheduled-class-details-page-layout, "summary.horizontal-spacing") / 2;
+
+      ion-icon {
+          @include icon-styles(value($scheduled-class-details-page-time, "icon"));
+      }
+      span {
+          font-size: value($scheduled-class-details-page-time, "font-size");
+          font-weight: bold;
+          color: value($scheduled-class-details-page-time, "color");
+          display: inline-block;
+          padding-left: value($scheduled-class-details-page-time, "space-between");
+      }
+    }
+    .place {
+      display: flex;
+      flex-wrap: wrap;
+      flex: 0 0 value($scheduled-class-details-page-layout, "summary.info.width");
+      align-items: center;
+      justify-content: flex-start;
+      margin-left: value($scheduled-class-details-page-layout, "summary.horizontal-spacing") / 2;
+
+      ion-button {
+          font-size: value($scheduled-class-details-page-place, "font-size");
+          font-weight: bold;
+          @include discreet-button(value($scheduled-class-details-page-place, "color"));
+
+          ion-icon {
+              @include icon-styles(value($scheduled-class-details-page-place, "icon"));
+          }
+          span {
+              padding-top: 1px;
+              padding-left: 1px;
+              display: inline-block;
+          }
+      }
+      .place-changed {
+          border-radius: value($scheduled-class-details-page-place-changed, "border-radius");
+          padding: value($scheduled-class-details-page-place-changed, "padding");
+          font-size: value($scheduled-class-details-page-place-changed, "font-size");
+          font-weight: bold;
+          background: value($scheduled-class-details-page-place-changed, "background");
+          color: value($scheduled-class-details-page-place-changed, "color");
+          width: fit-content;
+
+          ion-icon {
+              @include icon-styles(value($scheduled-class-details-page-place-changed, "icon"));
+              padding-right: value($scheduled-class-details-page-place-changed, "spacing");
+              vertical-align: middle;
+              display: none;
+          }
+          span {
+              display: block;
+              height: value($scheduled-class-details-page-place-changed, "icon.height");
+              line-height: value($scheduled-class-details-page-place-changed, "icon.height");
+              font-weight: bold;
+          }
+      }
+    }
+    .posture-level {
+        display: flex;
+        flex: 0 0 value($scheduled-class-details-page-layout, "summary.info.width");
+        justify-content: flex-end;
+        padding: value($scheduled-class-details-page-posture-level, "padding");
+        font-weight: bold;
+        margin-right: value($scheduled-class-details-page-layout, "summary.horizontal-spacing") / 2;
+
+        ion-icon {
+            @include icon-styles(value($scheduled-class-details-page-posture-level, "icon"));
+            vertical-align: middle;
+        }
+        span {
+            display: inline-block;
+            font-size: value($scheduled-class-details-page-posture-level, "font-size");
+            color: value($scheduled-class-details-page-posture-level, "color");
+            padding-left: value($scheduled-class-details-page-posture-level, "spacing");
+            line-height: value($scheduled-class-details-page-posture-level, "icon.height");
+            vertical-align: middle;
+        }
+    }
+    .sport-level {
+        display: flex;
+        flex: 0 0 value($scheduled-class-details-page-layout, "summary.info.width");
+        justify-content: flex-start;
+        padding: value($scheduled-class-details-page-sport-level, "padding");
+        font-weight: bold;
+        margin-left: value($scheduled-class-details-page-layout, "summary.horizontal-spacing") / 2;
+
+        ion-icon {
+            @include icon-styles(value($scheduled-class-details-page-sport-level, "icon"));
+            vertical-align: middle;
+        }
+        span {
+            display: inline-block;
+            font-size: value($scheduled-class-details-page-sport-level, "font-size");
+            color: value($scheduled-class-details-page-sport-level, "color");
+            padding-left: value($scheduled-class-details-page-sport-level, "spacing");
+            line-height: value($scheduled-class-details-page-sport-level, "icon.height");
+            vertical-align: middle;
+        }
+    }
+  }
+  app-class-details {
+    ::ng-deep {
+      > p {
+        margin: 0;
+        text-align: justify;
+        margin-top: value($scheduled-class-details-page-layout, "separator.margin", "top") / 2;
+        padding-top: value($scheduled-class-details-page-layout, "separator.margin", "top") / 2;
+        border-top: value($scheduled-class-details-page-layout, "separator.line");
+        margin-bottom: value($scheduled-class-details-page-layout, "separator.margin", "bottom") / 2;
+        padding-bottom: value($scheduled-class-details-page-layout, "separator.margin", "bottom") / 2;
+        border-bottom: value($scheduled-class-details-page-layout, "separator.line");
+        padding-left: value($scheduled-class-details-page-layout, "content.padding", "left");
+        padding-right: value($scheduled-class-details-page-layout, "content.padding", "right");
+      }
+      .register-friend {
+        padding-left: value($scheduled-class-details-page-layout, "content.padding", "left");
+        padding-right: value($scheduled-class-details-page-layout, "content.padding", "right");
+      }
+
+      ion-list {
+        --ion-item-background: none;
+
+        p {
+          font-weight: normal;
+        }
+      }
+
+      .header-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        ion-title {
+          text-transform: none;
+          font-size: value($scheduled-class-details-page-places, "header.font-size");
+          color: value($scheduled-class-details-page-places, "header.color");
+        }
+        ion-badge {
+          display: inline-block;
+          font-size: value($scheduled-class-details-page-places, "header.font-size");
+          color: value($scheduled-class-details-page-places, "header.color");
+        }
+      }
+
+      ion-item {
+        --border-color: #{value($scheduled-class-details-page-places, "item.line", "border-color")};
+        margin: 0;
+      }
+      app-student {
+        ion-label {
+          font-weight: normal;
+        }
+      }
+    }
+
+  }
+  .cancel-details {
+    padding-left: value($scheduled-class-details-page-layout, "content.padding", "left");
+    padding-right: value($scheduled-class-details-page-layout, "content.padding", "right");
+    
+    .teacher-message {
+        margin-top: value($scheduled-class-details-page-layout, "cancel-details.margin-top");
+        font-size: value($scheduled-class-details-page-cancel-details, "message.font-size");
+        color: value($scheduled-class-details-page-cancel-details, "message.color");
+        font-weight: bold;
+
+        span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .intro {
+            padding-right: value($scheduled-class-details-page-cancel-details, "message.spacing");
+            color: value($scheduled-class-details-page-cancel-details, "message.teacher-name.color");
+            line-height: value($scheduled-class-details-page-cancel-details, "message.icon.height");
+            height: value($scheduled-class-details-page-cancel-details, "message.icon.height");
+        }
+
+        ion-icon {
+            @include icon-styles(value($scheduled-class-details-page-cancel-details, "message.icon"));
+            vertical-align: middle;
+            margin: value($scheduled-class-details-page-cancel-details, "message.icon.margin");
+        }
+    }
+    .lesson-canceled {
+        margin-top: value($scheduled-class-details-page-cancel-details, "spacing");
+        font-size: value($scheduled-class-details-page-cancel-details, "lesson-canceled.font-size");
+        color: value($scheduled-class-details-page-cancel-details, "lesson-canceled.color");
+        background: value($scheduled-class-details-page-cancel-details, "lesson-canceled.background");
+        border-radius: value($scheduled-class-details-page-cancel-details, "lesson-canceled.border-radius");
+        padding: value($scheduled-class-details-page-cancel-details, "lesson-canceled.padding");
+        width: fit-content;
+        font-weight: bold;
+    }
   }
 }
 
 
 /* states */
-.place-changed {
-  .place {
-      ion-button {
-          font-size: 16px;
-          --color: var(--ion-color-danger);
-          --color-activated: var(--ion-color-danger);
-          --color-focused: var(--ion-color-danger);
-          --color-hover: var(--ion-color-danger);
-      }
-          
-      .warning {
-          font-size: 16px;
-          color: var(--ion-color-warning);
-          text-transform: none;
-          display: block;
-          padding-left: 5px;
-          // @include fas-icon($fa-var-exclamation-triangle);
-          margin-bottom: 10px;
-
-          &:before {
-              padding-right: 5px;
-          }
-      }
+ion-card.place-changed {
+  .time {
+    padding-bottom: value($scheduled-class-details-page-place-changed, "padding", "top") + value($scheduled-class-details-page-place-changed, "padding", "bottom") + value($scheduled-class-details-page-place-changed, "icon.height");
   }
 }
 .booked.booking-approved {
   ion-card-header {
-      background: var(--ion-color-success);
+      background: value($scheduled-class-details-page-states, "booking-approved.header.background");
+
+      ion-card-title {
+        --color: #{value($scheduled-class-details-page-states, "booking-approved.header.color")};
+      }
+  }
+  ion-card-content {
+    .actions {
+      ion-button.unbook-class {
+        @include toggle-checked(value($scheduled-class-details-page-states, "booking-approved.toggle"));
+      }
+    }
   }
 }
+.booked.booking-waiting {
+  ion-card-header {
+      background: value($scheduled-class-details-page-states, "booking-waiting.header.background");
+
+      ion-card-title {
+        --color: #{value($scheduled-class-details-page-states, "booking-waiting.header.color")};
+      }
+  }
+  ion-card-content {
+    .actions {
+      ion-button.unbook-class {
+        @include toggle-checked(value($scheduled-class-details-page-states, "booking-waiting.toggle"));
+      }
+
+      > span {
+        color: value($scheduled-class-details-page-states, "booking-waiting.message.color");
+        font-size: value($scheduled-class-details-page-states, "booking-waiting.message.font-size");
+      }
+    }
+  }
+}
+.canceled,
+.booked.canceled {
+  ion-card-header {
+    background: value($scheduled-class-details-page-states, "canceled.header.background");
+
+    ion-card-title {
+      --color: #{value($scheduled-class-details-page-states, "canceled.header.color")};
+    }
+  }
+  .actions {
+    display: none;
+  }
+  .summary {
+    opacity: 0.5;
+  }
+}
+/*
 .booked.booking-waiting {
   ion-card-header {
       background: var(--ion-color-tertiary);
@@ -147,4 +529,4 @@ app-class-details {
           font-weight: bold;
       }
   }
-}
+}*/

@@ -11,7 +11,7 @@
           [class.place-changed]="scheduledClass.lesson.placeChanged">
   <ion-card-header>
     <ion-card-title (click)="showClassDetails.emit(scheduledClass)">
-      <span class="date">{{ scheduledClass | dateRange }}</span>
+      <span class="date">{{ scheduledClass | dateRange:'date' }}</span>
       <span class="title">{{ scheduledClass.lesson.title }}</span>
     </ion-card-title>
   </ion-card-header>
@@ -19,7 +19,7 @@
     <div class="summary">
       <div class="time">
         <ion-icon slot="start" name="app-time"></ion-icon>
-        <span>{{ scheduledClass | timeRange }}</span>
+        <span>{{ scheduledClass | dateRange:'time' }}</span>
       </div>
       <div class="place">
         <ion-button (click)="showPlaceDetails.emit(scheduledClass.lesson.place)">

@@ -1,9 +1,15 @@
 @import "common-utils";
 
 @function value($variable, $property, $sub-property: null) {
+  @if $variable == null {
+    @warn "variable is null", $property;
+  }
   $keys: str-split($property, ".");
   $value: $variable;
   @each $key in $keys {
+    @if $value == null {
+      @warn "invalid key", $property;
+    }
     $value: map-get($value, $key);
   }
   @if ($sub-property != null) {

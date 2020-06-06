@@ -5,7 +5,7 @@ import { Student, StudentRef, StudentId } from 'src/app/account/domain/student';
 import { Teacher, TeacherInfo, TeacherId } from 'src/app/account/domain/teacher';
 import { UnregisteredUser } from 'src/app/account/domain/unregistered';
 
-interface LessonDifficulty {
+export interface LessonDifficulty {
     sportLevel: number | null;
     postureLevel: number | null;
   }

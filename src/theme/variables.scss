@@ -336,8 +336,8 @@ $scheduled-class-card-header: (
   "padding": 10px,
   "date": (
     "font-size": 16px,
-    "padding-bottom": 8px
   ),
+  "spacing": 8px,
   "title": (
     "font-size": 15px
   )
@@ -516,7 +516,8 @@ $scheduled-class-card-states: (
   ),
   "booking-approved": (
     "header": (
-      "background": var(--ion-color-secondary)
+      "background": var(--ion-color-secondary),
+      "color": var(--ion-color-secondary-contrast)
     ),
     "icon": (
       "position": (
@@ -530,7 +531,8 @@ $scheduled-class-card-states: (
   ),
   "booking-waiting": (
     "header": (
-      "background": var(--ion-color-primary)
+      "background": var(--ion-color-primary),
+      "color": var(--ion-color-primary-contrast)
     ),
     "icon": (
       "position": (
@@ -544,7 +546,8 @@ $scheduled-class-card-states: (
   ),
   "canceled": (
     "header": (
-      "background": var(--ion-color-warning)
+      "background": var(--ion-color-warning),
+      "color": var(--ion-color-warning-contrast)
     ),
     "icon": (
       "position": (
@@ -952,4 +955,120 @@ $book-lessons-page: (
     "width": 40px,
     "height": 40px
   )
-)
+);
+
+
+$scheduled-class-details-page-layout: (
+  "content": (
+    "padding": 10px 20px
+  ),
+  "actions": (
+  ),
+  "summary": (
+    "padding": 20px 0 0 0,
+    "horizontal-spacing": 20px,
+    "info": (
+      "width": 140px
+    )
+  ),
+  "separator": (
+    "margin": 40px 0,
+    "line": 1px solid var(--ion-color-tertiary)
+  ),
+  "details": (
+  ),
+  "cancel-details": (
+    "margin-top": 20px
+  ),
+);
+$scheduled-class-details-page-header: map-merge($scheduled-class-card-header, ());
+$scheduled-class-details-page-content: map-merge($pages, ());
+$scheduled-class-details-page-actions: (
+  "button": (
+    "font-size": 14px,
+    "color": var(--ion-color-secondary),
+    "spacing": 8px,
+    "width": 125px,
+    "height": 30px,
+  ),
+  "toggle": (
+    "container": (
+      "width": 30px,
+      "height": 12px,
+      "border-radius": 10px,
+      "border": 1px solid transparent,
+      "padding": 2px
+    ),
+    "indicator": (
+      "width": 12px,
+      "height": 12px,
+      "border-radius": 6px
+    )
+  )
+);
+$scheduled-class-details-page-time: map-merge($scheduled-class-card-time, (
+  "space-between": 5px
+));
+$scheduled-class-details-page-place: map-merge($scheduled-class-card-place, ());
+$scheduled-class-details-page-place-changed: map-merge($scheduled-class-card-place-changed, ());
+$scheduled-class-details-page-places: (
+  "header": (
+    "color": var(--ion-color-primary-shade),
+    "font-size": 12px,
+  ),
+  "item": (
+    "line": 1px solid var(--ion-color-secondary-contrast),
+  )
+);
+$scheduled-class-details-page-remaining-places: map-merge($scheduled-class-card-remaining-places, ());
+$scheduled-class-details-page-waiting-places: map-merge($scheduled-class-card-waiting-places, ());
+$scheduled-class-details-page-posture-level: map-merge($scheduled-class-card-posture-level, (
+  "padding": 8px 0 0 0
+));
+$scheduled-class-details-page-sport-level: map-merge($scheduled-class-card-sport-level, (
+  "padding": 8px 0 0 0
+));
+$scheduled-class-details-page-details: map-merge($scheduled-class-card-details, ());
+$scheduled-class-details-page-cancel-details: map-merge($scheduled-class-card-cancel-details, ());
+
+
+$scheduled-class-details-page-states: (
+  "bookable": (
+    "header": map-merge(value($scheduled-class-card-states, "bookable.header"), ()),
+    "toggle": (
+      "background": var(--ion-color-primary-contrast),
+      "border": var(--ion-color-primary),
+      "indicator": var(--ion-color-primary)
+    )
+  ),
+  "booking-approved": (
+    "header": map-merge(value($scheduled-class-card-states, "booking-approved.header"), ()),
+    "toggle": (
+      "background": var(--ion-color-secondary),
+      "border": var(--ion-color-secondary),
+      "indicator": var(--ion-color-secondary-contrast)
+    )
+  ),
+  "booking-waiting": (
+    "header": map-merge(value($scheduled-class-card-states, "booking-waiting.header"), ()),
+    "toggle": (
+      "background": var(--ion-color-primary),
+      "border": var(--ion-color-primary),
+      "indicator": var(--ion-color-primary-contrast)
+    ),
+    "message": (
+      "color": var(--ion-color-primary),
+      "font-size": 12px
+    )
+  ),
+  "canceled": (
+    "header": map-merge(value($scheduled-class-card-states, "canceled.header"), ()),
+  ),
+  "pending": (
+    "toggle": (
+      "background": var(--ion-color-primary-contrast),
+      "border": var(--ion-color-primary),
+      "indicator": var(--ion-color-primary)
+    )
+  )
+);

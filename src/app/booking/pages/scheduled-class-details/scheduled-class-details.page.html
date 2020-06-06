@@ -17,41 +17,63 @@
       [class.canceled]="manageClassStateProvider.isCanceled(scheduledClass)"
       [class.place-changed]="scheduledClass.lesson.placeChanged">
       <ion-card-header>
-        <ion-card-title>{{ scheduledClass | dateRange }}</ion-card-title>
-        <ion-button (click)="bookingHelper.book(scheduledClass)" *ngIf="isBookable(scheduledClass)">
-          M'inscrire
-          <ion-icon slot="start" name="app-book"></ion-icon>
-        </ion-button>
-        <ion-button (click)="bookingHelper.unbook(scheduledClass)" *ngIf="isUnbookable(scheduledClass)">
-          Me désinscrire
-          <ion-icon slot="start" name="app-unbook"></ion-icon>
-        </ion-button>
-        <ion-button *ngIf="isPending(scheduledClass)">
-          <ion-icon slot="icon-only" name="app-pending"></ion-icon>
-        </ion-button>
+        <ion-card-title>
+          <span class="title">{{ scheduledClass.lesson.title }}</span>
+          <span class="date">{{ scheduledClass | dateRange:'date' }}</span>
+        </ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <span class="title">{{ scheduledClass.lesson.title }}</span>
-        <div class="place">
-          <ion-button (click)="showPlaceDetails(scheduledClass.lesson.place)">
-            {{ scheduledClass.lesson.place.name }}
-            <ion-icon slot="start" name="app-place"></ion-icon>
-          </ion-button>
-          <span class="warning" *ngIf="scheduledClass.lesson.placeChanged">le lieu de dispense a été modifié</span>
+        <div class="actions">
+          <div class="toggle-container">
+            <ion-button class="book-class" (click)="bookingHelper.book(scheduledClass)" *ngIf="isBookable(scheduledClass)">
+              <span>M'inscrire</span>
+            </ion-button>
+            <ion-button class="unbook-class" (click)="bookingHelper.unbook(scheduledClass)" *ngIf="isUnbookable(scheduledClass)">
+              <span>Me désinscrire</span>
+            </ion-button>
+            <div class="pending" *ngIf="isPending(scheduledClass)">
+              <ion-spinner></ion-spinner>
+            </div>
+          </div>
+          <span *ngIf="isBooked(scheduledClass) && bookingStateProvider.isBookingInWaitingList(scheduledClass)">Tu es inscris en liste d'attente</span>
+        </div>
+        <div class="summary">
+          <div class="time">
+            <ion-icon slot="start" name="app-time"></ion-icon>
+            <span>{{ scheduledClass | dateRange:'time' }}</span>
+          </div>
+          <div class="place">
+            <ion-button (click)="showPlaceDetails(scheduledClass.lesson.place)">
+              <ion-icon slot="start" name="app-place"></ion-icon>
+              <span>{{ scheduledClass.lesson.place.name }}</span>
+            </ion-button>
+            <div class="place-changed" *ngIf="scheduledClass.lesson.placeChanged">
+              <ion-icon slot="icon-only" name="app-place-changed"></ion-icon>
+              <span>le lieu a été modifié</span>
+            </div>
+          </div>
+          <div *ngIf="getPostureLevel()" class="posture-level level-{{ getPostureLevel().value }}">
+            <ion-icon slot="icon-only" name="app-posture-level"></ion-icon>
+            <span>{{ getPostureLevel().label }}</span>
+          </div>
+          <div *ngIf="getSportLevel()" class="sport-level level-{{ getSportLevel().value }}">
+            <ion-icon slot="icon-only" name="app-sport-level"></ion-icon>
+            <span>{{ getSportLevel().label }}</span>
+          </div>
+        </div>
+        <div class="cancel-details" *ngIf="manageClassStateProvider.isCanceled(scheduledClass)">
+          <p class="lesson-canceled">Cours annulé</p>
+          <p class="teacher-message">
+            <ion-icon slot="icon-only" name="app-canceled-message"></ion-icon>
+            <span class="intro">{{ scheduledClass.lesson.teacher.displayName }} :</span>
+            <span class="message">{{ scheduledClass.state.message }}</span>
+          </p>
         </div>
         <app-class-details 
           [scheduledClass]="scheduledClass"
           [searchFriendProvider]="searchFriendProvider"
           (bookForFriend)="bookingHelper.bookForFriend($event)"
           (unbookForFriend)="bookingHelper.unbookForFriend($event)"></app-class-details>
-        <div class="cancel-details" *ngIf="manageClassStateProvider.isCanceled(scheduledClass)">
-          <h3>Cours annulé</h3>
-          <p class="lesson-canceled">Cours annulé</p>
-          <p class="teacher-message">
-            <span class="intro">Message de {{ scheduledClass.lesson.teacher.displayName }} :</span>
-            <span class="message">{{ scheduledClass.state.message }}</span>
-          </p>
-        </div>
       </ion-card-content>
     </ion-card>
   </ion-item>

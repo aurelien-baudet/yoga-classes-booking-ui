@@ -1,3 +1,4 @@
+import { SportLevel, PostureLevel } from './../../domain/reservation';
 import { BookingHelperComponent } from './../../components/booking-helper/booking-helper.component';
 import { ComingSoonFriendProvider } from './../../services/local/coming-soon-friend.provider';
 import { UnmanageableProvider } from './../../services/local/unmanageable.provider';
@@ -100,10 +101,34 @@ export class ScheduledClassDetailsPage implements OnInit {
       && !this.pendingProvider.isPending(scheduledClass);
   }
 
+  isBooked(scheduledClass: ScheduledClass) {
+    return this.bookingStateProvider.isBookable(scheduledClass)
+      && this.bookingStateProvider.isBooked(scheduledClass)
+      && !this.pendingProvider.isPending(scheduledClass);
+  }
+
   isPending(scheduledClass: ScheduledClass) {
     return this.bookingStateProvider.isBookable(scheduledClass)
       && this.pendingProvider.isPending(scheduledClass);
   }
+
+
+  getSportLevel() {
+    const difficulty = this.scheduledClass.lesson.difficulty;
+    if (!difficulty || difficulty.sportLevel === null) {
+      return null;
+    }
+    return SportLevel.from(difficulty.sportLevel);
+  }
+
+  getPostureLevel() {
+    const difficulty = this.scheduledClass.lesson.difficulty;
+    if (!difficulty || difficulty.postureLevel === null) {
+      return null;
+    }
+    return PostureLevel.from(difficulty.postureLevel);
+  }
+
 
   async refreshDetailsAndBooking() {
     this.refreshClass();

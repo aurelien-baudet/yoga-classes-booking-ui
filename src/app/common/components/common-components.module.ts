@@ -15,7 +15,6 @@ import { CalendarModule  } from 'ion4-calendar';
 import { TimeMaskDirective } from './time-mask.directive';
 import { PlaceDetailsComponent } from './place-details/place-details.component';
 import { DateMaskDirective } from './date-mask.directive';
-import { TimeRangePipe } from './time-range.pipe';
 
 
 @NgModule({
@@ -24,7 +23,6 @@ import { TimeRangePipe } from './time-range.pipe';
     NotificationComponent,
     PopoverComponent,
     DateRangePipe,
-    TimeRangePipe,
     CalendarComponent,
     TimeMaskDirective,
     DateMaskDirective,
@@ -36,7 +34,6 @@ import { TimeRangePipe } from './time-range.pipe';
     PopoverComponent,
     NotificationComponent,
     DateRangePipe,
-    TimeRangePipe,
     CalendarComponent,
     PlaceDetailsComponent,
     LoginAvailableValidator

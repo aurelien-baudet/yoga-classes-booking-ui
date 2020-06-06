@@ -2,7 +2,7 @@ import { CurrentRoute } from 'src/app/common/util/router.util';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/account/services/account.service';
 import { ClassService } from 'src/app/booking/services/class.service';
-import { Lesson, Place, ScheduledClass, isSamePlace, UpdatedLesson } from 'src/app/booking/domain/reservation';
+import { Lesson, Place, ScheduledClass, isSamePlace, UpdatedLesson, LessonDifficulty } from 'src/app/booking/domain/reservation';
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { TeacherInfo, isSameTeacher } from 'src/app/account/domain/teacher';
 import { PlaceService } from '../../services/place.service';
@@ -65,8 +65,20 @@ export class EditLessonPage {
     return original.description !== updated.description
       || original.maxStudents !== updated.maxStudents
       || !isSameTeacher(original.teacher, updated.teacher)
-      || original.title !== updated.title;
+      || original.title !== updated.title
+      || !this.isSameDifficulty(original.difficulty, updated.difficulty);
       // TODO: compare photos too when really implemented
+  }
+
+  private isSameDifficulty(original: LessonDifficulty, updated: LessonDifficulty): boolean {
+    // both are set => depends on values
+    if (original && updated) {
+      return original.postureLevel === updated.postureLevel
+        && original.sportLevel === updated.sportLevel;
+    }
+    // both are not set => identical
+    // one set and the other not set => different
+    return !original && !updated;
   }
 
   private hasPlaceChanged(original: Lesson, updated: UpdatedLesson): boolean {

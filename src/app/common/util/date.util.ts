@@ -7,8 +7,12 @@ export class DateUtil {
   
   constructor(@Inject(LOCALE_ID) private locale: string) {}
 
-  formatRange(range: DateRange) {
+  formatDateTimeRange(range: DateRange) {
     return `${this.formatStart(range.start)} - ${this.formatEnd(range.end)}`;
+  }
+
+  formatDateRange(range: DateRange) {
+    return formatDate(range.start, 'EEEE d MMMM', this.locale);
   }
 
   formatTimeRange(range: DateRange) {
