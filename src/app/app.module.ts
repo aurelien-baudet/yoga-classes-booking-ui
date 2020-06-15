@@ -51,6 +51,8 @@ import { CalendarService } from './common/services/calendar.service';
 import { NativeCalendarService } from './common/services/local/native-calendar.service';
 import { GoogleCalendarService } from './common/services/local/google-calendar.service';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { ErrorHandler } from '@angular/core';
+import { GlobalErrorHandler, ErrorsService } from 'src/app/common/services/global-error-handler';
 
 
 registerLocaleData(localeFr);
@@ -114,7 +116,9 @@ export const calendarServiceFactory = (platform: Platform, nativeCalendar: Calen
     { provide: UnregisteredUserInfoStorage, useClass: UnregisteredUserIonicLocalStorage },
     ApplicationEventService,
     Calendar,
-    { provide: CalendarService, deps: [Platform, Calendar, DateUtil], useFactory: calendarServiceFactory }
+    { provide: CalendarService, deps: [Platform, Calendar, DateUtil], useFactory: calendarServiceFactory },
+    ErrorsService,
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
   ],
   bootstrap: [AppComponent]
 })

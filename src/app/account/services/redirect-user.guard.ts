@@ -16,7 +16,7 @@ export class RedirectUserGuard implements CanActivate {
         if (route.url.length !== 0) {
             return true;
         }
-        
+
         // user not connected => redirect to homepage (visible by everyone)
         const currentUser = await this.accountService.getUserInfo();
         if (!currentUser) {
