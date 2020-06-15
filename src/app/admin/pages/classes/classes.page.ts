@@ -1,8 +1,10 @@
+import { BookingService } from 'src/app/booking/services/booking.service';
+import { DateUtil } from './../../../common/util/date.util';
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { PreferencesService } from 'src/app/account/services/preferences.service';
-import { ScheduledClass } from 'src/app/booking/domain/reservation';
+import { ScheduledClass, Booking } from 'src/app/booking/domain/reservation';
 import { ClassService } from 'src/app/booking/services/class.service';
 import { PreferencesProvider } from 'src/app/booking/services/preferences.provider';
 import { BookingStateProvider, DetailsStateProvider, DetailsStateUpdateProvider, ManageClassStateProvider, PendingStateProvider, PendingStateUpdateProvider } from 'src/app/booking/services/single-class-state.provider';
@@ -14,6 +16,8 @@ import { AccountPreferencesProvider } from './../../../booking/services/remote/a
 import { ManageableProvider } from './../../services/local/manageable.provider';
 import { NextLessonOpenedDetailsClassStateProvider } from './../../services/local/next-lesson-opened-details-state.provider';
 import { UnbookableProvider } from './../../services/local/unbookable.provider';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-classes-page',
@@ -43,11 +47,18 @@ export class ClassesPage {
 
   private popover: PopoverWrapper;
   private classes$ = new Subject<ScheduledClass[]>();
+  private studentListPopover: {
+    type: string,
+    popover: PopoverWrapper
+  };
 
   constructor(private classService: ClassService,
               private router: Router,
               private popoverService: PopoverService,
-              private preferencesService: PreferencesService) {
+              private alertController: AlertController,
+              private dateUtil: DateUtil,
+              private bookingService: BookingService,
+              preferencesService: PreferencesService) {
     this.bookingStateProvider = new UnbookableProvider();
     this.detailsProvider = new NextLessonOpenedDetailsClassStateProvider(this.classes$);
     this.pendingProvider = new InMemoryUpdatablePendingStateProvider(sameClassPredicate);
@@ -108,14 +119,20 @@ export class ClassesPage {
   async showApprovedStudents(scheduledClass: ScheduledClass) {
     // wrap in setTimeout in order to be able to retrieve the click event
     setTimeout(async () => {
-      await this.popoverService.show(this.approvedStudents, {scheduledClass}, {cssClass: 'approved-students'});
+      this.studentListPopover = {
+        type: 'approved',
+        popover: await this.popoverService.show(this.approvedStudents, {scheduledClass}, {cssClass: 'approved-students'})
+      };
     }, 0);
   }
 
   async showWaitingStudents(scheduledClass: ScheduledClass) {
     // wrap in setTimeout in order to be able to retrieve the click event
     setTimeout(async () => {
-      await this.popoverService.show(this.waitingStudents, {scheduledClass}, {cssClass: 'waiting-students'});
+      this.studentListPopover = {
+        type: 'waiting',
+        popover: await this.popoverService.show(this.waitingStudents, {scheduledClass}, {cssClass: 'waiting-students'})
+      };
     }, 0);
   }
 
@@ -123,8 +140,30 @@ export class ClassesPage {
     alert('Bientôt disponible');
   }
 
-  async unbookForFriend(unbooking: UnbookingForFriend) {
-    alert('Bientôt disponible');
+  async unbookStudent(scheduledClass: ScheduledClass, unbooking: Booking) {
+    const alert = await this.alertController.create({
+      header: `Désinscrire ${unbooking.student.displayName} ?`,
+      message: `Es-tu sûr de vouloir désinscrire ${unbooking.student.displayName} du cours du ${this.dateUtil.formatDateTimeRange(scheduledClass)} ?`,
+      buttons: [{
+        text: 'Annuler',
+        role: 'cancel'
+      }, {
+        text: 'Désinscrire',
+        handler: () => this.unbook(scheduledClass, unbooking)
+      }]
+    });
+    await alert.present();
+  }
+
+  private async unbook(scheduledClass: ScheduledClass, unbooking: Booking) {
+    const updated = await this.bookingService.unbook(unbooking.student, scheduledClass);
+    this.studentListPopover.popover.cancel();
+    if (this.studentListPopover.type === 'approved') {
+      this.showApprovedStudents(updated);
+    } else {
+      this.showWaitingStudents(updated);
+    }
+    this.refreshClasses();
   }
 
   private async refreshClasses() {

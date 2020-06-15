@@ -21,7 +21,6 @@ export class AccountPreferencesProvider implements PreferencesProvider {
     } else {
       state = AssistState.Refused;
     }
-    console.error('state', student.displayName, state);
     return state;
   }
 
@@ -34,7 +33,6 @@ export class AccountPreferencesProvider implements PreferencesProvider {
       return null;
     }
     const preferences = await this.preferencesService.getPreferences(student);
-    console.error('preferences', student.displayName, preferences);
     if (preferences === null) {
       return null;
     }
