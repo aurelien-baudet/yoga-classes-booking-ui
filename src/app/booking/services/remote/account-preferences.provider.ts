@@ -29,9 +29,6 @@ export class AccountPreferencesProvider implements PreferencesProvider {
     if (isUnknown(student)) {
       return null;
     }
-    if (isUnregisteredUser(student)) {
-      return null;
-    }
     const preferences = await this.preferencesService.getPreferences(student);
     if (preferences === null) {
       return null;
