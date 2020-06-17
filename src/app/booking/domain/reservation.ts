@@ -107,7 +107,7 @@ export type ClassId = Pick<ScheduledClass, 'id'>;
 export class SportLevel {
     static readonly Level1 = new SportLevel('Relaxante (1/5)', 0);
     static readonly Level2 = new SportLevel('Modérée (2/5)', 1);
-    static readonly Level3 = new SportLevel('Tonique (2/5)', 2);
+    static readonly Level3 = new SportLevel('Tonique (3/5)', 2);
     static readonly Level4 = new SportLevel('Sportive (4/5)', 3);
     static readonly Level5 = new SportLevel('Extrême (5/5)', 4);
     static readonly all = [SportLevel.Level1, SportLevel.Level2, SportLevel.Level3, SportLevel.Level4, SportLevel.Level5];
