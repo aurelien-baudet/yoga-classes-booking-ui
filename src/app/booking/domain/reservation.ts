@@ -105,11 +105,11 @@ export interface UnbookingForFriend {
 export type ClassId = Pick<ScheduledClass, 'id'>;
 
 export class SportLevel {
-    static readonly Level1 = new SportLevel('Relaxante', 0);
-    static readonly Level2 = new SportLevel('Modérée', 1);
-    static readonly Level3 = new SportLevel('Tonique', 2);
-    static readonly Level4 = new SportLevel('Sportive', 3);
-    static readonly Level5 = new SportLevel('Extrême', 4);
+    static readonly Level1 = new SportLevel('Relaxante (1/5)', 0);
+    static readonly Level2 = new SportLevel('Modérée (2/5)', 1);
+    static readonly Level3 = new SportLevel('Tonique (2/5)', 2);
+    static readonly Level4 = new SportLevel('Sportive (4/5)', 3);
+    static readonly Level5 = new SportLevel('Extrême (5/5)', 4);
     static readonly all = [SportLevel.Level1, SportLevel.Level2, SportLevel.Level3, SportLevel.Level4, SportLevel.Level5];
 
     private constructor(public readonly label: string, public readonly value: number) {}
@@ -130,11 +130,11 @@ export class SportLevel {
 
 
 export class PostureLevel {
-    static readonly Level1 = new PostureLevel('Fondations', 0);
-    static readonly Level2 = new PostureLevel('Classiques', 1);
-    static readonly Level3 = new PostureLevel('Intermédiaires', 2);
-    static readonly Level4 = new PostureLevel('Intenses', 3);
-    static readonly Level5 = new PostureLevel('Avancées', 4);
+    static readonly Level1 = new PostureLevel('Fondations (1/5)', 0);
+    static readonly Level2 = new PostureLevel('Classiques (2/5)', 1);
+    static readonly Level3 = new PostureLevel('Intermédiaires (3/5)', 2);
+    static readonly Level4 = new PostureLevel('Intenses (4/5)', 3);
+    static readonly Level5 = new PostureLevel('Avancées (5/5)', 4);
     static readonly all = [PostureLevel.Level1, PostureLevel.Level2, PostureLevel.Level3, PostureLevel.Level4, PostureLevel.Level5];
 
     private constructor(public readonly label: string, public readonly value: number) {}
