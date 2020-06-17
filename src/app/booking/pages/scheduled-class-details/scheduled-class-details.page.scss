@@ -281,6 +281,7 @@ ion-card-content {
         padding: value($scheduled-class-details-page-posture-level, "padding");
         font-weight: bold;
         margin-right: value($scheduled-class-details-page-layout, "summary.horizontal-spacing") / 2;
+        position: relative;
 
         ion-icon {
             @include icon-styles(value($scheduled-class-details-page-posture-level, "icon"));
@@ -291,8 +292,15 @@ ion-card-content {
             font-size: value($scheduled-class-details-page-posture-level, "font-size");
             color: value($scheduled-class-details-page-posture-level, "color");
             padding-left: value($scheduled-class-details-page-posture-level, "spacing");
-            line-height: value($scheduled-class-details-page-posture-level, "icon.height");
-            vertical-align: middle;
+            vertical-align: top;
+            line-height: normal;
+        }
+        span.number {
+          font-size: value($scheduled-class-details-page-posture-level, "number.font-size");
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          margin-left: value($scheduled-class-details-page-posture-level, "icon.width") / 2;
         }
     }
     .sport-level {
@@ -302,6 +310,7 @@ ion-card-content {
         padding: value($scheduled-class-details-page-sport-level, "padding");
         font-weight: bold;
         margin-left: value($scheduled-class-details-page-layout, "summary.horizontal-spacing") / 2;
+        position: relative;
 
         ion-icon {
             @include icon-styles(value($scheduled-class-details-page-sport-level, "icon"));
@@ -312,8 +321,15 @@ ion-card-content {
             font-size: value($scheduled-class-details-page-sport-level, "font-size");
             color: value($scheduled-class-details-page-sport-level, "color");
             padding-left: value($scheduled-class-details-page-sport-level, "spacing");
-            line-height: value($scheduled-class-details-page-sport-level, "icon.height");
-            vertical-align: middle;
+            vertical-align: top;
+            line-height: normal;
+        }
+        span.number {
+          font-size: value($scheduled-class-details-page-sport-level, "number.font-size");
+          position: absolute;
+          bottom: 0;
+          right: 50%;
+          margin-left: value($scheduled-class-details-page-sport-level, "icon.width") / 2;
         }
     }
   }

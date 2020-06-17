@@ -1,3 +1,5 @@
+import { AnyStudentProvider } from './../../services/remote/any-student.provider';
+import { AutoCompleteService } from 'ionic4-auto-complete';
 import { BookingService } from 'src/app/booking/services/booking.service';
 import { DateUtil } from './../../../common/util/date.util';
 import { Component, TemplateRef, ViewChild } from '@angular/core';
@@ -31,6 +33,7 @@ export class ClassesPage {
   manageClassStateProvider: ManageClassStateProvider;
   lessonDetailsProvider: DetailsStateProvider<Lesson> & DetailsStateUpdateProvider<Lesson>;
   preferencesProvider: PreferencesProvider;
+  searchFriendProvider: AutoCompleteService;
 
   classes: ScheduledClass[] = [];
   unscheduledLessons: Lesson[] = [];
@@ -65,6 +68,7 @@ export class ClassesPage {
     this.manageClassStateProvider = new ManageableProvider();
     this.lessonDetailsProvider = new InMemoryUpdatableDetailsStateProvider(sameLessonPredicate);
     this.preferencesProvider = new AccountPreferencesProvider(preferencesService);
+    this.searchFriendProvider = new AnyStudentProvider();
   }
 
   async ionViewDidEnter() {

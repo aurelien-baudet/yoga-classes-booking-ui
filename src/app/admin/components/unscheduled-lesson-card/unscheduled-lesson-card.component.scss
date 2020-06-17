@@ -114,6 +114,7 @@ ion-card-content {
             display: inline-block;
             padding: value($unscheduled-lesson-card-posture-level, "padding");
             font-weight: bold;
+            position: relative;
 
             ion-icon {
                 @include icon-styles(value($unscheduled-lesson-card-posture-level, "icon"));
@@ -124,14 +125,22 @@ ion-card-content {
                 font-size: value($unscheduled-lesson-card-posture-level, "font-size");
                 color: value($unscheduled-lesson-card-posture-level, "color");
                 padding-left: value($unscheduled-lesson-card-posture-level, "spacing");
-                line-height: value($unscheduled-lesson-card-posture-level, "icon.height");
-                vertical-align: middle;
+                vertical-align: top;
+            }
+            span.number {
+                font-size: value($unscheduled-lesson-card-sport-level, "number.font-size");
+                position: absolute;
+                bottom: 0;
+                left: value($unscheduled-lesson-card-posture-level, "icon.width") + value($scheduled-class-card-posture-level, "padding", "left");
+                right: value($unscheduled-lesson-card-posture-level, "padding", "right");
+                text-align: center;
             }
         }
         .sport-level {
             display: inline-block;
             padding: value($unscheduled-lesson-card-sport-level, "padding");
             font-weight: bold;
+            position: relative;
 
             ion-icon {
                 @include icon-styles(value($unscheduled-lesson-card-sport-level, "icon"));
@@ -142,8 +151,15 @@ ion-card-content {
                 font-size: value($unscheduled-lesson-card-sport-level, "font-size");
                 color: value($unscheduled-lesson-card-sport-level, "color");
                 padding-left: value($unscheduled-lesson-card-sport-level, "spacing");
-                line-height: value($unscheduled-lesson-card-sport-level, "icon.height");
-                vertical-align: middle;
+                vertical-align: top;
+            }
+            span.number {
+                font-size: value($unscheduled-lesson-card-sport-level, "number.font-size");
+                position: absolute;
+                bottom: 0;
+                left: value($unscheduled-lesson-card-posture-level, "icon.width") + value($scheduled-class-card-posture-level, "padding", "left");
+                right: value($unscheduled-lesson-card-posture-level, "padding", "right");
+                text-align: center;
             }
         }
     }

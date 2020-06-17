@@ -157,6 +157,7 @@ ion-card-content {
             display: inline-block;
             padding: value($scheduled-class-card-posture-level, "padding");
             font-weight: bold;
+            position: relative;
 
             ion-icon {
                 @include icon-styles(value($scheduled-class-card-posture-level, "icon"));
@@ -167,14 +168,22 @@ ion-card-content {
                 font-size: value($scheduled-class-card-posture-level, "font-size");
                 color: value($scheduled-class-card-posture-level, "color");
                 padding-left: value($scheduled-class-card-posture-level, "spacing");
-                line-height: value($scheduled-class-card-posture-level, "icon.height");
-                vertical-align: middle;
+                vertical-align: top;
+            }
+            span.number {
+                font-size: value($scheduled-class-card-posture-level, "number.font-size");
+                position: absolute;
+                bottom: 0;
+                left: value($scheduled-class-card-posture-level, "icon.width") + value($scheduled-class-card-posture-level, "padding", "left");
+                right: value($scheduled-class-card-posture-level, "padding", "right");
+                text-align: center;
             }
         }
         .sport-level {
             display: inline-block;
             padding: value($scheduled-class-card-sport-level, "padding");
             font-weight: bold;
+            position: relative;
 
             ion-icon {
                 @include icon-styles(value($scheduled-class-card-sport-level, "icon"));
@@ -185,8 +194,15 @@ ion-card-content {
                 font-size: value($scheduled-class-card-sport-level, "font-size");
                 color: value($scheduled-class-card-sport-level, "color");
                 padding-left: value($scheduled-class-card-sport-level, "spacing");
-                line-height: value($scheduled-class-card-sport-level, "icon.height");
-                vertical-align: middle;
+                vertical-align: top;
+            }
+            span.number {
+                font-size: value($scheduled-class-card-sport-level, "number.font-size");
+                position: absolute;
+                bottom: 0;
+                left: value($scheduled-class-card-sport-level, "icon.width") + value($scheduled-class-card-sport-level, "padding", "left");
+                right: value($scheduled-class-card-sport-level, "padding", "right");
+                text-align: center;
             }
         }
     }

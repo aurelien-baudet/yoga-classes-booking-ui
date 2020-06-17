@@ -408,23 +408,29 @@ $scheduled-class-card-waiting-places: (
 $scheduled-class-card-posture-level: (
   "font-size": 13px,
   "color": var(--ion-color-secondary),
-  "padding": 4px 0,
+  "padding": 4px 10px 4px 0,
   "spacing": 5px,
   "icon": (
     "colors": var(--ion-color-primary-tint) var(--ion-color-primary-contrast),
     "width": 24px, 
     "height": 22px
+  ),
+  "number": (
+    "font-size": 9px
   )
 );
 $scheduled-class-card-sport-level: (
   "font-size": 13px,
   "color": var(--ion-color-secondary),
-  "padding": 4px 0 4px 10px,
+  "padding": 4px 0 4px 0,
   "spacing": 5px,
   "icon": (
     "colors": var(--ion-color-primary-tint) var(--ion-color-primary),
     "width": 24px, 
     "height": 22px
+  ),
+  "number": (
+    "font-size": 9px
   )
 );
 $scheduled-class-card-details: (

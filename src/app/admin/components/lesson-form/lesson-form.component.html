@@ -36,7 +36,7 @@
       <ion-select-option [value]="null">Aucun</ion-select-option>
       <ion-select-option 
         *ngFor="let level of sportLevels"
-        [value]="level.value">{{ level.label }}</ion-select-option>
+        [value]="level.value">{{ level.label }} [{{ level.value + 1 }}]</ion-select-option>
     </ion-select>
     <div class="validation-errors" [class.invalid]="sportLevel.invalid && (sportLevel.dirty || sportLevel.touched)">
     </div>
@@ -52,7 +52,7 @@
       <ion-select-option [value]="null">Aucun</ion-select-option>
       <ion-select-option 
         *ngFor="let level of postureLevels"
-        [value]="level.value">{{ level.label }}</ion-select-option>
+        [value]="level.value">{{ level.label }} [{{ level.value + 1 }}]</ion-select-option>
     </ion-select>
     <div class="validation-errors" [class.invalid]="postureLevel.invalid && (postureLevel.dirty || sportLevel.touched)">
       <div *ngIf="postureLevel.invalid && postureLevel.errors.required">Le niveau d'intensité est obligatoire</div>
