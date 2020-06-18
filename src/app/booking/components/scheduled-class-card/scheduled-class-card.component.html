@@ -42,14 +42,14 @@
       <div *ngIf="getPostureLevel()" class="posture-level level-{{ getPostureLevel().value }}">
         <ion-icon slot="icon-only" name="app-posture-level"></ion-icon>
         <div>
-          <span>{{ getPostureLevel().label }}</span>
+          <span class="label">{{ getPostureLevel().label }}</span>
           <span class="number">[{{ getPostureLevel().value + 1 }}/5]</span>
         </div>
       </div>
       <div *ngIf="getSportLevel()" class="sport-level level-{{ getSportLevel().value }}">
         <ion-icon slot="icon-only" name="app-sport-level"></ion-icon>
         <div>
-          <span>{{ getSportLevel().label }}</span>
+          <span class="label">{{ getSportLevel().label }}</span>
           <span class="number">[{{ getSportLevel().value + 1 }}/5]</span>
         </div>
       </div>
