@@ -54,13 +54,17 @@
           </div>
           <div *ngIf="getPostureLevel()" class="posture-level level-{{ getPostureLevel().value }}">
             <ion-icon slot="icon-only" name="app-posture-level"></ion-icon>
-            <span>{{ getPostureLevel().label }}</span>
-            <span class="number">[{{ getPostureLevel().value + 1 }}/5]</span>
+            <div>
+              <span>{{ getPostureLevel().label }}</span>
+              <span class="number">[{{ getPostureLevel().value + 1 }}/5]</span>
+            </div>
           </div>
           <div *ngIf="getSportLevel()" class="sport-level level-{{ getSportLevel().value }}">
             <ion-icon slot="icon-only" name="app-sport-level"></ion-icon>
-            <span>{{ getSportLevel().label }}</span>
-            <span class="number">[{{ getSportLevel().value + 1 }}/5]</span>
+            <div>
+              <span>{{ getSportLevel().label }}</span>
+              <span class="number">[{{ getSportLevel().value + 1 }}/5]</span>
+            </div>
           </div>
         </div>
         <div class="cancel-details" *ngIf="manageClassStateProvider.isCanceled(scheduledClass)">

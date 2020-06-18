@@ -281,26 +281,26 @@ ion-card-content {
         padding: value($scheduled-class-details-page-posture-level, "padding");
         font-weight: bold;
         margin-right: value($scheduled-class-details-page-layout, "summary.horizontal-spacing") / 2;
-        position: relative;
 
         ion-icon {
             @include icon-styles(value($scheduled-class-details-page-posture-level, "icon"));
             vertical-align: middle;
         }
-        span {
-            display: inline-block;
-            font-size: value($scheduled-class-details-page-posture-level, "font-size");
-            color: value($scheduled-class-details-page-posture-level, "color");
-            padding-left: value($scheduled-class-details-page-posture-level, "spacing");
-            vertical-align: top;
-            line-height: normal;
+        div {
+          display: inline-block;
+          padding-left: value($scheduled-class-details-page-posture-level, "spacing");
+          color: value($scheduled-class-details-page-posture-level, "color");
+          vertical-align: middle;
+          line-height: normal;
+        }
+        span.label {
+          font-size: value($scheduled-class-details-page-posture-level, "font-size");
+          display: block;
         }
         span.number {
           font-size: value($scheduled-class-details-page-posture-level, "number.font-size");
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          margin-left: value($scheduled-class-details-page-posture-level, "icon.width") / 2;
+          display: block;
+          text-align: center;
         }
     }
     .sport-level {
@@ -310,26 +310,26 @@ ion-card-content {
         padding: value($scheduled-class-details-page-sport-level, "padding");
         font-weight: bold;
         margin-left: value($scheduled-class-details-page-layout, "summary.horizontal-spacing") / 2;
-        position: relative;
 
         ion-icon {
             @include icon-styles(value($scheduled-class-details-page-sport-level, "icon"));
             vertical-align: middle;
         }
-        span {
-            display: inline-block;
-            font-size: value($scheduled-class-details-page-sport-level, "font-size");
-            color: value($scheduled-class-details-page-sport-level, "color");
-            padding-left: value($scheduled-class-details-page-sport-level, "spacing");
-            vertical-align: top;
-            line-height: normal;
+        div {
+          display: inline-block;
+          color: value($scheduled-class-details-page-sport-level, "color");
+          padding-left: value($scheduled-class-details-page-sport-level, "spacing");
+          vertical-align: middle;
+          line-height: normal;
+        }
+        span.label {
+          font-size: value($scheduled-class-details-page-sport-level, "font-size");
+          display: block;
         }
         span.number {
           font-size: value($scheduled-class-details-page-sport-level, "number.font-size");
-          position: absolute;
-          bottom: 0;
-          right: 50%;
-          margin-left: value($scheduled-class-details-page-sport-level, "icon.width") / 2;
+          display: block;
+          text-align: center;
         }
     }
   }
