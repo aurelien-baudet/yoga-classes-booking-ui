@@ -53,6 +53,8 @@ const routes: Routes = [
       loadChildren: () => import('./common/pages/network-unavailable/network-unavailable.module').then( m => m.NetworkUnavailablePageModule) },
   { path: 'classes/:classId',
       loadChildren: () => import('./booking/pages/scheduled-class-details/scheduled-class-details.module').then(m => m.ScheduledClassDetailsPageModule) },
+  { path: 'information/privacy',
+      loadChildren: () => import('./common/pages/privacy/privacy.module').then( m => m.PrivacyPageModule) },
   { path: '**',
       loadChildren: () => import('./common/pages/not-found/not-found.module').then( m => m.NotFoundPageModule) },
 ];

@@ -1,0 +1,12 @@
+@import "../../../../theme/variables";
+
+ion-content {
+  --padding-top: #{value($info-pages, "padding", "top")};
+  --padding-bottom: #{value($info-pages, "padding", "bottom")};
+  --padding-start: #{value($info-pages, "padding", "left")};
+  --padding-end: #{value($info-pages, "padding", "right")};
+}
+
+p {
+  text-align: justify;
+}
