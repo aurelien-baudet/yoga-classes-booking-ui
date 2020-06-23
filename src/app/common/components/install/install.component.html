@@ -1,0 +1,15 @@
+<div *ngIf="!closed && (isAndroidWeb() || isIPhoneWeb())" [class.closed]="closed">
+  <ion-button class="close" *ngIf="closeable" (click)="closed = true">
+    <ion-icon slot="icon-only" name="app-close"></ion-icon>
+  </ion-button>
+  <ion-icon name="app-application-icon" class="app-icon"></ion-icon>
+  <div class="download">
+    <span>{{ message }}</span>
+    <div class="android-app" *ngIf="isAndroidWeb()">
+      <a href='https://play.google.com/store/apps/details?id=fr.aba.yogasaintpierre&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Disponible sur Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/fr_badge_web_generic.png'/></a>
+    </div>
+    <div class="iphone-app" *ngIf="isIPhoneWeb()">
+      <span>Bientôt disponible</span>
+    </div>
+  </div>
+</div>

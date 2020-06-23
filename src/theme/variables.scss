@@ -1086,3 +1086,34 @@ $info-pages: (
 $error-pages: (
   "padding": 20px
 );
+
+
+$install-app: (
+  "font-size": 10px,
+  "color": var(--ion-color-secondary),
+  "padding": 10px,
+  "background": linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(201,206,212,1) 100%),
+  "app-icon": (
+    "width": 60px,
+    "height": 60px,
+    "border-radius": 10px
+  ),
+  "spacing": 10px,
+  "download": (
+    "margin": 0 10px 0 0,
+    "android-button": (
+      "width": 135px
+    )
+  ),
+  "close": (
+    "position": (
+      "top": 5px,
+      "right": 5px
+    ),
+    "icon": (
+      "width": 12px,
+      "height": 12px,
+      "colors": var(--ion-color-secondary) var(--ion-color-secondary-contrast)
+    )
+  )
+)

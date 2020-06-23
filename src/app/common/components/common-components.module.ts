@@ -1,3 +1,4 @@
+import { InstallComponent } from './install/install.component';
 import { LoginAvailableValidator } from './login-available.validator';
 import { CalendarComponent } from './calendar/calendar.component';
 import { PopoverService } from 'src/app/common/components/popover/popover.service';
@@ -27,7 +28,8 @@ import { DateMaskDirective } from './date-mask.directive';
     TimeMaskDirective,
     DateMaskDirective,
     PlaceDetailsComponent,
-    LoginAvailableValidator
+    LoginAvailableValidator,
+    InstallComponent
   ],
   exports: [
     HelpButtonComponent,
@@ -36,7 +38,8 @@ import { DateMaskDirective } from './date-mask.directive';
     DateRangePipe,
     CalendarComponent,
     PlaceDetailsComponent,
-    LoginAvailableValidator
+    LoginAvailableValidator,
+    InstallComponent
   ],
   providers: [
     NotificationService,

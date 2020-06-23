@@ -86,6 +86,25 @@ ion-menu {
     }
   }
 
+  app-install {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    > div {
+      background: none !important;
+      
+      .app-icon {
+        display: none;
+      }
+      .download {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+    }
+  }
+
   .current-user {
     display: none;
   }

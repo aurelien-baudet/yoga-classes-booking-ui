@@ -1,0 +1,44 @@
+@import "../../../../theme/variables";
+@import "../../../../theme/icons-utils";
+@import "../../../../theme/button-utils";
+
+:host > div {
+  position: relative;
+  font-size: value($install-app, "font-size");
+  color: value($install-app, "color");
+  padding: value($install-app, "padding");
+  background: value($install-app, "background");
+  text-align: center;
+
+  &.closed {
+    padding: 0;
+    display: none;
+  }
+}
+
+
+.close {
+  position: absolute;
+  right: value($install-app, "close.position.right");
+  top: value($install-app, "close.position.top");
+
+  @include round-icon-button(value($install-app, "close"));
+}
+
+.app-icon {
+  position: absolute;
+  left: value($install-app, "padding", "left");
+  top: value($install-app, "padding", "top");
+  @include icon-styles(value($install-app, "app-icon"));
+  border-radius: value($install-app, "app-icon.border-radius");
+}
+
+.download {
+  margin: value($install-app, "download.margin");
+  margin-left: value($install-app, "app-icon.width") + value($install-app, "spacing") + value($install-app, "download.margin", "left");
+}
+
+.android-app a {
+  display: inline-block;
+  width: value($install-app, "download.android-button.width");
+}

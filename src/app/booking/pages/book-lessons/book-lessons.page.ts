@@ -20,7 +20,7 @@ import { InMemoryUpdatablePendingStateProvider } from '../../services/local/in-m
 import { BookedClassesBookingStateProvider } from '../../services/local/booked-classes-booking-state.provider';
 import { PopoverService, PopoverWrapper } from 'src/app/common/components/popover/popover.service';
 import { ApplicationEventService } from 'src/app/common/services/application-event.service';
-import { IonContent } from '@ionic/angular';
+import { IonContent, Platform } from '@ionic/angular';
 import { CalendarService } from 'src/app/common/services/calendar.service';
 
 @Component({
