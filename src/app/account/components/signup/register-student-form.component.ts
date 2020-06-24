@@ -52,6 +52,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.student = defaultModel();
     }
   }
+  @Input()
+  submitText = 'Créer mon compte';
 
   @Output()
   register = new EventEmitter<StudentRegistration>();

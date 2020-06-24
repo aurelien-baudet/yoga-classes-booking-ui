@@ -72,6 +72,7 @@ ion-card-content {
         }
         .place {
             ion-button {
+                --padding-start: 4px;
                 font-size: value($scheduled-class-card-place, "font-size");
                 font-weight: bold;
                 @include discreet-button(value($scheduled-class-card-place, "color"));

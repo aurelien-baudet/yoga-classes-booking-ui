@@ -8,14 +8,18 @@
 <ion-content>
     <p>Avant de t'inscire à un cours, dis nous qui tu es</p>
     <app-social-login (authenticate)="authenticate($event)"></app-social-login>
-    <ion-segment (ionChange)="segmentChanged($event)" [value]="showLogin() ? 'login' : 'unregistered'">
-        <ion-segment-button value="login">Connecte toi</ion-segment-button>
-        <ion-segment-button value="unregistered">Essayer sans compte</ion-segment-button>
+    <ion-segment (ionChange)="segmentChanged($event)" [value]="showLogin() ? 'login' : 'signup'">
+      <ion-segment-button value="signup">Créé ton compte</ion-segment-button>
+      <ion-segment-button value="login">Connecte toi</ion-segment-button>
     </ion-segment>
-    <app-login-form *ngIf="showLogin()" (login)="login($event)" (change)="loginErrors = []" [errors]="loginErrors" submitText="Terminer ma réservation"></app-login-form>
-    <div *ngIf="showLogin()" class="register">
-      <p>Pas encore de compte ?</p>
-      <ion-button (click)="register()">Créé ton compte</ion-button>
-    </div>
-    <app-unregistered-info-form *ngIf="showUnregistered()" [unregisteredUser]="getUnregisteredUserInfo()" (continue)="finishBooking($event)" submitText="Terminer ma réservation"></app-unregistered-info-form>
+    <app-login-form *ngIf="showLogin()" 
+      (login)="login($event)" 
+      (change)="loginErrors = []" 
+      [errors]="loginErrors" 
+      submitText="Terminer ma réservation"></app-login-form>
+    <app-register-student-form *ngIf="showSignup()"
+      (register)="registerStudent($event)"
+      (change)="signupErrors = []"
+      [errors]="signupErrors"
+      submitText="Terminer ma réservation"></app-register-student-form>
 </ion-content>

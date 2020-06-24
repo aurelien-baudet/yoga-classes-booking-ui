@@ -1,3 +1,4 @@
+import { StudentRegistration } from 'src/app/account/domain/student';
 import { UnregisteredUserRegistration } from './../../domain/unregistered';
 import { isUnregisteredUser } from './../../domain/utils';
 import { CurrentRoute } from 'src/app/common/util/router.util';
@@ -16,9 +17,10 @@ import { BookingService } from 'src/app/booking/services/booking.service';
   styleUrls: ['./who-are-you.page.scss'],
 })
 export class WhoAreYouPage {
-  private segment = 'login';
+  private segment = 'signup';
   currentUser: User | UnregisteredUser | null;
   loginErrors: ApplicationError[];
+  signupErrors: ApplicationError[];
 
   constructor(private accountService: AccountService,
               private router: Router,
@@ -32,15 +34,20 @@ export class WhoAreYouPage {
     try {
       await this.accountService.login(credentials.login, credentials.password);
       this.redirect(['']);
-    } catch(e) {
+    } catch (e) {
       this.loginErrors = [e];
     }
   }
 
-  async finishBooking(student: UnregisteredUserRegistration) {
-    await this.accountService.saveUnregisterdUserInfo(student);
-    this.redirect(['']);
+  async registerStudent(student: StudentRegistration) {
+    try {
+      await this.accountService.registerStudent(student);
+      this.redirect(['']);
+    } catch (e) {
+      this.signupErrors = [e];
+    }
   }
+
 
   register() {
     this.router.navigate(['users', 'signup'], {
@@ -56,15 +63,8 @@ export class WhoAreYouPage {
     return this.segment === 'login';
   }
 
-  showUnregistered() {
-    return this.segment === 'unregistered';
-  }
-
-  getUnregisteredUserInfo() {
-    if (isUnregisteredUser(this.currentUser)) {
-      return this.currentUser;
-    }
-    return null;
+  showSignup() {
+    return this.segment === 'signup';
   }
 
   async authenticate(authenticator: SocialAuthenticator) {
