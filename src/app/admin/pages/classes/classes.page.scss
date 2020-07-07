@@ -6,6 +6,26 @@
   text-align: center;
 }
 
+ion-toolbar {
+  position: relative;
+
+  .refresh {
+    position: absolute;
+    top: value($admin-manage-classes-page, "refresh.position.top");
+    right: value($admin-manage-classes-page, "refresh.position.right");
+
+    ion-button {
+      @include round-icon-button(value($admin-manage-classes-page, "refresh.button"));
+      margin: 0;
+    }
+    ion-spinner {
+      width: value($admin-manage-classes-page, "refresh.spinner.width");
+      height: value($admin-manage-classes-page, "refresh.spinner.height");
+      margin: value($admin-manage-classes-page, "refresh.spinner.margin");
+    }
+  }
+}
+
 ion-button.add-lesson {
   @include round-icon-button(value($admin-manage-classes-page, "add-lesson-button"));
   margin: value($admin-manage-classes-page, "add-lesson-button.margin");

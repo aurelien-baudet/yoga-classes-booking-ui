@@ -47,6 +47,7 @@ export class ClassesPage {
   @ViewChild('waitingStudents', { static: true })
   waitingStudents: TemplateRef<any>;
   lastClick: Event; // used for popover
+  loading = true;
 
   private popover: PopoverWrapper;
   private classes$ = new Subject<ScheduledClass[]>();
@@ -140,6 +141,13 @@ export class ClassesPage {
     }, 0);
   }
 
+  async manualRefresh(event?: any) {
+    await this.refreshClasses();
+    if (event) {
+      event.target.complete();
+    }
+  }
+
   async bookForFriend(booking: BookingForFriend) {
     alert('Bientôt disponible');
   }
@@ -171,8 +179,10 @@ export class ClassesPage {
   }
 
   private async refreshClasses() {
+    this.loading = true;
     this.classes = await this.classService.list();
     this.classes$.next(this.classes);
     this.unscheduledLessons = await this.classService.listUnscheduledLessons();
+    this.loading = false;
   }
 }

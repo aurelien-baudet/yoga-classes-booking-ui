@@ -789,6 +789,24 @@ $student-list-popover: (
 
 
 $admin-manage-classes-page: (
+  "refresh": (
+    "position": (
+      "top": 14px,
+      "right": 10px
+    ),
+    "button": (
+      "icon": (
+        "color": var(--ion-color-primary),
+        "width": 30px,
+        "height": 30px
+      )
+    ),
+    "spinner": (
+      "width": 23px,
+      "height": 23px,
+      "margin": 5px 4px
+    )
+  ),
   "add-lesson-button": (
     "margin": 20px 0 0 0,
     "icon": (

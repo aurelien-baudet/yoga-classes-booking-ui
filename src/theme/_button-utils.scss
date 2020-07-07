@@ -33,6 +33,9 @@
   @include discreet-button(transparent);
   --padding-start: 0;
   --padding-end: 0;
+  @if (value($root-styles, "icon.color") != null) {
+    --color: #{value($root-styles, "icon.color")};
+  }
 
   ion-icon {
       @include icon-styles(value($root-styles, "icon"));

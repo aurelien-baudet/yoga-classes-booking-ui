@@ -2,10 +2,19 @@
   <ion-toolbar>
     <ion-menu-button></ion-menu-button>
     <ion-title>Gestion des cours</ion-title>
+    <div class="refresh">
+      <ion-button (click)="manualRefresh()" *ngIf="!loading">
+        <ion-icon name="refresh-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-spinner *ngIf="loading"></ion-spinner>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="manualRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-button class="add-lesson" (click)="addLesson()" size="small">
     <ion-icon slot="icon-only" name="app-add-lesson"></ion-icon>
   </ion-button>
