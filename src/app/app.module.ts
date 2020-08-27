@@ -32,7 +32,7 @@ import { UnauthorizedInterceptor } from './account/services/remote/unauthorized.
 import { CommonComponentsModule } from './common/components/common-components.module';
 import { PlaceService } from './admin/services/place.service';
 import { RestPlaceService } from './admin/services/remote/rest-place.service';
-import { DateUtil } from './common/util/date.util';
+import { DateUtil, TIMEZONE } from './common/util/date.util';
 import { MockClassService } from './booking/services/mocks/mock-class.service';
 import { MockBookingService } from './booking/services/mocks/mock-booking.service';
 import { MockPlaceService } from './admin/services/mocks/mock-place.service';
@@ -93,6 +93,7 @@ export const calendarServiceFactory = (platform: Platform, nativeCalendar: Calen
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR' },
+    { provide: TIMEZONE, useValue: 'UTC+4' },
     StatusBar,
     SplashScreen,
     CurrentRoute,

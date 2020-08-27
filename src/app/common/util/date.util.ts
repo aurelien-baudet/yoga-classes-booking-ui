@@ -1,18 +1,21 @@
 import { DateRange, Instant } from './../../booking/domain/general';
 import { formatDate } from '@angular/common';
-import { Injectable, Inject, LOCALE_ID } from '@angular/core';
+import { Injectable, Inject, InjectionToken, LOCALE_ID } from '@angular/core';
+
+export const TIMEZONE = new InjectionToken<string>('TIMEZONE');
 
 @Injectable()
 export class DateUtil {
   
-  constructor(@Inject(LOCALE_ID) private locale: string) {}
+  constructor(@Inject(LOCALE_ID) private locale: string,
+              @Inject(TIMEZONE) private timezone: string) {}
 
   formatDateTimeRange(range: DateRange) {
     return `${this.formatStart(range.start)} - ${this.formatEnd(range.end)}`;
   }
 
   formatDateRange(range: DateRange) {
-    return formatDate(range.start, 'EEEE d MMMM', this.locale);
+    return formatDate(range.start, 'EEEE d MMMM', this.locale, this.timezone);
   }
 
   formatTimeRange(range: DateRange) {
@@ -20,7 +23,7 @@ export class DateUtil {
   }
 
   formatHour(date: number | Date) {
-      return formatDate(date, this.formatHourPattern(date), this.locale);
+    return formatDate(date, this.formatHourPattern(date), this.locale, this.timezone);
   }
 
   formatHourPattern(date: number | Date) {
@@ -31,7 +34,7 @@ export class DateUtil {
   }
 
   formatHourString(text: string, partial = false) {
-    return text.replace(/(\d{1,2})([h:])?(\d{0,2})/, (_, hours, separator, minutes) => {
+    return text.replace(/(\d{1,2})([h:])?(\d{0,2})/i, (_, hours, separator, minutes) => {
       if (separator) {
         return hours + 'h' + minutes;
       }
@@ -46,7 +49,7 @@ export class DateUtil {
   }
 
   formatDate(date: number | Date) {
-    return formatDate(date, 'dd/MM/yyyy', this.locale);
+    return formatDate(date, 'dd/MM/yyyy', this.locale, this.timezone);
   }
 
   formatDateString(text: string, partial = false) {
@@ -71,7 +74,7 @@ export class DateUtil {
   }
 
   toISODateString(date: number | Date): any {
-    return formatDate(date, 'yyyy-MM-dd', this.locale);
+    return formatDate(date, 'yyyy-MM-dd', this.locale, this.timezone);
   }
 
   frequencyIterable(repeat: string, from: DateRange, until: Instant) {
@@ -91,11 +94,11 @@ export class DateUtil {
   }
 
   private formatStart(start: number | Date) {
-    return formatDate(start, 'EEEE d MMMM ' + this.formatHourPattern(start), this.locale);
+    return formatDate(start, 'EEEE d MMMM ' + this.formatHourPattern(start), this.locale, this.timezone);
   }
 
   private formatEnd(end: number | Date) {
-    return formatDate(end, this.formatHourPattern(end), this.locale);
+    return formatDate(end, this.formatHourPattern(end), this.locale, this.timezone);
   }
 }
 
