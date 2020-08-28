@@ -16,6 +16,7 @@ import { CalendarModule  } from 'ion4-calendar';
 import { TimeMaskDirective } from './time-mask.directive';
 import { PlaceDetailsComponent } from './place-details/place-details.component';
 import { DateMaskDirective } from './date-mask.directive';
+import { PhoneNumberFormatValidator } from './phone-number-format.validator';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { DateMaskDirective } from './date-mask.directive';
     DateMaskDirective,
     PlaceDetailsComponent,
     LoginAvailableValidator,
-    InstallComponent
+    InstallComponent,
+    PhoneNumberFormatValidator
   ],
   exports: [
     HelpButtonComponent,
@@ -39,7 +41,8 @@ import { DateMaskDirective } from './date-mask.directive';
     CalendarComponent,
     PlaceDetailsComponent,
     LoginAvailableValidator,
-    InstallComponent
+    InstallComponent,
+    PhoneNumberFormatValidator
   ],
   providers: [
     NotificationService,

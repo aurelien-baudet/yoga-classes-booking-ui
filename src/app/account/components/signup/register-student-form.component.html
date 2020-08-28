@@ -48,13 +48,15 @@
   </ion-item>
   <ion-item class="phone">
     <ion-label position="floating">Numéro de téléphone (conseillé)</ion-label>
-    <ion-input type="tel" name="contact.phoneNumber" #phoneNumber="ngModel" [(ngModel)]="student.contact.phoneNumber"></ion-input>
+    <ion-input type="tel" name="contact.phoneNumber" #phoneNumber="ngModel" [(ngModel)]="student.contact.phoneNumber" appPhoneNumberFormat="E164"></ion-input>
     <ion-icon name="app-phone" slot="start"></ion-icon>
     <app-help-button slot="end" title="Numéro de téléphone">
       Ton numéro de téléphone pour être prévenu rapidement d'un changement 
       (changement de lieu ou annulation).
     </app-help-button>
     <div class="validation-errors" [class.invalid]="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)">
+      <div *ngIf="phoneNumber.invalid && phoneNumber.errors.missingInternationalPrefix">Le préfixe du pays (+33, +262, ...) est obligatoire</div>
+      <div *ngIf="phoneNumber.invalid && phoneNumber.errors.invalidNumber">Le numéro de téléphone n'est pas valide</div>
     </div>
   </ion-item>
   <ion-item class="visible-by-others">
