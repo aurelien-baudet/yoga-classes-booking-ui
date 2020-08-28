@@ -21,6 +21,8 @@ export class ScheduledClassCardComponent {
   @Input()
   bookingWaiting: boolean;
   @Input()
+  confirmable = false;
+  @Input()
   pending: boolean;
   @Input()
   showDetails = false;
@@ -45,6 +47,8 @@ export class ScheduledClassCardComponent {
   book = new EventEmitter<ScheduledClass>();
   @Output()
   unbook = new EventEmitter<ScheduledClass>();
+  @Output()
+  confirmBooking = new EventEmitter<ScheduledClass>();
   @Output()
   viewDetails = new EventEmitter<ScheduledClass>();
   @Output()

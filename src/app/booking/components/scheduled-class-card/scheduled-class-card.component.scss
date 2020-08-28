@@ -316,6 +316,13 @@ ion-card-content {
             right: value($scheduled-class-card-cancel-button, "position.right");
             @include round-icon-button($scheduled-class-card-cancel-button);
         }
+        ion-button.confirm-booking {
+            position: absolute;
+            bottom: value($scheduled-class-card-confirm-booking-button, "position.bottom");
+            right: value($scheduled-class-card-confirm-booking-button, "position.right");
+            border: value($scheduled-class-card-confirm-booking-button, "border");
+            @include round-icon-button($scheduled-class-card-confirm-booking-button);
+        }
     }
 
     ion-spinner {
@@ -367,6 +374,24 @@ ion-card-content {
             right: value($scheduled-class-card-states, "booking-waiting.icon.position.right");
             @include icon-styles(value($scheduled-class-card-states, "booking-waiting.icon"));
         }
+    }
+}
+.booked.booking-waiting.confirmable {
+    .state-icons {
+        ion-icon {
+            @include icon-styles(value($scheduled-class-card-states, "booking-waiting-confirmable.icon"));
+        }
+    }
+    .remaining-places {
+        ion-icon {
+            @include icon-styles(value($scheduled-class-card-states, "booking-waiting-confirmable.remaining-places.icon"));
+        }
+        ion-badge {
+            --color: #{value($scheduled-class-card-states, "booking-waiting-confirmable.remaining-places.color")};
+        }
+    }
+    ion-button.unbook-class {
+        bottom: value($scheduled-class-card-states, "booking-waiting-confirmable.cancel-button.position.bottom");
     }
 }
 .canceled,

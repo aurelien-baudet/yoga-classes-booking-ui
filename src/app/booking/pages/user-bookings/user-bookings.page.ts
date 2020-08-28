@@ -34,12 +34,6 @@ export class UserBookingsPage {
 
   @ViewChild('placeDetails', { static: true })
   private placeDetails: TemplateRef<any>;
-  @ViewChild('approvedNotification', { static: true })
-  private approvedNotification: TemplateRef<any>;
-  @ViewChild('waitingListNotification', { static: true })
-  private waitingListNotification: TemplateRef<any>;
-  @ViewChild('unbookedNotification', { static: true })
-  private unbookedNotification: TemplateRef<any>;
   @ViewChild('approvedStudents', { static: true })
   private approvedStudents: TemplateRef<any>;
   @ViewChild('waitingStudents', { static: true })
@@ -85,6 +79,10 @@ export class UserBookingsPage {
 
   async unbook(bookedClass: ScheduledClass) {
     await this.bookingHelper.unbook(bookedClass);
+  }
+
+  async confirmBooking(bookedClass: ScheduledClass) {
+    await this.bookingHelper.confirmBooking(bookedClass);
   }
 
   async showPlaceDetails(place: Place) {

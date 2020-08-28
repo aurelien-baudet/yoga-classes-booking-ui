@@ -1,9 +1,9 @@
-import { isUnknown, isRegisteredUser } from './../../../account/domain/utils';
+import { isUnknown, isRegisteredUser, isUnregisteredUser } from './../../../account/domain/utils';
 import { bookingApprovedForStudent } from './../../domain/reservation';
 import { UnregisteredUser } from './../../../account/domain/unregistered';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Student, StudentId } from 'src/app/account/domain/student';
+import { Student, StudentId, StudentRef } from 'src/app/account/domain/student';
 import { User, UserId, Role } from 'src/app/account/domain/user';
 import { ClassId, ScheduledClass, ClassState, Booking, Booked } from '../../domain/reservation';
 import { BookingService } from '../booking.service';
@@ -83,4 +83,21 @@ export class RestBookingService implements BookingService {
       throw e;
     }
   }
-}
+
+  async confirm(student: StudentId, bookedClass: ClassId): Promise<Booked>;
+  async confirm(uregisteredUser: UnregisteredUser, bookedClass: ClassId): Promise<Booked>;
+  async confirm(student: any, bookedClass: ClassId): Promise<Booked> {
+    if (isUnknown(student)) {
+      // TODO: throw
+    }
+    if (isUnregisteredUser(student)) {
+      throw new Error('Illegal state: unregistered users are no more in use');
+    }
+    const updated =  await this.http.patch<ScheduledClass>(`${this.serverConfig.url}/classes/${bookedClass.id}/bookings?confirm`, student)
+      .pipe(first())
+      .toPromise();
+    return {
+      bookedClass: updated,
+      approved: bookingApprovedForStudent(updated, student)
+    };
+  }}

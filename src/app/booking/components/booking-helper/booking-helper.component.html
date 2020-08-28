@@ -47,3 +47,13 @@
     <p>Tu n'es pas inscrit au cours du <strong>{{ bookedClass | dateRange }}</strong></p>
   </div>
 </ng-template>
+  
+<ng-template #placeAlreadyTakenNotification let-bookedClass="bookedClass">
+  <div class="header">
+    <span class="title">La place a déjà été prise</span>
+  </div>
+  <div class="content">
+    <p>Désolé, quelqu'un a pris la place disponible avant toi au cours du <strong>{{ bookedClass | dateRange }}</strong></p>
+  </div>
+</ng-template>
+  

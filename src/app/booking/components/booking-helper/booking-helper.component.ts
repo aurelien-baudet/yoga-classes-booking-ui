@@ -43,6 +43,8 @@ export class BookingHelperComponent {
   private alreadyBookedNotification: TemplateRef<any>;
   @ViewChild('notBookedNotification', { static: true })
   private notBookedNotification: TemplateRef<any>;
+  @ViewChild('placeAlreadyTakenNotification', { static: true })
+  private placeAlreadyTakenNotification: TemplateRef<any>;
 
   constructor(private classService: ClassService,
               private bookingService: BookingService,
@@ -51,7 +53,10 @@ export class BookingHelperComponent {
               private notificationService: NotificationService,
               private calendarService: CalendarService,
               accountService: AccountService) {
-    accountService.currentUser$.subscribe((u) => this.currentUser = u);
+    accountService.currentUser$.subscribe((u) => {
+      console.log('[booking-helper] update current user', u);
+      this.currentUser = u;
+    });
   }
 
   async book(bookedClass: ScheduledClass) {
@@ -105,6 +110,39 @@ export class BookingHelperComponent {
     }
   }
 
+  async confirmBooking(bookedClass: ScheduledClass) {
+    try {
+      if (isUnknown(this.currentUser)) {
+        console.log('unknown user so ask who he is before confirming booking');
+        return this.authenticateForConfirming(bookedClass);
+      }
+      this.pendingProvider.markPending(bookedClass);
+      // TODO: handle case when user registers another user
+      const booked = await this.bookingService.confirm(this.currentUser, bookedClass);
+      this.pendingProvider.unmarkPending(bookedClass);
+      const template = booked.approved ? this.approvedNotification : this.waitingListNotification;
+      this.notificationService.success(template, booked, {toastClass: `booked ${booked.approved ? 'approved' : 'waiting'}`});
+      this.router.navigate(this.redirection, {queryParams: {}});
+      this.refresh.emit();
+    } catch (e) {
+      if (matchesErrorCode(e, 'PLACE_ALREADY_TAKEN')) {
+        this.pendingProvider.unmarkPending(bookedClass);
+        this.notificationService.warn(this.alreadyBookedNotification, {bookedClass}, {toastClass: 'already-booked'});
+        this.router.navigate(this.redirection, {queryParams: {}});
+        this.refresh.emit();
+        return;
+      }
+      if (matchesErrorCode(e, 'PLACE_ALREADY_TAKEN_BY_SOMEONE_ELSE')) {
+        this.pendingProvider.unmarkPending(bookedClass);
+        this.notificationService.warn(this.placeAlreadyTakenNotification, {bookedClass}, {toastClass: 'place-already-taken'});
+        this.router.navigate(this.redirection, {queryParams: {}});
+        this.refresh.emit();
+        return;
+      }
+      throw e;
+    }
+  }
+
   async bookForFriend(booking: BookingForFriend) {
     alert('Bientôt disponible');
   }
@@ -126,6 +164,14 @@ export class BookingHelperComponent {
     this.router.navigate(['users', 'whoareyou'], {
       queryParams: {
         returnUrl: `${this.route.url()}?unbooking=${bookedClass.id}`
+      }
+    });
+  }
+
+  private authenticateForConfirming(bookedClass: ScheduledClass) {
+    this.router.navigate(['users', 'whoareyou'], {
+      queryParams: {
+        returnUrl: `${this.route.url()}?confirm=${bookedClass.id}`
       }
     });
   }
@@ -158,6 +204,15 @@ export class BookingHelperComponent {
     if (unbookingId) {
       const bookedClass = await this.classService.getClassInfo({id: unbookingId});
       await this.unbook(bookedClass);
+      this.router.navigate(this.redirection);
+    }
+  }
+
+  async finishConfirmBookingIfNecessary() {
+    const bookingId = this.route.getQueryParam('confirm');
+    if (bookingId) {
+      const bookedClass = await this.classService.getClassInfo({id: bookingId});
+      await this.confirmBooking(bookedClass);
       this.router.navigate(this.redirection);
     }
   }

@@ -27,7 +27,7 @@ import { PopoverService } from 'src/app/common/components/popover/popover.servic
   templateUrl: './scheduled-class-details.page.html',
   styleUrls: ['./scheduled-class-details.page.scss'],
 })
-export class ScheduledClassDetailsPage implements OnInit {
+export class ScheduledClassDetailsPage {
   private currentUser: User | UnregisteredUser;
   private bookedClassesForCurrentUser: ScheduledClass[] = [];
   protected lastClick: Event;
@@ -73,16 +73,8 @@ export class ScheduledClassDetailsPage implements OnInit {
     if (this.bookingHelper) {
       this.bookingHelper.finishBookingIfNecessary();
       this.bookingHelper.finishUnbookingIfNecessary();
+      this.bookingHelper.finishConfirmBookingIfNecessary();
     }
-  }
-
-  ngOnInit() {
-    // first time, bookingHelper not yet created so ionViewDidEnter won't be able to call it
-    // => trigger once Angular has created the component the first time
-    // once the page is created, ngOnInit is never called again
-    // => ionViewDidEnter will be used next times
-    this.bookingHelper.finishBookingIfNecessary();
-    this.bookingHelper.finishUnbookingIfNecessary();
   }
 
 
@@ -96,6 +88,12 @@ export class ScheduledClassDetailsPage implements OnInit {
   isBookable(scheduledClass: ScheduledClass) {
     return this.bookingStateProvider.isBookable(scheduledClass)
       && !this.bookingStateProvider.isBooked(scheduledClass)
+      && !this.pendingProvider.isPending(scheduledClass);
+  }
+
+  isConfirmable(scheduledClass: ScheduledClass) {
+    return this.bookingStateProvider.isConfirmable(scheduledClass)
+      && this.bookingStateProvider.isBooked(scheduledClass)
       && !this.pendingProvider.isPending(scheduledClass);
   }
 

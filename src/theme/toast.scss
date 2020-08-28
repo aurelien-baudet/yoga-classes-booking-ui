@@ -25,7 +25,8 @@
       background: value($toast-states, "unbooked.background");
     }
     &.not-booked,
-    &.already-booked {
+    &.already-booked,
+    &.place-already-taken {
       background: value($toast-states, "failed.background");
     }
 

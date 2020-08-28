@@ -488,6 +488,18 @@ $scheduled-class-card-unbook-button: (
     "height": 46px
   )
 );
+$scheduled-class-card-confirm-booking-button: (
+  "position": (
+    "bottom": 37px,
+    "right": -8px
+  ),
+  "icon": (
+    "colors": var(--ion-color-primary-shade) var(--ion-color-primary-contrast),
+    "width": 45px,
+    "height": 45px
+  ),
+  "border": 2px solid var(--ion-color-primary-contrast)
+);
 $scheduled-class-card-cancel-details: (
   "message": (
     "font-size": 12px,
@@ -558,6 +570,22 @@ $scheduled-class-card-states: (
       "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
       "width": 73px,
       "height": 73px
+    )
+  ),
+  "booking-waiting-confirmable": (
+    "icon": (
+      "colors": var(--ion-color-primary-shade) var(--ion-color-primary-contrast)
+    ),
+    "cancel-button": (
+      "position": (
+        "bottom": -7px
+      )
+    ),
+    "remaining-places": (
+      "icon": (
+        "colors": var(--ion-color-primary-shade) var(--ion-color-primary-contrast)
+      ),
+      "color": var(--ion-color-primary-shade)
     )
   ),
   "canceled": (
@@ -1103,6 +1131,23 @@ $scheduled-class-details-page-states: (
     "message": (
       "color": var(--ion-color-primary),
       "font-size": 12px
+    )
+  ),
+  "booking-waiting-confirmable": (
+    "confirm-booking": (
+      "color": var(--ion-color-secondary),
+      "height": 25px,
+      "font-size": 14px,
+      "icon": (
+        "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
+        "width": 25px,
+        "height": 25px 
+      )
+    ),
+    "message": (
+      "color": var(--ion-color-primary),
+      "font-size": 12px,
+      "margin": 10px 0 0 0
     )
   ),
   "canceled": (

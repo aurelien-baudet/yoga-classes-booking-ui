@@ -32,6 +32,8 @@ export class ClassesComponent {
   @Output()
   unbook = new EventEmitter<ScheduledClass>();
   @Output()
+  confirmBooking = new EventEmitter<ScheduledClass>();
+  @Output()
   viewDetails = new EventEmitter<ScheduledClass>();
   @Output()
   hideDetails = new EventEmitter<ScheduledClass>();

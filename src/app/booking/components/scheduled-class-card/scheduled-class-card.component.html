@@ -3,6 +3,7 @@
           [class.booked]="booked" 
           [class.booking-approved]="bookingApproved"
           [class.booking-waiting]="bookingWaiting"
+          [class.confirmable]="confirmable"
           [class.pending]="pending"
           [class.canceled]="canceled"
           [class.editable]="editable"
@@ -74,6 +75,9 @@
       <ion-button class="book-class" (click)="book.emit(scheduledClass)" *ngIf="bookable && !booked && !pending" size="small">
         <ion-icon slot="icon-only" name="app-book"></ion-icon>
       </ion-button>
+      <ion-button class="confirm-booking" (click)="confirmBooking.emit(scheduledClass)" *ngIf="confirmable && booked && !pending && bookingWaiting" size="small">
+        <ion-icon slot="icon-only" name="app-confirm-booking"></ion-icon>
+      </ion-button>
       <ion-button class="unbook-class" (click)="unbook.emit(scheduledClass)" *ngIf="bookable && booked && !pending" size="small">
         <ion-icon slot="icon-only" name="app-unbook"></ion-icon>
       </ion-button>
@@ -98,7 +102,8 @@
     <div class="state-icons">
       <ion-icon class="approved" slot="icon-only" name="app-booking-approved" *ngIf="bookable && booked && !pending && bookingApproved"></ion-icon>
       <ion-icon class="waiting" slot="icon-only" name="app-booking-waiting" *ngIf="bookable && booked && !pending && bookingWaiting"></ion-icon>
-      <ion-spinner *ngIf="bookable && pending"></ion-spinner>
+      <ion-icon class="confirmation-required" slot="icon-only" name="app-booking-confirmation-required" *ngIf="confirmable && booked && !pending && bookingWaiting"></ion-icon>
+      <ion-spinner *ngIf="(bookable || confirmable) && pending"></ion-spinner>
       <ion-icon class="canceled" slot="icon-only" name="app-canceled" *ngIf="canceled"></ion-icon>
     </div>
   </ion-card-content>

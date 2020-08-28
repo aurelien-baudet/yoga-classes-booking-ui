@@ -30,4 +30,10 @@ export class MockBookingService implements BookingService {
   async getBookedClasses(student: any): Promise<ScheduledClass[]> {
     return (classes['default'] as any).filter((c: ScheduledClass) => c.bookings.all.some((b) => b.student.displayName === 'pouet'));
   }
+
+  async confirm(student: StudentId, bookedClass: ClassId): Promise<Booked>;
+  async confirm(uregisteredUser: UnregisteredUser, bookedClass: ClassId): Promise<Booked>;
+  async confirm(student: any, bookedClass: ClassId): Promise<Booked> {
+    throw new Error('not implemented');
+  }
 }

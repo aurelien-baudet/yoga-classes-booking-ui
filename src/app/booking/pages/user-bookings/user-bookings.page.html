@@ -18,6 +18,7 @@
     [searchFriendProvider]="searchFriendProvider"
     [unbookableProvider]="unbookableProvider"
     (unbook)="unbook($event)"
+    (confirmBooking)="confirmBooking($event)"
     (viewDetails)="detailsProvider.viewDetails($event)"
     (hideDetails)="detailsProvider.hideDetails($event)"
     (showPlaceDetails)="showPlaceDetails($event)"
@@ -57,36 +58,4 @@
     [waitingBookings]="waitingBookings"
     [unbookableProvider]="unbookableProvider"
     (unbook)="bookingHelper.unbookForFriend($event)"></app-waiting-students>
-</ng-template>
-  
-
-
-<ng-template #approvedNotification let-bookedClass="bookedClass">
-  <div class="header">
-    <span class="title">Inscription confirmée</span>
-  </div>
-  <div class="content">
-    <p>Tu es inscrit au cours du <strong>{{ bookedClass | dateRange }}</strong></p>
-    <ion-button *ngIf="isMobileApp()" (click)="addToCalendar(bookedClass)" size="small">ajouter au calendrier</ion-button>
-  </div>
-</ng-template>
-
-<ng-template #waitingListNotification let-bookedClass="bookedClass">
-  <div class="header">
-    <span class="title">Inscription en file d'attente</span>
-  </div>
-  <div class="content">
-    <p>Tu es sur liste d'attente pour le cours du <strong>{{ bookedClass | dateRange }}</strong>.<br />
-      Tu recevras une notification lorsqu'une place se libèrera.</p>
-  </div>
-</ng-template>
-
-<ng-template #unbookedNotification let-bookedClass="bookedClass">
-  <div class="header">
-    <span class="title">Désinscription</span>
-  </div>
-  <div class="content">
-    <p>Tu es désinscrit du cours du <strong>{{ bookedClass | dateRange }}</strong>.</p>
-    <ion-button *ngIf="isMobileApp()" (click)="removeFromCalendar(bookedClass)" size="small">retirer du calendrier</ion-button>
-  </div>
 </ng-template>

@@ -170,33 +170,33 @@ ion-card-content {
       .pending {
         @include toggle-pending(value($scheduled-class-details-page-states, "bookable.toggle"));
       }
+
+      ion-button {
+        position: relative;
+        --padding-start: 0;
+        --padding-end: 0;
+        margin: 0;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        @include discreet-button();
+        font-size: value($scheduled-class-details-page-actions, "button.font-size");
+        color: value($scheduled-class-details-page-actions, "button.color");
+        font-weight: bold;
+        text-align: left;
+        @include toggle-button();
+
+        &.book-class {
+          @include toggle-unchecked(value($scheduled-class-details-page-states, "bookable.toggle"));
+        }
+
+        span {
+          padding-left: value($scheduled-class-details-page-actions, "button.spacing");
+          flex: auto;
+        }
+      }
     }
 
-    ion-button {
-      position: relative;
-      --padding-start: 0;
-      --padding-end: 0;
-      margin: 0;
-      margin-inline-start: 0;
-      margin-inline-end: 0;
-      @include discreet-button();
-      font-size: value($scheduled-class-details-page-actions, "button.font-size");
-      color: value($scheduled-class-details-page-actions, "button.color");
-      font-weight: bold;
-      text-align: left;
-      @include toggle-button();
-
-      &.book-class {
-        @include toggle-unchecked(value($scheduled-class-details-page-states, "bookable.toggle"));
-      }
-
-      span {
-        padding-left: value($scheduled-class-details-page-actions, "button.spacing");
-        flex: auto;
-      }
-    }
-
-    > span {
+    .waiting-list-message {
       display: block;
     }
   }
@@ -467,10 +467,31 @@ ion-card.place-changed {
         @include toggle-checked(value($scheduled-class-details-page-states, "booking-waiting.toggle"));
       }
 
-      > span {
+      .waiting-list-message {
         color: value($scheduled-class-details-page-states, "booking-waiting.message.color");
         font-size: value($scheduled-class-details-page-states, "booking-waiting.message.font-size");
       }
+    }
+  }
+}
+.booked.booking-waiting.confirmable {
+  ion-card-content {
+    .confirm-booking {
+      @include discreet-button(value($scheduled-class-details-page-states, "booking-waiting-confirmable.confirm-booking.color"));
+      height: value($scheduled-class-details-page-states, "booking-waiting-confirmable.confirm-booking.height");
+      font-size: value($scheduled-class-details-page-states, "booking-waiting-confirmable.confirm-booking.font-size");
+      font-weight: bold;
+      text-align: left;
+
+      ion-icon {
+        @include icon-styles(value($scheduled-class-details-page-states, "booking-waiting-confirmable.confirm-booking.icon"));
+      }
+    }
+    .place-available .message {
+      display: block;
+      margin: value($scheduled-class-details-page-states, "booking-waiting-confirmable.message.margin");
+      color: value($scheduled-class-details-page-states, "booking-waiting-confirmable.message.color");
+      font-size: value($scheduled-class-details-page-states, "booking-waiting-confirmable.message.font-size");
     }
   }
 }

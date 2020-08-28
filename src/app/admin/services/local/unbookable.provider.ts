@@ -17,4 +17,8 @@ export class UnbookableProvider implements BookingStateProvider {
     isBookingInWaitingList(scheduledClass: ScheduledClass): boolean {
         return false;
     }
+
+    isConfirmable(scheduledClass: ScheduledClass): boolean {
+        return false;
+    }
 }

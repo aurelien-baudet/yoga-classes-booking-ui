@@ -13,4 +13,7 @@ export abstract class BookingService {
 
   async abstract unbook(student: StudentId, bookedClass: ClassId): Promise<ScheduledClass>;
   async abstract unbook(unregisteredUser: UnregisteredUser, bookedClass: ClassId): Promise<ScheduledClass>;
+
+  async abstract confirm(student: StudentId, bookedClass: ClassId): Promise<Booked>;
+  async abstract confirm(unregisteredUser: UnregisteredUser, bookedClass: ClassId): Promise<Booked>;
 }

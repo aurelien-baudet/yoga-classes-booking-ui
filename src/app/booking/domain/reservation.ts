@@ -171,3 +171,5 @@ export const bookingApprovedForStudent = (bookedClass: ScheduledClass, student: 
 export const bookingInWaitingListForStudent = (bookedClass: ScheduledClass, student: StudentRef) =>
     bookedClass.bookings.waiting.some(isBookedForStudentPredicate(student));
 
+export const hasPlaceAvailable = (scheduledClass: ScheduledClass) =>
+    scheduledClass.bookings.approved.length < scheduledClass.lesson.maxStudents;

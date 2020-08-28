@@ -1,13 +1,14 @@
-import { isUnknown } from './../../../account/domain/utils';
+import { BookingStateProvider } from 'src/app/booking/services/single-class-state.provider';
+import { isUnknown, isBookedForRegisteredStudent } from './../../../account/domain/utils';
 import { UnregisteredUser } from 'src/app/account/domain/unregistered';
 import { Observable } from 'rxjs';
-import { bookingApprovedForStudent, bookingInWaitingListForStudent } from './../../domain/reservation';
+import { bookingApprovedForStudent, bookingInWaitingListForStudent, hasPlaceAvailable } from './../../domain/reservation';
 import { ClassState, sameClassPredicate, isCanceled } from '../../domain/reservation';
 import { ScheduledClass } from '../../domain/reservation';
 import { StudentId } from 'src/app/account/domain/student';
 import { User } from 'src/app/account/domain/user';
 
-export class BookedClassesBookingStateProvider {
+export class BookedClassesBookingStateProvider implements BookingStateProvider {
     private currentUser: User | UnregisteredUser | null;
 
     constructor(private bookedClassesForCurrentUser: ScheduledClass[],
@@ -44,5 +45,11 @@ export class BookedClassesBookingStateProvider {
             return false;
         }
         return bookingInWaitingListForStudent(scheduledClass, this.currentUser);
+    }
+
+    isConfirmable(scheduledClass: ScheduledClass): boolean {
+        return this.isBookable(scheduledClass)
+                && hasPlaceAvailable(scheduledClass)
+                && bookingInWaitingListForStudent(scheduledClass, this.currentUser);
     }
 }

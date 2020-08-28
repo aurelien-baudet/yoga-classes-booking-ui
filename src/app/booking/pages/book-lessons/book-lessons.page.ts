@@ -30,7 +30,7 @@ import { CalendarService } from 'src/app/common/services/calendar.service';
   templateUrl: './book-lessons.page.html',
   styleUrls: ['./book-lessons.page.scss'],
 })
-export class BookLessonsPage implements OnInit {
+export class BookLessonsPage {
   private currentUser: User | UnregisteredUser;
   private bookedClassesForCurrentUser: ScheduledClass[] = [];
   protected lastClick: Event;
@@ -82,17 +82,10 @@ export class BookLessonsPage implements OnInit {
     if (this.bookingHelper) {
       this.bookingHelper.finishBookingIfNecessary();
       this.bookingHelper.finishUnbookingIfNecessary();
+      this.bookingHelper.finishConfirmBookingIfNecessary();
     }
   }
 
-  ngOnInit() {
-    // first time, bookingHelper not yet created so ionViewDidEnter won't be able to call it
-    // => trigger once Angular has created the component the first time
-    // once the page is created, ngOnInit is never called again
-    // => ionViewDidEnter will be used next times
-    this.bookingHelper.finishBookingIfNecessary();
-    this.bookingHelper.finishUnbookingIfNecessary();
-  }
 
   async book(bookedClass: ScheduledClass) {
     await this.bookingHelper.book(bookedClass);
@@ -101,6 +94,11 @@ export class BookLessonsPage implements OnInit {
 
   async unbook(bookedClass: ScheduledClass) {
     await this.bookingHelper.unbook(bookedClass);
+    this.scrollTo(bookedClass);
+  }
+
+  async confirmBooking(bookedClass: ScheduledClass) {
+    await this.bookingHelper.confirmBooking(bookedClass);
     this.scrollTo(bookedClass);
   }
 

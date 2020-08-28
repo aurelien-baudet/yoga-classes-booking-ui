@@ -5,6 +5,7 @@ export abstract class BookingStateProvider {
     abstract isBooked(scheduledClass: ScheduledClass): boolean;
     abstract isBookingApproved(scheduledClass: ScheduledClass): boolean;
     abstract isBookingInWaitingList(scheduledClass: ScheduledClass): boolean;
+    abstract isConfirmable(scheduledClass: ScheduledClass): boolean;
 }
 
 export abstract class ManageClassStateProvider {

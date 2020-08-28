@@ -122,7 +122,8 @@ export class OnesignalPushNotificationService implements PushNotificationService
 
   private async confirmPresence(notification: OSNotification, data: any) {
     console.log('[OneSignal] confirmPresence', notification, data);
-    // nothing to do, booking is done automatically
+    const currentUser = await this.userService.getUserInfo();
+    await this.bookingService.confirm(currentUser, {id: data.classId});
     this.applicationEventService.refreshBookings.emit();
   }
 
