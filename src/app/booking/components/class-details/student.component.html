@@ -3,6 +3,6 @@
   <ion-spinner *ngIf="loading"></ion-spinner>
   <ion-icon *ngIf="!loading" [class.accepted]="isAccepted()" [class.refused]="isRefused()" [class.unknown]="isUnknown()" [name]="getIcon()"></ion-icon>
 </div>
-<ion-button (click)="unbook.emit(student)" size="small">
+<ion-button *ngIf="unbookable" (click)="unbook.emit(student)" size="small">
   <ion-icon slot="icon-only" name="app-unregister-friend"></ion-icon>
 </ion-button>

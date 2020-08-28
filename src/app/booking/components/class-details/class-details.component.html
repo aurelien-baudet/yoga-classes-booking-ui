@@ -7,7 +7,9 @@
 <app-approved-students 
   [approvedBookings]="scheduledClass.bookings.approved" 
   [maxStudents]="scheduledClass.lesson.maxStudents"
+  [unbookableProvider]="unbookableProvider"
   (unbook)="unbookForFriend.emit($event)"></app-approved-students>  
 <app-waiting-students 
   [waitingBookings]="scheduledClass.bookings.waiting"
+  [unbookableProvider]="unbookableProvider"
   (unbook)="unbookForFriend.emit($event)"></app-waiting-students>  

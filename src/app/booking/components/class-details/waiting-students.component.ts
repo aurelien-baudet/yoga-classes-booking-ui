@@ -3,6 +3,7 @@ import { UnregisteredUser } from './../../../account/domain/unregistered';
 import { User } from './../../../account/domain/user';
 import { Student, StudentRef } from './../../../account/domain/student';
 import { PreferencesProvider, AssistState } from 'src/app/booking/services/preferences.provider';
+import { StudentListUnbookableStateProvider } from 'src/app/booking/services/student-list-unbookable-state.provider';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Booking } from '../../domain/reservation';
 
@@ -16,6 +17,8 @@ export class WaitingStudentsComponent implements OnInit {
   waitingBookings: Booking[];
   @Input()
   preferencesProvider?: PreferencesProvider;
+  @Input()
+  unbookableProvider?: StudentListUnbookableStateProvider;
 
   @Output()
   unbook = new EventEmitter<Booking>();
@@ -47,5 +50,12 @@ export class WaitingStudentsComponent implements OnInit {
       return null;
     }
     return pair.state;
+  }
+
+  isUnbookable(booking: Booking): boolean {
+    if (!this.unbookableProvider) {
+      return false;
+    }
+    return this.unbookableProvider.isUnbookable(booking);
   }
 }

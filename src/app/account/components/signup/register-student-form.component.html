@@ -1,12 +1,16 @@
 <form (ngSubmit)="register.emit(student)" #form="ngForm" novalidate>
   <ion-item class="display-name">
-    <ion-label position="floating">Nom affiché</ion-label>
+    <ion-label position="floating">Nom affiché (ex: Prénom Nom)</ion-label>
     <ion-input type="text" name="displayName" #displayName="ngModel" [(ngModel)]="student.displayName" required></ion-input>
     <ion-icon name="app-display-name" slot="start"></ion-icon>
     <app-help-button slot="end" title="Nom affiché">
       C'est le nom qui sera visible par les autres utilisateurs. C'est aussi ce nom que ton professeur de yoga
       uilisera lors de son cours.
+      Il est préférable d'utiliser un nom qui permettra à ton professeur de yoga de t'identifier rapidement lors des cours.
     </app-help-button>
+    <div class="information-message">
+      <div>Nom compréhensible par ton professeur</div>
+    </div>
     <div class="validation-errors" [class.invalid]="displayName.invalid && (displayName.dirty || displayName.touched)">
       <div *ngIf="displayName.invalid && displayName.errors.required">Le nom affiché est obligatoire</div>
     </div>

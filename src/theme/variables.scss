@@ -176,13 +176,17 @@ $forms: (
   "font-size": 12px,
   "layout": (
     "padding": 40px 15%,
-    "space-between": 2px,
+    "space-between": 5px,
     "help": (
       "position": (
         "right": -40px
       )
     ),
     "validation": (
+      "padding": 2px 0 0 0,
+      "min-height": 18px
+    ),
+    "information": (
       "padding": 2px 0 0 0,
       "min-height": 18px
     ),
@@ -194,6 +198,11 @@ $forms: (
   "errors": (
     "font-size": 11px,
     "color": var(--ion-color-warning)
+  ),
+  "information": (
+    "font-size": 11px,
+    "color": var(--ion-color-primary),
+    "text-shadow": none
   )
 );
 
@@ -751,6 +760,7 @@ $student-list-popover: (
     "color": var(--ion-color-secondary),
     "line": 1px solid var(--ion-color-tertiary),
     "spacing": 5px,
+    "min-height": 26px,
     "unregister-button": (
       "icon": (
         "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
@@ -979,6 +989,10 @@ $book-lessons-page: (
     "width": 40px,
     "height": 40px
   )
+);
+
+$user-bookings-page: (
+  "student-list": map-merge(value($book-lessons-page, "student-list"), ()),
 );
 
 

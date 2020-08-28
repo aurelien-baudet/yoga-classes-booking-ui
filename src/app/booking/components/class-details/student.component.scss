@@ -6,6 +6,7 @@
   display: flex;
   width: 100%;
   align-items: center;
+  min-height: value($student-list-popover, "item.min-height");
 }
 
 :host ion-label {

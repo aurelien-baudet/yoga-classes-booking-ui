@@ -1,8 +1,17 @@
-::ng-deep ion-item {
+@import "../../../../theme/variables";
+
+ion-content ::ng-deep ion-item {
   --padding-start: 0;
   --padding-end: 0;
   --inner-padding-start: 0;
   --inner-padding-end: 0;
   --inner-border-width: 0 0 0 0;
   --border-width: 0 0 0 0;
+}
+
+::ng-deep app-popover {
+  app-approved-students,
+  app-waiting-students {
+    padding: value($user-bookings-page, "student-list.padding");
+  }
 }

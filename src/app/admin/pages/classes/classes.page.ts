@@ -1,3 +1,4 @@
+import { CanUnbookAnyBookingUnbookableProvider } from './../../services/local/can-unbook-any-booking.provider';
 import { AnyStudentProvider } from './../../services/remote/any-student.provider';
 import { AutoCompleteService } from 'ionic4-auto-complete';
 import { BookingService } from 'src/app/booking/services/booking.service';
@@ -19,6 +20,7 @@ import { ManageableProvider } from './../../services/local/manageable.provider';
 import { NextLessonOpenedDetailsClassStateProvider } from './../../services/local/next-lesson-opened-details-state.provider';
 import { UnbookableProvider } from './../../services/local/unbookable.provider';
 import { AlertController } from '@ionic/angular';
+import { StudentListUnbookableStateProvider } from 'src/app/booking/services/student-list-unbookable-state.provider';
 
 
 @Component({
@@ -34,6 +36,7 @@ export class ClassesPage {
   lessonDetailsProvider: DetailsStateProvider<Lesson> & DetailsStateUpdateProvider<Lesson>;
   preferencesProvider: PreferencesProvider;
   searchFriendProvider: AutoCompleteService;
+  unbookableProvider: StudentListUnbookableStateProvider;
 
   classes: ScheduledClass[] = [];
   unscheduledLessons: Lesson[] = [];
@@ -70,6 +73,7 @@ export class ClassesPage {
     this.lessonDetailsProvider = new InMemoryUpdatableDetailsStateProvider(sameLessonPredicate);
     this.preferencesProvider = new AccountPreferencesProvider(preferencesService);
     this.searchFriendProvider = new AnyStudentProvider();
+    this.unbookableProvider = new CanUnbookAnyBookingUnbookableProvider();
   }
 
   async ionViewDidEnter() {

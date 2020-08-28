@@ -78,6 +78,7 @@
         <app-class-details 
           [scheduledClass]="scheduledClass"
           [searchFriendProvider]="searchFriendProvider"
+          [unbookableProvider]="unbookableProvider"
           (bookForFriend)="bookingHelper.bookForFriend($event)"
           (unbookForFriend)="bookingHelper.unbookForFriend($event)"></app-class-details>
       </ion-card-content>

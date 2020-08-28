@@ -1,3 +1,5 @@
+import { CanUnbookOwnBookingUnbookableProvider } from './../../services/local/can-unbook-own-booking.provider';
+import { StudentListUnbookableStateProvider } from 'src/app/booking/services/student-list-unbookable-state.provider';
 import { BookingHelperComponent } from './../../components/booking-helper/booking-helper.component';
 import { ComingSoonFriendProvider } from './../../services/local/coming-soon-friend.provider';
 import { AutoCompleteService } from 'ionic4-auto-complete';
@@ -38,6 +40,10 @@ export class UserBookingsPage {
   private waitingListNotification: TemplateRef<any>;
   @ViewChild('unbookedNotification', { static: true })
   private unbookedNotification: TemplateRef<any>;
+  @ViewChild('approvedStudents', { static: true })
+  private approvedStudents: TemplateRef<any>;
+  @ViewChild('waitingStudents', { static: true })
+  private waitingStudents: TemplateRef<any>;
   @ViewChild('bookingHelper', { static: true })
   private bookingHelper: BookingHelperComponent;
 
@@ -46,6 +52,7 @@ export class UserBookingsPage {
   pendingProvider: PendingStateProvider<ScheduledClass> & PendingStateUpdateProvider<ScheduledClass>;
   manageClassStateProvider: ManageClassStateProvider;
   searchFriendProvider: AutoCompleteService;
+  unbookableProvider: StudentListUnbookableStateProvider;
 
   bookedClassesForCurrentUser: ScheduledClass[] = [];
 
@@ -63,6 +70,7 @@ export class UserBookingsPage {
     this.pendingProvider = new InMemoryUpdatablePendingStateProvider(sameClassPredicate);
     this.manageClassStateProvider = new UnmanageableProvider();
     this.searchFriendProvider = new ComingSoonFriendProvider();
+    this.unbookableProvider = new CanUnbookOwnBookingUnbookableProvider(this.accountService.currentUser$);
     this.accountService.currentUser$.subscribe(this.updateCurrentUser.bind(this));
     applicationEventService.refreshBookings.subscribe(() => {
       zone.run(() => this.refreshBookings());
@@ -87,18 +95,21 @@ export class UserBookingsPage {
   }
 
   async showClassDetails(scheduledClass: ScheduledClass) {
-    // TODO
-    console.log('TODO: show class details', scheduledClass);
+    this.router.navigate(['classes', scheduledClass.id]);
   }
 
   async showApprovedStudents(scheduledClass: ScheduledClass) {
-    // TODO
-    console.log('TODO: show approved students', scheduledClass);
+    // wrap in setTimeout in order to be able to retrieve the click event
+    setTimeout(async () => {
+      await this.popoverService.show(this.approvedStudents, {scheduledClass}, {cssClass: 'approved-students'});
+   }, 0);
   }
 
   async showWaitingStudents(scheduledClass: ScheduledClass) {
-    // TODO
-    console.log('TODO: show waiting students', scheduledClass);
+    // wrap in setTimeout in order to be able to retrieve the click event
+    setTimeout(async () => {
+      await this.popoverService.show(this.waitingStudents, {scheduledClass}, {cssClass: 'waiting-students'});
+    }, 0);
   }
 
   async bookForFriend(booking: BookingForFriend) {
@@ -128,7 +139,7 @@ export class UserBookingsPage {
     this.currentUser = user;
     this.refreshBookings();
   }
-  
+
   async refreshBookings() {
     const bookings = await this.bookingService.getBookedClasses(this.currentUser);
     this.bookedClassesForCurrentUser.splice(0, this.bookedClassesForCurrentUser.length);
