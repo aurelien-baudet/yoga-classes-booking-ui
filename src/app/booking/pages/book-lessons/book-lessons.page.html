@@ -19,6 +19,7 @@
     [pendingStateProvider]="pendingProvider"
     [manageClassStateProvider]="manageClassStateProvider"
     [searchFriendProvider]="searchFriendProvider"
+    [unbookableProvider]="unbookableProvider"
     (book)="book($event)"
     (unbook)="unbook($event)"
     (viewDetails)="detailsProvider.viewDetails($event)"
@@ -51,6 +52,7 @@
   <app-approved-students 
     [approvedBookings]="approvedBookings" 
     [maxStudents]="maxStudents"
+    [unbookableProvider]="unbookableProvider"
     (unbook)="bookingHelper.unbookForFriend($event)"></app-approved-students>
 </ng-template>
 
@@ -58,5 +60,6 @@
   let-waitingBookings="scheduledClass.bookings.waiting">
   <app-waiting-students
     [waitingBookings]="waitingBookings"
+    [unbookableProvider]="unbookableProvider"
     (unbook)="bookingHelper.unbookForFriend($event)"></app-waiting-students>
 </ng-template>

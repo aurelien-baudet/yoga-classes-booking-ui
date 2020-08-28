@@ -143,6 +143,16 @@ form {
     }
   }
 
+  .information-message {
+    color: value($forms, "information.color");
+    font-size: value($forms, "information.font-size");
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    padding: value($forms, "layout.information.padding");
+    text-shadow: value($forms, "information.text-shadow")
+  }
+
   .response-errors {
     margin: value($forms, "layout.response.margin");
     min-height: value($forms, "layout.response.min-height");

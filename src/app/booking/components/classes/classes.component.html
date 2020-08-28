@@ -14,6 +14,7 @@
       [canceled]="manageClassStateProvider.isCanceled(scheduledClass)"
       [canceledInfo]="manageClassStateProvider.getCanceledInfo(scheduledClass)"
       [searchFriendProvider]="searchFriendProvider"
+      [unbookableProvider]="unbookableProvider"
       (book)="book.emit($event)"
       (unbook)="unbook.emit($event)"
       (viewDetails)="viewDetails.emit($event)"

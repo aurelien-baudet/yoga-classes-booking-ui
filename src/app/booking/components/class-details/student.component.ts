@@ -17,6 +17,8 @@ export class StudentComponent {
   loading = true;
   @Input()
   assist: AssistState;
+  @Input()
+  unbookable = false;
 
   @Output()
   unbook = new EventEmitter<StudentRef>();

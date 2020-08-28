@@ -1,3 +1,5 @@
+import { CanUnbookOwnBookingUnbookableProvider } from './../../services/local/can-unbook-own-booking.provider';
+import { StudentListUnbookableStateProvider } from 'src/app/booking/services/student-list-unbookable-state.provider';
 import { SportLevel, PostureLevel } from './../../domain/reservation';
 import { BookingHelperComponent } from './../../components/booking-helper/booking-helper.component';
 import { ComingSoonFriendProvider } from './../../services/local/coming-soon-friend.provider';
@@ -43,6 +45,7 @@ export class ScheduledClassDetailsPage implements OnInit {
   pendingProvider: PendingStateProvider<ScheduledClass> & PendingStateUpdateProvider<ScheduledClass>;
   manageClassStateProvider: ManageClassStateProvider;
   searchFriendProvider: AutoCompleteService;
+  unbookableProvider: StudentListUnbookableStateProvider;
 
   constructor(private classService: ClassService,
               private accountService: AccountService,
@@ -56,6 +59,7 @@ export class ScheduledClassDetailsPage implements OnInit {
     this.pendingProvider = new InMemoryUpdatablePendingStateProvider(sameClassPredicate);
     this.manageClassStateProvider = new UnmanageableProvider();
     this.searchFriendProvider = new ComingSoonFriendProvider();
+    this.unbookableProvider = new CanUnbookOwnBookingUnbookableProvider(this.accountService.currentUser$);
     this.accountService.currentUser$.subscribe(this.updateCurrentUser.bind(this));
     applicationEventService.refreshBookings.subscribe(() => {
       zone.run(() => this.refreshDetailsAndBooking());

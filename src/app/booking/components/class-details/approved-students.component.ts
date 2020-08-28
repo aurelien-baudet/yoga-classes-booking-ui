@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AssistState, PreferencesProvider } from 'src/app/booking/services/preferences.provider';
+import { StudentListUnbookableStateProvider } from 'src/app/booking/services/student-list-unbookable-state.provider';
 import { Booking } from '../../domain/reservation';
 import { StudentRef } from './../../../account/domain/student';
 import { isSameUser } from './../../../account/domain/utils';
@@ -16,6 +17,8 @@ export class ApprovedStudentsComponent implements OnInit {
   maxStudents: number;
   @Input()
   preferencesProvider?: PreferencesProvider;
+  @Input()
+  unbookableProvider?: StudentListUnbookableStateProvider;
 
   @Output()
   unbook = new EventEmitter<Booking>();
@@ -48,6 +51,13 @@ export class ApprovedStudentsComponent implements OnInit {
       return null;
     }
     return pair.state;
+  }
+
+  isUnbookable(booking: Booking): boolean {
+    if (!this.unbookableProvider) {
+      return false;
+    }
+    return this.unbookableProvider.isUnbookable(booking);
   }
 
 }

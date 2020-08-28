@@ -1,3 +1,4 @@
+import { StudentListUnbookableStateProvider } from 'src/app/booking/services/student-list-unbookable-state.provider';
 import { Place, BookingForFriend, Booking, UnbookingForFriend, SportLevel, PostureLevel } from './../../domain/reservation';
 import { Instant } from './../../domain/general';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
@@ -37,6 +38,8 @@ export class ScheduledClassCardComponent {
   canceledInfo: CancelInfo;
   @Input()
   searchFriendProvider: AutoCompleteService;
+  @Input()
+  unbookableProvider: StudentListUnbookableStateProvider;
 
   @Output()
   book = new EventEmitter<ScheduledClass>();

@@ -13,6 +13,7 @@
       [displayAssistInfo]="!!preferencesProvider"
       [loading]="isLoading(booking.student)"
       [assist]="getAssistState(booking.student)"
+      [unbookable]="isUnbookable(booking)"
       (unbook)="unbook.emit(booking)"></app-student>
   </ion-item>
 </ion-list>
