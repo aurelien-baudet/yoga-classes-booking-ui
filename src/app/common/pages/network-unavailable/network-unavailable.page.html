@@ -8,4 +8,7 @@
 <ion-content>
   <p>Il semble que vous n'ayez pas accès à internet.</p>
   <p>Merci de réessayer plus tard.</p>
+
+  <p>Prochain essai de connexion dans {{ this.remaining / 1000 }}s</p>
+  <ion-button (click)="retry()">Réessayer</ion-button>
 </ion-content>

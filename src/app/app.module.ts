@@ -1,3 +1,4 @@
+import { AccessDeniedInterceptor } from './account/services/remote/access-denied.interceptor';
 import { MockPreferencesService } from './account/services/mocks/mock-preferences.service';
 import { PreferencesService } from 'src/app/account/services/preferences.service';
 import { RestPreferencesService } from './account/services/remote/rest-preferences.service';
@@ -103,6 +104,7 @@ export const calendarServiceFactory = (platform: Platform, nativeCalendar: Calen
     InAppBrowser,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AccessDeniedInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: PlaceService, useClass: environment.mock ? MockPlaceService : RestPlaceService },
     { provide: ClassService, useClass: environment.mock ? MockClassService : RestClassService },

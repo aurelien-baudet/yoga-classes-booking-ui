@@ -1,3 +1,4 @@
+import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,11 +6,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './service-unavailable.page.html',
   styleUrls: ['./service-unavailable.page.scss'],
 })
-export class ServiceUnavailablePage implements OnInit {
+export class ServiceUnavailablePage {
 
-  constructor() { }
+  constructor(private navController: NavController) { }
 
-  ngOnInit() {
+  retry() {
+    this.navController.back();
   }
 
 }

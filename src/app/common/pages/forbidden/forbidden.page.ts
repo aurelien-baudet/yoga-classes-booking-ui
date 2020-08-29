@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,11 +6,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './forbidden.page.html',
   styleUrls: ['./forbidden.page.scss'],
 })
-export class ForbiddenPage implements OnInit {
+export class ForbiddenPage {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {
+  home() {
+    this.router.navigate(['']);
   }
 
 }
