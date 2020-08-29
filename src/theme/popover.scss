@@ -8,18 +8,19 @@ ion-popover {
 
     div.popover-content {
       border-radius: value($popover, "border-radius");
-      //padding: value($popover, "padding");
+      // padding: value($popover, "padding");
       overflow: visible;
     }
   }
 
   app-popover {
-    position: relative;
+    max-height: 100%;
+    overflow: auto;
 
-    > * {
+    /*> * {
       border-radius: value($popover, "border-radius");
       overflow: hidden;
-    }
+    }*/
 
     ion-button.close {
       @include round-icon-button(value($popover, "close-button"));
@@ -27,6 +28,15 @@ ion-popover {
       top: value($popover, "close-button.position.top");
       right: value($popover, "close-button.position.right");
       z-index: 100;
+    }
+
+
+    ion-list.list-md {
+      background: none;
+
+      ion-item {
+        --background: none;
+      }
     }
   }
 
@@ -46,9 +56,9 @@ ion-popover.help {
   }
 
   app-popover {
-    > * {
+    /*> * {
       border-radius: value($help-popover, "border-radius");
-    }
+    }*/
   
     ion-button.close {
       @include round-icon-button(value($help-popover, "close-button"));
