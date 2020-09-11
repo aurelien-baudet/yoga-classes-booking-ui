@@ -11,6 +11,9 @@ const invalid = (key: string, control: AbstractControl) => ({
 
 export function PhoneNumberValidator(format: PhoneNumberFormat): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } => {
+    if (!control.value) {
+      return null;
+    }
     try {
       // TODO: use format
       if (!control.value.startsWith('+')) {
