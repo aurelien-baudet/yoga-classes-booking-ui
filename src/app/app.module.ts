@@ -1,3 +1,4 @@
+import { RestPasswordService } from './account/services/remote/rest-password.service';
 import { AccessDeniedInterceptor } from './account/services/remote/access-denied.interceptor';
 import { MockPreferencesService } from './account/services/mocks/mock-preferences.service';
 import { PreferencesService } from 'src/app/account/services/preferences.service';
@@ -54,6 +55,7 @@ import { GoogleCalendarService } from './common/services/local/google-calendar.s
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { ErrorHandler } from '@angular/core';
 import { GlobalErrorHandler, ErrorsService } from 'src/app/common/services/global-error-handler';
+import { PasswordService } from './account/services/password.service';
 
 
 registerLocaleData(localeFr);
@@ -112,6 +114,7 @@ export const calendarServiceFactory = (platform: Platform, nativeCalendar: Calen
     { provide: AccountService, useClass: environment.mock ? MockAccountService : RestAccountService },
     { provide: PreferencesService, useClass: environment.mock ? MockPreferencesService : RestPreferencesService },
     { provide: PushNotificationService, useClass: OnesignalPushNotificationService },
+    { provide: PasswordService, useClass: RestPasswordService },
     { provide: ServerConfig, useValue: environment.server },
     { provide: OneSignalConfig, useValue: environment.onesignal },
     { provide: SplashScreenConfig, useValue: environment.splashscreen },

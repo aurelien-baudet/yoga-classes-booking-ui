@@ -14,6 +14,10 @@ export class CurrentRoute {
         // return this.router.routerState.snapshot.root.queryParams[key];
     }
 
+    getData(key: string): string | null {
+        return this.findParam(this.router.routerState.snapshot.root, key, (r) => r.data);
+    }
+
     matches(pattern: string) {
         return this.router.routerState.snapshot.url.match(new RegExp(pattern.replace(/[*]/g, '.*')));
     }

@@ -1,3 +1,4 @@
+@import "../../../../theme/button-utils";
 @import "../../../../theme/variables";
 
 :host {
@@ -8,4 +9,12 @@
 
 ion-button {
   margin: value($login-form, "button.margin");
+}
+
+ion-button.lost-password {
+  @include discreet-button(value($login-form, "lost-password.color"));
+  margin: value($login-form, "lost-password.margin");
+  font-size: value($login-form, "lost-password.font-size");
+  font-weight: bold;
+  text-decoration: underline;
 }

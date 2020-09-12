@@ -71,6 +71,12 @@ export class WhoAreYouPage {
     alert(`Authentification via ${authenticator} bientôt disponible`);
   }
 
+  resetPassword() {
+    this.router.navigate(['users', 'password', 'lost'], {
+      queryParamsHandling: 'merge'
+    });
+  }
+
   private redirect(defaultPage: any[]) {
     const returnUrl = this.route.getQueryParam('returnUrl');
     if (returnUrl) {

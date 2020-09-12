@@ -36,4 +36,9 @@ export class LoginPage {
   async authenticate(authenticator: SocialAuthenticator) {
     alert(`Authentification via ${authenticator} bientôt disponible`);
   }
+
+
+  resetPassword() {
+    this.router.navigate(['users', 'password', 'lost']);
+  }
 }

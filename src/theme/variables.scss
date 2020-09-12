@@ -172,7 +172,8 @@ $popover: (
 );
 
 $forms: (
-  "background": top center / 95% no-repeat url('src/assets/background/form.svg'),
+  // "background": top center / 95% no-repeat url('src/assets/background/form.svg'),
+  "background": top center / contain no-repeat url('src/assets/background/form.svg'),
   "font-size": 12px,
   "layout": (
     "padding": 40px 15%,
@@ -659,6 +660,11 @@ $social-login: (
 $login-form: (
   "button": (
     "margin": 15px 2px 4px 2px
+  ),
+  "lost-password": (
+    "color": var(--ion-color-primary),
+    "margin": 0,
+    "font-size": 12px
   )
 );
 
@@ -1148,4 +1154,17 @@ $install-app: (
       "colors": var(--ion-color-secondary) var(--ion-color-secondary-contrast)
     )
   )
-)
+);
+
+$reset-password-page: (
+  "message": (
+    "color": var(--ion-color-secondary),
+    "font-size": 12px,
+    "margin": 20px 40px
+  ),
+  "request-new-code": (
+    "color": var(--ion-color-primary),
+    "font-size": 12px,
+    "margin": 0
+  )
+);

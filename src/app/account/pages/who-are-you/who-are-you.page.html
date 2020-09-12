@@ -15,6 +15,7 @@
     <app-login-form *ngIf="showLogin()" 
       (login)="login($event)" 
       (change)="loginErrors = []" 
+      (resetPassword)="resetPassword()"
       [errors]="loginErrors" 
       submitText="Terminer ma réservation"></app-login-form>
     <app-register-student-form *ngIf="showSignup()"

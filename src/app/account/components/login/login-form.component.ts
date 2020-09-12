@@ -20,6 +20,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   login = new EventEmitter<Credentials>();
   @Output()
   change = new EventEmitter<any>();
+  @Output()
+  resetPassword = new EventEmitter<any>();
 
   credentials = {
     login: '',
