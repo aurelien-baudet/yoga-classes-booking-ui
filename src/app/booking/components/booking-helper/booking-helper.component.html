@@ -38,7 +38,7 @@
     <p>Tu es déjà inscrit au cours du <strong>{{ bookedClass | dateRange }}</strong></p>
   </div>
 </ng-template>
-  
+
 <ng-template #notBookedNotification let-bookedClass="bookedClass">
   <div class="header">
     <span class="title">Pas encore inscrit</span>
@@ -56,4 +56,13 @@
     <p>Désolé, quelqu'un a pris la place disponible avant toi au cours du <strong>{{ bookedClass | dateRange }}</strong></p>
   </div>
 </ng-template>
-  
+
+<ng-template #tooLateToUbookNotification let-bookedClass="bookedClass">
+  <div class="header">
+    <span class="title">Annulation trop tardive</span>
+  </div>
+  <div class="content">
+    <p>Il est trop tard pour pouvoir te désinscrire au cours du <strong>{{ bookedClass | dateRange }}</strong>.</p>
+    <ion-button (click)="contact()" size="small">Justifier votre absence</ion-button>
+  </div>
+</ng-template>

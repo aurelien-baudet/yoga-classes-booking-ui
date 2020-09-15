@@ -1,3 +1,4 @@
+import { StudentRef } from 'src/app/account/domain/student';
 import { CalendarService } from 'src/app/common/services/calendar.service';
 import { ApplicationEventService } from './../../../common/services/application-event.service';
 import { CurrentRoute } from './../../../common/util/router.util';
@@ -45,6 +46,8 @@ export class BookingHelperComponent {
   private notBookedNotification: TemplateRef<any>;
   @ViewChild('placeAlreadyTakenNotification', { static: true })
   private placeAlreadyTakenNotification: TemplateRef<any>;
+  @ViewChild('tooLateToUbookNotification', { static: true })
+  private tooLateToUbookNotification: TemplateRef<any>;
 
   constructor(private classService: ClassService,
               private bookingService: BookingService,
@@ -86,28 +89,7 @@ export class BookingHelperComponent {
   }
 
   async unbook(bookedClass: ScheduledClass) {
-    try {
-      if (isUnknown(this.currentUser)) {
-        console.log('unknown user so ask who he is before unbooking');
-        return this.authenticateForUnbooking(bookedClass);
-      }
-      this.pendingProvider.markPending(bookedClass);
-      // TODO: handle case when user registers another user
-      await this.bookingService.unbook(this.currentUser, bookedClass);
-      this.pendingProvider.unmarkPending(bookedClass);
-      this.notificationService.success(this.unbookedNotification, {bookedClass}, {toastClass: 'unbooked'});
-      this.router.navigate(this.redirection, {queryParams: {}});
-      this.refresh.emit();
-    } catch (e) {
-      if (matchesErrorCode(e, 'NOT_BOOKED')) {
-        this.pendingProvider.unmarkPending(bookedClass);
-        this.notificationService.warn(this.notBookedNotification, {bookedClass}, {toastClass: 'not-booked'});
-        this.router.navigate(this.redirection, {queryParams: {}});
-        this.refresh.emit();
-        return;
-      }
-      throw e;
-    }
+    await this.unbookFor(this.currentUser, bookedClass);
   }
 
   async confirmBooking(bookedClass: ScheduledClass) {
@@ -148,7 +130,40 @@ export class BookingHelperComponent {
   }
 
   async unbookForFriend(unbooking: UnbookingForFriend) {
-    alert('Bientôt disponible');
+    this.unbookFor(unbooking.booking.student, unbooking.bookedClass);
+  }
+
+
+  private async unbookFor(student: StudentRef, bookedClass: ScheduledClass) {
+    try {
+      if (isUnknown(this.currentUser)) {
+        console.log('unknown user so ask who he is before unbooking');
+        return this.authenticateForUnbooking(bookedClass);
+      }
+      this.pendingProvider.markPending(bookedClass);
+      // TODO: handle case when user registers another user
+      await this.bookingService.unbook(student, bookedClass);
+      this.pendingProvider.unmarkPending(bookedClass);
+      this.notificationService.success(this.unbookedNotification, {bookedClass}, {toastClass: 'unbooked'});
+      this.router.navigate(this.redirection, {queryParams: {}});
+      this.refresh.emit();
+    } catch (e) {
+      if (matchesErrorCode(e, 'NOT_BOOKED')) {
+        this.pendingProvider.unmarkPending(bookedClass);
+        this.notificationService.warn(this.notBookedNotification, {bookedClass}, {toastClass: 'not-booked'});
+        this.router.navigate(this.redirection, {queryParams: {}});
+        this.refresh.emit();
+        return;
+      }
+      if (matchesErrorCode(e, 'TOO_LATE_TO_UNBOOK')) {
+        this.pendingProvider.unmarkPending(bookedClass);
+        this.notificationService.warn(this.tooLateToUbookNotification, {bookedClass}, {toastClass: 'too-late-to-unbook'});
+        this.router.navigate(this.redirection, {queryParams: {}});
+        this.refresh.emit();
+        return;
+      }
+      throw e;
+    }
   }
 
 
@@ -215,5 +230,9 @@ export class BookingHelperComponent {
       await this.confirmBooking(bookedClass);
       this.router.navigate(this.redirection);
     }
+  }
+
+  contact() {
+    this.router.navigate(['contact'])
   }
 }

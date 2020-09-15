@@ -64,6 +64,10 @@ const routes: Routes = [
       loadChildren: () => import('./booking/pages/scheduled-class-details/scheduled-class-details.module').then(m => m.ScheduledClassDetailsPageModule) },
   { path: 'information/privacy',
       loadChildren: () => import('./common/pages/privacy/privacy.module').then( m => m.PrivacyPageModule) },
+  {
+    path: 'contact',
+    loadChildren: () => import('./common/pages/contact/contact.module').then( m => m.ContactPageModule)
+  },
   { path: '**',
       loadChildren: () => import('./common/pages/not-found/not-found.module').then( m => m.NotFoundPageModule) },
 ];

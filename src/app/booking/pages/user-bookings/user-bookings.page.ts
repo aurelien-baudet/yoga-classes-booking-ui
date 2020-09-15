@@ -110,14 +110,6 @@ export class UserBookingsPage {
     }, 0);
   }
 
-  async bookForFriend(booking: BookingForFriend) {
-    alert('Bientôt disponible');
-  }
-
-  async unbookForFriend(unbooking: UnbookingForFriend) {
-    alert('Bientôt disponible');
-  }
-
   isMobileApp() {
     // TODO
     return true;

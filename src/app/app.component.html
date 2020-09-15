@@ -51,11 +51,17 @@
           <ion-icon name="app-menu-add-place" slot="start"></ion-icon>
           <a (click)="close()" routerLink="/admin/place/add" routerLinkActive="active">Ajouter un lieu</a>
         </ion-item>
+        <ion-item class="contact">
+          <ion-icon name="app-contact" slot="start"></ion-icon>
+          <a (click)="close()" routerLink="/contact" routerLinkActive="active">Contacter Cyril</a>
+        </ion-item>
       </ion-list>
-      <app-install></app-install>
-      <div class="current-user" *ngIf="currentUser">
-        <ion-icon name="app-current-user" slot="start"></ion-icon>
-        <span class="display-name">{{ currentUser.displayName }}</span>
+      <div class="misc">
+        <app-install></app-install>
+        <div class="current-user" *ngIf="currentUser">
+          <ion-icon name="app-current-user" slot="start"></ion-icon>
+          <span class="display-name">{{ currentUser.displayName }}</span>
+        </div>
       </div>
     </ion-content>
   </ion-menu>

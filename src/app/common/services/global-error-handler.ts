@@ -27,7 +27,7 @@ export class ErrorsService {
       this.router.navigate(['/errors/service-unavailable']);
       return;
     }
-
+    
   }
 
   private isOffline(error: any): boolean {

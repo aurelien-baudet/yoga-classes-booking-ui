@@ -26,8 +26,16 @@
     }
     &.not-booked,
     &.already-booked,
-    &.place-already-taken {
+    &.place-already-taken,
+    &.too-late-to-unbook {
       background: value($toast-states, "failed.background");
+    }
+
+    &.too-late-to-unbook {
+      ion-button {
+        font-size: value($toast, "contact-button.font-size");
+        font-weight: bold;
+      }
     }
 
     .toast-close-button {

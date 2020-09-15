@@ -49,18 +49,20 @@
 
 <ng-template #approvedStudents
   let-approvedBookings="scheduledClass.bookings.approved"
-  let-maxStudents="scheduledClass.lesson.maxStudents">
+  let-maxStudents="scheduledClass.lesson.maxStudents"
+  let-bookedClass="scheduledClass">
   <app-approved-students 
     [approvedBookings]="approvedBookings" 
     [maxStudents]="maxStudents"
     [unbookableProvider]="unbookableProvider"
-    (unbook)="bookingHelper.unbookForFriend($event)"></app-approved-students>
+    (unbook)="bookingHelper.unbookForFriend({booking: $event, bookedClass: bookedClass})"></app-approved-students>
 </ng-template>
 
 <ng-template #waitingStudents
-  let-waitingBookings="scheduledClass.bookings.waiting">
+  let-waitingBookings="scheduledClass.bookings.waiting"
+  let-bookedClass="scheduledClass">
   <app-waiting-students
     [waitingBookings]="waitingBookings"
     [unbookableProvider]="unbookableProvider"
-    (unbook)="bookingHelper.unbookForFriend($event)"></app-waiting-students>
+    (unbook)="bookingHelper.unbookForFriend({booking: $event, bookedClass: bookedClass})"></app-waiting-students>
 </ng-template>
