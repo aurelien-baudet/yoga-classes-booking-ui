@@ -1,3 +1,4 @@
+import { EncodeHttpParamsInterceptor } from './common/services/fix-query-params-encoder';
 import { RestPasswordService } from './account/services/remote/rest-password.service';
 import { AccessDeniedInterceptor } from './account/services/remote/access-denied.interceptor';
 import { MockPreferencesService } from './account/services/mocks/mock-preferences.service';
@@ -107,6 +108,7 @@ export const calendarServiceFactory = (platform: Platform, nativeCalendar: Calen
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AccessDeniedInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: EncodeHttpParamsInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: PlaceService, useClass: environment.mock ? MockPlaceService : RestPlaceService },
     { provide: ClassService, useClass: environment.mock ? MockClassService : RestClassService },
