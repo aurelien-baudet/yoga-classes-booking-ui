@@ -1,0 +1,71 @@
+@import "../../../../theme/variables";
+
+
+ion-card {
+  border-radius: value($period-card, "border-radius");
+}
+
+ion-card-header {
+  --background: #{value($period-card, "header.background")};
+  
+  ion-card-title {
+    color: value($period-card, "header.color");
+    text-align: center;
+  }
+}
+
+ion-card-content {
+  color: value($period-card, "content.color");
+  padding: value($period-card, "content.padding");
+
+  .info {
+    padding: value($period-card, "content.info.padding");
+    text-align: right;
+    font-size: value($period-card, "content.info.font-size");
+  }
+  
+  .start,
+  .end {
+    font-weight: bold;
+  }
+  .text {
+    &::before,
+    &::after {
+      content: " ";
+    }
+  }  
+}
+
+ion-card.expired {
+  position: relative;
+
+  ion-card-header {
+    --background: #{value($period-card, "expired.header.background")};
+    
+    ion-card-title {
+      color: value($period-card, "expired.header.color");
+    }
+  }
+
+  .expired-text {
+    font-weight: bold;
+    font-size: value($period-card, "expired.message.font-size");
+    color: value($period-card, "expired.message.color");
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient(to top left,
+                rgba(0,0,0,0) 0%,
+                rgba(0,0,0,0) calc(50% - #{value($period-card, "expired.line-through.width")}),
+                value($period-card, "expired.line-through.color") 50%,
+                rgba(0,0,0,0) calc(50% + #{value($period-card, "expired.line-through.width")}),
+                rgba(0,0,0,0) 100%);
+    }
+  }
+}

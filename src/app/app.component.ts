@@ -40,6 +40,8 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.ready = true;
       this.accountService.currentUser$.subscribe(this.updateCurrentUser.bind(this));
+      // load current user at startup to trigger observable (needed if current page doesn't request for it)
+      this.accountService.getUserInfo();
       this.statusBar.styleDefault();
       this.statusBar.overlaysWebView(true);
       this.statusBar.show();

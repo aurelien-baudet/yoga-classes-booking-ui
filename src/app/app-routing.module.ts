@@ -36,6 +36,8 @@ const routes: Routes = [
   { path: 'users/password/reset',
       data: {step: 'change'},
       loadChildren: () => import('./account/pages/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule), },
+  { path: 'user/subscriptions',
+      loadChildren: () => import('./account/pages/subscriptions/subscriptions.module').then( m => m.SubscriptionsPageModule) },
   { path: 'admin/classes',
       canActivate: [TeacherAuthRequiredGuard],
       loadChildren: () => import('./admin/pages/classes/classes.module').then(m => m.ClassesPageModule) },
@@ -54,6 +56,8 @@ const routes: Routes = [
   { path: 'admin/place/add',
       canActivate: [TeacherAuthRequiredGuard],
       loadChildren: () => import('./admin/pages/add-place/add-place.module').then(m => m.AddPlacePageModule) },
+  { path: 'admin/subscriptions',
+      loadChildren: () => import('./admin/pages/edit-subscriptions/edit-subscriptions.module').then( m => m.EditSubscriptionsPageModule) },
   { path: 'errors/forbidden',
       loadChildren: () => import('./common/pages/forbidden/forbidden.module').then(m => m.ForbiddenPageModule) },
   { path: 'errors/service-unavailable',
@@ -64,10 +68,8 @@ const routes: Routes = [
       loadChildren: () => import('./booking/pages/scheduled-class-details/scheduled-class-details.module').then(m => m.ScheduledClassDetailsPageModule) },
   { path: 'information/privacy',
       loadChildren: () => import('./common/pages/privacy/privacy.module').then( m => m.PrivacyPageModule) },
-  {
-    path: 'contact',
-    loadChildren: () => import('./common/pages/contact/contact.module').then( m => m.ContactPageModule)
-  },
+  { path: 'contact',
+    loadChildren: () => import('./common/pages/contact/contact.module').then( m => m.ContactPageModule) },
   { path: '**',
       loadChildren: () => import('./common/pages/not-found/not-found.module').then( m => m.NotFoundPageModule) },
 ];

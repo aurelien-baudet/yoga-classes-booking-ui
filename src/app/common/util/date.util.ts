@@ -73,8 +73,13 @@ export class DateUtil {
     return d;
   }
 
-  toISODateString(date: number | Date): any {
+  toISODateString(date: number | Date): string {
     return formatDate(date, 'yyyy-MM-dd', this.locale, this.timezone);
+  }
+
+  fromISODateString(date: string): Date {
+    // TODO: need timezone offset ?
+    return new Date(`${date} ${this.timezone}`);
   }
 
   frequencyIterable(repeat: string, from: DateRange, until: Instant) {

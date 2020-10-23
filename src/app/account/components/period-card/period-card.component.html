@@ -1,0 +1,19 @@
+<ion-card 
+  [class.in-progress]="card.inProgress()"
+  [class.in-future]="card.inFuture()"
+  [class.expired]="card.expired()">
+  <ion-card-header>
+    <ion-card-title>{{ type }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-progress-bar *ngIf="card.inProgress()" [value]="getProgress()" reversed="true"></ion-progress-bar>
+    <ion-progress-bar *ngIf="card.expired()" value="0" reversed="true"></ion-progress-bar>
+    <div class="info">
+      <span class="text">valable du</span>
+      <span class="start">{{ card.start | localDate }}</span>
+      <span class="text">au</span>
+      <span class="end">{{ card.end | localDate }}</span>
+      <div *ngIf="card.expired()" class="expired-text">Expirée</div>
+    </div>
+  </ion-card-content>
+</ion-card>

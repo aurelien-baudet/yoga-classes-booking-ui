@@ -1,3 +1,4 @@
+import { DatePipe } from './date.pipe';
 import { InstallComponent } from './install/install.component';
 import { LoginAvailableValidator } from './login-available.validator';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -25,6 +26,7 @@ import { PhoneNumberFormatValidator } from './phone-number-format.validator';
     NotificationComponent,
     PopoverComponent,
     DateRangePipe,
+    DatePipe,
     CalendarComponent,
     TimeMaskDirective,
     DateMaskDirective,
@@ -38,6 +40,7 @@ import { PhoneNumberFormatValidator } from './phone-number-format.validator';
     PopoverComponent,
     NotificationComponent,
     DateRangePipe,
+    DatePipe,
     CalendarComponent,
     PlaceDetailsComponent,
     LoginAvailableValidator,

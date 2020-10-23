@@ -1,3 +1,6 @@
+import { ClassPackageCardComponent } from './class-package-card/class-package-card.component';
+import { PeriodCardComponent } from './period-card/period-card.component';
+import { StudentSubscriptionsComponent } from './student-subscriptions/student-subscriptions.component';
 import { CommonComponentsModule } from './../../common/components/common-components.module';
 import { FormsModule } from '@angular/forms';
 import { LoginFormComponent } from './login/login-form.component';
@@ -15,14 +18,20 @@ import { UnregisteredInfoFormComponent } from './login/unregistered-info-form.co
     SocialLoginComponent,
     UnregisteredInfoFormComponent,
     PreferencesComponent,
-    RegisterComponent
+    RegisterComponent,
+    StudentSubscriptionsComponent,
+    PeriodCardComponent,
+    ClassPackageCardComponent
   ],
   exports: [
     LoginFormComponent,
     SocialLoginComponent,
     UnregisteredInfoFormComponent,
     PreferencesComponent,
-    RegisterComponent
+    RegisterComponent,
+    StudentSubscriptionsComponent,
+    PeriodCardComponent,
+    ClassPackageCardComponent
   ],
   imports: [
     CommonModule,

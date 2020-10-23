@@ -1,0 +1,50 @@
+<form #form="ngForm" (ngSubmit)="save(form.value)" [class.loading]="loading">
+  <ion-spinner *ngIf="loading"></ion-spinner>
+  <ion-item class="class-package-card"
+    [class.expired]="isClassPackageCardExpired()">
+    <ion-label position="stacked">Cours restant(s) :</ion-label>
+    <ion-input 
+      type="number"
+      inputmode="numeric" 
+      name="remainingClasses" 
+      #remainingClasses="ngModel"
+      [(ngModel)]="subscriptionModel.remainingClasses"></ion-input>
+  </ion-item>
+  <ion-item class="month-card"
+    [class.expired]="isMonthCardExpired()">
+    <ion-label position="stacked">Abonnement mensuel :</ion-label>
+    <ion-input 
+      type="date"
+      name="monthStart" 
+      #monthStart="ngModel"
+      [(ngModel)]="subscriptionModel.monthStart" (ionChange)="autofillMonthEnd()"></ion-input>
+    <span class="date-separator">/</span>
+    <ion-input 
+      type="date"
+      name="monthEnd" 
+      #monthEnd="ngModel"
+      [(ngModel)]="subscriptionModel.monthEnd"></ion-input>
+    <div class="info">
+      <span *ngIf="isMonthCardExpired()" class="expired-text">expiré</span>
+    </div>
+  </ion-item>
+  <ion-item class="annual-card"
+  [class.expired]="isAnnualCardExpired()">
+    <ion-label position="stacked">Abonnement annuel :</ion-label>
+    <ion-input 
+      type="date"
+      name="annualStart" 
+      #annualStart="ngModel"
+      [(ngModel)]="subscriptionModel.annualStart" (ionChange)="autofillAnnualEnd()"></ion-input>
+    <span class="date-separator">/</span>
+    <ion-input 
+      type="date"
+      name="annualEnd" 
+      #annualEnd="ngModel"
+      [(ngModel)]="subscriptionModel.annualEnd"></ion-input>
+      <div class="info">
+        <span *ngIf="isAnnualCardExpired()" class="expired-text">expiré</span>
+      </div>
+  </ion-item>
+  <ion-button type="submit" [disabled]="!form.valid" size="small">Mettre à jour</ion-button>
+</form>

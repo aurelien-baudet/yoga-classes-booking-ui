@@ -1,0 +1,25 @@
+<div *ngIf="subscription">
+  <div class="unpaid-classes" *ngIf="areAllCardsExpired()">
+    <div class="balance">
+      <span>Cours impayé(s) :</span>
+      <span class="number">{{ -subscription.remainingClasses }}</span>
+    </div>
+    <p class="message" *ngIf="areAllCardsExpired()">
+      Pense à payer tes séances au prochain cours de Yoga.<br />
+      Tu peux également voir avec Cyril pour prendre un abonnement.<br />
+      <br />
+      Merci
+    </p>
+  </div>
+  <app-class-package-card class="class-package-card" 
+    *ngIf="subscription.remainingClasses >= 0" 
+    [remainingClasses]="subscription.remainingClasses"></app-class-package-card>
+  <app-period-card class="month-card" 
+    *ngIf="subscription.monthCard"
+    [card]="subscription.monthCard" 
+    type="Abonnement 1 mois"></app-period-card>
+  <app-period-card class="annual-card" 
+    *ngIf="subscription.annualCard"
+    [card]="subscription.annualCard" 
+    type="Abonnement 1 an"></app-period-card>
+</div>

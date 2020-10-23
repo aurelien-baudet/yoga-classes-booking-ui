@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button></ion-menu-button>
+    <ion-title>Mes abonnements</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [class.loading]="loading">
+  <ion-spinner *ngIf="loading"></ion-spinner>
+  <ion-refresher slot="fixed" (ionRefresh)="manualRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list *ngIf="subscriptions && !loading">
+    <ion-item-group *ngFor="let subscription of subscriptions.content; trackBy: subscriptionReference">
+      <ion-item-divider>
+        <ion-label>{{ subscription.subscriber.displayName }}</ion-label>
+      </ion-item-divider>
+      <app-student-subscriptions-form
+        [subscription]="subscription"
+        [loading]="isLoading(subscription)"
+        (update)="updateSubscriptions($event)">
+      </app-student-subscriptions-form>
+    </ion-item-group>
+  </ion-list>
+</ion-content>

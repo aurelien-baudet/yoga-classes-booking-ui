@@ -1,0 +1,83 @@
+@import "../../../../theme/variables";
+
+form {
+  background: none;
+  padding: value($subscription-form, "padding");
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+  ion-item {
+    --min-height: 0;
+    align-items: center;
+    margin: value($subscription-form, "item.margin");
+
+    ion-label.label-stacked {
+      transform: none;
+      font-size: value($subscription-form, "item.label.font-size");
+      margin: value($subscription-form, "item.label.margin");
+    }
+
+    .date-separator {
+      display: none;
+    }
+
+    ion-input {
+      --padding-top: #{value($subscription-form, "input.padding", "top")};
+      --padding-bottom: #{value($subscription-form, "input.padding", "bottom")};
+      padding-left: value($subscription-form, "input.padding", "left") !important;
+      padding-right: value($subscription-form, "input.padding", "right") !important;
+    }
+    ion-input[type="number"] {
+      width: value($subscription-form, "input.number-width");
+    }
+    ion-input[type="date"] {
+      width: value($subscription-form, "input.date-width");
+
+      /deep/ input::-webkit-calendar-picker-indicator {
+        padding: 0;
+        margin-left: 0;
+      }
+    }
+
+    &.expired {
+      ion-input {
+        border: value($subscription-form, "expired.input.border");
+        color: value($subscription-form, "expired.input.color");
+      }
+    }
+    .expired-text {
+      color: value($subscription-form, "expired.color");
+      padding: value($subscription-form, "expired.padding");
+      font-weight: bold;
+    }
+  }
+
+  ion-button {
+    align-self: center;
+  }
+}
+
+form.loading {
+  position: relative;
+
+  > * {
+    visibility: hidden;
+  }
+
+  ion-spinner {
+    position: absolute;
+    visibility: visible;
+    color: value($subscription-form, "item.loader.color");
+    width: value($subscription-form, "item.loader.width");
+    height: value($subscription-form, "item.loader.height");
+    top: 50%;
+    left: 50%;
+    margin-top: - value($subscription-form, "item.loader.height") / 2;
+    margin-left: - value($subscription-form, "item.loader.width") / 2;
+    z-index: 1000;
+  }
+}
+
+

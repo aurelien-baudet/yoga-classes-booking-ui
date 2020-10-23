@@ -1,0 +1,46 @@
+@import "../../../../theme/variables";
+
+.loading {
+  > * {
+    visibility: hidden;
+  }
+
+  ion-refresher {
+    visibility: visible;
+  }
+  ion-spinner {
+    visibility: visible;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: value($edit-subscriptions-page, "loader.width");
+    height: value($edit-subscriptions-page, "loader.height");
+    margin-left: - value($edit-subscriptions-page, "loader.width") / 2;
+    margin-top: - value($edit-subscriptions-page, "loader.height") / 2;
+    z-index: 1000;
+    color: value($edit-subscriptions-page, "loader.color");
+  }
+}
+
+ion-item-group {
+  margin: value($edit-subscriptions-page, "line.margin");
+  padding: value($edit-subscriptions-page, "line.padding");
+  border-bottom: value($edit-subscriptions-page, "line.border.bottom");
+}
+
+ion-item-divider {
+  margin-left: 0;
+  min-height: 0;
+  --padding-start : 0;
+  background: value($edit-subscriptions-page, "student.background");
+  border: value($edit-subscriptions-page, "student.border");
+  
+  ion-label {
+    font-size: value($edit-subscriptions-page, "student.font-size");
+    font-weight: bold;
+    margin: value($edit-subscriptions-page, "student.margin");
+    color: value($edit-subscriptions-page, "student.color");
+    text-align: center;
+    width: 100%;
+  }
+}

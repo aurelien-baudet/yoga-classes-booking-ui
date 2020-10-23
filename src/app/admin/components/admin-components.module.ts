@@ -1,3 +1,4 @@
+import { StudentSubscriptionsFormComponent } from './student-subscriptions-form/student-subscriptions-form.component';
 import { LessonFormComponent } from './lesson-form/lesson-form.component';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -8,11 +9,13 @@ import { IonicModule } from '@ionic/angular';
 @NgModule({
   declarations: [
     UnscheduledLessonCardComponent,
-    LessonFormComponent
+    LessonFormComponent,
+    StudentSubscriptionsFormComponent
   ],
   exports: [
     UnscheduledLessonCardComponent,
-    LessonFormComponent
+    LessonFormComponent,
+    StudentSubscriptionsFormComponent
   ],
   imports: [
     CommonModule,

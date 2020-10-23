@@ -1,0 +1,14 @@
+<ion-card
+  [class.expired]="expired()">
+  <ion-card-header>
+    <ion-card-title>Carte {{ total }} cours</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-progress-bar [value]="1 - getProgress()" reversed="true"></ion-progress-bar>
+    <div class="info">
+      <span class="remaining">{{ remainingClasses }}</span>
+      <span class="text">cours restant(s)</span>
+      <div *ngIf="expired()" class="expired-text">Expirée</div>
+    </div>
+  </ion-card-content>
+</ion-card>

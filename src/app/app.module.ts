@@ -1,3 +1,4 @@
+import { RestSubscriptionService } from './account/services/remote/rest-subscription.service';
 import { EncodeHttpParamsInterceptor } from './common/services/fix-query-params-encoder';
 import { RestPasswordService } from './account/services/remote/rest-password.service';
 import { AccessDeniedInterceptor } from './account/services/remote/access-denied.interceptor';
@@ -57,6 +58,7 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { ErrorHandler } from '@angular/core';
 import { GlobalErrorHandler, ErrorsService } from 'src/app/common/services/global-error-handler';
 import { PasswordService } from './account/services/password.service';
+import { SubscriptionService } from './account/services/subscription.service';
 
 
 registerLocaleData(localeFr);
@@ -115,6 +117,7 @@ export const calendarServiceFactory = (platform: Platform, nativeCalendar: Calen
     { provide: BookingService, useClass: environment.mock ? MockBookingService : RestBookingService },
     { provide: AccountService, useClass: environment.mock ? MockAccountService : RestAccountService },
     { provide: PreferencesService, useClass: environment.mock ? MockPreferencesService : RestPreferencesService },
+    { provide: SubscriptionService, useClass: RestSubscriptionService },
     { provide: PushNotificationService, useClass: OnesignalPushNotificationService },
     { provide: PasswordService, useClass: RestPasswordService },
     { provide: ServerConfig, useValue: environment.server },

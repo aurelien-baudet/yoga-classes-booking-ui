@@ -1,0 +1,27 @@
+@import "../../../../theme/variables";
+
+.unpaid-classes {
+  .balance {
+    border-radius: value($student-subscriptions, "unpaid-classes.balance.border-radius");
+    font-size: value($student-subscriptions, "unpaid-classes.balance.font-size");
+    background: value($student-subscriptions, "unpaid-classes.balance.background");
+    color: value($student-subscriptions, "unpaid-classes.balance.color");
+    margin: value($student-subscriptions, "unpaid-classes.balance.margin");
+    padding: value($student-subscriptions, "unpaid-classes.balance.padding");
+    
+    .number {
+      font-weight: bold;
+
+      &::before {
+        content: " ";
+      }
+    }
+  }
+
+  .message {
+    font-size: value($student-subscriptions, "unpaid-classes.message.font-size");
+    color: value($student-subscriptions, "unpaid-classes.message.color");
+    margin: value($student-subscriptions, "unpaid-classes.message.margin");
+    text-align: justify;
+  }
+}
