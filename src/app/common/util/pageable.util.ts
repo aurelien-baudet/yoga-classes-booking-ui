@@ -1,3 +1,4 @@
+
 export interface Page<T> {
   totalPages: number;
   totalElements: number;
@@ -38,5 +39,25 @@ export class Page<T> implements Page<T> {
 
   hasNext() {
     return this.number + 1 < this.totalPages;
+  }
+}
+
+
+export interface PageRequest {
+  page: number;
+  size: number;
+  next(): PageRequest;
+  previous(): PageRequest;
+}
+export class PageRequest implements PageRequest {
+  constructor(public page = 0,
+              public size = 5) { }
+
+  next(): PageRequest {
+    return new PageRequest(this.page + 1, this.size);
+  }
+
+  previous(): PageRequest {
+    return new PageRequest(this.page - 1, this.size);
   }
 }

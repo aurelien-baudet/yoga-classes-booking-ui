@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-menu-button></ion-menu-button>
-    <ion-title>Mes abonnements</ion-title>
+    <ion-title>Abonnements</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content [class.loading]="loading">
@@ -10,7 +10,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-list *ngIf="subscriptions && !loading">
-    <ion-item-group *ngFor="let subscription of subscriptions.content; trackBy: subscriptionReference">
+    <ion-item-group *ngFor="let subscription of subscriptions; trackBy: subscriptionReference">
       <ion-item-divider>
         <ion-label>{{ subscription.subscriber.displayName }}</ion-label>
       </ion-item-divider>
@@ -21,4 +21,11 @@
       </app-student-subscriptions-form>
     </ion-item-group>
   </ion-list>
+  <ion-infinite-scroll 
+    [disabled]="!lastPage || !lastPage.hasNext()"
+    threshold="100px"
+    (ionInfinite)="loadNextPage($event)">
+    <ion-infinite-scroll-content>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
