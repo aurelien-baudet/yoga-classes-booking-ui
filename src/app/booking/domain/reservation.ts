@@ -20,14 +20,15 @@ export interface Lesson {
     place: Place;
     placeChanged: boolean;
     teacher: TeacherInfo;
+    subscriptionPack: string;
 }
 
-export type NewLesson = Pick<Lesson, 'title' | 'description' | 'maxStudents' | 'photos' | 'difficulty'> & {
+export type NewLesson = Pick<Lesson, 'title' | 'description' | 'maxStudents' | 'photos' | 'difficulty' | 'subscriptionPack'> & {
     place: PlaceId,
     teacher: TeacherId
 };
 
-export type UpdatedLesson = Pick<Lesson, 'id' | 'title' | 'description' | 'maxStudents' | 'photos' | 'difficulty'> & {
+export type UpdatedLesson = Pick<Lesson, 'id' | 'title' | 'description' | 'maxStudents' | 'photos' | 'difficulty' | 'subscriptionPack'> & {
     place: PlaceId,
     teacher: TeacherId
 };

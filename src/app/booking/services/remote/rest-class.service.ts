@@ -11,7 +11,7 @@ import { first } from 'rxjs/operators';
 
 
 interface NewLessonServerDto {
-  info: Pick<Lesson, 'title' | 'description' | 'maxStudents' | 'photos' | 'difficulty'>;
+  info: Pick<Lesson, 'title' | 'description' | 'maxStudents' | 'photos' | 'difficulty' | 'subscriptionPack'>;
   placeId: string;
   teacherId: string;
 }

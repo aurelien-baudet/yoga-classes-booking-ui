@@ -90,6 +90,14 @@
       <div *ngIf="place.invalid && place.errors.required">Le lieu de dispense est obligatoire</div>
     </div>
   </ion-item>
+  <ion-item class="subscription">
+    <ion-toggle
+      name="subscriptionPack" 
+      #subscriptionPack="ngModel"
+      [(ngModel)]="lessonModel.subscriptionPack">
+    </ion-toggle>
+    <ion-label>Inclus dans l'abonnement</ion-label>
+  </ion-item>
   <input 
     type="hidden" 
     name="teacherId" 

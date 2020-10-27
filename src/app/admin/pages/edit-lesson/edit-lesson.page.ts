@@ -66,7 +66,8 @@ export class EditLessonPage {
       || original.maxStudents !== updated.maxStudents
       || !isSameTeacher(original.teacher, updated.teacher)
       || original.title !== updated.title
-      || !this.isSameDifficulty(original.difficulty, updated.difficulty);
+      || !this.isSameDifficulty(original.difficulty, updated.difficulty)
+      || original.subscriptionPack !== updated.subscriptionPack;
       // TODO: compare photos too when really implemented
   }
 

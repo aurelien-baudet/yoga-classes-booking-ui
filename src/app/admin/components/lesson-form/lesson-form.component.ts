@@ -7,7 +7,8 @@ type LessonModel = Pick<Lesson, 'title' | 'description' | 'maxStudents' | 'photo
   sportLevel: number | null,
   postureLevel: number | null,
   placeId: string,
-  teacherId: string
+  teacherId: string,
+  subscriptionPack: boolean
 };
 
 const defaultModel = (): LessonModel => ({
@@ -18,7 +19,8 @@ const defaultModel = (): LessonModel => ({
   placeId: '',
   teacherId: '',
   sportLevel: null,
-  postureLevel: null
+  postureLevel: null,
+  subscriptionPack: true
 });
 
 @Component({
@@ -40,7 +42,8 @@ export class LessonFormComponent {
           placeId: lesson.place.id,
           teacherId: lesson.teacher.id,
           sportLevel: lesson.difficulty.sportLevel,
-          postureLevel: lesson.difficulty.postureLevel
+          postureLevel: lesson.difficulty.postureLevel,
+          subscriptionPack: lesson.subscriptionPack === 'STANDARD'
         };
       } else {
         this.lessonId = '';
@@ -85,7 +88,8 @@ export class LessonFormComponent {
       },
       teacher: {
         id: model.teacherId
-      }
+      },
+      subscriptionPack: model.subscriptionPack ? 'STANDARD' : 'NONE'
     };
     if (!this.lessonId) {
       this.add.emit(lesson);
