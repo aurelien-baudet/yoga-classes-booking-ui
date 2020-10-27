@@ -12,8 +12,7 @@
     </p>
   </div>
   <app-class-package-card class="class-package-card" 
-    *ngIf="subscription.remainingClasses >= 0" 
-    [remainingClasses]="subscription.remainingClasses"></app-class-package-card>
+    [remainingClasses]="getRemainingClasses()"></app-class-package-card>
   <app-period-card class="month-card" 
     *ngIf="subscription.monthCard"
     [card]="subscription.monthCard" 

@@ -10,6 +10,10 @@ export class StudentSubscriptionsComponent {
   @Input()
   subscription?: UserSubscriptions;
 
+  getRemainingClasses() {
+    return Math.max(this.subscription.remainingClasses, 0);
+  }
+
   areAllCardsExpired() {
     if (this.hasValidAnnualCard()) {
       return false;
