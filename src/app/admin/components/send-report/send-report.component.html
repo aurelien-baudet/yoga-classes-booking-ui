@@ -1,0 +1,20 @@
+<ion-list class="send-status"
+  [class.loading]="loading">
+  <ion-list-header>Réception du message</ion-list-header>
+  <ion-item *ngFor="let student of students"
+    [class.sending]="isSendingTo(student)">
+    <ion-label class="student">{{ student.displayName }}</ion-label>
+    <ion-spinner *ngIf="loading || isSendingTo(student)"></ion-spinner>
+    <div class="report" *ngIf="!isSendingTo(student) && getReportFor(student)">
+      <div *ngFor="let statusAndType of getStatuses(student)"
+        class="status"
+        [class]="getCssClass(statusAndType)"
+        [class.not-sent]="!statusAndType.status"
+        [class.succeeded]="hasSucceeded(statusAndType.status)"
+        [class.failed]="hasFailed(statusAndType.status)">
+        <ion-icon [name]="getIcon(statusAndType)"></ion-icon>
+        <app-help-button>{{ getStatusText(statusAndType) }}</app-help-button>
+      </div>
+    </div>
+  </ion-item>
+</ion-list>

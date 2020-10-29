@@ -57,4 +57,4 @@ export const matchesErrorCode = (e: string | Error | ApplicationError | BackendE
         return backendError.error.code === code;
     }
     return false;
-}
+};

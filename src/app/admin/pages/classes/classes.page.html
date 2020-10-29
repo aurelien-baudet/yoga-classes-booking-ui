@@ -47,7 +47,8 @@
     (hideDetails)="detailsProvider.hideDetails($event)"
     (showPlaceDetails)="showPlaceDetails($event)"
     (showApprovedStudents)="showApprovedStudents($event)"
-    (showWaitingStudents)="showWaitingStudents($event)"></app-classes>
+    (showWaitingStudents)="showWaitingStudents($event)"
+    (sendMessage)="sendMessageToApprovedStudents($event)"></app-classes>
 </ion-content>
 
 <ng-template #cancelMessage let-cancelingClass="cancelingClass" let-form="form">

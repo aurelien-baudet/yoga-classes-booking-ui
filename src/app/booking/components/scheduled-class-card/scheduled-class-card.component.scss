@@ -310,6 +310,13 @@ ion-card-content {
             right: value($scheduled-class-card-schedule-button, "position.right");
             @include round-icon-button($scheduled-class-card-schedule-button);
         }
+        ion-button.send-message {
+            position: absolute;
+            bottom: value($scheduled-class-card-send-message-button, "position.bottom");
+            right: value($scheduled-class-card-send-message-button, "position.right");
+            background: value($scheduled-class-card-send-message-button, "background");
+            @include round-icon-button($scheduled-class-card-send-message-button);
+        }
         ion-button.cancel-class {
             position: absolute;
             top: value($scheduled-class-card-cancel-button, "position.top");

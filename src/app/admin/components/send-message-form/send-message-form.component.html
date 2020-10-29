@@ -1,0 +1,24 @@
+<form #messageForm="ngForm" class="message-form" (ngSubmit)="sendMessage.emit(form.message)">
+  <ion-item>
+    <ion-label position="floating">Message</ion-label>
+    <ion-textarea 
+      class="message" 
+      type="text"
+      name="message" 
+      #message="ngModel"
+      [(ngModel)]="form.message" 
+      required></ion-textarea>
+    <div class="validation-errors" [class.invalid]="message.invalid && (message.dirty || message.touched)">
+      <div *ngIf="message.invalid && message.errors.required">Le message est obligatoire</div>
+    </div>
+  </ion-item>
+  <div class="response-errors" *ngIf="errors && errors.length > 0" [class.has-errors]="errors && errors.length > 0">
+    <div>
+      <span>Le message n'a pas été envoyé (erreur inconnue)</span>
+      <app-help-button>
+        <div *ngFor="let error of errors">{{ error.message }}</div>
+      </app-help-button>
+    </div>
+  </div>
+  <ion-button type="submit" [disabled]="!messageForm.valid" size="small">Envoyer</ion-button>
+</form>

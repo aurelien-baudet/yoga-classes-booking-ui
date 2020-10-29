@@ -14,6 +14,7 @@ export abstract class ManageClassStateProvider {
     abstract isCancelable(scheduledClass: ScheduledClass): boolean;
     abstract isCanceled(scheduledClass: ScheduledClass): boolean;
     abstract getCanceledInfo(scheduledClass: ScheduledClass): CancelInfo;
+    abstract isMessageable(scheduledClass: ScheduledClass): boolean;
 }
 
 export abstract class DetailsStateProvider<T> {

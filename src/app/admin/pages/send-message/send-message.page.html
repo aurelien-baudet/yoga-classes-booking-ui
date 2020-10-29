@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button></ion-menu-button>
+    <ion-title>Envoyer un message</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class.loading]="loading">
+  <h3>Envoyer un message aux participants du cours</h3>
+  <ion-spinner *ngIf="loading"></ion-spinner>
+  <app-scheduled-class-card
+    *ngIf="scheduledClass"
+    [bookable]="false"
+    [cancelable]="false"
+    [confirmable]="false"
+    [editable]="false"
+    [messageable]="false"
+    [schedulable]="false"
+    [scheduledClass]="scheduledClass"
+    [booked]="false"
+    [pending]="false"
+    [bookingApproved]="getApprovedBookings(scheduledClass)"
+    [bookingWaiting]="getWaitingBookings(scheduledClass)"
+    [canceled]="isCanceled(scheduledClass)"
+    [canceledInfo]="getCanceledMessage(scheduledClass)"></app-scheduled-class-card>
+  <app-send-message-form (sendMessage)="sendMessage($event)"></app-send-message-form>
+  <app-send-report
+    [students]="students"
+    [reports]="reports"
+    [loading]="sending">
+  </app-send-report>
+</ion-content>

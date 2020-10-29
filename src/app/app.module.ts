@@ -1,3 +1,4 @@
+import { RestMessageService } from './admin/services/remote/rest-message.service';
 import { RestSubscriptionService } from './account/services/remote/rest-subscription.service';
 import { EncodeHttpParamsInterceptor } from './common/services/fix-query-params-encoder';
 import { RestPasswordService } from './account/services/remote/rest-password.service';
@@ -59,6 +60,7 @@ import { ErrorHandler } from '@angular/core';
 import { GlobalErrorHandler, ErrorsService } from 'src/app/common/services/global-error-handler';
 import { PasswordService } from './account/services/password.service';
 import { SubscriptionService } from './account/services/subscription.service';
+import { MessageService } from './admin/services/message.service';
 
 
 registerLocaleData(localeFr);
@@ -120,6 +122,7 @@ export const calendarServiceFactory = (platform: Platform, nativeCalendar: Calen
     { provide: SubscriptionService, useClass: RestSubscriptionService },
     { provide: PushNotificationService, useClass: OnesignalPushNotificationService },
     { provide: PasswordService, useClass: RestPasswordService },
+    { provide: MessageService, useClass: RestMessageService },
     { provide: ServerConfig, useValue: environment.server },
     { provide: OneSignalConfig, useValue: environment.onesignal },
     { provide: SplashScreenConfig, useValue: environment.splashscreen },

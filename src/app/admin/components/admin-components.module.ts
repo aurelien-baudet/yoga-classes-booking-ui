@@ -1,3 +1,6 @@
+import { CommonComponentsModule } from 'src/app/common/components/common-components.module';
+import { SendMessageFormComponent } from './send-message-form/send-message-form.component';
+import { SendReportComponent } from './send-report/send-report.component';
 import { StudentSubscriptionsFormComponent } from './student-subscriptions-form/student-subscriptions-form.component';
 import { LessonFormComponent } from './lesson-form/lesson-form.component';
 import { FormsModule } from '@angular/forms';
@@ -10,17 +13,22 @@ import { IonicModule } from '@ionic/angular';
   declarations: [
     UnscheduledLessonCardComponent,
     LessonFormComponent,
-    StudentSubscriptionsFormComponent
+    StudentSubscriptionsFormComponent,
+    SendReportComponent,
+    SendMessageFormComponent
   ],
   exports: [
     UnscheduledLessonCardComponent,
     LessonFormComponent,
-    StudentSubscriptionsFormComponent
+    StudentSubscriptionsFormComponent,
+    SendReportComponent,
+    SendMessageFormComponent
   ],
   imports: [
     CommonModule,
     IonicModule,
-    FormsModule
+    FormsModule,
+    CommonComponentsModule
   ]
 })
 export class AdminComponentsModule { }

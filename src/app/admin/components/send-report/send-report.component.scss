@@ -1,0 +1,95 @@
+@import "../../../../theme/variables";
+@import "../../../../theme/icons-utils";
+
+:host {
+  display: block;
+}
+
+ion-list {
+  margin: 0;
+  padding: 0;
+}
+
+ion-list-header {
+  font-size: value($send-report, "header.font-size");
+  margin: value($send-report, "header.margin");
+  padding: value($send-report, "header.padding");
+  font-weight: bold;
+  min-height: 0;
+}
+
+ion-item {
+  font-size: value($send-report, "item.font-size");
+  margin: value($send-report, "item.space-between") 0;
+  --background: none;
+  --full-highlight-height: 0;
+  --padding-start: #{value($send-report, "item.padding", "left")};
+  --inner-padding-end: #{value($send-report, "item.padding", "right")};
+  /*--border-width: 0;
+  --inner-border-width: 0;*/
+  --min-height: #{value($send-report, "item.min-height")};
+  /*position: relative;
+  overflow: visible;*/
+
+  ion-label {
+    margin: value($send-report, "item.label.margin");
+    padding: value($send-report, "item.label.padding");
+  }
+
+  ion-spinner {
+    width: value($send-report, "item.loading.width");
+    height: value($send-report, "item.loading.height");
+    color: value($send-report, "item.loading.color");
+  }
+}
+
+.report {
+  display: flex;
+  flex-direction: row;
+
+  .status {
+    display: flex;
+    justify-content: space-evenly;
+    width: 60px;
+    text-align: left;
+    margin-left: value($send-report, "item.column.space-between");
+
+    &.mobile-notification ion-icon {
+      @include icon-styles(value($send-report, "icon.mobile-notification"));
+    }
+    &.email ion-icon {
+      @include icon-styles(value($send-report, "icon.email"));
+    }
+    &.sms ion-icon {
+      @include icon-styles(value($send-report, "icon.sms"));
+    }
+
+    &.succeeded {
+      ion-icon {
+        @include icon-colors(value($send-report, "status.succeeded.icon.colors"));
+      }
+    }
+    
+    &.not-sent {
+      ion-icon {
+        @include icon-colors(value($send-report, "status.not-sent.icon.colors"));
+      }
+    }
+    
+    &.failed {
+      ion-icon {
+        @include icon-colors(value($send-report, "status.failed.icon.colors"));
+      }
+    }
+
+    app-help-button {
+      display: inline-block;
+
+      /deep/ ion-button {
+        width: value($send-report, "item.info-button.width");
+        height: value($send-report, "item.info-button.height");    
+      }
+    }
+  }
+
+}

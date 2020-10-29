@@ -7,13 +7,12 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { PreferencesService } from 'src/app/account/services/preferences.service';
-import { ScheduledClass, Booking } from 'src/app/booking/domain/reservation';
+import { ScheduledClass, Booking, BookingForFriend, Lesson, Place, sameClassPredicate, sameLessonPredicate } from 'src/app/booking/domain/reservation';
 import { ClassService } from 'src/app/booking/services/class.service';
 import { PreferencesProvider } from 'src/app/booking/services/preferences.provider';
 import { BookingStateProvider, DetailsStateProvider, DetailsStateUpdateProvider, ManageClassStateProvider, PendingStateProvider, PendingStateUpdateProvider } from 'src/app/booking/services/single-class-state.provider';
 import { PopoverService, PopoverWrapper } from 'src/app/common/components/popover/popover.service';
 import { InMemoryUpdatableDetailsStateProvider } from '../../../booking/services/local/in-memory-details-class-state.provider';
-import { BookingForFriend, Lesson, Place, sameClassPredicate, sameLessonPredicate, UnbookingForFriend } from './../../../booking/domain/reservation';
 import { InMemoryUpdatablePendingStateProvider } from './../../../booking/services/local/in-memory-pending-state.provider';
 import { AccountPreferencesProvider } from './../../../booking/services/remote/account-preferences.provider';
 import { ManageableProvider } from './../../services/local/manageable.provider';
@@ -169,6 +168,10 @@ export class ClassesPage {
       }]
     });
     await alert.present();
+  }
+
+  async sendMessageToApprovedStudents(scheduledClass: ScheduledClass) {
+    this.router.navigate(['admin', 'messages', scheduledClass.id, 'send']);
   }
 
   private async unbook(scheduledClass: ScheduledClass, unbooking: Booking) {

@@ -2,6 +2,9 @@
   width: map-get($styles, "width");
   height: map-get($styles, "height");
   @include icon-colors(map-get($styles, "colors"));
+  @if (value($styles, "background") != null) {
+    background: map-get($styles, "background");
+  }
 }
 
 @mixin icon-colors($colors) {

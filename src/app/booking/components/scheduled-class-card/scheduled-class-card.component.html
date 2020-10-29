@@ -9,6 +9,7 @@
           [class.editable]="editable"
           [class.schedulable]="schedulable"
           [class.cancelable]="cancelable"
+          [class.messageable]="messageable"
           [class.place-changed]="scheduledClass.lesson.placeChanged">
   <ion-card-header>
     <ion-card-title (click)="showClassDetails.emit(scheduledClass)">
@@ -89,6 +90,9 @@
       </ion-button>
       <ion-button class="schedule-class" (click)="schedule.emit(scheduledClass)" *ngIf="schedulable" size="small">
         <ion-icon slot="icon-only" name="app-schedule-lesson"></ion-icon>
+      </ion-button>
+      <ion-button class="send-message" (click)="sendMessage.emit(scheduledClass)" *ngIf="messageable" size="small">
+        <ion-icon slot="icon-only" name="app-send-message"></ion-icon>
       </ion-button>
     </div>
     <div class="cancel-details" *ngIf="canceled">

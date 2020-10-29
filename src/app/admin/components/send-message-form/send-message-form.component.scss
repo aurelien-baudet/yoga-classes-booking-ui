@@ -1,0 +1,7 @@
+@import "../../../../theme/variables";
+
+form {
+  background: value($send-message-form, "background");
+  padding: value($send-message-form, "padding");
+  text-align: center;
+}

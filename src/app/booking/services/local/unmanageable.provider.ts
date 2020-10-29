@@ -22,4 +22,8 @@ export class UnmanageableProvider implements ManageClassStateProvider {
     getCanceledInfo(scheduledClass: ScheduledClass): CancelInfo {
         return isCanceled(scheduledClass) ? {message: scheduledClass.state.message} : null;
     }
+
+    isMessageable(scheduledClass: ScheduledClass): boolean {
+        return false;
+    }
 }

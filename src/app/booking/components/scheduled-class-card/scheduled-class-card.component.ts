@@ -35,6 +35,8 @@ export class ScheduledClassCardComponent {
   @Input()
   cancelable = false;
   @Input()
+  messageable = false;
+  @Input()
   canceled = false;
   @Input()
   canceledInfo: CancelInfo;
@@ -67,6 +69,8 @@ export class ScheduledClassCardComponent {
   showWaitingStudents = new EventEmitter<ScheduledClass>();
   @Output()
   showClassDetails = new EventEmitter<ScheduledClass>();
+  @Output()
+  sendMessage = new EventEmitter<ScheduledClass>();
   @Output()
   bookForFriend = new EventEmitter<BookingForFriend>();
   @Output()

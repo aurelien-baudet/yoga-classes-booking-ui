@@ -611,19 +611,30 @@ $scheduled-class-card-schedule-button: (
   ),
   "icon": (
     "colors": var(--ion-color-primary-tint) var(--ion-color-primary-contrast),
-    "width": 45px,
-    "height": 45px
+    "width": 34px,
+    "height": 34px
   )
 );
 $scheduled-class-card-edit-button: (
   "position": (
-    "bottom": 10px,
-    "right": #{value($scheduled-class-card-schedule-button, "position.right") + value($scheduled-class-card-schedule-button, "icon.width") + 8px}
+    "bottom": value($scheduled-class-card-schedule-button, "position.bottom"),
+    "right": value($scheduled-class-card-schedule-button, "position.right") + value($scheduled-class-card-schedule-button, "icon.width") + 5px
   ),
   "icon": (
     "colors": var(--ion-color-primary) var(--ion-color-primary-contrast),
-    "width": 45px,
-    "height": 45px
+    "width": value($scheduled-class-card-schedule-button, "icon.width"),
+    "height": value($scheduled-class-card-schedule-button, "icon.height"),
+  )
+);
+$scheduled-class-card-send-message-button: (
+  "position": (
+    "bottom": value($scheduled-class-card-schedule-button, "position.bottom"),
+    "right": value($scheduled-class-card-edit-button, "position.right") + value($scheduled-class-card-edit-button, "icon.width") + 5px
+  ),
+  "icon": (
+    "colors": var(--ion-color-primary-tint) var(--ion-color-primary-contrast),
+    "width": value($scheduled-class-card-schedule-button, "icon.width"),
+    "height": value($scheduled-class-card-schedule-button, "icon.height"),
   )
 );
 $scheduled-class-card-cancel-button: (
@@ -1315,5 +1326,91 @@ $edit-subscriptions-page: (
     "border": none,
     "font-size": 14px,
     "margin": 5px
+  )
+);
+
+$send-message-form: (
+  "background": none,
+  "padding": 0 30px
+);
+
+$send-report: (
+  "header": (
+    "font-size": 13px,
+    "margin": 0,
+    "padding": 5px 5px 10px 5px
+  ),
+  "item": (
+    "font-size": 12px,
+    "space-between": 5px,
+    "padding": 0 5px 0 0,
+    "min-height": 25px,
+    "label": (
+      "padding": 0 5px,
+      "margin": 0
+    ),
+    "loading": (
+      "width": 14px,
+      "height": 14px,
+      "color": var(--ion-color-primary)
+    ),
+    "column": (
+      "space-between": 5px
+    ),
+    "info-button": (
+      "width": 14px,
+      "height": 14px
+    )
+  ),
+  "icon": (
+    "mobile-notification": (
+      "width": 20px,
+      "height": 20px,
+      "colors": var(--ion-color-primary)
+    ),
+    "email": (
+      "width": 20px,
+      "height": 20px,
+      "colors": var(--ion-color-primary)
+    ),
+    "sms": (
+      "width": 20px,
+      "height": 20px,
+      "colors": var(--ion-color-primary)
+    )
+  ),
+  "status": (
+    "succeeded": (
+      "icon": (
+        "colors": var(--ion-color-success)
+      )
+    ),
+    "not-sent": (
+      "icon": (
+        "colors": var(--ion-color-primary-tint)
+      )
+    ),
+    "failed": (
+      "icon": (
+        "colors": var(--ion-color-danger)
+      )
+    )
+  )
+);
+
+$send-message-page: (
+  "title": (
+    "font-size": 14px,
+    "padding": 10px 30px,
+    "margin": 0
+  ),
+  "loader": (
+    "color": var(--ion-color-primary),
+    "width": 40px,
+    "height": 40px
+  ),
+  "report": (
+    "margin": 30px 0,
+    "padding": 0
   )
 );

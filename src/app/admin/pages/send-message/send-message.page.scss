@@ -1,0 +1,42 @@
+@import "../../../../theme/variables";
+
+h3 {
+  font-size: value($send-message-page, "title.font-size");
+  padding: value($send-message-page, "title.padding");
+  margin: value($send-message-page, "title.margin");
+}
+
+app-scheduled-class-card {
+  padding: 0;
+
+  /deep/ {
+    .details {
+      display: none;
+    }
+  }
+}
+
+
+.loading {
+  > * {
+    visibility: hidden;
+  }
+
+  ion-spinner {
+    visibility: visible;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: value($send-message-page, "loader.width");
+    height: value($send-message-page, "loader.height");
+    margin-left: - value($send-message-page, "loader.width") / 2;
+    margin-top: - value($send-message-page, "loader.height") / 2;
+    z-index: 1000;
+    color: value($send-message-page, "loader.color");
+  }
+}
+
+app-send-report {
+  margin: value($send-message-page, "report.margin");
+  padding: value($send-message-page, "report.padding");
+}
