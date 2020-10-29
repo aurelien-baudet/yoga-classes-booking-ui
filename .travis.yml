@@ -25,7 +25,7 @@ matrix:
     deploy:
       provider: releases
       api_key: "$GITHUB_API_TOKEN"
-      name: "WebApp - $PROFILE ($TRAVIS_BRANCH $DATE_TIME)"
+      name: "WebApp - $PROFILE [$TRAVIS_BRANCH] ($DATE_TIME)"
       file:
       - dist/yoga-booking-app-$PROFILE.tar.gz
       skip_cleanup: true
@@ -78,7 +78,7 @@ matrix:
     deploy:
       provider: releases
       api_key: "$GITHUB_API_TOKEN"
-      name: "Android - $PROFILE ($TRAVIS_BRANCH $DATE_TIME)"
+      name: "Android - $PROFILE [$TRAVIS_BRANCH] ($DATE_TIME)"
       file:
       - dist/yoga-booking-release-$PROFILE.apk
       skip_cleanup: true
