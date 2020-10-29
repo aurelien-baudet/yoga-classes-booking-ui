@@ -111,6 +111,20 @@ ion-card-content {
                 }
             }
         }
+        .teacher {
+            ion-icon {
+                @include icon-styles(value($scheduled-class-card-teacher, "icon"));
+                vertical-align: middle;
+            }
+            span {
+                font-size: value($scheduled-class-card-teacher, "font-size");
+                font-weight: bold;
+                color: value($scheduled-class-card-teacher, "color");
+                display: inline-block;
+                vertical-align: middle;
+                padding-left: value($scheduled-class-card-teacher, "space-between");
+            }
+        }
         .remaining-places,
         .waiting-queue {
             position: absolute;

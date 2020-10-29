@@ -16,7 +16,7 @@ import { PlaceService } from '../../services/place.service';
 export class AddLessonPage {
 
   places: Place[];
-  teacher: TeacherInfo;
+  teachers: TeacherInfo[];
 
   constructor(private classService: ClassService,
               private placeService: PlaceService,
@@ -24,7 +24,7 @@ export class AddLessonPage {
               private router: Router) { }
 
   async ionViewDidEnter() {
-    this.teacher = await this.userService.getTeacherInfo();
+    this.teachers = await this.userService.listTeachers();
     this.places = await this.placeService.list();
   }
 

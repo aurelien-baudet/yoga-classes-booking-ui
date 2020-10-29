@@ -60,6 +60,8 @@ const routes: Routes = [
       loadChildren: () => import('./admin/pages/edit-subscriptions/edit-subscriptions.module').then( m => m.EditSubscriptionsPageModule) },
   { path: 'admin/messages/:classId/send',
        loadChildren: () => import('./admin/pages/send-message/send-message.module').then( m => m.SendMessagePageModule) },
+  { path: 'admin/teacher/add',
+       loadChildren: () => import('./admin/pages/add-teacher/add-teacher.module').then( m => m.AddTeacherPageModule) },
   { path: 'errors/forbidden',
       loadChildren: () => import('./common/pages/forbidden/forbidden.module').then(m => m.ForbiddenPageModule) },
   { path: 'errors/service-unavailable',

@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button></ion-menu-button>
+    <ion-title>Ajouter un prof</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <app-teacher-form 
+    [errors]="errors"
+    (register)="registerTeacher($event)">
+  </app-teacher-form>
+</ion-content>

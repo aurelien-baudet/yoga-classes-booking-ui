@@ -89,6 +89,20 @@ ion-card-content {
                 }
             }
         }
+        .teacher {
+            ion-icon {
+                @include icon-styles(value($unscheduled-lesson-card-teacher, "icon"));
+                vertical-align: middle;
+            }
+            span {
+                font-size: value($unscheduled-lesson-card-teacher, "font-size");
+                font-weight: bold;
+                color: value($unscheduled-lesson-card-teacher, "color");
+                display: inline-block;
+                vertical-align: middle;
+                padding-left: value($unscheduled-lesson-card-teacher, "space-between");
+            }
+        }
         .max-students {
             position: absolute;
             top: value($unscheduled-lesson-card-max-students, "position.top");

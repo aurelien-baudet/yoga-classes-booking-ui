@@ -7,12 +7,21 @@
 
 <ion-content>
   <p>
-    En cas de besoin ou pour justifier une absence, vous pouvez contactez Cyril par mail ou téléphone :
+    En cas de besoin ou pour justifier une absence, vous pouvez contactez l'un des professeur par mail ou téléphone :
   </p>
-  <ion-item class="phone-number">
-    <a href="tel:+262693321756">+262 6 93 32 17 56</a>
-  </ion-item>
-  <ion-item class="email">
-    <a href="mailto:cyril.shaker@gmail.com">cyril.shaker@gmail.com</a>
-  </ion-item>
+  <ion-card *ngFor="let teacher of teachers">
+    <ion-card-header>
+      <ion-card-title>{{ teacher.displayName }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item class="phone-number">
+        <ion-icon name="app-phone-number" slot="start"></ion-icon>
+        <a href="tel:{{ teacher.contact.phoneNumber }}">{{ teacher.contact.phoneNumber }}</a>
+      </ion-item>
+      <ion-item class="email">
+        <ion-icon name="app-email-address" slot="start"></ion-icon>
+        <a href="mailto:{{ teacher.contact.email }}">{{ teacher.contact.email }}</a>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

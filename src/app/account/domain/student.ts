@@ -2,13 +2,11 @@ import { ContactInfo } from './contact';
 import { User, Credentials } from './user';
 
 export interface Student extends User {
-    contact: ContactInfo;
     preferences: Preferences;
 }
 export class Student extends User implements Student {
     constructor(student: Student) {
         super(student);
-        this.contact = student.contact;
         this.preferences = student.preferences;
     }
 

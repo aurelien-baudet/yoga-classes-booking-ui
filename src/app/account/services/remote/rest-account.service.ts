@@ -1,6 +1,6 @@
 import { isSameUser } from './../../domain/utils';
 import { ApplicationError, matchesErrorCode } from './../../../booking/domain/general';
-import { Teacher } from './../../domain/teacher';
+import { Teacher, TeacherRegistration } from './../../domain/teacher';
 import { UnregisteredUser, UnregisteredUserRegistration } from './../../domain/unregistered';
 import { HttpClient } from '@angular/common/http';
 import { Role } from 'src/app/account/domain/user';
@@ -36,6 +36,19 @@ export class RestAccountService implements AccountService {
       await this.authenticationStorage.store(btoa(`${student.credentials.login}:${student.credentials.password}`));
       this.updateCurrentUser(user);
       return user;
+    } catch (e) {
+      if (matchesErrorCode(e, 'LOGIN_ALREADY_USED')) {
+        throw new ApplicationError('LOGIN_ALREADY_USED', 'Login already used', e);
+      }
+      throw e;
+    }
+  }
+
+  async registerTeacher(teacher: TeacherRegistration): Promise<Teacher> {
+    try {
+      return Teacher.from(await this.http.post<Teacher>(`${this.serverConfig.url}/users/teachers`, teacher)
+        .pipe(first())
+        .toPromise());
     } catch (e) {
       if (matchesErrorCode(e, 'LOGIN_ALREADY_USED')) {
         throw new ApplicationError('LOGIN_ALREADY_USED', 'Login already used', e);
@@ -110,6 +123,13 @@ export class RestAccountService implements AccountService {
     return await this.http.get<boolean>(`${this.serverConfig.url}/users/login`, {params: {available: login}})
       .pipe(first())
       .toPromise();
+  }
+
+  async listTeachers(): Promise<Teacher[]> {
+    return (await this.http.get<Teacher[]>(`${this.serverConfig.url}/users/teachers`)
+      .pipe(first())
+      .toPromise())
+      .map(Teacher.from);
   }
 
   private updateCurrentUser(user: User | UnregisteredUser) {

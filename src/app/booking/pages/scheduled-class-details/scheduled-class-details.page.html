@@ -60,6 +60,10 @@
               <span>le lieu a été modifié</span>
             </div>
           </div>
+          <div class="teacher">
+            <ion-icon slot="start" name="app-teacher"></ion-icon>
+            <span>{{ scheduledClass.lesson.teacher.displayName }}</span>      
+          </div>
           <div *ngIf="getPostureLevel()" class="posture-level level-{{ getPostureLevel().value }}">
             <ion-icon slot="icon-only" name="app-posture-level"></ion-icon>
             <div>

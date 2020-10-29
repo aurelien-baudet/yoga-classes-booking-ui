@@ -1,7 +1,7 @@
 import { Lesson, UpdatedLesson } from 'src/app/booking/domain/reservation';
 import { NewLesson, Place, PlaceId, isSamePlace, PostureLevel, SportLevel } from './../../../booking/domain/reservation';
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, SimpleChanges } from '@angular/core';
-import { TeacherInfo, TeacherId, isSameTeacher } from 'src/app/account/domain/teacher';
+import { Teacher, TeacherInfo, TeacherId, isSameTeacher } from 'src/app/account/domain/teacher';
 
 type LessonModel = Pick<Lesson, 'title' | 'description' | 'maxStudents' | 'photos'> & {
   sportLevel: number | null,
@@ -54,9 +54,11 @@ export class LessonFormComponent {
   @Input()
   places: Place[];
   @Input()
+  teachers: TeacherInfo[];
+  /*@Input()
   set teacher(teacher: TeacherInfo) {
     this.lessonModel.teacherId = teacher ? teacher.id : '';
-  }
+  }*/
   @Input()
   buttonText: string;
   @Input()

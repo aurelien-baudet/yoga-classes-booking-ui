@@ -1,0 +1,12 @@
+@import "../../../../theme/variables";
+@import "../../../../theme/icons-utils";
+
+:host {
+  display: block;
+  text-align: center;
+  justify-content: center;
+}
+
+form {
+  background-position-y: value($register-teacher-form, "background.position-y");
+}

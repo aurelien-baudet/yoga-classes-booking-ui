@@ -90,6 +90,24 @@
       <div *ngIf="place.invalid && place.errors.required">Le lieu de dispense est obligatoire</div>
     </div>
   </ion-item>
+  <ion-item class="teacher">
+    <ion-label position="floating">Professeur</ion-label>
+    <ion-select
+      name="teacherId" 
+      #teacher="ngModel"
+      [(ngModel)]="lessonModel.teacherId" 
+      [interfaceOptions]="{header: 'Choix du professeur'}"
+      interface="popover"
+      required>
+      <ion-select-option 
+        *ngFor="let teacher of teachers"
+        [value]="teacher.id">{{ teacher.displayName }}</ion-select-option>
+    </ion-select>
+    <ion-icon name="app-teacher" slot="start"></ion-icon>
+    <div class="validation-errors" [class.invalid]="teacher.invalid && (teacher.dirty || teacher.touched)">
+      <div *ngIf="teacher.invalid && teacher.errors.required">Le professeur est obligatoire</div>
+    </div>
+  </ion-item>
   <ion-item class="subscription">
     <ion-toggle
       name="subscriptionPack" 
@@ -98,9 +116,5 @@
     </ion-toggle>
     <ion-label>Inclus dans l'abonnement</ion-label>
   </ion-item>
-  <input 
-    type="hidden" 
-    name="teacherId" 
-    [(ngModel)]="lessonModel.teacherId" />
   <ion-button type="submit" [disabled]="!form.valid">{{ buttonText }}</ion-button>
 </form>

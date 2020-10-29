@@ -210,13 +210,16 @@ ion-card-content {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
+    max-width: value($scheduled-class-details-page-layout, "summary.max-width");
+    margin: auto;
     
     .time {
       display: flex;
-      flex: 0 0 value($scheduled-class-details-page-layout, "summary.info.width");
+      flex: 1 0 auto;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: center;
       margin-right: value($scheduled-class-details-page-layout, "summary.horizontal-spacing") / 2;
+      order: 1;
 
       ion-icon {
           @include icon-styles(value($scheduled-class-details-page-time, "icon"));
@@ -232,10 +235,12 @@ ion-card-content {
     .place {
       display: flex;
       flex-wrap: wrap;
-      flex: 0 0 value($scheduled-class-details-page-layout, "summary.info.width");
+      flex: 1 0 auto;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       margin-left: value($scheduled-class-details-page-layout, "summary.horizontal-spacing") / 2;
+      margin-right: value($scheduled-class-details-page-layout, "summary.horizontal-spacing") / 2;
+      order: 2;
 
       ion-button {
           font-size: value($scheduled-class-details-page-place, "font-size");
@@ -274,6 +279,32 @@ ion-card-content {
           }
       }
     }
+    .teacher {
+      display: flex;
+      flex: 1 0 auto;
+      align-items: center;
+      justify-content: center;
+      margin-left: value($scheduled-class-details-page-layout, "summary.horizontal-spacing") / 2;
+      order: 3;
+
+      ion-icon {
+          @include icon-styles(value($scheduled-class-details-page-teacher, "icon"));
+      }
+      span {
+          font-size: value($scheduled-class-details-page-teacher, "font-size");
+          font-weight: bold;
+          color: value($scheduled-class-details-page-teacher, "color");
+          display: inline-block;
+          padding-left: value($scheduled-class-details-page-teacher, "space-between");
+      }
+    }
+    /* line break */
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      order: 4;
+    }
     .posture-level {
         display: flex;
         flex: 0 0 value($scheduled-class-details-page-layout, "summary.info.width");
@@ -281,6 +312,7 @@ ion-card-content {
         padding: value($scheduled-class-details-page-posture-level, "padding");
         font-weight: bold;
         margin-right: value($scheduled-class-details-page-layout, "summary.horizontal-spacing") / 2;
+        order: 5;
 
         ion-icon {
             @include icon-styles(value($scheduled-class-details-page-posture-level, "icon"));
@@ -310,6 +342,7 @@ ion-card-content {
         padding: value($scheduled-class-details-page-sport-level, "padding");
         font-weight: bold;
         margin-left: value($scheduled-class-details-page-layout, "summary.horizontal-spacing") / 2;
+        order: 6;
 
         ion-icon {
             @include icon-styles(value($scheduled-class-details-page-sport-level, "icon"));

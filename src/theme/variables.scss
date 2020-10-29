@@ -387,6 +387,16 @@ $scheduled-class-card-place-changed: (
     "height": 12px
   )
 );
+$scheduled-class-card-teacher: (
+  "font-size": 13px,
+  "color": var(--ion-color-secondary),
+  "space-between": 6px,
+  "icon": (
+    "colors": var(--ion-color-primary-tint) var(--ion-color-primary-tint),
+    "width": 24px, 
+    "height": 28px
+  )
+);
 $scheduled-class-card-remaining-places: (
   "color": var(--ion-color-primary),
   "font-size": 10px,
@@ -419,11 +429,11 @@ $scheduled-class-card-posture-level: (
   "font-size": 13px,
   "color": var(--ion-color-secondary),
   "padding": 4px 10px 4px 0,
-  "spacing": 5px,
+  "spacing": 0px,
   "icon": (
     "colors": var(--ion-color-primary-tint) var(--ion-color-primary-contrast),
-    "width": 24px, 
-    "height": 22px
+    "width": 28px, 
+    "height": 28px
   ),
   "number": (
     "font-size": 9px
@@ -882,6 +892,7 @@ $unscheduled-lesson-card-header: map-merge($scheduled-class-card-header, (
 $unscheduled-lesson-card-content: map-merge($scheduled-class-card-content, ());
 $unscheduled-lesson-card-time: map-merge($scheduled-class-card-time, ());
 $unscheduled-lesson-card-place: map-merge($scheduled-class-card-place, ());
+$unscheduled-lesson-card-teacher: map-merge($scheduled-class-card-teacher, ());
 $unscheduled-lesson-card-max-students: map-merge($scheduled-class-card-waiting-places, ());
 $unscheduled-lesson-card-posture-level: map-merge($scheduled-class-card-posture-level, ());
 $unscheduled-lesson-card-sport-level: map-merge($scheduled-class-card-sport-level, ());
@@ -1053,6 +1064,7 @@ $scheduled-class-details-page-layout: (
   "summary": (
     "padding": 20px 0 0 0,
     "horizontal-spacing": 20px,
+    "max-width": 500px,
     "info": (
       "width": 140px
     )
@@ -1093,6 +1105,9 @@ $scheduled-class-details-page-actions: (
   )
 );
 $scheduled-class-details-page-time: map-merge($scheduled-class-card-time, (
+  "space-between": 5px
+));
+$scheduled-class-details-page-teacher: map-merge($scheduled-class-card-teacher, (
   "space-between": 5px
 ));
 $scheduled-class-details-page-place: map-merge($scheduled-class-card-place, ());
@@ -1412,5 +1427,42 @@ $send-message-page: (
   "report": (
     "margin": 30px 0,
     "padding": 0
+  )
+);
+
+$contact-page: (
+  "text": (
+    "margin": 20px
+  ),
+  "teacher": (
+    "name": (
+      "font-size": 14px
+    ),
+    "info": (
+      "font-size": 12px,
+      "color": var(--ion-color-secondary)
+    ),
+    "email": (
+      "icon": (
+        "colors": var(--ion-color-primary-tint),
+        "width": 24px,
+        "height": 24px,
+        "margin": 5px 10px 5px 0
+      ),
+    ),
+    "phone-number": (
+      "icon": (
+        "colors": var(--ion-color-primary-tint),
+        "width": 24px,
+        "height": 24px,
+        "margin": 5px 10px 5px 0
+      ),
+    )
+  )
+);
+
+$register-teacher-form: (
+  "background": (
+    "position-y": 30px
   )
 );

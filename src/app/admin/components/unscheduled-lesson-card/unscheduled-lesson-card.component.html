@@ -22,6 +22,10 @@
         <ion-icon slot="icon-only" name="app-max-students"></ion-icon>
         <ion-badge>{{ lesson.maxStudents }}</ion-badge>
       </div>
+      <div class="teacher">
+        <ion-icon slot="start" name="app-teacher"></ion-icon>
+        <span>{{ lesson.teacher.displayName }}</span>      
+      </div>
       <div *ngIf="getPostureLevel()" class="posture-level level-{{ getPostureLevel().value }}">
         <ion-icon slot="icon-only" name="app-posture-level"></ion-icon>
         <div>

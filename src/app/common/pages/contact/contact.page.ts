@@ -1,3 +1,5 @@
+import { Teacher } from 'src/app/account/domain/teacher';
+import { AccountService } from 'src/app/account/services/account.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './contact.page.html',
   styleUrls: ['./contact.page.scss'],
 })
-export class ContactPage implements OnInit {
+export class ContactPage {
+  teachers: Teacher[];
 
-  constructor() { }
+  constructor(private userService: AccountService) { }
 
-  ngOnInit() {
+  async ionViewDidEnter() {
+    this.teachers = await this.userService.listTeachers();
   }
-
 }

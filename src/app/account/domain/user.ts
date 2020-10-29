@@ -1,3 +1,4 @@
+import { ContactInfo } from './contact';
 
 export enum Role {
     STUDENT = 'STUDENT',
@@ -16,11 +17,13 @@ export interface User {
     displayName: string;
     account: Account;
     registered: true;
+    contact: ContactInfo;
 }
 export class User implements User {
     constructor(user: User) {
         this.id = user.id;
         this.displayName = user.displayName;
+        this.contact = user.contact;
         this.account = user.account;
         this.registered = true;
     }

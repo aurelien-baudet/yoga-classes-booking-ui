@@ -1,3 +1,4 @@
+import { TeacherRegistration } from './../../domain/teacher';
 import { UnregisteredUserRegistration } from './../../domain/unregistered';
 import { Teacher } from '../../domain/teacher';
 import { UnregisteredUser } from '../../domain/unregistered';
@@ -18,6 +19,10 @@ export class MockAccountService implements AccountService {
   constructor() {}
 
   async registerStudent(student: StudentRegistration): Promise<Student> {
+    throw new Error('not implemented');
+  }
+
+  async registerTeacher(teacher: TeacherRegistration): Promise<Teacher> {
     throw new Error('not implemented');
   }
 
@@ -51,4 +56,8 @@ export class MockAccountService implements AccountService {
     return true;
   }
 
+  async listTeachers(): Promise<Teacher[]> {
+    const teacher = cyril['default'] as any;
+    return [teacher];
+  }
 }

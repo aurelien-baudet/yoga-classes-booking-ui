@@ -1,4 +1,5 @@
-import { User } from './user';
+import { ContactInfo } from './contact';
+import { User, Credentials } from './user';
 
 export interface Teacher extends User {
 
@@ -19,4 +20,11 @@ export type TeacherInfo = Pick<Teacher, 'id' | 'displayName'>;
 
 export const isSameTeacher = (a: Teacher | TeacherId | TeacherInfo, b: Teacher | TeacherId | TeacherInfo) => {
   return a.id === b.id;
+};
+
+export interface TeacherRegistration {
+  displayName: string;
+  credentials: Credentials;
+  contact: ContactInfo;
 }
+

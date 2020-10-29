@@ -18,6 +18,7 @@ export class EditLessonPage {
   scheduledClass: ScheduledClass;
   originalLesson: Lesson;
   places: Place[];
+  teachers: TeacherInfo[];
 
   @ViewChild('chooseOccurrences', { static: true })
   private chooseOccurrences: TemplateRef<any>;
@@ -35,6 +36,7 @@ export class EditLessonPage {
     this.scheduledClass = await this.classService.getClassInfo({id: classId});
     this.originalLesson = {...this.scheduledClass.lesson};
     this.places = await this.placeService.list();
+    this.teachers = await this.userService.listTeachers();
   }
 
   async selectOccurrences(scheduledClass: ScheduledClass, updatedLesson: UpdatedLesson) {
