@@ -1,0 +1,19 @@
+@import "../../../../theme/variables";
+
+app-student-subscriptions {
+  margin: value($subscriptions-page, "subscriptions.margin");
+}
+
+.prices {
+  color: value($subscriptions-page, "prices.color");
+  font-size: value($subscriptions-page, "prices.font-size");
+  padding: value($subscriptions-page, "prices.margin");
+  background: value($subscriptions-page, "prices.background");
+  margin: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  box-shadow: value($subscriptions-page, "prices.box-shadow");
+  font-weight: bold;
+}

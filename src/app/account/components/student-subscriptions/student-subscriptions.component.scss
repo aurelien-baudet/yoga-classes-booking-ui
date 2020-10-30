@@ -1,5 +1,9 @@
 @import "../../../../theme/variables";
 
+:host {
+  display: block;
+}
+
 .unpaid-classes {
   .balance {
     border-radius: value($student-subscriptions, "unpaid-classes.balance.border-radius");

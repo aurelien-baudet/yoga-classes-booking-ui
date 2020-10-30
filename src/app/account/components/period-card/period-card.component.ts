@@ -14,6 +14,6 @@ export class PeriodCardComponent {
 
   getProgress(): number {
     const totalDuration = this.card.end - this.card.start;
-    return (Date.now() - this.card.start) / totalDuration;
+    return (this.card.end - Date.now()) / totalDuration;
   }
 }
