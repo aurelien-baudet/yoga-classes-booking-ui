@@ -8,7 +8,17 @@
 
 <ion-content>
   <app-teacher-form 
+    [teacher]="teacher"
     [errors]="errors"
     (register)="registerTeacher($event)">
   </app-teacher-form>
 </ion-content>
+
+<ng-template #teacherAdded let-newTeacher="newTeacher">
+  <div class="header">
+    <span class="title">Professeur ajouté</span>
+  </div>
+  <div class="content">
+    <p>{{ newTeacher.displayName }} a été ajouté</p>
+  </div>
+</ng-template>

@@ -1035,6 +1035,9 @@ $toast-states: (
   ),
   "failed": (
     "background": var(--ion-color-warning)
+  ),
+  "success": (
+    "background": var(--ion-color-primary)
   )
 );
 
