@@ -6,5 +6,19 @@
 </ion-header>
 
 <ion-content>
-  <p>Bientôt disponible</p>
+  <app-profile-form
+    [profile]="currentUser"
+    (update)="updateProfile($event)">
+  </app-profile-form>
+  <ion-button class="reset-password" (click)="resetPassword()" size="small">Changer de mot de passe</ion-button>
 </ion-content>
+
+
+<ng-template #updated>
+  <div class="header">
+    <span class="title">Profile</span>
+  </div>
+  <div class="content">
+    <p>Votre profile a été mis à jour.</p>
+  </div>
+</ng-template>

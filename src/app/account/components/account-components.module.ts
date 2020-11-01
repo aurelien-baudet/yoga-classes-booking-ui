@@ -11,6 +11,7 @@ import { PreferencesComponent } from './preferences/preferences.component';
 import { RegisterComponent } from './signup/register-student-form.component';
 import { SocialLoginComponent } from './login/social-login.component';
 import { UnregisteredInfoFormComponent } from './login/unregistered-info-form.component';
+import { ProfileFormComponent } from './profile-form/profile-form.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UnregisteredInfoFormComponent } from './login/unregistered-info-form.co
     RegisterComponent,
     StudentSubscriptionsComponent,
     PeriodCardComponent,
-    ClassPackageCardComponent
+    ClassPackageCardComponent,
+    ProfileFormComponent
   ],
   exports: [
     LoginFormComponent,
@@ -31,7 +33,8 @@ import { UnregisteredInfoFormComponent } from './login/unregistered-info-form.co
     RegisterComponent,
     StudentSubscriptionsComponent,
     PeriodCardComponent,
-    ClassPackageCardComponent
+    ClassPackageCardComponent,
+    ProfileFormComponent
   ],
   imports: [
     CommonModule,

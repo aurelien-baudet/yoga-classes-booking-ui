@@ -5,7 +5,7 @@ import { UnregisteredUser } from '../../domain/unregistered';
 import { Injectable } from '@angular/core';
 import { UserId, User } from '../../domain/user';
 import { AccountService } from '../account.service';
-import { Student, StudentRegistration } from '../../domain/student';
+import { Student, StudentRegistration, Profile, StudentId } from '../../domain/student';
 import * as pouet from './data/student-pouet.json';
 import * as cyril from './data/teacher-cyril.json';
 import { Subject } from 'rxjs';
@@ -59,5 +59,9 @@ export class MockAccountService implements AccountService {
   async listTeachers(): Promise<Teacher[]> {
     const teacher = cyril['default'] as any;
     return [teacher];
+  }
+  
+  async updateProfile(student: StudentId, profile: Profile): Promise<Student> {
+    throw new Error("Method not implemented.");
   }
 }

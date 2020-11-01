@@ -1,0 +1,15 @@
+@import "../../../../theme/variables";
+@import "../../../../theme/button-utils";
+
+
+ion-content {
+  text-align: center;
+
+  .reset-password {
+    @include discreet-button(value($profile-page, "reset-password.color"));
+    margin: value($profile-page, "reset-password.margin");
+    font-size: value($profile-page, "reset-password.font-size");
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}

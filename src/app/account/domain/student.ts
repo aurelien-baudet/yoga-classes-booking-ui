@@ -39,3 +39,7 @@ export interface Preferences {
     addBookedClassesToCalendar: boolean;
 }
 
+export interface Profile {
+    displayName: string;
+    contact: ContactInfo;
+}

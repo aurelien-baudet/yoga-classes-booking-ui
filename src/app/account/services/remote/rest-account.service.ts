@@ -10,7 +10,7 @@ import { AccountService } from './../account.service';
 import { ServerConfig } from 'src/environments/config';
 import { first } from 'rxjs/operators';
 import { AuthenticationStorage } from '../authentication.storage';
-import { Student, StudentRegistration } from '../../domain/student';
+import { Student, StudentRegistration, Profile, StudentId } from '../../domain/student';
 import { Subject, ReplaySubject } from 'rxjs';
 import { UnregisteredUserInfoStorage } from '../unregistered-user-info.storage';
 
@@ -130,6 +130,14 @@ export class RestAccountService implements AccountService {
       .pipe(first())
       .toPromise())
       .map(Teacher.from);
+  }
+
+  async updateProfile(student: StudentId, profile: Profile): Promise<Student> {
+    const user = Student.from(await this.http.patch<Student>(`${this.serverConfig.url}/users/students/${student.id}`, profile)
+      .pipe(first())
+      .toPromise());
+    this.updateCurrentUser(user);
+    return user;
   }
 
   private updateCurrentUser(user: User | UnregisteredUser) {
