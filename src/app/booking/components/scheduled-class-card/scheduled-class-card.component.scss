@@ -91,6 +91,7 @@ ion-card-content {
             .place-changed {
                 border-radius: value($scheduled-class-card-place-changed, "border-radius");
                 padding: value($scheduled-class-card-place-changed, "padding");
+                margin: value($scheduled-class-card-place-changed, "margin");
                 font-size: value($scheduled-class-card-place-changed, "font-size");
                 font-weight: bold;
                 background: value($scheduled-class-card-place-changed, "background");
