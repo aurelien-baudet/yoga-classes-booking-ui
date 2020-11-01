@@ -50,6 +50,9 @@ export class EditLessonPage {
     if (this.hasPlaceChanged(this.originalLesson, updatedLesson)) {
       await this.classService.changePlaceForSpecificClass(scheduledClass, updatedLesson.place);
     }
+    if (this.hasTeacherChanged(this.originalLesson, updatedLesson)) {
+      await this.classService.changeTeacherForSpecificClass(scheduledClass, updatedLesson.teacher);
+    }
     this.router.navigate(['admin', 'classes']);
   }
 
@@ -60,13 +63,15 @@ export class EditLessonPage {
     if (this.hasPlaceChanged(this.originalLesson, lesson)) {
       await this.classService.changePlaceForAllClasses(lesson, lesson.place);
     }
+    if (this.hasTeacherChanged(this.originalLesson, lesson)) {
+      await this.classService.changeTeacherForAllClasses(lesson, lesson.teacher);
+    }
     this.router.navigate(['admin', 'classes']);
   }
 
   private hasInfoChanged(original: Lesson, updated: UpdatedLesson): boolean {
     return original.description !== updated.description
       || original.maxStudents !== updated.maxStudents
-      || !isSameTeacher(original.teacher, updated.teacher)
       || original.title !== updated.title
       || !this.isSameDifficulty(original.difficulty, updated.difficulty)
       || original.subscriptionPack !== updated.subscriptionPack;
@@ -86,5 +91,9 @@ export class EditLessonPage {
 
   private hasPlaceChanged(original: Lesson, updated: UpdatedLesson): boolean {
     return !isSamePlace(original.place, updated.place);
+  }
+
+  private hasTeacherChanged(original: Lesson, updated: UpdatedLesson): boolean {
+    return !isSameTeacher(original.teacher, updated.teacher);
   }
 }

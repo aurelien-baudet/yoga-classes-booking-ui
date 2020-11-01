@@ -5,6 +5,7 @@ import { ScheduledClass, Lesson, LessonId, ClassId, ClassState, Booking, Place, 
 import { ClassService } from '../class.service';
 import * as classes from './data/classes.json';
 import * as unscheduled from './data/unscheduled.json';
+import { TeacherId } from 'src/app/account/domain/teacher';
 
 @Injectable({
   providedIn: 'root'
@@ -63,6 +64,13 @@ export class MockClassService implements ClassService {
   }
 
   async updateLessonInfoForAllClasses(updatedInfo: UpdatedLesson): Promise<Lesson> {
+    throw new Error("Method not implemented.");
+  }
+
+  changeTeacherForSpecificClass(scheduledClass: ClassId, newTeacher: TeacherId): Promise<ScheduledClass> {
+    throw new Error("Method not implemented.");
+  }
+  changeTeacherForAllClasses(lesson: LessonId, newTeacher: TeacherId): Promise<Lesson> {
     throw new Error("Method not implemented.");
   }
 }

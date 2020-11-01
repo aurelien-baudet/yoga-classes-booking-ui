@@ -7,6 +7,7 @@ import { ClassService } from '../class.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ServerConfig } from 'src/environments/config';
 import { first } from 'rxjs/operators';
+import { TeacherId } from 'src/app/account/domain/teacher';
 
 
 
@@ -110,6 +111,18 @@ export class RestClassService implements ClassService {
 
   async updateLessonInfoForAllClasses(updatedInfo: UpdatedLesson): Promise<Lesson> {
     return await this.http.patch<Lesson>(`${this.serverConfig.url}/lessons/${updatedInfo.id}/info`, updatedInfo)
+      .pipe(first())
+      .toPromise();
+  }
+
+  async changeTeacherForSpecificClass(scheduledClass: ClassId, newTeacher: TeacherId): Promise<ScheduledClass> {
+    return await this.http.patch<ScheduledClass>(`${this.serverConfig.url}/classes/${scheduledClass.id}/teachers/${newTeacher.id}`, {})
+      .pipe(first())
+      .toPromise();
+  }
+
+  async changeTeacherForAllClasses(lesson: LessonId, newTeacher: TeacherId): Promise<Lesson> {
+    return await this.http.patch<Lesson>(`${this.serverConfig.url}/lessons/${lesson.id}/teachers/${newTeacher.id}`, {})
       .pipe(first())
       .toPromise();
   }
