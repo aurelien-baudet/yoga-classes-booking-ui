@@ -25,8 +25,8 @@ export class RestSubscriptionService implements SubscriptionService {
     // TODO: handle errors
   }
 
-  async getCurrentSubscriptions(page: PageRequest): Promise<Page<UserSubscriptions>> {
-    return Page.from(UserSubscriptions.from, await this.http.get<Page<UserSubscriptions>>(`${this.serverConfig.url}/subscriptions`, this.sortByName(page))
+  async getCurrentSubscriptions(name: string, page: PageRequest): Promise<Page<UserSubscriptions>> {
+    return Page.from(UserSubscriptions.from, await this.http.get<Page<UserSubscriptions>>(`${this.serverConfig.url}/subscriptions`, this.filterAndSortByName(name, page))
       .pipe(first())
       .toPromise());
   }
@@ -37,13 +37,22 @@ export class RestSubscriptionService implements SubscriptionService {
       .toPromise());
   }
 
-  private sortByName(page: PageRequest): {params: HttpParams} {
+  private filterAndSortByName(name: string, page: PageRequest): {params: HttpParams} {
     let params = new HttpParams();
+    const merged = {...this.filterByName(name), ...this.sortByName(page)};
+    for (const key in merged) {
+     params = params.set(key, `${merged[key]}`);
+    }
+    return {params};
+  }
+
+  private filterByName(name: string): {[key: string]: string} {
+    return {displayName: name};
+  }
+
+  private sortByName(page: PageRequest): {[key: string]: any} {
     // TODO: ignore case
     // params = params.set('sort', 'displayName,asc,ignoreCase');
-    params = params.set('sort', 'displayName,asc');
-    params = params.set('page', `${page.page}`);
-    params = params.set('size', `${page.size}`);
-    return {params};
+    return {sort: 'displayName,asc', ...page};
   }
 }

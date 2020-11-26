@@ -15,10 +15,12 @@ export class EditSubscriptionsPage {
   loadingSubscriptions = new Map<string, boolean>();
   page: PageRequest;
   lastPage: Page<UserSubscriptions>;
+  filter: string;
 
   constructor(private subscriptionService: SubscriptionService) {}
 
   async ionViewDidEnter() {
+    this.filter = '';
     this.refreshSubscriptions();
   }
 
@@ -32,7 +34,7 @@ export class EditSubscriptionsPage {
     this.subscriptions = [];
     this.lastPage = null;
     this.loading = true;
-    this.mergeSubscriptions(await this.subscriptionService.getCurrentSubscriptions(this.page));
+    this.mergeSubscriptions(await this.subscriptionService.getCurrentSubscriptions(this.filter, this.page));
     this.loading = false;
   }
 
@@ -55,9 +57,14 @@ export class EditSubscriptionsPage {
 
   async loadNextPage(event) {
     this.page = this.page.next();
-    this.lastPage = await this.subscriptionService.getCurrentSubscriptions(this.page);
+    this.lastPage = await this.subscriptionService.getCurrentSubscriptions(this.filter, this.page);
     this.mergeSubscriptions(this.lastPage);
     event.target.complete();
+  }
+
+  async search(event) {
+    this.filter = event.detail.value;
+    await this.refreshSubscriptions();
   }
 
   subscriptionReference(index, item) {

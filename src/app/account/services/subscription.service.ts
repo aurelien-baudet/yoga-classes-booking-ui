@@ -12,7 +12,7 @@ export interface SubscriptionsUpdate {
 export abstract class SubscriptionService {
   async abstract getCurrentSubscriptionsFor(student: User | StudentRef): Promise<UserSubscriptions>;
 
-  async abstract getCurrentSubscriptions(page: PageRequest): Promise<Page<UserSubscriptions>>;
+  async abstract getCurrentSubscriptions(name: string, page: PageRequest): Promise<Page<UserSubscriptions>>;
 
   async abstract updateSubscriptionsForStudent(student: User | StudentRef, subscription: SubscriptionsUpdate): Promise<UserSubscriptions>;
 }

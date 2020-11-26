@@ -6,6 +6,7 @@
 </ion-header>
 <ion-content [class.loading]="loading">
   <ion-spinner *ngIf="loading"></ion-spinner>
+  <ion-searchbar slot="fixed" inputmode="search" (ionChange)="search($event)" [value]="filter"></ion-searchbar>
   <ion-refresher slot="fixed" (ionRefresh)="manualRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
