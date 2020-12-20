@@ -54,6 +54,8 @@ export class ClassesComponent {
   @Output()
   sendMessage = new EventEmitter<ScheduledClass>();
   @Output()
+  remove = new EventEmitter<ScheduledClass>();
+  @Output()
   bookForFriend = new EventEmitter<BookingForFriend>();
   @Output()
   unbookForFriend = new EventEmitter<UnbookingForFriend>();

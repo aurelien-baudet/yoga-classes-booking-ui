@@ -24,6 +24,10 @@ export class ManageableProvider implements ManageClassStateProvider {
     }
 
     isMessageable(scheduledClass: ScheduledClass): boolean {
-        return true;
+        return !isCanceled(scheduledClass);
+    }
+
+    isRemovable(scheduledClass: ScheduledClass): boolean {
+        return isCanceled(scheduledClass) && scheduledClass.bookings.all.length == 0;
     }
 }

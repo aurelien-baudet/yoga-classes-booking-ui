@@ -346,6 +346,12 @@ ion-card-content {
             border: value($scheduled-class-card-confirm-booking-button, "border");
             @include round-icon-button($scheduled-class-card-confirm-booking-button);
         }
+        ion-button.remove-class {
+            position: absolute;
+            top: value($scheduled-class-card-remove-button, "position.top");
+            right: value($scheduled-class-card-remove-button, "position.right");
+            @include round-icon-button($scheduled-class-card-remove-button);
+        }
     }
 
     ion-spinner {

@@ -20,6 +20,8 @@ import { NextLessonOpenedDetailsClassStateProvider } from './../../services/loca
 import { UnbookableProvider } from './../../services/local/unbookable.provider';
 import { AlertController } from '@ionic/angular';
 import { StudentListUnbookableStateProvider } from 'src/app/booking/services/student-list-unbookable-state.provider';
+import { matchesErrorCode } from 'src/app/booking/domain/general';
+import { NotificationService } from 'src/app/common/components/notification/notification.service';
 
 
 @Component({
@@ -48,6 +50,12 @@ export class ClassesPage {
   approvedStudents: TemplateRef<any>;
   @ViewChild('waitingStudents', { static: true })
   waitingStudents: TemplateRef<any>;
+  @ViewChild('removeLessonConfirmation', { static: true })
+  removeLessonConfirmation: TemplateRef<any>;
+  @ViewChild('removeClassConfirmation', { static: true })
+  removeClassConfirmation: TemplateRef<any>;
+  @ViewChild('unremovableNotification', { static: true })
+  unremovableNotification: TemplateRef<any>;
   lastClick: Event; // used for popover
   loading = true;
 
@@ -60,6 +68,7 @@ export class ClassesPage {
 
   constructor(private classService: ClassService,
               private router: Router,
+              private notificationService: NotificationService,
               private popoverService: PopoverService,
               private alertController: AlertController,
               private dateUtil: DateUtil,
@@ -113,8 +122,51 @@ export class ClassesPage {
     this.router.navigate(['admin', 'lesson', lesson.id, 'schedule']);
   }
 
+  async askRemoveLesson(lesson: Lesson) {
+    // wrap in setTimeout in order to be able to retrieve the click event
+    setTimeout(async () => {
+      this.popover = await this.popoverService.show(this.removeLessonConfirmation, {
+        lesson
+      }, {
+        cssClass: 'confirm-remove'
+      }/*, this.lastClick*/);
+    }, 0);
+  }
+
   async removeLesson(lesson: Lesson) {
-    // TODO: implement in next version
+    this.popover.success();
+    // this.pendingProvider.markPending(lesson);
+    await this.classService.removeLesson(lesson);
+    // this.pendingProvider.unmarkPending(lesson);
+    this.refreshClasses();
+  }
+
+  async askRemoveClass(scheduledClass: ScheduledClass) {
+    // wrap in setTimeout in order to be able to retrieve the click event
+    setTimeout(async () => {
+      this.popover = await this.popoverService.show(this.removeClassConfirmation, {
+        scheduledClass
+      }, {
+        cssClass: 'confirm-remove'
+      }/*, this.lastClick*/);
+    }, 0);
+  }
+
+  async removeClass(scheduledClass: ScheduledClass) {
+    try {
+      this.popover.success();
+      this.pendingProvider.markPending(scheduledClass);
+      await this.classService.removeClass(scheduledClass);
+      this.pendingProvider.markPending(scheduledClass);
+      this.refreshClasses();
+    } catch (e) {
+      if (matchesErrorCode(e, 'CANT_REMOVE_CLASS_WITH_BOOKERS')) {
+        this.pendingProvider.markPending(scheduledClass);
+        this.notificationService.warn(this.unremovableNotification, {scheduledClass}, {toastClass: 'unremovable'});
+        this.refreshClasses();
+      }
+      throw e;
+    }
   }
 
   async showPlaceDetails(place: Place) {

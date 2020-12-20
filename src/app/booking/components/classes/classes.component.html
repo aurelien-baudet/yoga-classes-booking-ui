@@ -13,6 +13,7 @@
       [schedulable]="manageClassStateProvider.isSchedulable(scheduledClass)"
       [cancelable]="manageClassStateProvider.isCancelable(scheduledClass)"
       [messageable]="manageClassStateProvider.isMessageable(scheduledClass)"
+      [removable]="manageClassStateProvider.isRemovable(scheduledClass)"
       [canceled]="manageClassStateProvider.isCanceled(scheduledClass)"
       [canceledInfo]="manageClassStateProvider.getCanceledInfo(scheduledClass)"
       [searchFriendProvider]="searchFriendProvider"
@@ -30,6 +31,7 @@
       (showWaitingStudents)="showWaitingStudents.emit($event)"
       (showClassDetails)="showClassDetails.emit($event)"
       (sendMessage)="sendMessage.emit($event)"
+      (remove)="remove.emit($event)"
       (bookForFriend)="bookForFriend.emit($event)"
       (unbookForFriend)="unbookForFriend.emit($event)"></app-scheduled-class-card>
   </ion-item>

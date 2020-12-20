@@ -22,11 +22,11 @@
     <ion-item *ngFor="let lesson of unscheduledLessons">
       <app-unscheduled-lesson-card
         [lesson]="lesson"
-        [removable]="false"
+        [removable]="true"
         [schedulable]="true"
         [showDetails]="lessonDetailsProvider.isShowDetails(lesson)"
         (schedule)="schedule($event)"
-        (remove)="removeLesson($event)"
+        (remove)="askRemoveLesson($event)"
         (viewDetails)="lessonDetailsProvider.viewDetails($event)"
         (hideDetails)="lessonDetailsProvider.hideDetails($event)"></app-unscheduled-lesson-card>
     </ion-item>
@@ -48,7 +48,8 @@
     (showPlaceDetails)="showPlaceDetails($event)"
     (showApprovedStudents)="showApprovedStudents($event)"
     (showWaitingStudents)="showWaitingStudents($event)"
-    (sendMessage)="sendMessageToApprovedStudents($event)"></app-classes>
+    (sendMessage)="sendMessageToApprovedStudents($event)"
+    (remove)="askRemoveClass($event)"></app-classes>
 </ion-content>
 
 <ng-template #cancelMessage let-cancelingClass="cancelingClass" let-form="form">
@@ -96,4 +97,26 @@
     [preferencesProvider]="preferencesProvider"
     [unbookableProvider]="unbookableProvider"
     (unbook)="unbookStudent(scheduledClass, $event)"></app-waiting-students>
+</ng-template>
+
+
+<ng-template #removeLessonConfirmation let-removingLesson="lesson">
+  <p>Souhaitez-vous réellement supprimer le cours ?</p>
+  <ion-button size="small" (click)="removeLesson(removingLesson)">Supprimer le cours</ion-button>
+</ng-template>
+
+<ng-template #removeClassConfirmation let-removingClass="scheduledClass">
+  <p>Souhaitez-vous réellement supprimer ce cours ?</p>
+  <ion-button size="small" (click)="removeClass(removingClass)">Supprimer le cours</ion-button>
+</ng-template>
+
+
+<ng-template #unremovableNotification let-scheduledClass="scheduledClass">
+  <div class="header">
+    <span class="title">Suppression impossible</span>
+  </div>
+  <div class="content">
+    <p>Il y a <strong>{{ scheduledClass.bookings.all.length }}</strong> élèves qui sont inscrits au cours du <strong>{{ scheduledClass | dateRange }}</strong>.</p>
+    <p>Il n'est pas possible de supprimer ce cours. Il faut que les élèves puissent savoir que le cours a été annulé en ouvrant l'application.</p>
+  </div>
 </ng-template>

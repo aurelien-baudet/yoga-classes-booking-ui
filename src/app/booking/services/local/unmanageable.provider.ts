@@ -26,4 +26,8 @@ export class UnmanageableProvider implements ManageClassStateProvider {
     isMessageable(scheduledClass: ScheduledClass): boolean {
         return false;
     }
+
+    isRemovable(scheduledClass: ScheduledClass): boolean {
+        return false;
+    }
 }

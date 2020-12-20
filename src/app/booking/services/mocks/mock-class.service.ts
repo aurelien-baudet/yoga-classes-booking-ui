@@ -73,4 +73,12 @@ export class MockClassService implements ClassService {
   changeTeacherForAllClasses(lesson: LessonId, newTeacher: TeacherId): Promise<Lesson> {
     throw new Error("Method not implemented.");
   }
+
+  async removeLesson(lesson: LessonId): Promise<void> {
+    throw new Error("Method not implemented.");
+  }
+  
+  async removeClass(scheduledClass: ClassId): Promise<void> {
+    throw new Error("Method not implemented.");
+  }
 }

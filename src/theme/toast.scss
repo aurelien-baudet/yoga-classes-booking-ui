@@ -31,7 +31,8 @@
     &.not-booked,
     &.already-booked,
     &.place-already-taken,
-    &.too-late-to-unbook {
+    &.too-late-to-unbook,
+    &.unremovable {
       background: value($toast-states, "failed.background");
     }
 

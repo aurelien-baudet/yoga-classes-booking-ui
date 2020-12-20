@@ -20,4 +20,6 @@ export abstract class ClassService {
   async abstract updateLessonInfoForAllClasses(updatedInfo: UpdatedLesson): Promise<Lesson>;
   async abstract changeTeacherForSpecificClass(scheduledClass: ClassId, newTeacher: TeacherId): Promise<ScheduledClass>;
   async abstract changeTeacherForAllClasses(lesson: LessonId, newTeacher: TeacherId): Promise<Lesson>;
+  async abstract removeLesson(lesson: LessonId): Promise<void>;
+  async abstract removeClass(scheduledClass: ClassId): Promise<void>;
 }

@@ -127,6 +127,18 @@ export class RestClassService implements ClassService {
       .toPromise();
   }
 
+  async removeLesson(lesson: LessonId): Promise<void> {
+    return await this.http.delete<void>(`${this.serverConfig.url}/lessons/${lesson.id}`)
+      .pipe(first())
+      .toPromise();
+  }
+  
+  async removeClass(scheduledClass: ClassId): Promise<void> {
+    return await this.http.delete<void>(`${this.serverConfig.url}/classes/${scheduledClass.id}`)
+      .pipe(first())
+      .toPromise();
+  }
+
   private toServerLesson(lesson: NewLesson): NewLessonServerDto {
     return {
       info: lesson,

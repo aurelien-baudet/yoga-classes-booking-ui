@@ -659,6 +659,17 @@ $scheduled-class-card-cancel-button: (
     "height": 45px
   )
 );
+$scheduled-class-card-remove-button: (
+  "position": (
+    "top": -25px,
+    "right": -5px
+  ),
+  "icon": (
+    "colors": var(--ion-color-warning) var(--ion-color-warning-contrast),
+    "width": 45px,
+    "height": 45px
+  )
+);
 
 $register-friend-button: (
   "icon": (
@@ -900,7 +911,11 @@ $unscheduled-lesson-card-sport-level: map-merge($scheduled-class-card-sport-leve
 $unscheduled-lesson-card-details: map-merge($scheduled-class-card-details, ());
 $unscheduled-lesson-card-details-button: map-merge($scheduled-class-card-details-button, ());
 $unscheduled-lesson-card-schedule-button: map-merge($scheduled-class-card-schedule-button, ());
-$unscheduled-lesson-card-remove-button: map-merge($scheduled-class-card-cancel-button, ());
+$unscheduled-lesson-card-remove-button: map-merge($scheduled-class-card-remove-button, (
+  "icon": map-merge(value($scheduled-class-card-remove-button, "icon"), (
+    "colors": var(--ion-color-primary-tint) var(--ion-color-primary-contrast),
+  ))
+));
 
 
 $cancel-popover: (
