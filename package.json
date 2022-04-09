@@ -41,7 +41,7 @@
     "google-libphonenumber": "3.2.13",
     "ion4-calendar": "3.0.4-beta.17",
     "ionic4-auto-complete": "2.9.2",
-    "moment": "2.27.0",
+    "moment": "2.29.2",
     "ngx-toastr": "13.0.0",
     "node-sass": "4.14.1",
     "onesignal-cordova-plugin": "2.11.1",
